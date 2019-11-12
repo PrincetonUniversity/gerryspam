@@ -1,4 +1,5 @@
 import geopandas as gpd
+import pandas as pd
 import pathlib
 
 #
@@ -14,3 +15,9 @@ merged_2016.groupby(['CDE_COUNTY']).sum()
 # 
 # 2018 matching 
 #
+# election results from open elections
+url = 'https://raw.githubusercontent.com/openelections/openelections-data-az/master/2018/20181106__az__general__precinct.csv'
+elec = pd.read_csv(url)
+apache = elec.loc[elec['county'] == 'Apache']
+len(apache.precinct.unique())
+
