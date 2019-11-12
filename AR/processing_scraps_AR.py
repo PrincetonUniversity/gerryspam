@@ -13,18 +13,28 @@ shp_df = shp_df[['county_nam', 'precinct','geometry']]
 
 shp_df.groupby(['county_nam']).ngroups #sigh.....75 counties
 
+# function to clean
+def ar_prec_transform(dat, county, custom_transformation = None, upper = True, chop_five_digs = True):
+       dat_out = dat.loc[dat['county_nam'] == county]
+       dat_out['prec_new'] = dat_out['precinct']
+       if upper:
+              dat_out['prec_new'] = dat_out['prec_new'].str.upper()
+       if chop_five_digs:
+              dat_out['prec_new'] = dat_out['prec_new'].str.slice(start = 5)
+       dat_out = dat_out.replace(
+              custom_transformation
+       )
+       return dat_out
+
 # arkansas cnty
-c1 = shp_df.loc[shp_df['county_nam'] == 'Arkansas']
-c1['precinct'] = c1['prec_new'].str.upper()
-c1['prec_new'] = c1['prec_new'].str.slice(start = 5)
-c1.replace({
-       'DEWITT 1': 'DEWITT WARD 1',
+c1= ar_prec_transform(shp_df, 'Arkansas', 
+       {'DEWITT 1': 'DEWITT WARD 1', 
        'DEWITT 2': 'DEWITT WARD 2',
        'DEWITT 3': 'DEWITT WARD 3',
        'STUTTGART 1': 'STUTTGART WARD 1',
        'STUTTGART 2': 'STUTTGART WARD 2', 
-       'STUTTGART 3': 'STUTTGART WARD 3'
-})
+       'STUTTGART 3': 'STUTTGART WARD 3'}
+       )
 
 # ashley cnty
 c2 = shp_df.loc[shp_df['county_nam'] == 'Ashley']
@@ -48,11 +58,13 @@ c2.replace({
 })
 
 # baxter cnty
-c3_elec = elec_df.loc[elec_df['county'] == 'Baxter']
-
 c3 = shp_df.loc[shp_df['county_nam'] == 'Baxter']
-c3['prec_new'] = c3['precinct'].str.upper()
-c3.sort_values(by=['prec_new'])
+c3['prec_new'] = c3['precinct']
+
+# benton cnty
+c4 = elec_df.loc[elec_df['county']]
+       
+
 
 
 
