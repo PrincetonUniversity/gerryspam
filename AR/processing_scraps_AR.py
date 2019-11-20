@@ -157,40 +157,43 @@ c16 = ar_prec_transform(shp_df, 'Craighead',
        chop_five_digs=False,
        upper=False)
 
-# 
+# crawford 
+c17 = ar_prec_transform(shp_df, 'Crawford', {
+       'Alma 01': 'Alma 1', 
+       'Alma 02': 'Alma 2', 
+       'Alma 03': 'Alma 3', 
+       'Alma 04': 'Alma 4', 
+       'Cove City': 'Cove City CSD',
+       'Lee Creek': 'Lee Creek CSD',
+       'Mulberry 01': 'Mulberry 1',
+       'Mulberry 02': 'Mulberry 2',
+       'Mulberry 03': 'Mulberry 3'},
+       chop_five_digs=False,
+       upper=False)
+
+# crittenden
+# need to revisit. none of these names match up
+c18 = ar_prec_transform(shp_df, 'Crittenden')
+
+# cross
+c19 = ar_prec_transform(shp_df, 'Cross', {
+       'Bay Village / Birdeye': 'Bay Village, Birdeye',
+       'Cherry Valley': 'Cherry Valley City',
+       'Tyronza / Twist': 'Tyronza, Twist',
+       'Wynne Ward 1': 'WYNNE WARD 1',
+       'Wynne Ward 2': 'WYNNE WARD 2',
+       'Wynne Ward 3': 'WYNNE WARD 3',
+       'Wynne Ward 4': 'WYNNE WARD 4',
+       'Wynne Ward 5': 'WYNNE WARD 5'},
+       chop_five_digs=False,
+       upper=False)
+
+# dallas
+c20 = ar_prec_transform(shp_df, 'Dallas', upper=False)
 
 
 
 
-
-geo_precincts = shp_df['precinct']
-geo_precincts = geo_precincts.str.lower()
-split_geo_precincts = geo_precincts.str.split(r'(.*?-)')
-
-restrung_geo_prec = []
-
-for prec in split_geo_precincts: 
-       if len(prec) > 1:
-              if len(prec[1]) == 4: # this should really be: list item = number, number, dash 
-                     del prec[1]
-                     #print (prec)
-                   #  ''.join(prec)
-                  #   print(prec)
-                     restrung_geo_prec.append(prec)
-
-       
-
-np.where(geo_precincts.str.contains('-'), re.search(regex, geo_precincts),  geo_precincts)
-
-cleaned_geo_precincts = re.search(regex, geo_precincts, re.VERBOSE)
-
-
-
-shp_df['shp_loc_prec']=elec_df['county'].map(str) + ',' + elec_df['precinct']
-
-### issues ###
-# - mississippi county 
-# -  
 
 
 elec_df = pd.read_csv(elec_path)
@@ -206,10 +209,6 @@ elec_df = elec_df[['NAME', 'precinct', 'G18DGOV', 'G18RGOV', 'G18LGOV',
        'G14DHOR', 'G14RHOR', 'G14LHOR', 'G14NPHOR', 'G14DStSEN', 'G14RStSEN',
        'G14NAStSEN', 'G14NPStSEN', 'G14DStHou', 'G14RStHou', 'G14CStHou',
        'G14LStHou', 'G14NAStHou', 'G14NPStHou']]
-
-
-#elec_df['precinct']=elec_df['precinct'].str.title().str.strip()
-#csv_df['com_col']=csv_df['shp'].astype(int)
 
 merged = pd.merge(shp_df, elec_df, on='NAME', how = 'outer')
 
