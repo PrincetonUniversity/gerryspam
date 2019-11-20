@@ -191,8 +191,30 @@ c19 = ar_prec_transform(shp_df, 'Cross', {
 # dallas
 c20 = ar_prec_transform(shp_df, 'Dallas', upper=False)
 
+# desha cnty
+c21 = ar_prec_transform(shp_df, 'Desha', {
+       'Bowie W1': 'Bowie 1',
+       'Bowie W2': 'Bowie 2',
+       'Bowie W3': 'Bowie 3',
+       'Mitcheville': 'Mitchellville',
+       'Rand W1': 'Randolph 1',
+       'Rand W2': 'Randolph 2',
+       'Rand W3': 'Randolph 3',
+       'Rand W4': 'Randolph 4',
+       'Rand Rural': 'Randolph Rural',
+       'Silver Lake': 'Silverlake'})
 
+# drew cnty
+c22 = ar_prec_transform(shp_df, 'Drew', {
+       'Mar N Box 1': 'MN BOX 1 - RH Cumb. Presb', # need to confirm
+       'Mar N Box 2': 'MN Box 2 - RH Baptist Chu', # need to confirm
+       'Marion South': 'Marion South - Shady Grov'},
+       upper=False)
 
+# faulkner cnty
+c23 = ar_prec_transform(shp_df, 'Faulkner', {
+       
+})
 
 
 
