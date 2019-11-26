@@ -213,9 +213,60 @@ c22 = ar_prec_transform(shp_df, 'Drew', {
 
 # faulkner cnty
 c23 = ar_prec_transform(shp_df, 'Faulkner', {
-       
-})
+       'Wilson 35': '35 Wilson',
+       'West Cadron 14': '14 W Cadron',
+       'Walker 38': '38 Walker',
+       'Vilonia City 21': '21 Vilonia',
+       'Union 37': ' 37 Union',
+       'Pine Mt 36': '36 Pine Mt.',
+       'Palarm 39': ' 39 Palarm',
+       'Newton 34': '34 Newton',
+       'Mountain 32': '32 Mountain',
+       'Mount Vernon 33': '33 Mt. Vernon',
+       'Matthews 31': '31 Matthews',
+       'Harve 30': '30 Harve',
+       'Hardin Rural 28': '28 Hardin',
+       'Hardin City West (GB) 55': '55.01 Hardin GB West',
+       'Hardin City East (GB) 29': '29.01 Hardin GB East',
+       'Enola 27': '27 Enola',
+       'East Fork 26': '26 East Fork',
+       'Eagle 25': '25 Eagle',
+       'E Cadron C 48': '48 E Cadron C',
+       'E Cadron B 13': '13 E Cadron B',
+       'E Cadron A 12': '12  E Cadron A',
+       'Danley Rural 23': '23 Danley',
+       'Danley City (Mayflower) 24': '24 Mayflower',
+       'Cypress Rural 22': '22 Cypress',
+       'Clifton 19': '19 Clifton',
+       'California 18': '18 CA',
+       'Bristol 17': '17 Bristol',
+       'Benton 16': '16 Benton',
+       'Benedict 15': '15 Benedict',
+       '4f Conway City 05': '05 4F',
+       '4e Conway City 03': '03.01 4E',
+       '4d Conway City 04': '04.01 4D',
+       '4c Conway City 11': '11 4C',
+       '4b Conway City 02': '02 4B',
+       '4a Conway City 01': '01.01 4A',
+       '3g Conway City 54': '54 3G',
+       '3f Conway City 53': '53 3F',
+       '3e Conway City 45': '45.01 3E',
+       '3d Conway City 50': '50.01 3D',
+       '3c-West Conway City 46': '46 3C-W',
+       '3c-East Conway City 09': '09 3C-E',
+       '3b Conway City 08': '08 3B',
+       '3a Conway City 10': '10 3A',
+       '2c Conway City 49': '49 2C',
+       '2b Conway City 06': '06.01 2B',
+       '2a Conway City 07': '07 2A',
+       '1e-West Conway City 44': '44 1E-W',
+       '1e-East Conway City 43': '43 1E-E',
+       '1c-South Conway City 42': '42 1C-S',
+       '1c-North Conway City 41': '41 1C-N'},
+       upper=False,
+       chop_five_digs=False)
 
+# 
 
 
 elec_df = pd.read_csv(elec_path)
