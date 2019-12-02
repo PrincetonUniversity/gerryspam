@@ -13,11 +13,16 @@ shp_df = shp_df[['county_nam', 'precinct','geometry']]
 shp_df.groupby(['county_nam']).ngroups #sigh.....75 counties
 
 # function to clean
-def ar_prec_transform(dat, county, custom_transformation = None, upper = True, chop_five_digs = True):
+def ar_prec_transform(dat, county, custom_transformation = None, upper = True, 
+       chop_five_digs = True, dash_to_slash = False, chop_three_digs = False):
        dat_out = dat.loc[dat['county_nam'] == county]
        dat_out['prec_new'] = dat_out['precinct'].copy()
        if chop_five_digs:
               dat_out['prec_new'] = dat_out['prec_new'].str.slice(start = 5)
+       if chop_three_digs:
+              dat_out['prec_new'] = dat_out['prec_new'].str.slice(start = 3)
+       if dash_to_slash: 
+              dat_out['prec_new'] = dat_out['prec_new'].str.replace(" - ", "/")
        dat_out = dat_out.replace(
               custom_transformation # NB: the replace will edit the old column, so if you want the original 'precinct' from shp, merge it back in
        )
@@ -310,11 +315,70 @@ c22 = ar_prec_transform(shp_df, 'Franklin', {
        upper=False,
        chop_five_digs=False)
 
-#
+# fulton cnty
+c23 = ar_prec_transform(shp_df, 'Fulton', {
+       'MS - Afton': 'MAMMOTH SPRING/AFTON',
+       'Fulton - Mt. Calm': 'FULTON/MT CALM'},
+       chop_five_digs=False,
+       dash_to_slash=True)
 
+# garland cnty
+c24 = ar_prec_transform(shp_df, 'Garland', chop_five_digs=False, upper=False)
 
+# grant county
+c25 = ar_prec_transform(shp_df, 'Grant', upper=False)
 
+# greene county 
+c26 = ar_prec_transform(shp_df, "Greene", {
+       'Delaplaine - Jones': 'Delaplaine-Jones',
+       'Lafe - Breckenridge': 'Lafe-Breckenridge',
+       'Marmaduke - Hurricane': 'Marmaduke-Hurricane',
+       'Oak Grove - Union': 'Oak Grove-Union'},
+       upper=False)
 
+# Hempstead county
+c27 = ar_prec_transform(shp_df, 'Hempstead', chop_five_digs=False, chop_three_digs=True, upper=False)
+
+# hot spring county
+c28 = ar_prec_transform(shp_df, 'Hot Spring', {
+       'Friendship City': 'Friendship'},
+       upper=False, 
+       chop_five_digs=False)
+
+# howard county
+c29 = ar_prec_transform(shp_df, 'Howard', upper=False)
+
+# independence county
+c30 = ar_prec_transform(shp_df, 'Independence', {
+       'Big Bottom / Wycough / Logan': 'Big Bottom Wycough Logan',
+       'Black River / Marshall': 'Black River/Marshall',
+       'Cushman / Union': 'Cushman/Union',
+       'Greenbrier - Desha': 'Greenbrier-Desha',
+       'Greenbrier - Jamestown': 'Greenbrier-Jamestown',
+       'Greenbrier - Locust Grove': 'Greenbrier-Locust Grove'},
+       upper=False,
+       chop_five_digs=False)
+
+# izard county
+c31 = ar_prec_transform(shp_df, 'Izard', {
+       'Calico Rock Ward 1': 'CALICO ROCK - WARD 1',
+       'Calico Rock Ward 2': 'CALICO ROCK - WARD 2',
+       'Calico Rock Ward 3': 'CALICO ROCK - WARD 3',
+       'Calico Rock Ward 4': 'CALICO ROCK - WARD 4',
+       'Horseshoe Bend Ward 1': 'HORSESHOE BEND - WARD 1',
+       'Horseshoe Bend Ward 2': 'HORSESHOE BEND - WARD 2',
+       'Horseshoe Bend Ward 3': 'HORSESHOE BEND - WARD 3',
+       'Horseshoe Bend Ward 4': 'HORSESHOE BEND - WARD 4',
+       'Melbourne Ward 1': 'MELBOURNE - WARD 1',
+       'Melbourne Ward 2': 'MELBOURNE - WARD 2',
+       'Melbourne Ward 3': 'MELBOURNE - WARD 3',
+       'Melbourne Ward 4': 'MELBOURNE - WARD 4',
+       'Mt. Pleasant City': 'MOUNT PLEASANT CITY',
+       'Mt. Pleasant Rural': 'MOUNT PLEASANT RURAL'},
+       chop_five_digs=False)
+
+#Jackson county
+c32 = ar_prec_transform(shp_df, 'Jackson', )
 
 
 elec_df = pd.read_csv(elec_path)
