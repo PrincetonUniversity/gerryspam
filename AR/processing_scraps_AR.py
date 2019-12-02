@@ -15,11 +15,11 @@ shp_df.groupby(['county_nam']).ngroups #sigh.....75 counties
 # function to clean
 def ar_prec_transform(dat, county, custom_transformation = None, upper = True, chop_five_digs = True):
        dat_out = dat.loc[dat['county_nam'] == county]
-       dat_out['prec_new'] = dat_out['precinct']
+       dat_out['prec_new'] = dat_out['precinct'].copy()
        if chop_five_digs:
               dat_out['prec_new'] = dat_out['prec_new'].str.slice(start = 5)
        dat_out = dat_out.replace(
-              custom_transformation
+              custom_transformation # NB: the replace will edit the old column, so if you want the original 'precinct' from shp, merge it back in
        )
        if upper:
               dat_out['prec_new'] = dat_out['prec_new'].str.upper()
@@ -266,7 +266,55 @@ c23 = ar_prec_transform(shp_df, 'Faulkner', {
        upper=False,
        chop_five_digs=False)
 
-# 
+# franklin cnty
+c22 = ar_prec_transform(shp_df, 'Franklin', {
+       '7-C (Etna)': '7-C Etna',
+       '6-B (Altus City)': '6-B Altus City',
+       '7-A (Cecil)': '7-A Cecil',
+       '3-E (Watalula)': '3-E Watalula',
+       '2-D (Wallace/Ivy)': '2-D Wallace/Ivy',
+       '1-B (Oz Wd 3)': '1-B Ozark Wd. 3',
+       '2-A (Oz Wd 2)': '2-A Ozark Wd. 2',
+       '3-F (Mountain)': '3-F Mountain',
+       '5-A (Wallace/Ivy)': '5-A Wallace/Ivy',
+       '9-A (Charleston Wd 2)': '9-A Charleston Wd. 2',
+       '3-A (Lonelm/Cravens)': '3-A Lone Elm/Cravens',
+       '8-A (Branch City)': '8-A Branch City',
+       '4-B (Watalula)': '4-B Watalula',
+       '3-D (Jethro)': '3-D Jethro',
+       '3-B (Fern)': '3-B Fern',
+       '7-D (Donald Rural)': '7-D Donald',
+       '3-C (Boston)': '3-C Boston',
+       '8-B (Charleston Wd 1)': '8-B Charleston Wd. 1',
+       '8-D (Vesta)': '8-D Vesta',
+       '6-D (Weiderkehr Village)': '6-D W.V. City',
+       '8-F (Cecil)': '8-F Cecil',
+       '5-C (Webb City)': '5-C Webb City',
+       '2-C (Lonelm/Cravens)': '2-C Lone Elm/Cravens',
+       '4-C (WV Rural)': '4-C W-V Rural',
+       '6-A (Altus Rural)': '6-A Altus Rural',
+       '6-C (Denning)': '6-C Denning City',
+       '4-D (Oz Rural)': '4-D Ozark Rural',
+       '4-A (Philpot)': '4-A Philpot',
+       '8-E (Donald Rural)': '8-E Donald',
+       '9-C (Charleston Rural)': '9-C Charleston Rural',
+       '7-B (Webb City)': '7-B Webb City',
+       '8-G (Donald Rural)': '8-G Donald',
+       '1-A (Oz Wd 1)': '1-A Ozark Wd.1',
+       '5-B (Oz Rural)': '5-B Ozark Rural',
+       '2-B (Oz Rural)': '2-B Ozark Rural',
+       '9-B (Charleston Wd 3)': '9-B Charleston Wd. 3',
+       '2-E (Oz Wd 3)': '2-E Ozark Wd. 3',
+       '1-C (Oz WD 2)': '1-B Ozark Wd. 3',
+       '8-C (Charleston Rural)': '8-C Charleston Rural'},
+       upper=False,
+       chop_five_digs=False)
+
+#
+
+
+
+
 
 
 elec_df = pd.read_csv(elec_path)
