@@ -604,7 +604,7 @@ c53 = ar_prec_transform(shp_df, 'Pike', chop_five_digs=True)
 c54 = ar_prec_transform(shp_df, 'Poinsett', )
 
 # polk
-# return - need to confirm the hash transforms
+# confirmed with county clerk 12/16/19
 c55 = ar_prec_transform(shp_df, 'Polk', {
        '09 - DALLAS VALLEY/ SHADY': '09 - Dallas Valley', 
        '01- MENA': '01 - Precinct 1',
