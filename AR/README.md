@@ -14,4 +14,7 @@ __Shapefiles__
 
 On October 16 2019, downloaded from here: http://gis.arkansas.gov/?product=election-precincts
 
-All changes made to precinct names recorded here: https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/processing_scraps_AR.py
+Transformations made to precinct names recorded here: https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/processing_scraps_AR.py
+
+Merges/splits: 
+- Stone County: Merged precinct Fifty six into Northwest
