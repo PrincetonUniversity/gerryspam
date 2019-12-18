@@ -12,6 +12,10 @@ shp_df = gpd.read_file(shp_path)
 shp_df = shp_df[['county_nam', 'precinct','geometry']]
 shp_df.groupby(['county_nam']).ngroups #sigh.....75 counties
 
+out = shp_df.loc[shp_df['county_nam'] == 'St. Francis']
+out = out.drop(['geometry', 'county_nam'], axis=1)
+out.to_csv("/Users/hopecj/projects/AR/stfrancis.csv")
+
 # function to clean
 def ar_prec_transform(dat, county, custom_transformation=None, upper=True, 
        chop_five_digs=False, chop_three_digs=False, chop_six_digs=False, dash_to_slash=False, 
@@ -658,7 +662,9 @@ c64 = ar_prec_transform(shp_df, 'Sharp')
 
 # st francis
 # return to it
-c65 = ar_prec_transform(shp_df, 'St. Francis', )
+c65 = ar_prec_transform(shp_df, 'St. Francis', {
+
+})
 
 # stone
 c66 = ar_prec_transform(shp_df, 'Stone', {
