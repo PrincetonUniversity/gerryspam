@@ -693,7 +693,23 @@ c71 = ar_prec_transform(shp_df, 'Woodruff', {
        'Augusta - 01': 'Augusta Armory -01',
        'Augusta - 02': 'Augusta Armory -02',
        'Augusta - 03': 'Augusta Armory -03',
-})
+       'Cotton Plant - 08': 'Babbs/Cotton Plant-08',
+       'Cotton Plant - 09': 'Babbs/Cotton Plant-09',
+       'Cotton Plant/ Freeman - 07': 'Babbs Cottn PL/Freeman-07',
+       'Fakes Chapel - 20': 'Fairgrounds Fakes Chpl-20',
+       'Gregory - 06': 'Gregory-06',
+       'Hilleman - 13': 'White Hall Church-13',
+       'Howell - 12': 'Fairgrounds/Howell-12',
+       'Hunter - 11': 'Hunter Methodist-11',
+       'McCrory - 17': 'McCrory Civic Center-17',
+       'McCrory - 18': 'McCrory Civic-18',
+       'McCrory Rural - 15': '',
+       'Morton - 14': 'Frgrnds/McCrory Rural-15',
+       'North Rural Augusta - 04': 'Augusta Armory-04',
+       'Patterson - 16': 'Patterson Fire Station-16',
+       'Pumkin Bend - 19': 'Pumpkin Bend Church-19',
+       'Rural Hunter - 10': 'Hunter Methodist/Rural-10',
+       'South Rural Augusta - 05': 'Augusta Armory-05'})
 
 # yell
 c72 = ar_prec_transform(shp_df, 'Yell', chop_five_digs=True)
