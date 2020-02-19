@@ -23,8 +23,9 @@ Changes:
 - Cleburne County: Removed last three characters from precinct names
 - Craighead County: Removed the word "precinct" from precinct names
 - Izard County: Added "OXFORD CITY IN BROCKWELL" precinct results to Brockwell precinct. Added "SAGE IN MELBOURNE WARD 4" to Melbourne Ward 4 precinct.   
-- Washington County: Removed first four characters from precinct names
+- Pope County: Removed '#' from precinct names
 - Stone County: Combined results from "Ben 1" and "Ben 2" precincts into "Ben" precinct. 
+- Washington County: Removed first four characters from precinct names
 
 
 __Shapefiles__
