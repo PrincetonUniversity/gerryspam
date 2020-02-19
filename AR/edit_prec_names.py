@@ -175,7 +175,7 @@ def drew(dat):
         "Mar N Box 1": "MN BOX 1 - RH Cumb. Presb",  
         "Mar N Box 2": "MN Box 2 - RH Baptist Chu",  
         "Marion South": "Marion South - Shady Grov",
-    })   
+    })
 
 def faulkner(dat):
     dat["prec"] = dat["prec"].replace(
@@ -409,7 +409,7 @@ def lee(dat):
         "Precinct 7": "JP07",
         "Precinct 8": "JP08",
         "Precinct 9": "JP09",
-        })   
+        })
 
 def lincoln(dat):
     dat["prec"] = dat["prec"].str.slice(start=6)
@@ -441,7 +441,7 @@ def littleriver(dat):
         "Little River Township": "Little River",
         "Red River Township": "Red River",
         "Wallace / Richland": "Wallace/Richland",
-        })    
+        })
  
 def logan(dat):
     dat["prec"] = dat["prec"].str.slice(start=6)
@@ -457,7 +457,7 @@ def logan(dat):
         "Boone WD 2": "Boone Ward 2",
         "Boone WD 3": "Boone Ward 3",
         "Boone WD 4": "Boone Ward 4",
-        })        
+        })
 
 def lonoke(dat):
     dat["prec"] = dat["prec"].replace(
@@ -482,7 +482,7 @@ def lonoke(dat):
         "54 - Lonoke City Ward 6": "54 - Lonoke City W/6",
         "55 - Lonoke City Ward 7": "55 - Lonoke City W/7",
         "55 - Lonoke City Ward 8": "55 - Lonoke City W/8",
-        })   
+        })
     
 def marion(dat):
     dat["prec"] = "P00" + dat["prec"].str.slice(start=9)
@@ -493,7 +493,7 @@ def miller(dat):
         "Hickory St": "Hickory Street",
         "Hickory St South": "Hickory Street South",
         "Ozan Inghram": "Ozan",
-        })     
+        })
 
 def newton(dat):
     dat["prec"] = dat["prec"].replace(
@@ -511,7 +511,7 @@ def polk(dat):
         "02- MENA": "02 - Precinct 2",
         "03- MENA": "03 - Precinct 3",
         })
-    chop_five(dat)   
+    chop_five(dat)
 
 def pope(dat):
     chop_five(dat)
@@ -538,7 +538,7 @@ def randolph(dat):
         "Ward One": "Ward 1",
         "Ward Two": "Ward 2",
         "Ward Three": "Ward 3",
-        })      
+        })
 
 def saline(dat):
     dat["prec"] = "Precinct " + dat["prec"]
@@ -560,7 +560,7 @@ def stone(dat):
         {
         "Angora Mtn": "Angora Mountain",
         "Dodd Mtn": "Dodd Mountain"
-        })    
+        })
     
 def washington(dat):
     dat["prec"] = dat["prec"].replace(
@@ -570,9 +570,8 @@ def washington(dat):
         "Richland - Senate": "Richland-Senate",
         })
 
-# return to this 
 def woodruff(dat):   
-    dat["prec"] = dat["prec"]
+    dat["prec"] = dat["prec"].map(lambda s: str(s)[-2:])
 
 """
 overall call function
@@ -632,12 +631,12 @@ countyToCountyCleaner = {
     "White": chop_five,
     "Woodruff": woodruff,
     "Yell": chop_five,
-}
+    }
 
 raw_df = shp_df.loc[
    (shp_df['county_nam'] == "Desha") | 
    (shp_df['county_nam'] == "Benton") | 
-   (shp_df['county_nam'] == "Cleveland")]
+   (shp_df['county_nam'] == "Woodruff")]
 
 test_df = raw_df.sort_values(by=['county_nam']) # you have to sort the counties alphabetically whowwwwww
 

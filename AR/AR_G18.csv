@@ -1757,20 +1757,20 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Polk,Shady Grove",,Polk,,Shady Grove,48,15,278,45,283,8,49,5,123,133,14
 "Polk,Vandervoort",,Polk,,Vandervoort,18,3,128,20,127,2,21,5,227,235,29
 "Polk,Wickes",,Polk,,Wickes,33,8,224,31,231,6,35,4,72,84,20
-"Pope,Appleton #1",,Pope,,Appleton #1,25,2,76,29,71,3,28,4,128,136,25
-"Pope,Appleton #2",,Pope,,Appleton #2,28,4,130,24,136,4,28,24,561,616,109
+"Pope,Appleton #1",,Pope,,Appleton 1,25,2,76,29,71,3,28,4,128,136,25
+"Pope,Appleton #2",,Pope,,Appleton 2,28,4,130,24,136,4,28,24,561,616,109
 "Pope,Atkins In",,Pope,,Atkins In,117,31,574,143,567,16,138,9,274,296,46
-"Pope,Atkins Out #1",,Pope,,Atkins Out #1,54,10,283,58,277,11,65,1,28,29,2
-"Pope,Atkins Out #2",,Pope,,Atkins Out #2,2,2,27,3,29,0,3,1,72,77,12
-"Pope,Atkins Out #3",,Pope,,Atkins Out #3,12,4,74,15,75,0,17,7,194,207,36
+"Pope,Atkins Out #1",,Pope,,Atkins Out 1,54,10,283,58,277,11,65,1,28,29,2
+"Pope,Atkins Out #2",,Pope,,Atkins Out 2,2,2,27,3,29,0,3,1,72,77,12
+"Pope,Atkins Out #3",,Pope,,Atkins Out 3,12,4,74,15,75,0,17,7,194,207,36
 "Pope,Bayliss",,Pope,,Bayliss,38,21,184,38,195,11,40,11,174,182,46
 "Pope,Buck Mountain",,Pope,,Buck Mountain,42,19,168,37,179,14,45,3,113,118,19
-"Pope,Caglesville #1",,Pope,,Caglesville #1,21,2,114,19,118,1,22,0,23,23,3
-"Pope,Caglesville #2",,Pope,,Caglesville #2,5,0,24,6,22,0,6,11,98,109,30
-"Pope,Crow Mountain East #1",,Pope,,Crow Mountain East #1,26,8,104,29,103,5,28,8,176,188,20
-"Pope,Crow Mountain East #2",,Pope,,Crow Mountain East #2,18,4,186,22,178,6,23,12,366,391,61
-"Pope,Crow Mountain West #1",,Pope,,Crow Mountain West #1,72,16,365,85,350,18,77,12,370,404,64
-"Pope,Crow Mountain West #2",,Pope,,Crow Mountain West #2,77,12,380,93,369,7,87,14,286,315,65
+"Pope,Caglesville #1",,Pope,,Caglesville 1,21,2,114,19,118,1,22,0,23,23,3
+"Pope,Caglesville #2",,Pope,,Caglesville 2,5,0,24,6,22,0,6,11,98,109,30
+"Pope,Crow Mountain East #1",,Pope,,Crow Mountain East 1,26,8,104,29,103,5,28,8,176,188,20
+"Pope,Crow Mountain East #2",,Pope,,Crow Mountain East 2,18,4,186,22,178,6,23,12,366,391,61
+"Pope,Crow Mountain West #1",,Pope,,Crow Mountain West 1,72,16,365,85,350,18,77,12,370,404,64
+"Pope,Crow Mountain West #2",,Pope,,Crow Mountain West 2,77,12,380,93,369,7,87,14,286,315,65
 "Pope,Dover In",,Pope,,Dover In,69,22,294,74,295,14,81,55,1003,1069,193
 "Pope,Dover Out",,Pope,,Dover Out,200,75,998,232,1003,36,212,4,132,143,31
 "Pope,Economy",,Pope,,Economy,30,6,138,37,137,1,39,1,22,22,6
@@ -1779,17 +1779,17 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Pope,Hector Out",,Pope,,Hector Out,39,11,163,43,166,4,46,7,213,223,45
 "Pope,London In",,Pope,,London In,43,14,215,54,210,9,52,45,679,752,128
 "Pope,London Out",,Pope,,London Out,149,37,695,151,699,32,157,7,192,207,53
-"Pope,Martin #1",,Pope,,Martin #1,56,17,189,62,189,11,63,5,90,95,14
-"Pope,Martin #2",,Pope,,Martin #2,12,4,94,16,91,3,15,1,28,32,9
-"Pope,Martin #3",,Pope,,Martin #3,11,4,26,11,29,1,12,2,75,77,22
-"Pope,Moreland #1",,Pope,,Moreland #1,19,6,75,24,73,3,21,4,42,48,5
-"Pope,Moreland #2",,Pope,,Moreland #2,6,2,45,5,46,2,7,2,40,41,7
+"Pope,Martin #1",,Pope,,Martin 1,56,17,189,62,189,11,63,5,90,95,14
+"Pope,Martin #2",,Pope,,Martin 2,12,4,94,16,91,3,15,1,28,32,9
+"Pope,Martin #3",,Pope,,Martin 3,11,4,26,11,29,1,12,2,75,77,22
+"Pope,Moreland #1",,Pope,,Moreland 1,19,6,75,24,73,3,21,4,42,48,5
+"Pope,Moreland #2",,Pope,,Moreland 2,6,2,45,5,46,2,7,2,40,41,7
 "Pope,Nogo",,Pope,,Nogo,8,3,39,8,40,1,7,11,175,193,35
 "Pope,Pea Ridge",,Pope,,Pea Ridge,36,11,181,42,178,8,42,30,681,735,119
-"Pope,Pottsville In #1",,Pope,,Pottsville In #1,125,41,691,138,691,27,144,0,54,57,11
-"Pope,Pottsville In #2",,Pope,,Pottsville In #2,8,0,61,13,56,0,14,26,579,635,88
-"Pope,Pottsville Out #1",,Pope,,Pottsville Out #1,110,37,581,127,583,20,120,1,5,7,6
-"Pope,Pottsville Out #2",,Pope,,Pottsville Out #2,6,0,7,7,6,0,7,5,54,63,53
+"Pope,Pottsville In #1",,Pope,,Pottsville In 1,125,41,691,138,691,27,144,0,54,57,11
+"Pope,Pottsville In #2",,Pope,,Pottsville In 2,8,0,61,13,56,0,14,26,579,635,88
+"Pope,Pottsville Out #1",,Pope,,Pottsville Out 1,110,37,581,127,583,20,120,1,5,7,6
+"Pope,Pottsville Out #2",,Pope,,Pottsville Out 2,6,0,7,7,6,0,7,5,54,63,53
 "Pope,Russellville 1A",,Pope,,Russellville 1A,59,2,57,59,56,4,60,86,848,1016,205
 "Pope,Russellville 1B",,Pope,,Russellville 1B,236,40,959,308,891,35,295,11,108,134,67
 "Pope,Russellville 1C",,Pope,,Russellville 1C,75,10,117,84,107,10,82,48,596,691,187
@@ -1806,12 +1806,12 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Pope,Russellville 4F",,Pope,,Russellville 4F,25,4,55,37,42,4,36,0,16,16,3
 "Pope,Russellville 4G",,Pope,,Russellville 4G,2,1,16,3,15,0,3,26,234,264,141
 "Pope,Russellville 4H",,Pope,,Russellville 4H,146,19,245,160,230,21,149,18,353,377,66
-"Pope,Russellville Out #1",,Pope,,Russellville Out #1,65,11,371,81,359,6,75,17,199,225,62
-"Pope,Russellville Out #2",,Pope,,Russellville Out #2,65,20,201,76,209,4,71,0,33,32,7
-"Pope,Russellville Out #3",,Pope,,Russellville Out #3,7,2,30,6,33,0,6,25,582,637,120
-"Pope,Russellville Out #4",,Pope,,Russellville Out #4,121,29,609,156,585,17,150,13,149,162,30
-"Pope,Scottsville #1",,Pope,,Scottsville #1,26,11,156,33,157,3,30,1,20,23,1
-"Pope,Scottsville #2",,Pope,,Scottsville #2,3,2,19,2,22,0,3,0,89,93,12
+"Pope,Russellville Out #1",,Pope,,Russellville Out 1,65,11,371,81,359,6,75,17,199,225,62
+"Pope,Russellville Out #2",,Pope,,Russellville Out 2,65,20,201,76,209,4,71,0,33,32,7
+"Pope,Russellville Out #3",,Pope,,Russellville Out 3,7,2,30,6,33,0,6,25,582,637,120
+"Pope,Russellville Out #4",,Pope,,Russellville Out 4,121,29,609,156,585,17,150,13,149,162,30
+"Pope,Scottsville #1",,Pope,,Scottsville 1,26,11,156,33,157,3,30,1,20,23,1
+"Pope,Scottsville #2",,Pope,,Scottsville 2,3,2,19,2,22,0,3,0,89,93,12
 "Prairie,Belcher/Tyler",,Prairie,,Belcher/Tyler,10,1,95,12,93,2,17,0,42,43,9
 "Prairie,Bullard",,Prairie,,Bullard,11,1,40,11,41,0,10,1,81,86,7
 "Prairie,Calhoun",,Prairie,,Calhoun,8,0,90,12,83,2,15,0,124,125,13
