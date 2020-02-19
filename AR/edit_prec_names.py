@@ -281,7 +281,7 @@ def fulton(dat):
         {"MS - Afton": "MAMMOTH SPRING/AFTON", 
          "Fulton - Mt. Calm": "FULTON/MT CALM"
          })
-    dat_out["prec_new"] = dat_out["prec_new"].str.replace(" - ", "/")
+    dat["prec"] = dat["prec"].str.replace(" - ", "/")
 
 def greene(dat):
     chop_five(dat)
@@ -423,13 +423,156 @@ def lincoln(dat):
         "Owen / Palmyra": "Owen/Palmyra",
         "Wells Bayou": "Wells Bayou/FS",
         })
+
+def littleriver(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Arden Township": "Arden",
+        "Arkinda Township": "Arkinda",
+        "Burke Township": "Burke",
+        "Caney Township": "Caney",
+        "Cleveland Township": "Cleveland",
+        "Franklin Township": "Franklin",
+        "Jackson Township": "Jackson",
+        "Jefferson Township": "Jefferson",
+        "Jewell Township": "Jewell",
+        "Johnson Township": "Johnson",
+        "Lick Creek Township": "Lick Creek",
+        "Little River Township": "Little River",
+        "Red River Township": "Red River",
+        "Wallace / Richland": "Wallace/Richland",
+        })    
  
-def pulaski(dat):
-    dat["prec"] = dat["prec"].str.slice(start=9)
-    dat["prec"] = dat["prec"].str.lstrip("0")
+def logan(dat):
+    dat["prec"] = dat["prec"].str.slice(start=6)
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Sht Mtn WD 1": "Short Mtn Ward 1",
+        "Sht Mtn WD 2": "Short Mtn Ward 2",
+        "Sht Mtn WD 3": "Short Mtn Ward 3",
+        "Sht Mtn WD 4": "Short Mtn Ward 4",
+        "Blue Mountain City": "Blue Mtn City",
+        "Blue Mountain Rural": "Blue Mtn Rural",
+        "Boone WD 1": "Boone Ward 1",
+        "Boone WD 2": "Boone Ward 2",
+        "Boone WD 3": "Boone Ward 3",
+        "Boone WD 4": "Boone Ward 4",
+        })        
+
+def lonoke(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "05 - Cabot City Ward 1": "05 - Cabot City W/1",
+        "06 - Cabot City Ward 2": "06 - Cabot City W/2",
+        "07 - Cabot City Ward 3": "07 - Cabot City W/3",
+        "08 - Cabot City Ward 4": "08 - Cabot City W/4",
+        "13 - Carlisle TWP": "13 - Carlisle Twp.",
+        "34 - Lonoke City Ward 1": "34 - Lonoke City W/1",
+        "35 - Lonoke City Ward 2": "35 - Lonoke City W/2",
+        "36 - Lonoke City Ward 3": "36 - Lonoke City W/3",
+        "37 - Lonoke City Ward 4": "37 - Lonoke City W/4",
+        "42 - Prairie TWP": "42 - Prairie Twp.",
+        "45 - Totten TWP": "45 - Totten Twp.",
+        "46 - Walls TWP": "46 - Walls Twp.",
+        "47 - Ward City Ward 1": "47 - Ward City W/1",
+        "48 - Ward City Ward 2": "48 - Ward City W/2",
+        "49 - Ward City Ward 3": "49 - Ward City W/3",
+        "51 - Williams TWP": "51 - Williams Twp.",
+        "53 - Lonoke City Ward 5": "53 - Lonoke City W/5",
+        "54 - Lonoke City Ward 6": "54 - Lonoke City W/6",
+        "55 - Lonoke City Ward 7": "55 - Lonoke City W/7",
+        "55 - Lonoke City Ward 8": "55 - Lonoke City W/8",
+        })   
     
 def marion(dat):
     dat["prec"] = "P00" + dat["prec"].str.slice(start=9)
+
+def miller(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Hickory St": "Hickory Street",
+        "Hickory St South": "Hickory Street South",
+        "Ozan Inghram": "Ozan",
+        })     
+
+def newton(dat):
+    dat["prec"] = dat["prec"].replace(
+        {"Mt Sherman": "Mt. Sherman"}
+        )     
+
+def perry(dat):
+    dat["prec"] = dat["prec"].str.slice(start=1, stop=2) + "-" + dat["prec"].str.slice(start=5)
+
+def polk(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "09 - DALLAS VALLEY/ SHADY": "09 - Dallas Valley",
+        "01- MENA": "01 - Precinct 1",
+        "02- MENA": "02 - Precinct 2",
+        "03- MENA": "03 - Precinct 3",
+        })
+    chop_five(dat)   
+
+def pope(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].str.replace("-", "")
+
+def prairie(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Belcher / Tyler": "Belcher/Tyler",
+        "White River Ward 1": "Wattensaw City Ward 1",
+        "White River Ward 2": "Wattensaw City Ward 2",
+        "White River Ward 3": "Wattensaw City Ward 3",
+        })    
+
+def pulaski(dat):
+    dat["prec"] = dat["prec"].str.slice(start=9)
+    dat["prec"] = dat["prec"].str.lstrip("0")
+
+def randolph(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Okean": "O'kean",
+        "Ward One": "Ward 1",
+        "Ward Two": "Ward 2",
+        "Ward Three": "Ward 3",
+        })      
+
+def saline(dat):
+    dat["prec"] = "Precinct " + dat["prec"]
+    
+def scott(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Lewis 1": "Lewis Ward 1",
+        "Lewis 2": "Lewis Ward 2",
+        "Lewis 3": "Lewis Ward 3"
+        })
+        
+def sebastian(dat):
+    dat["prec"] = dat["prec"].str.slice(start=9)
+
+def stone(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Angora Mtn": "Angora Mountain",
+        "Dodd Mtn": "Dodd Mountain"
+        })    
+    
+def washington(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Prairie Gr City - House": "Prairie Gr City-House",
+        "Prairie Gr City - Senate": "Prairie Gr City-Senate",
+        "Richland - Senate": "Richland-Senate",
+        })
+
+# return to this 
+def woodruff(dat):   
+    dat["prec"] = dat["prec"]
 
 """
 overall call function
@@ -463,12 +606,32 @@ countyToCountyCleaner = {
     "Independence": independence,
     "Izard": izard,
     "Jefferson": jefferson,
+    "Jackson": jackson,
     "Lafayette": lafayette,
     "Lawrence": lawrence,
     "Lee": lee,
     "Lincoln": lincoln,
-    "Jackson": jackson,
+    "Little River": littleriver,
+    "Logan": logan,
+    "Lonoke": lonoke,
     "Marion": marion,
+    "Miller": miller,
+    "Monroe": chop_five,
+    "Newton": newton,
+    "Perry": perry,
+    "Pike": chop_five,
+    "Polk": polk,
+    "Pope": pope,
+    "Prairie": prairie,
+    "Pulaski": pulaski,
+    "Randolph": randolph,
+    "Saline": saline,
+    "Scott": scott,
+    "Stone": stone,
+    "Washington": washington,
+    "White": chop_five,
+    "Woodruff": woodruff,
+    "Yell": chop_five,
 }
 
 raw_df = shp_df.loc[
