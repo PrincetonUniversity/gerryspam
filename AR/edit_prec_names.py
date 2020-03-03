@@ -6,7 +6,7 @@ elec_path = "/Users/hopecj/projects/gerryspam/AR/AR_G18.csv"
 
 elec_df = pd.read_csv(elec_path)
 shp_df = gpd.read_file(shp_path)
-shp_df = shp_df[["county_nam", "precinct", "geometry"]]
+shp_df = shp_df[["state_fips", "county_fip", "county_nam", "precinct", "geometry"]]
 
 """
 general helper functions for all counties 
@@ -14,19 +14,18 @@ general helper functions for all counties
 def chop_five(dat):
     dat["prec"] = dat["prec"].str.slice(start=5)
 
-
 """
 county-specific cleaning counties
 """
 def arkansas(dat):
     dat["prec"] = dat["prec"].str.slice(start=5)
     dat["prec"] = dat["prec"].replace({
-        "DeWitt 1": "DEWITT WARD 1",
-        "Dewitt 2": "DEWITT WARD 2",
-        "Dewitt 3": "DEWITT WARD 3",
-        "Stuttgart 1": "STUTTGART WARD 1",
-        "Stuttgart 2": "STUTTGART WARD 2",
-        "Stuttgart 3": "STUTTGART WARD 3",
+        "DeWitt 1": "Dewitt ward 1",
+        "Dewitt 2": "Dewitt ward 2",
+        "Dewitt 3": "Dewitt WARD 3",
+        "Stuttgart 1": "Stuttgart ward 1",
+        "Stuttgart 2": "Stuttgart ward 2",
+        "Stuttgart 3": "Stuttgart ward 3",
     })
     
 def ashley(dat):
@@ -107,7 +106,7 @@ def clark(dat):
     })
     
 def clay(dat):
-    dat["prec"] = dat["prec"].str.slice(start=5)
+    dat["prec"] = dat["prec"].str.slice(start=5) # need to figure out what's going on here -- possibly remove this
     dat["prec"] = dat["prec"].replace(
         {
         "Bennett & Lemmons": "Bennett and Lemmons",
@@ -495,13 +494,21 @@ def miller(dat):
         "Ozan Inghram": "Ozan",
         })
 
+def monroe(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].replace(
+        {"Duncan Township": "duncan",
+         "Holly Grove Township": "holly grove",
+         "Keevil Township": "keevil",
+        })    
+
 def newton(dat):
     dat["prec"] = dat["prec"].replace(
         {"Mt Sherman": "Mt. Sherman"}
         )     
 
 def perry(dat):
-    dat["prec"] = dat["prec"].str.slice(start=1, stop=2) + "-" + dat["prec"].str.slice(start=5)
+    dat["prec"] = dat["prec"].str.slice(start=1, stop=2) + "-" + dat["prec"].str.slice(start=5)  
 
 def polk(dat):
     dat["prec"] = dat["prec"].replace(
@@ -615,7 +622,7 @@ countyToCountyCleaner = {
     "Lonoke": lonoke,
     "Marion": marion,
     "Miller": miller,
-    "Monroe": chop_five,
+    "Monroe": monroe,
     "Newton": newton,
     "Perry": perry,
     "Pike": chop_five,
@@ -633,20 +640,24 @@ countyToCountyCleaner = {
     "Yell": chop_five,
     }
 
-raw_df = shp_df.loc[
-   (shp_df['county_nam'] == "Desha") | 
-   (shp_df['county_nam'] == "Benton") | 
-   (shp_df['county_nam'] == "Woodruff")]
+# to test for select counties
+# raw_df = shp_df.loc[
+#    (shp_df['county_nam'] == "Desha") | 
+#    (shp_df['county_nam'] == "Benton") | 
+#    (shp_df['county_nam'] == "Woodruff")]
 
-test_df = raw_df.sort_values(by=['county_nam']) # you have to sort the counties alphabetically whowwwwww
+clean_df = shp_df.sort_values(by=['county_nam']) # you have to sort the counties alphabetically whowwwwww
 
-counties = pd.Series(test_df['county_nam']).unique()
-test_df["prec"] = test_df["precinct"].copy()
-test_df.set_index(['county_nam', 'precinct'], inplace=True)
+counties = pd.Series(clean_df['county_nam']).unique()
+clean_df["prec"] = clean_df["precinct"].copy()
+clean_df.set_index(['county_nam', 'precinct'], inplace=True)
 
 for county in counties: 
-    county_dat = test_df.loc[county]
+    county_dat = clean_df.loc[county]
     changed = countyToCountyCleaner.get(county, lambda x: x)(county_dat) # why lambda x?
-    test_df.update(county_dat)
-    
-test_df.to_file("/Users/hopecj/projects/AR/Shapefiles/test.shp")
+    clean_df.update(county_dat)
+
+clean_df['prec_final'] = clean_df['prec'].str.lower()
+clean_df.reset_index(inplace=True)
+
+clean_df.to_file("/Users/hopecj/projects/AR/Shapefiles/clean.shp")
