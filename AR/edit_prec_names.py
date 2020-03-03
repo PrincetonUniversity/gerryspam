@@ -654,7 +654,7 @@ clean_df.set_index(['county_nam', 'precinct'], inplace=True)
 
 for county in counties: 
     county_dat = clean_df.loc[county]
-    changed = countyToCountyCleaner.get(county, lambda x: x)(county_dat) # why lambda x?
+    changed = countyToCountyCleaner.get(county, lambda x: x)(county_dat) 
     clean_df.update(county_dat)
 
 clean_df['prec_final'] = clean_df['prec'].str.lower()
