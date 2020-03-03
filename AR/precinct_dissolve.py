@@ -75,6 +75,13 @@ def faulkner(dat):
     dat["PREC"] = dat["prec_final"].replace({
         "2d conway city 40": "07 2a"
 })
+    
+def independence(dat):
+    dat["PREC"] = dat["prec_final"].replace({
+        "big bottom ward 1": "Big Bottom Wards 1,2,3",
+        "big bottom ward 2": "Big Bottom Wards 1,2,3",
+        "big bottom ward 3": "Big Bottom Wards 1,2,3",
+}) 
 
 def monroe(dat):
     dat["PREC"] = dat["prec_final"].replace({
@@ -148,14 +155,91 @@ def poinsett(dat):
         "willis ward 4": "willis",
         "willis ward 5": "willis",
 })
+
+def st_francis(dat):
+    dat["PREC"] = dat["prec_final"].replace({
+        "24 - Bonair": "Bonair",
+        "16 - Tuni": "Bonair",
+        "17 - Bonair": "Bonair",
+        "26 - Bonair": "Bonair",
+        "23 - Caldwell Country": "Caldwell",
+        "22 - Caldwell City": "Caldwell",
+        "20 - Colt City": "Colt",
+        "27 - Pine Tree": "Colt",
+        "21 - Colt Country": "Colt",
+        "57 - Forrest City Ward 1-6": "FC Ward 1",
+        "35 - Forrest City Ward 1-1": "FC Ward 1",
+        "38 - Forrest City Ward 1-4": "FC Ward 1",
+        "43 - Forrest City Ward 2-3": "FC Ward 2",
+        "45 - Forrest City Ward 2-4": "FC Ward 2",
+        "41 - Forrest City Ward 2-2": "FC Ward 2",
+        "55 - Forrest City Ward 2-6": "FC Ward 2",
+        "50 - Forrest City Ward 2-2": "FC Ward 2",
+        "40 - Forrest City Ward 2-1": "FC Ward 2",
+        "53 - Forrest City Ward 3-5": "FC Ward 3",
+        "52 - Forrest City Ward 3-4": "FC Ward 3",
+        "49 - Forrest City Ward 3-1": "FC Ward 3",
+        "65 - Forrest City Ward 4-5": "FC Ward 4",
+        "66 - Forrest City Ward 4-6": "FC Ward 4",
+        "56 - Forrest City Ward 4-2": "FC Ward 4",
+        "26 - Forrest City Country West": "Forrest City Country West",
+        "06 - Heth": "Heth/Blackfish",
+        "13 - Round Pond Mosley GW": "Heth/Blackfish",
+        "11 - Round Pond Mosley GE": "Heth/Blackfish",
+        "07 - Blackfish": "Heth/Blackfish",
+        "02 - Hughes Ward 2": "Hughes",
+        "01 - Hughes Ward 1": "Hughes",
+        "03 - Hughes Ward 3": "Hughes",
+        "05 - Rawlison": "Hughes",
+        "04 - Hughes Country": "Hughes",
+        "14 - Madison City": "Madison",
+        "15 - Madison Country": "Madison",
+        "19 - Newcastle": "Newcastle/Parrott",
+        "18 - Parrott": "Newcastle/Parrott",
+        "25 - Parrot/Newcastle": "Newcastle/Parrott",
+        "29 - Palestine City 2": "Palestine",
+        "30 - Palestine City 3": "Palestine",
+        "32 - Goodwin": "Palestine",
+        "31 - Palestine Country": "Palestine",
+        "28 - Palestine City 1": "Palestine",
+        "34 - Wheatley Country": "Wheatley",
+        "33 - Wheatley City": "Wheatley",
+        "10 - Widener City GE": "Widener",
+        "09 - Widener County GW": "Widener",
+})
     
+def stone(dat):
+    dat["PREC"] = dat["prec_final"].replace({
+        "fifty six": "northwest"
+})
 
+countyToDissolve = {
+    "Carroll": carroll,
+    "Crittenden": crittenden, # need to double-check this when erin emails me back
+    "Independence": independence,
+    "Monroe": monroe,
+    "Nevada": nevada,
+    "Poinsett": poinsett,
+    "St. Francis": st_francis,
+    "Stone": stone
+    }
 
+shp = shp.sort_values(by=['county_nam']) # you have to sort the counties alphabetically whowwwwww
 
-test_dissolved = test.dissolve(by='prec_to-agg')
-test_dissolved.reset_index(inplace=True)
-test_dissolved = test_dissolved.buffer(0)
+counties = pd.Series(shp['county_nam']).unique()
+shp["prec"] = shp["precinct"].copy()
+shp.set_index(['county_nam', 'precinct'], inplace=True)
 
-test_dissolved.is_valid
+for county in counties: 
+    county_dat = shp.loc[county]
+    changed = countyToDissolve.get(county, lambda x: x)(county_dat) 
+    shp.update(county_dat)
 
-test_dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/dissolved_carroll.shp")
+dissolved = shp.dissolve(by='prec_to-agg')
+dissolved.reset_index(inplace=True)
+#dissolved = dissolved.buffer(0)
+
+# check for topology errors
+dissolved.is_valid
+
+dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/dissolved.shp")
