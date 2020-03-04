@@ -33,4 +33,6 @@ __Shapefiles__
 
 On October 16 2019, downloaded from here: http://gis.arkansas.gov/?product=election-precincts
 
+On March 4th 2020, Madison County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership18v2/st05_ar.html 
+
 All changes made to precinct names recorded here: https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/processing_scraps_AR.py
