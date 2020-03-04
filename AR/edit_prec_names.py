@@ -510,6 +510,56 @@ def newton(dat):
 def perry(dat):
     dat["prec"] = dat["prec"].str.slice(start=1, stop=2) + "-" + dat["prec"].str.slice(start=5)  
 
+def phillips(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Bush": "PRECINCT 0001",
+        "Cleburne I": "PRECINCT 0008",
+        "Cleburne II": "PRECINCT 0008",
+        "Cleveland": "PRECINCT 0014",
+        "Cypress": "PRECINCT 0014",
+        "Elaine I": "PRECINCT 0016",
+        "Elaine II": "PRECINCT 0016",
+        "Helena West Helena 1": "PRECINCT 0001",
+        "Helena West Helena 2": "PRECINCT 0003",
+        "Helena West Helena 3": "PRECINCT 0005",
+        "Hickory Ridge Marvell 1": "PRECINCT 0013",
+        "Hickory Ridge Marvell I": "PRECINCT 0013",
+        "Hickory Ridge Marvell II": "PRECINCT 0013",
+        "Hickory Ridge Marvell III": "PRECINCT 0013",
+        "Hicksville": "PRECINCT 0013",
+        "Honor VII": "PRECINCT 0007",
+        "Hornor": "PRECINCT 0007",
+        "Hornor II": "PRECINCT 0007",
+        "Hornor III": "PRECINCT 0007",
+        "Hornor IV": "PRECINCT 0007",
+        "Hornor V": "PRECINCT 0007",
+        "Hornor VI": "PRECINCT 0007",
+        "L-Anquille": "PRECINCT 0001",
+        "Lake": "PRECINCT 0002",
+        "Lakeview City": "PRECINCT 0015",
+        "Lexa City": "PRECINCT 0010",
+        "Lower Big Creek": "PRECINCT 0014",
+        "Marion": "PRECINCT 0011",
+        "Marion I": "PRECINCT 0011",
+        "Mooney": "PRECINCT 0017",
+        "Searcy I": "PRECINCT 0015",
+        "Searcy II": "PRECINCT 0015",
+        "Searcy III": "PRECINCT 0015",
+        "Spring Creek I": "PRECINCT 0009",
+        "Spring Creek II": "PRECINCT 0009",
+        "Spring Creek III": "PRECINCT 0009",
+        "Spring Creek IV": "PRECINCT 0010",
+        "Spring Creek V": "PRECINCT 0009",
+        "St Francis I": "PRECINCT 0001",
+        "St Francis II": "PRECINCT 0001",
+        "St Francis IV": "PRECINCT 0001",
+        "Tappan I": "PRECINCT 0016",
+        "Tappan II": "PRECINCT 0016",
+        "Upper Big Creek": "PRECINCT 0012",
+        })    
+
+
 def polk(dat):
     dat["prec"] = dat["prec"].replace(
         {
@@ -568,6 +618,23 @@ def stone(dat):
         "Angora Mtn": "Angora Mountain",
         "Dodd Mtn": "Dodd Mountain"
         })
+
+def union(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Country Box # 1": "Country Box #1",
+        "Country Box # 2": "Country Box #2",
+        "Country Box # 3": "Country Box #3",
+        "Country Box # 4": "Country Box #4",
+        "Country Box # 5": "Country Box #5",
+        "Country Box # 6": "Country Box #6",
+        "Country Box # 7": "Country Box #7",
+        "Mt Holly": "mt. holly",
+        "Ward 1": "ward #1",
+        "Ward 2": "ward #2",
+        "Ward 3": "ward #3",
+        "Ward 4": "ward #4",
+        })
     
 def washington(dat):
     dat["prec"] = dat["prec"].replace(
@@ -577,8 +644,30 @@ def washington(dat):
         "Richland - Senate": "Richland-Senate",
         })
 
-def woodruff(dat):   
-    dat["prec"] = dat["prec"].map(lambda s: str(s)[-2:])
+def woodruff(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Augusta - 01": "Augusta Armory -01",
+        "Augusta - 02": "Augusta Armory-02",
+        "Augusta - 03": "Augusta Hsng Authority-03",
+        "Cotton Plant - 08": "Babbs/Cotton Plant-08",
+        "Cotton Plant - 09": "Babbs/Cotton Plant-09",
+        "Cotton Plant/ Freeman - 07": "Babbs Cottn PL/Freeman-07",
+        "Fakes Chapel - 20": "Fairgrounds Fakes Chpl-20",
+        "Gregory - 06": "Gregory-06",
+        "Hilleman - 13": "White Hall Church-13",
+        "Howell - 12": "Fairgrounds/Howell-12",
+        "Hunter - 11": "Hunter Methodist-11",
+        "McCrory - 17": "McCrory Civic Center-17",
+        "McCrory - 18": "McCrory Civic-18",
+        "McCrory Rural - 15": "Frgrnds/McCrory Rural-15",
+        "Morton - 14": "Morton Baptist-14",
+        "North Rural Augusta - 04": "Augusta Armory-04",
+        "Patterson - 16": "Patterson Fire Station-16",
+        "Pumkin Bend - 19": "Pumpkin Bend Church-19",
+        "Rural Hunter - 10": "Hunter Methodist/Rural-10",
+        "South Rural Augusta - 05": "Augusta Armory-05",
+        })
 
 """
 overall call function
@@ -625,6 +714,7 @@ countyToCountyCleaner = {
     "Monroe": monroe,
     "Newton": newton,
     "Perry": perry,
+    "Phillips": phillips,
     "Pike": chop_five,
     "Polk": polk,
     "Pope": pope,
@@ -634,6 +724,7 @@ countyToCountyCleaner = {
     "Saline": saline,
     "Scott": scott,
     "Stone": stone,
+    "Union": union,
     "Washington": washington,
     "White": chop_five,
     "Woodruff": woodruff,
