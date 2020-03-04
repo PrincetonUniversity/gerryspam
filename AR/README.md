@@ -25,6 +25,7 @@ Changes:
 - Izard County: Added "OXFORD CITY IN BROCKWELL" precinct results to Brockwell precinct. Added "SAGE IN MELBOURNE WARD 4" to Melbourne Ward 4 precinct.   
 - Pope County: Removed '#' from precinct names
 - Stone County: Combined results from "Ben 1" and "Ben 2" precincts into "Ben" precinct. 
+- Union County: Removed "EARLY VOTING" and "ZZ - PROVISIONAL" rows.
 - Washington County: Removed first four characters from precinct names
 
 
