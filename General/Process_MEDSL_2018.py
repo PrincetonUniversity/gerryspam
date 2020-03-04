@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 #list states you need data for
-states = ['Washington']
+states = ['Michigan']
 
 #filepath to country wide 2018 precinct level returns
 elec_fp = '/Users/hwheelen/Documents/GitHub/MEDSL/2018-elections-official/precinct_2018.csv'
