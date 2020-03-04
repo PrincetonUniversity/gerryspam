@@ -22,7 +22,12 @@ Changes:
 - Calhoun County: Changed "Watson Addition" to "Tinsman Watson" based off of phone call to county clerk 
 - Cleburne County: Removed last three characters from precinct names
 - Craighead County: Removed the word "precinct" from precinct names
-- Izard County: Added "OXFORD CITY IN BROCKWELL" precinct results to Brockwell precinct. Added "SAGE IN MELBOURNE WARD 4" to Melbourne Ward 4 precinct.   
+- Izard County: Added "OXFORD CITY IN BROCKWELL" precinct results to Brockwell precinct. Added "SAGE IN MELBOURNE WARD 4" to Melbourne Ward 4 precinct.
+- Oachita County: 
+    - Combined votes from "Valley 1" and "Valley 2" election results to create "Valley"
+    - Combined votes from "Circle C" into "Carroll" precinct
+    - Combined votes from "Ecore Fabre Maul" into "Ecore Fabre" precinct
+    - Combined votes from "Smackover Ward 2" into "Smackover Ward 1" precinct 
 - Pope County: Removed '#' from precinct names
 - Stone County: Combined results from "Ben 1" and "Ben 2" precincts into "Ben" precinct. 
 - Union County: Removed "EARLY VOTING" and "ZZ - PROVISIONAL" rows.
