@@ -91,3 +91,7 @@ prec_elec_rn = prec_elec_rn[[
 #this is ready to be matched to precinct names now
 
 prec_elec_rn.to_csv('/Users/hopecj/projects/AR/Elections/AR_G18.csv')
+
+######################################################
+# MEDSL RESULTS ######################################
+######################################################
