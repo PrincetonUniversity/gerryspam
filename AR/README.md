@@ -28,6 +28,7 @@ Changes:
     - Combined votes from "Circle C" into "Carroll" precinct
     - Combined votes from "Ecore Fabre Maul" into "Ecore Fabre" precinct
     - Combined votes from "Smackover Ward 2" into "Smackover Ward 1" precinct 
+- Phillips County: Removed "Precinct 004" from election results based on exchange with county clerk
 - Pope County: Removed '#' from precinct names
 - Stone County: Combined results from "Ben 1" and "Ben 2" precincts into "Ben" precinct. 
 - Union County: Removed "EARLY VOTING" and "ZZ - PROVISIONAL" rows.
@@ -38,6 +39,10 @@ __Shapefiles__
 
 On October 16 2019, downloaded from here: http://gis.arkansas.gov/?product=election-precincts
 
-On March 4th 2020, Madison County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership18v2/st05_ar.html 
+On March 4th 2020, Madison County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership18v2/st05_ar.html
+- Used "PVS_18_v2_vtd_05087.shp"
+
+On March 4th 2020, Oachita County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership17v2/st05_ar.html 
+- Used "PVS_17_v2_vtd_05103.shp" 
 
 All changes made to precinct names recorded here: https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/processing_scraps_AR.py
