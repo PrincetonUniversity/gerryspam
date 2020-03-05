@@ -28,7 +28,9 @@ Changes:
     - Combined votes from "Circle C" into "Carroll" precinct
     - Combined votes from "Ecore Fabre Maul" into "Ecore Fabre" precinct
     - Combined votes from "Smackover Ward 2" into "Smackover Ward 1" precinct 
-- Phillips County: Removed "Precinct 004" from election results based on exchange with county clerk
+- Phillips County: 
+    - Removed "PRECINCT 0004" from election results based on exchange with county clerk
+    - Combined results fom "PRECINCT 0005" and "PRECINCT 0006" into "PRECINCT 0005/0006"
 - Pope County: Removed '#' from precinct names
 - Stone County: Combined results from "Ben 1" and "Ben 2" precincts into "Ben" precinct. 
 - Union County: Removed "EARLY VOTING" and "ZZ - PROVISIONAL" rows.

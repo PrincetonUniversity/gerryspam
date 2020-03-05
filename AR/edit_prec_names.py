@@ -522,7 +522,7 @@ def phillips(dat):
         "Elaine II": "PRECINCT 0016",
         "Helena West Helena 1": "PRECINCT 0001",
         "Helena West Helena 2": "PRECINCT 0003",
-        "Helena West Helena 3": "PRECINCT 0005",
+        "Helena West Helena 3": "PRECINCT 0005/0006",
         "Hickory Ridge Marvell 1": "PRECINCT 0013",
         "Hickory Ridge Marvell I": "PRECINCT 0013",
         "Hickory Ridge Marvell II": "PRECINCT 0013",
