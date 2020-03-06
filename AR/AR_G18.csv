@@ -2397,16 +2397,16 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Washington,480 Litteral",,Washington,,Litteral  ,250,24,410,264,390,31,262,13,289,324,83
 "Washington,500 Marrs Hill",,Washington,,Marrs Hill ,102,12,304,111,301,8,117,0,100,109,14
 "Washington,520 Morrow",,Washington,,Morrow  ,18,4,102,23,98,3,24,28,888,1043,359
-"Washington,541 Prairie Twp 1",,Washington,,Prairie Twp ,458,22,974,533,884,32,528,10,183,197,152
-"Washington,542 Prairie Twp 2",,Washington,,Prairie Twp ,150,8,200,163,185,8,164,1,6,9,4
-"Washington,543 Prairie Twp 3",,Washington,,Prairie Twp ,6,0,8,7,7,0,7,1,79,91,34
-"Washington,544 Prairie Twp 4",,Washington,,Prairie Twp ,47,2,81,49,80,0,49,10,179,216,100
-"Washington,545 Prairie Twp 5",,Washington,,Prairie Twp ,136,2,194,142,184,4,143,66,1041,1164,442
-"Washington,560 Prairie Gr City",,Washington,,Prairie Gr ,465,68,1113,495,1084,65,532,4,68,69,19
-"Washington,561 Prairie Gr City-Senate",,Washington,,Prairie Gr ,13,3,73,10,73,5,17,7,146,156,42
-"Washington,562 Prairie Gr City-House",,Washington,,Prairie Gr ,38,7,157,49,145,7,49,9,219,237,76
-"Washington,580 Prairie Gr Twp",,Washington,,Prairie Gr ,70,10,240,86,222,9,89,3,103,120,36
-"Washington,581 Prairie Gr Twp-Senate",,Washington,,Prairie Gr ,48,2,111,57,100,3,52,7,68,74,24
+"Washington,541 Prairie Twp 1",,Washington,,Prairie Twp 1,458,22,974,533,884,32,528,10,183,197,152
+"Washington,542 Prairie Twp 2",,Washington,,Prairie Twp 2,150,8,200,163,185,8,164,1,6,9,4
+"Washington,543 Prairie Twp 3",,Washington,,Prairie Twp 3,6,0,8,7,7,0,7,1,79,91,34
+"Washington,544 Prairie Twp 4",,Washington,,Prairie Twp 4,47,2,81,49,80,0,49,10,179,216,100
+"Washington,545 Prairie Twp 5",,Washington,,Prairie Twp 5,136,2,194,142,184,4,143,66,1041,1164,442
+"Washington,560 Prairie Gr City",,Washington,,Prairie Gr City,465,68,1113,495,1084,65,532,4,68,69,19
+"Washington,561 Prairie Gr City-Senate",,Washington,,Prairie Gr City-Senate,13,3,73,10,73,5,17,7,146,156,42
+"Washington,562 Prairie Gr City-House",,Washington,,Prairie Gr City-House,38,7,157,49,145,7,49,9,219,237,76
+"Washington,580 Prairie Gr Twp",,Washington,,Prairie Gr Twp,70,10,240,86,222,9,89,3,103,120,36
+"Washington,581 Prairie Gr Twp-Senate",,Washington,,Prairie Gr Twp-Senate,48,2,111,57,100,3,52,7,68,74,24
 "Washington,620 Reed",,Washington,,Reed  ,25,4,70,26,67,6,25,8,149,158,34
 "Washington,640 Rheas Mill",,Washington,,Rheas Mill ,28,9,155,32,153,6,36,2,28,35,14
 "Washington,660 Richland",,Washington,,Richland  ,16,1,34,16,30,4,19,9,240,260,65
@@ -2452,11 +2452,11 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Washington,820 Vineyard",,Washington,,Vineyard  ,16,5,68,18,69,2,20,5,45,47,17
 "Washington,830 War Eagle",,Washington,,War Eagle ,15,2,48,19,45,1,15,2,93,97,22
 "Washington,840 Wedington",,Washington,,Wedington  ,25,2,98,29,95,0,29,16,401,443,213
-"Washington,860 West Fork City-1",,Washington,,West Fork ,240,21,419,254,405,20,257,4,88,89,29
-"Washington,861 West Fork City-2",,Washington,,West Fork ,26,3,92,31,82,8,28,0,3,4,3
-"Washington,862 West Fork City-3",,Washington,,West Fork ,4,0,3,5,2,0,4,7,179,205,98
-"Washington,880 West Fork Twp",,Washington,,West Fork ,103,8,200,108,194,7,120,2,105,116,63
-"Washington,881 West Fork Twp-H",,Washington,,West Fork ,65,4,112,70,108,3,72,11,267,309,104
+"Washington,860 West Fork City-1",,Washington,,West Fork City-1,240,21,419,254,405,20,257,4,88,89,29
+"Washington,861 West Fork City-2",,Washington,,West Fork City-2,26,3,92,31,82,8,28,0,3,4,3
+"Washington,862 West Fork City-3",,Washington,,West Fork City-3,4,0,3,5,2,0,4,7,179,205,98
+"Washington,880 West Fork Twp",,Washington,,West Fork Twp,103,8,200,108,194,7,120,2,105,116,63
+"Washington,881 West Fork Twp-H",,Washington,,West Fork Twp-H,65,4,112,70,108,3,72,11,267,309,104
 "Washington,900 Wheeler",,Washington,,Wheeler  ,132,12,289,146,275,11,151,0,1,1,0
 "Washington,901 Wheeler-S",,Washington,,Wheeler-S  ,0,0,1,0,1,0,0,3,115,148,60
 "Washington,902 Wheeler-H",,Washington,,Wheeler-H  ,90,2,129,100,117,3,100,8,124,133,59
