@@ -4,31 +4,11 @@ import numpy as np
 import re
 import shapely
 
-shp_path = '/Users/hopecj/projects/AR/Shapefiles/clean_precnames/clean.shp'
+shp_path = '/Users/hopecj/projects/AR/Shapefiles/1_edited_precnames/clean.shp'
 shp = gpd.read_file(shp_path)
-shp.set_index('county_nam', inplace=True)
-
-# 
-##
-###
-
-to_remove = ["Madison", "Oachita"]
-
-def rm_county(dat, countyName):
-    data_out = dat.drop(countyName, axis=0)
-    return data_out 
-
-for county in to_remove:
-    rm_county(shp, county)
-
-data_out.to_file("/Users/hopecj/projects/AR/Shapefiles/removed_counties.shp")
-
-###
-##
-#
 
 def carroll(dat):
-    dat["PREC"] = dat["prec_final"].replace({
+    dat["PREC"] = dat["PREC"].replace({
         "bv ward 1": "bv wards 1 and 2",
         "bv ward 2": "bv wards 1 and 2",
         "es ward 1": "es wards 1, 2, 3",
@@ -36,17 +16,18 @@ def carroll(dat):
         "es ward 3": "es wards 1, 2, 3",
         "gf ward 1": "gf wards 1 and 2",
         "gf ward 2": "gf wards 1 and 2",
-        "ne hickory":  "ne/nw hickory/coin/lng crk",
+        "ne hickory": "ne/nw hickory/coin/lng crk",
         "nw hickory": "ne/nw hickory/coin/lng crk",
         "coin": "ne/nw hickory/coin/lng crk",
         "lng crk": "ne/nw hickory/coin/lng crk",
         "cabanal": "prairies/cabanal",
         "ne prairie": "prairies/cabanal",
         "nw & sw prairie": "prairies/cabanal",
-})
-    
+    })
+
+
 def crittenden(dat):
-    dat["PREC"] = dat["prec_final"].replace({
+    dat["PREC"] = dat["PREC"].replace({
         "11 - ward 1 precinct 1": "1ST BAPTIST CHURCH WMPH",
         "12 - ward 1 precinct 2": "1ST BAPTIST CHURCH WMPH",
         "41 - ward 4 precinct 1": "7TH STREET CHURCH WMPH",
@@ -56,7 +37,7 @@ def crittenden(dat):
         "32 - ward 3 precinct 2": "CALVARY WMPH",
         "21 - ward 2 precinct 1": "CIVIC CENTER",
         "22 - ward 2 precinct 2": "CIVIC CENTER",
-        "63 - jackson 1":  "CRAWFORDSVILLE",
+        "63 - jackson 1": "CRAWFORDSVILLE",
         "59 - earle ward 1": "EARLE CITY HALL",
         "60 - earle ward 2": "EARLE CITY HALL",
         "61 - earle ward 3": "EARLE CITY HALL",
@@ -75,8 +56,8 @@ def crittenden(dat):
         "69 - jasper 3": "MARION COUNTY OFFICE",
         "66 - mound city": "MARION COUNTY OFFICE",
         "75 - jasper county box, sunset": "MARION COUNTY OFFICE",
-        "68 - jasper 2": "MARION IMMANUEL HWY 77",                 # need to figure this one out: == Immanuel Baptist church?
-        "78 - jasper country box (lakes": "MARION IMMANUEL HWY 77", # need to figure this one out: == Immanuel Baptist church?
+        "68 - jasper 2": "MARION IMMANUEL HWY 77",
+        "78 - jasper country box (lakes": "MARION IMMANUEL HWY 77",
         "23 - ward 2 precinct 3": "MT OLIVE WMPH",
         "64 - jackson 2": "MT PISGAH CHURCH",
         "51 - ward 5 precinct 1": "PILGRIMS REST CHURCH",
@@ -88,22 +69,25 @@ def crittenden(dat):
         "72 - proctor": "WM HIGH SCHOOL",
         "52 - ward 5 precinct 2": "WONDER BOYS CLUB",
         "58 - south fogleman": "WR GOLDEN",
-})
-    
+    })
+
+
 def faulkner(dat):
-    dat["PREC"] = dat["prec_final"].replace({
+    dat["PREC"] = dat["PREC"].replace({
         "2d conway city 40": "07 2a"
-})
-    
+    })
+
+
 def independence(dat):
-    dat["PREC"] = dat["prec_final"].replace({
+    dat["PREC"] = dat["PREC"].replace({
         "big bottom ward 1": "Big Bottom Wards 1,2,3",
         "big bottom ward 2": "Big Bottom Wards 1,2,3",
         "big bottom ward 3": "Big Bottom Wards 1,2,3",
-}) 
+    })
+
 
 def monroe(dat):
-    dat["PREC"] = dat["prec_final"].replace({
+    dat["PREC"] = dat["PREC"].replace({
         "brinkley township": "BRINKLEY/ DIXON",
         "dixon township": "BRINKLEY/ DIXON",
         "fargo": "RICHLAND/GREENFIELD/FARGO",
@@ -117,10 +101,11 @@ def monroe(dat):
         "pine ridge township": "HINDMAN/ RAYMOND/PINE RID",
         "roc-roe township": "roc",
         "roc-roe township/city": "roc",
-})
-    
+    })
+
+
 def nevada(dat):
-    dat["PREC"] = dat["prec_final"].replace({
+    dat["PREC"] = dat["PREC"].replace({
         "bluff city": "Bluff City City/Rural",
         "bluff city rural": "Bluff City City/Rural",
         "bodcaw city": "Bodcaw",
@@ -131,10 +116,11 @@ def nevada(dat):
         "ward 4": "Wards 1,2,3,4",
         "willisville city": "Willisville City/Rural",
         "willisville rural": "Willisville City/Rural",
-})    
+    })
+
 
 def poinsett(dat):
-    dat["PREC"] = dat["prec_final"].replace({
+    dat["PREC"] = dat["PREC"].replace({
         "bolivar north": "bolivar",
         "bolivar south": "bolivar",
         "bolivar ward 1": "bolivar",
@@ -173,189 +159,127 @@ def poinsett(dat):
         "willis ward 3": "willis",
         "willis ward 4": "willis",
         "willis ward 5": "willis",
-})
+    })
+
 
 def st_francis(dat):
-    dat["PREC"] = dat["prec_final"].replace({
-        "24 - Bonair": "Bonair",
-        "16 - Tuni": "Bonair",
-        "17 - Bonair": "Bonair",
-        "26 - Bonair": "Bonair",
-        "23 - Caldwell Country": "Caldwell",
-        "22 - Caldwell City": "Caldwell",
-        "20 - Colt City": "Colt",
-        "27 - Pine Tree": "Colt",
-        "21 - Colt Country": "Colt",
-        "57 - Forrest City Ward 1-6": "FC Ward 1",
-        "35 - Forrest City Ward 1-1": "FC Ward 1",
-        "38 - Forrest City Ward 1-4": "FC Ward 1",
-        "43 - Forrest City Ward 2-3": "FC Ward 2",
-        "45 - Forrest City Ward 2-4": "FC Ward 2",
-        "41 - Forrest City Ward 2-2": "FC Ward 2",
-        "55 - Forrest City Ward 2-6": "FC Ward 2",
-        "50 - Forrest City Ward 2-2": "FC Ward 2",
-        "40 - Forrest City Ward 2-1": "FC Ward 2",
-        "53 - Forrest City Ward 3-5": "FC Ward 3",
-        "52 - Forrest City Ward 3-4": "FC Ward 3",
-        "49 - Forrest City Ward 3-1": "FC Ward 3",
-        "65 - Forrest City Ward 4-5": "FC Ward 4",
-        "66 - Forrest City Ward 4-6": "FC Ward 4",
-        "56 - Forrest City Ward 4-2": "FC Ward 4",
-        "26 - Forrest City Country West": "Forrest City Country West",
-        "06 - Heth": "Heth/Blackfish",
-        "13 - Round Pond Mosley GW": "Heth/Blackfish",
-        "11 - Round Pond Mosley GE": "Heth/Blackfish",
-        "07 - Blackfish": "Heth/Blackfish",
-        "02 - Hughes Ward 2": "Hughes",
-        "01 - Hughes Ward 1": "Hughes",
-        "03 - Hughes Ward 3": "Hughes",
-        "05 - Rawlison": "Hughes",
-        "04 - Hughes Country": "Hughes",
-        "14 - Madison City": "Madison",
-        "15 - Madison Country": "Madison",
-        "19 - Newcastle": "Newcastle/Parrott",
-        "18 - Parrott": "Newcastle/Parrott",
-        "25 - Parrot/Newcastle": "Newcastle/Parrott",
-        "29 - Palestine City 2": "Palestine",
-        "30 - Palestine City 3": "Palestine",
-        "32 - Goodwin": "Palestine",
-        "31 - Palestine Country": "Palestine",
-        "28 - Palestine City 1": "Palestine",
-        "34 - Wheatley Country": "Wheatley",
-        "33 - Wheatley City": "Wheatley",
-        "10 - Widener City GE": "Widener",
-        "09 - Widener County GW": "Widener",
-})
-    
+    dat["PREC"] = dat["PREC"].replace({
+        "24 - bonair": "bonair",
+        "16 - tuni": "bonair",
+        "17 - bonair": "bonair",
+        "26 - bonair": "bonair",
+        "23 - caldwell country": "caldwell",
+        "22 - caldwell city": "caldwell",
+        "20 - colt city": "colt",
+        "27 - pine Tree": "colt",
+        "21 - colt country": "colt",
+        "57 - forrest city ward 1-6": "fc ward 1",
+        "35 - forrest city ward 1-1": "fc ward 1",
+        "38 - forrest city ward 1-4": "fc ward 1",
+        "43 - forrest city ward 2-3": "fc ward 2",
+        "45 - forrest city ward 2-4": "fc ward 2",
+        "41 - forrest city ward 2-2": "fc ward 2",
+        "55 - forrest city ward 2-6": "fc ward 2",
+        "50 - forrest city ward 2-2": "fc ward 2",
+        "40 - forrest city ward 2-1": "fc ward 2",
+        "53 - forrest city ward 3-5": "fc ward 3",
+        "52 - forrest city ward 3-4": "fc ward 3",
+        "49 - forrest city ward 3-1": "fc ward 3",
+        "65 - forrest city ward 4-5": "fc ward 4",
+        "66 - forrest city ward 4-6": "fc ward 4",
+        "56 - forrest city ward 4-2": "fc ward 4",
+        "26 - forrest city country west": "forrest city country west",
+        "06 - heth": "heth/blackfish",
+        "13 - round pond mosley gw": "heth/blackfish",
+        "11 - round pond mosley ge": "heth/blackfish",
+        "07 - blackfish": "heth/blackfish",
+        "02 - hughes ward 2": "hughes",
+        "01 - hughes ward 1": "hughes",
+        "03 - hughes ward 3": "hughes",
+        "05 - rawlison": "hughes",
+        "04 - hughes country": "hughes",
+        "14 - madison city": "madison",
+        "15 - madison country": "madison",
+        "19 - newcastle": "newcastle/parrott",
+        "18 - parrott": "newcastle/parrott",
+        "25 - parrot/newcastle": "newcastle/parrott",
+        "29 - palestine city 2": "palestine",
+        "30 - palestine city 3": "palestine",
+        "32 - goodwin": "palestine",
+        "31 - palestine country": "palestine",
+        "28 - palestine city 1": "palestine",
+        "34 - wheatley country": "wheatley",
+        "33 - wheatley city": "wheatley",
+        "10 - widener city ge": "widener",
+        "09 - widener county gw": "widener",
+    })
+
+
 def stone(dat):
-    dat["PREC"] = dat["prec_final"].replace({
+    dat["PREC"] = dat["PREC"].replace({
         "fifty six": "northwest"
-})
-    
+    })
+
+
 def washington(dat):
-    dat["PREC"] = dat["prec_final"].replace({
-        "Fay 09a": "Fay 9",
-        "Fay 09b": "Fay 9",
-        "Farmington-3": "Farmington 2",
-        "Prairie Gr City-1": "Prairie Gr City",
-        "Prairie Gr City-2": "Prairie Gr City",
-})
+    dat["PREC"] = dat["PREC"].replace({
+        "fay 09a": "fay 9",
+        "fay 09b": "fay 9",
+        "farmington-3": "farmington 2",
+        "prairie gr city-1": "prairie gr city",
+        "prairie gr city-2": "prairie gr city",
+    })
+
 
 countyToDissolve = {
     "Carroll": carroll,
-    "Crittenden": crittenden, # need to double-check this when erin emails me back
+    "Crittenden": crittenden,
+    "Faulkner": faulkner,
     "Independence": independence,
     "Monroe": monroe,
     "Nevada": nevada,
     "Poinsett": poinsett,
     "St. Francis": st_francis,
-    "Stone": stone
-    }
+    "Stone": stone,
+    "Washington": washington,
+}
 
-shp = shp.sort_values(by=['county_nam']) # you have to sort the counties alphabetically whowwwwww
+clean_df = shp.sort_values(by=['county_nam'])
 
-counties = pd.Series(shp['county_nam']).unique()
-shp["prec"] = shp["precinct"].copy()
-shp.set_index(['county_nam', 'precinct'], inplace=True)
+counties = pd.Series(clean_df['county_nam']).unique()
+clean_df["PREC"] = clean_df["prec_edit"].copy()
+clean_df = clean_df[["state_fips", "county_fip",
+                 "county_nam", 
+                 "precinct", "PREC",
+                 "geometry"]]
 
-for county in counties: 
-    county_dat = shp.loc[county]
-    changed = countyToDissolve.get(county, lambda x: x)(county_dat) 
-    shp.update(county_dat)
+clean_df.set_index(['county_nam', 'precinct'], inplace=True)
 
-dissolved = shp.dissolve(by='prec_to-agg')
-dissolved.reset_index(inplace=True)
-#dissolved = dissolved.buffer(0)
+for county in counties:
+    county_dat = clean_df.loc[county]
+    changed = countyToDissolve.get(county, lambda x: x)(county_dat)
+    clean_df.update(county_dat)
 
-# check for topology errors
-dissolved.is_valid
+clean_df.reset_index(inplace=True)
+print("clean_df, reset index", clean_df)
 
-dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/dissolved.shp")
+clean_df["loc_prec"] = clean_df["county_nam"] + "," + clean_df["PREC"]
+dissolved = clean_df.dissolve(by='loc_prec', as_index=False)
+print(list(dissolved.columns))
 
+#check for topology errors
+# print("topology errors", dissolved.is_valid)
 
+dissolved = dissolved[["state_fips", "county_fip", "county_nam", "precinct", "PREC", "geometry"]]
+
+#
+##
 ###
-###
-###
-# Mississippi County treatment
-####
-###
+# remove counties coming from alternative data sources
+dissolved.set_index(['county_nam'], inplace=True)
 
+out = dissolved.drop(["Madison"], axis=0)
+out_2 = out.drop(["Mississippi"], axis=0)
+out_2.reset_index(inplace=True)
 
-ms_shp_path = '/Users/hopecj/projects/AR/Shapefiles/mississippi_partnership17/partnership_shapefiles_17v2_05093/PVS_17_v2_vtd_05093.shp'
-ms_shp = gpd.read_file(ms_shp_path)
-
-
-def mississippi(dat):
-    dat["PREC"] = dat["prec_final"].replace({
-        "Bassett Precinct 54A": "Bassett CH",
-        "Big Lake TWP Precinct 24": "Gosnell Comm Center",
-        "Big Lake TWP Precinct 25": "Gosnell Comm Center",
-        "Birdsong Precinct 46A": "Bassett CH",
-        "Blytheville Precinct 1A": "Trinity Baptist Church",
-        "Blytheville Precinct 1B": "Trinity Baptist Church",
-        "Blytheville Precinct 1C": "Trinity Baptist Church",
-        "Blytheville Precinct 1D": "Trinity Baptist Church",
-        "Blytheville Precinct 1E": "Trinity Baptist Church",
-        "Blytheville Precinct 2A": "Frim Foundation Ministrie",
-        "Blytheville Precinct 2C": "Osceola Main Street",
-        "Blytheville Precinct 2E": "Osceola Main Street",
-        "Blytheville Precinct 3A": "Frim Foundation Ministrie",
-        "Blytheville Precinct 3B": "Frim Foundation Ministrie",
-        "Blytheville Precinct 3D": "Frim Foundation Ministrie",
-        "Blytheville Precinct 3F": "Trinity Baptist Church",
-        "Blythville Precinct 3C": "Frim Foundation Ministrie",
-        "Bowen TWP Precinct 12": "Dell Community Center",
-        "Burdette Precinct 27A": "Gosnell School",
-        "Burdette TWP Precinct 27": "Gosnell School",
-        "Canadian TWP Precinct 10": "Miss County Election Cent",
-        "Carson TWP Precinct 38": "Etowah FS",
-        "Carson TWP Precinct 39": "Etowah FS",
-        "Chickasawba TWP Precinct 6": "Osceola Main Street",
-        "Chickasawba TWP Precinct 7": "Osceola Main Street",  
-        "Clear Lake TWP Precinct 11A": "Osceola Main Street", 
-        "Clear Lake TWP Precinct 11B": "Osceola Main Street", 
-        "Dell Precinct 14": "ANC Burdette",
-        "Dyess Precinct 47": "Dyess City Hall",
-        "Dyess TWP Precinct 48": "Dyess City Hall",
-        "Etowach City Precinct 50A": "Birdsong FS",
-        "Fletcher TWP Precinct 30": "Manila Depot",
-        "Golden Lake TWP Precinct 40": "Etowah FS",
-        "Gosnell Precinct 12-1": "AAMOD Bldg",
-        "Gosnell Precinct 12-2": "Armorel Planting Co",
-        "Gosnell Precinct 12-3": "Dell Community Center",
-        "Half Moon TWP Precinct 13": "ANC Burdette",
-        "Hector TWP Precinct 15": "ANC Burdette",
-        "Joiner Precinct 44": "Joiner CH",
-        "Keiser Precinct 37-1": "Wilson Library",
-        "Keiser Precinct 37-2": "Wilson Library",
-        "Leachville Precinct 16": "Leachville City Hall",
-        "Leachville Precinct 17": "Leachville City Hall",
-        "Leachville Precinct 18": "Leachville City Hall",
-        "Little River Precinct 50": "Birdsong FS",
-        "Luxora Precinct 29-1": "Manila Depot",
-        "Luxora Precinct 29-2": "Manila Depot",
-        "Luxora Precinct 29-3": "Manila Depot",
-        "Manila Precinct 21A": "Gosnell Comm Center",
-        "Manila Precinct 21B": "Gosnell Comm Center",
-        "Manila Precinct 22": "Gosnell Comm Center",
-        "Manila Precinct 23": "Gosnell Comm Center",
-        "Marie Precinct 39A": "Etowah FS",
-        "McGavock TWP Precinct 45": "Joiner CH",
-        "Monroe TWP Precinct 35": "Keiser FBC",
-        "Monroe TWP Precinct 36": "Wilson Library",
-        "Neal TWP Precinct 19": "Leachville City Hall",
-        "Osceola Precinct 32A": "Keiser FBC",
-        "Osceola Precinct 32B": "Keiser FBC",
-        "Osceola Precinct 33A": "Keiser FBC",
-        "Osceola Precinct 33B": "Keiser FBC",
-        "Osceola Precinct 33C": "Keiser FBC",
-        "Osceola Precinct 33D": "Keiser FBC",
-        "Osceola Precinct 34A": "Keiser FBC",
-        "Osceola Precinct 34B": "Keiser FBC",
-        "Osceola Precinct 34C": "Keiser FBC",
-        "Precinct 54": "Bassett CH",
-        "Victoria Precinct 30A": "Charles Strong CC",
-        "Whitton TWP Precinct 46": "Bassett CH",
-        "Wilson Precinct 41": "Etowah FS",
-        "Wilson Precinct 42": "Etowah FS",
-    })
+out_2.to_file("/Users/hopecj/projects/AR/Shapefiles/2_dissolved_removed/dissolved_removed.shp")

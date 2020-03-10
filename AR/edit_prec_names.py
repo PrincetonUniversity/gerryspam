@@ -119,7 +119,6 @@ def clark(dat):
 
 
 def clay(dat):
-    # need to figure out what's going on here -- possibly remove this
     dat["prec"] = dat["prec"].str.slice(start=5)
     dat["prec"] = dat["prec"].replace(
         {
@@ -799,13 +798,15 @@ clean_df = shp_df.sort_values(by=['county_nam'])
 counties = pd.Series(clean_df['county_nam']).unique()
 clean_df["prec"] = clean_df["precinct"].copy()
 clean_df.set_index(['county_nam', 'precinct'], inplace=True)
+print("duplicated indices", clean_df[clean_df.index.duplicated()])
+
 
 for county in counties:
     county_dat = clean_df.loc[county]
     changed = countyToCountyCleaner.get(county, lambda x: x)(county_dat)
     clean_df.update(county_dat)
 
-clean_df['prec_edited'] = clean_df['prec'].str.lower()
+clean_df['prec_edit'] = clean_df['prec'].str.lower()
 clean_df.reset_index(inplace=True)
 
-clean_df.to_file("/Users/hopecj/projects/AR/Shapefiles/clean.shp")
+clean_df.to_file("/Users/hopecj/projects/AR/Shapefiles/edited_precnames/clean.shp")
