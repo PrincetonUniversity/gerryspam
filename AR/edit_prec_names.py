@@ -24,7 +24,7 @@ county-specific cleaning counties
 
 
 def arkansas(dat):
-    dat["prec"] = dat["prec"].str.slice(start=5)
+    chop_five(dat)
     dat["prec"] = dat["prec"].replace({
         "DeWitt 1": "Dewitt ward 1",
         "Dewitt 2": "Dewitt ward 2",
@@ -36,12 +36,12 @@ def arkansas(dat):
 
 
 def ashley(dat):
-    dat["prec"] = dat["prec"].str.slice(start=5)
+    chop_five(dat)
     dat["prec"] = dat["prec"].replace({
         "Crossett Ward 1": "CW1",
         "Crossett Ward 2": "CW2",
         "Crossett Ward 3": "CW3",
-        "Crossroads": "Cross roads",
+        # "Crossroads": "CROSSROADS",
         "Fountain Hill City": "FH CITY",
         "Fountain Hill Rural": "FH RURAL",
         "Hamburg Ward 1": "HW1",
@@ -77,7 +77,7 @@ def boone(dat):
         })
 
 def bradley(dat):
-    dat["prec"] = dat["prec"].str.slice(start=5)
+    chop_five(dat)
     dat["prec"] = dat["prec"].replace(
         {"Warren Ward 1": "Ward 1",
             "Warren Ward 2": "Ward 2",
@@ -102,12 +102,11 @@ def carroll(dat):
 
 
 def chicot(dat):
-    dat["prec"] = dat["prec"].str.slice(start=5)
+    chop_five(dat)
     dat["prec"] = dat["prec"].replace(
-        {"Carlton": "Carlton 1 & 2",
-         "Carlton 2": "Carlton 1 & 2",
+        {" Carlton": "Carlton 1 & 2",
+         " Carlton 2": "Carlton 1 & 2",
          })
-
 
 def clark(dat):
     dat["prec"] = dat["prec"].replace(
@@ -128,7 +127,7 @@ def clark(dat):
 
 
 def clay(dat):
-    dat["prec"] = dat["prec"].str.slice(start=5)
+    chop_five(dat)
     dat["prec"] = dat["prec"].replace(
         {
             "Bennett & Lemmons": "Bennett and Lemmons",
@@ -143,7 +142,7 @@ def clay(dat):
 def cleveland(dat):
     chop_five(dat)
     dat["prec"] = dat["prec"].replace(
-        {"Kingsland Out": "Kingsland outside", })
+        {" Kingsland Out": "Kingsland outside", })
 
 
 
@@ -157,7 +156,13 @@ def conway(dat):
     dat["prec"] = dat["prec"].str.slice(start=6)
     dat["prec"] = dat["prec"].replace(
         {"St Vincent": "St. Vincent", 
-         "Lick Mountain": "Lick Mtn."})
+         "Lick Mountain": "Lick Mtn.",
+         "Morrilton Ward 1": "Ward 1",
+         "Morrilton Ward 2": "Ward 2",
+         "Morrilton Ward 3": "Ward 3",
+         "Morrilton Ward 4": "Ward 4",
+         "nifee City": "menifee city",
+         })
 
 
 def crawford(dat):
@@ -350,10 +355,10 @@ def hempstead(dat):
 def hotspring(dat):
     dat["prec"] = dat["prec"].replace(
         {"Friendship City": "Friendship",
-        "malvern w-1": "ward 1",
-        "malvern w-2": "ward 2",
-        "malvern w-3": "ward 3",
-        "malvern w-4": "ward 4",
+        "Malvern W-1": "ward 1",
+        "Malvern W-2": "ward 2",
+        "Malvern W-3": "ward 3",
+        "Malvern W-4": "ward 4",
          }
     )
 
@@ -361,7 +366,7 @@ def howard(dat):
     chop_five(dat)
     dat["prec"] = dat["prec"].replace(
         {
-        "Ineral spring 3": "Mineral spring 3",
+        "ineral spring 3": "Mineral spring 3",
          }
     )
 
@@ -491,7 +496,7 @@ def lincoln(dat):
     dat["prec"] = dat["prec"].replace(
         {
             "E Lincoln Co FD": "SE Lincoln Co FD",
-            "ells Bayou": "Wells Bayou",
+            "ells Bayou": "Wells Bayou/FS",
             "Tarry": "Bar/Tarry",
             "Yorktown": "Bar/Yorktown",
             "Lone Pine / Garnett": "Lone Pine/Garnett",
@@ -499,7 +504,7 @@ def lincoln(dat):
             "Owen / Glendale": "Owen/Glendale",
             "Owen / Palmyra": "Owen/Palmyra",
             "Wells Bayou": "Wells Bayou/FS",
-            "Grady City W1 & W2": "Grady City W1& W2s",
+            "Grady City W1 & W2": "Grady City W1& W2",
             "ould City W1": "Gould City W1",
         })
 
@@ -592,6 +597,16 @@ def monroe(dat):
          "Keevil Township": "keevil",
          })
 
+def montgomery(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].replace(
+        {"MOUNT IDA - IN": "Mount Ida - Inside",
+         "MOUNT IDA - OUT": "Mount Ida - Outside",
+         "NORMAN - IN": "Norman - Inside",
+         "NORMAN - OUT": "Norman - Outside",
+         "ODEN - IN": "Oden - Inside",
+         "ODEN - OUT": "Oden - Outside",
+         })
 
 def newton(dat):
     dat["prec"] = dat["prec"].replace(
@@ -601,6 +616,25 @@ def newton(dat):
 
 def perry(dat):
     dat["prec"] = dat["prec"].str.lstrip("0")
+    dat["prec"] = dat["prec"].replace(
+        {"1 - Aplin": "1-aplin",
+         "10 - Perry": "10-perry",
+         "11 - Petit Jean": "11-petit jean",
+         "12 - Rankin": "12-rankin",
+         "13 - Rose Creek": "13-rose creek",
+         "14 - Tyler": "14-tyler",#
+         "15 - Union": "15-union",
+         "16 - Union Valley": "16-union valley",
+         "17 - Wye": "17-Wye",
+         "2 - Casa": "2-Casa",
+         "3 - Cherry Hill": "3-Cherry Hill",
+         "4 - Fourche": "4-Fourche",
+         "5 - Houston": "5-Houston",
+         "6 - Kenney": "6-Kenney",
+         "7 - Lake": "7-Lake",
+         "8 - Maumelle": "8-Maumelle",
+         "9 - New Tennessee": "9-New Tennessee",
+         })
 
 
 def phillips(dat):
@@ -812,6 +846,7 @@ countyToCountyCleaner = {
     "Arkansas": arkansas,
     "Ashley": ashley,
     "Benton": benton,
+    "Boone": boone,
     "Bradley": bradley,
     "Carroll": carroll,
     "Chicot": chicot,
@@ -849,7 +884,7 @@ countyToCountyCleaner = {
     "Marion": marion,
     "Miller": miller,
     "Monroe": monroe,
-    "Montgomery": chop_five,
+    "Montgomery": montgomery,
     "Newton": newton,
     "Perry": perry,
     "Phillips": phillips,
@@ -894,4 +929,4 @@ for county in counties:
 clean_df['prec_edit'] = clean_df['prec'].str.lower()
 clean_df.reset_index(inplace=True)
 
-clean_df.to_file("/Users/hopecj/projects/AR/Shapefiles/edited_precnames/clean.shp")
+clean_df.to_file("/Users/hopecj/projects/AR/Shapefiles/1_edited_precnames/clean.shp")

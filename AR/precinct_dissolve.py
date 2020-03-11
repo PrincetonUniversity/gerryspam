@@ -38,11 +38,11 @@ def clark(dat):
         "caddo valley ward 3": "caddo valley wards 1-3",
         "gum springs inside": "gum springs inside/outside",
         "gum springs outside": "gum springs inside/outside",
-        "guden ward 1": "gurdon wards 1-5",
-        "guden ward 2": "gurdon wards 1-5",
-        "guden ward 3": "gurdon wards 1-5",
-        "guden ward 4": "gurdon wards 1-5",
-        "guden ward 5": "gurdon wards 1-5",
+        "gurdon ward 1": "gurdon wards 1-5",
+        "gurdon ward 2": "gurdon wards 1-5",
+        "gurdon ward 3": "gurdon wards 1-5",
+        "gurdon ward 4": "gurdon wards 1-5",
+        "gurdon ward 5": "gurdon wards 1-5",
     })
 
 def crittenden(dat):
@@ -204,19 +204,16 @@ def poinsett(dat):
         "willis township": "willis",
     })
 
-Newcastle/Parrott
-newcastle/parrott
-
 def st_francis(dat):
     dat["PREC"] = dat["PREC"].replace({
-   "24 - bonair": "bonair",
+        "24-bonair": "bonair",
         "16 - tuni": "bonair",
         "17 - bonair": "bonair",
         "26 - bonair": "bonair",
         "23 - caldwell country": "caldwell",
         "22 - caldwell city": "caldwell",
         "20 - colt city": "colt",
-        "27 - pine Tree": "colt",
+        "27 - pine tree": "colt",
         "21 - colt country": "colt",
         "57 - forrest city ward 1-6": "fc ward 1",
         "35 - forrest city ward 1-1": "fc ward 1",
@@ -226,14 +223,14 @@ def st_francis(dat):
         "41 - forrest city ward 2-2": "fc ward 2",
         "55 - forrest city ward 2-6": "fc ward 2",
         "50 - forrest city ward 2-2": "fc ward 2",
-        "40 - forrest city ward 2-1": "fc ward 2",
+        "40 - forrest city  ward 2-1": "fc ward 2", 
         "53 - forrest city ward 3-5": "fc ward 3",
         "52 - forrest city ward 3-4": "fc ward 3",
-        "49 - forrest city ward 3-1": "fc ward 3",
+        "49- forrest city ward 3-1": "fc ward 3",
         "65 - forrest city ward 4-5": "fc ward 4",
         "66 - forrest city ward 4-6": "fc ward 4",
         "56 - forrest city ward 4-2": "fc ward 4",
-        "26 - forrest city country west": "forrest city country west",
+        "26-forrest city country west": "forrest city country west",
         "06 - heth": "heth/blackfish",
         "13 - round pond mosley gw": "heth/blackfish",
         "11 - round pond mosley ge": "heth/blackfish",
@@ -247,7 +244,7 @@ def st_francis(dat):
         "15 - madison country": "madison",
         "19 - newcastle": "newcastle/parrott",
         "18 - parrott": "newcastle/parrott",
-        "25 - parrot/newcastle": "newcastle/parrott",
+        "25-parrot/newcastle": "newcastle/parrott",
         "29 - palestine city 2": "palestine",
         "30 - palestine city 3": "palestine",
         "32 - goodwin": "palestine",
@@ -270,7 +267,7 @@ def washington(dat):
     dat["PREC"] = dat["PREC"].replace({
         "fay 09a": "fay 9",
         "fay 09b": "fay 9",
-        "farmington-3": "farmington 2",
+        "farmington-3": "farmington-2",
         "prairie gr city-1": "prairie gr city",
         "prairie gr city-2": "prairie gr city",
     })
@@ -282,6 +279,8 @@ countyToDissolve = {
     "Clark": clark,
     "Crittenden": crittenden,
     "Faulkner": faulkner,
+    "Hot Spring": hotspring,
+    "Howard": howard,
     "Independence": independence,
     "Marion": marion,
     "Monroe": monroe,
@@ -328,6 +327,8 @@ dissolved.set_index(['county_nam'], inplace=True)
 
 out = dissolved.drop(["Madison"], axis=0)
 out_2 = out.drop(["Mississippi"], axis=0)
-out_2.reset_index(inplace=True)
+out_3 = out.drop(["Oachita"], axis=0)
 
-out_2.to_file("/Users/hopecj/projects/AR/Shapefiles/2_dissolved_removed/dissolved_removed.shp")
+out_3.reset_index(inplace=True)
+
+out_3.to_file("/Users/hopecj/projects/AR/Shapefiles/2_dissolved_removed/dissolved_removed.shp")

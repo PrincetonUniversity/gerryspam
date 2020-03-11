@@ -111,3 +111,23 @@ dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_ms_clean/ms_clean.shp"
 # mad_shp = mad_shp[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
 
 # mad_shp.to_file('/Users/hopecj/projects/AR/Shapefiles/3_madison_clean/mad_clean.shp')
+
+#####
+
+# oachita_shp_path = '/Users/hopecj/projects/AR/Shapefiles/oachita_partnership17/partnership_shapefiles_17v2_05103/PVS_17_v2_vtd_05103.shp'
+# oachita_shp = gpd.read_file(oachita_shp_path)
+
+# oachita_shp["county_nam"] = "Ouachita"
+
+# oachita_shp = oachita_shp.rename(columns={"STATEFP": "state_fips", 
+#                        "COUNTYFP": "county_fip",
+#                        "NAMELSAD": "precinct"})
+
+# oachita_shp = oachita_shp[["state_fips", "county_fip", "county_nam", "precinct", "geometry"]]
+
+# oachita_shp = oachita_shp.rename(columns={"precinct": "PREC"})
+# oachita_shp["precinct"] = ""
+
+# oachita_shp = oachita_shp[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
+
+# oachita_shp.to_file('/Users/hopecj/projects/AR/Shapefiles/3_oachita_clean/oachita_clean.shp')
