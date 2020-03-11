@@ -23,11 +23,6 @@ Changes:
 - Cleburne County: Removed last three characters from precinct names
 - Craighead County: Removed the word "precinct" from precinct names
 - Izard County: Added "OXFORD CITY IN BROCKWELL" precinct results to Brockwell precinct. Added "SAGE IN MELBOURNE WARD 4" to Melbourne Ward 4 precinct.
-- Oachita County: 
-    - Combined votes from "Valley 1" and "Valley 2" election results to create "Valley"
-    - Combined votes from "Circle C" into "Carroll" precinct
-    - Combined votes from "Ecore Fabre Maul" into "Ecore Fabre" precinct
-    - Combined votes from "Smackover Ward 2" into "Smackover Ward 1" precinct 
 - Phillips County: 
     - Removed "PRECINCT 0004" from election results based on exchange with county clerk
     - Combined results fom "PRECINCT 0005" and "PRECINCT 0006" into "PRECINCT 0005/0006"
@@ -44,7 +39,7 @@ On October 16 2019, downloaded from here: http://gis.arkansas.gov/?product=elect
 On March 4th 2020, Madison County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership18v2/st05_ar.html
 - Used "PVS_18_v2_vtd_05087.shp"
 
-On March 4th 2020, Oachita County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership17v2/st05_ar.html 
+On March 4th 2020, Mississippi County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership17v2/st05_ar.html 
 - Used "PVS_17_v2_vtd_05103.shp" 
 
 All changes made to precinct names recorded here: https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/processing_scraps_AR.py
