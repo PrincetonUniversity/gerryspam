@@ -59,49 +59,49 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ashley,WCR",,Ashley,,WCR,125,8,279,135,272,2,140,2,270,291,109
 "Ashley,WILMOT CITY",,Ashley,,WILMOT CITY,115,0,38,119,34,2,118,3,32,49,97
 "Ashley,WILMOT RURAL",,Ashley,,WILMOT RURAL,12,1,35,11,36,0,14,0,34,38,10
-"Baxter,1-Apr",,Baxter,,1-Apr,184,39,676,212,648,37,224,35,639,700,171
-"Baxter,1-Aug",,Baxter,,1-Aug,168,29,675,186,668,18,190,19,661,704,135
-"Baxter,1-Feb",,Baxter,,1-Feb,82,27,355,94,345,25,89,19,356,367,82
+"Baxter,1-Apr",,Baxter,,4-Jan,184,39,676,212,648,37,224,35,639,700,171
+"Baxter,1-Aug",,Baxter,,8-Jan,168,29,675,186,668,18,190,19,661,704,135
+"Baxter,1-Feb",,Baxter,,2-Jan,82,27,355,94,345,25,89,19,356,367,82
 "Baxter,1-Jan",,Baxter,,1-Jan,72,25,460,85,455,16,99,11,445,471,70
-"Baxter,1-Jul",,Baxter,,1-Jul,178,27,599,199,586,21,190,21,590,623,140
-"Baxter,1-Jun",,Baxter,,1-Jun,161,26,576,188,538,28,195,29,527,594,131
-"Baxter,1-Mar",,Baxter,,1-Mar,53,16,236,61,234,10,66,14,225,239,48
-"Baxter,1-May",,Baxter,,1-May,101,21,281,113,274,14,115,13,273,288,90
-"Baxter,1-Nov",,Baxter,,1-Nov,40,10,113,49,105,9,54,11,99,109,42
-"Baxter,1-Oct",,Baxter,,1-Oct,69,18,228,79,218,16,79,17,215,233,66
-"Baxter,1-Sep",,Baxter,,1-Sep,130,24,476,127,486,15,132,19,477,501,102
-"Baxter,2-Apr",,Baxter,,2-Apr,86,15,282,96,276,11,99,12,271,285,80
-"Baxter,2-Aug",,Baxter,,2-Aug,21,10,86,22,87,9,23,8,86,87,21
+"Baxter,1-Jul",,Baxter,,7-Jan,178,27,599,199,586,21,190,21,590,623,140
+"Baxter,1-Jun",,Baxter,,6-Jan,161,26,576,188,538,28,195,29,527,594,131
+"Baxter,1-Mar",,Baxter,,3-Jan,53,16,236,61,234,10,66,14,225,239,48
+"Baxter,1-May",,Baxter,,5-Jan,101,21,281,113,274,14,115,13,273,288,90
+"Baxter,1-Nov",,Baxter,,11-Jan,40,10,113,49,105,9,54,11,99,109,42
+"Baxter,1-Oct",,Baxter,,10-Jan,69,18,228,79,218,16,79,17,215,233,66
+"Baxter,1-Sep",,Baxter,,9-Jan,130,24,476,127,486,15,132,19,477,501,102
+"Baxter,2-Apr",,Baxter,,4-Feb,86,15,282,96,276,11,99,12,271,285,80
+"Baxter,2-Aug",,Baxter,,8-Feb,21,10,86,22,87,9,23,8,86,87,21
 "Baxter,2-Feb",,Baxter,,2-Feb,78,20,384,84,382,18,90,18,373,391,75
-"Baxter,2-Jan",,Baxter,,2-Jan,97,19,439,113,428,15,116,14,426,443,95
-"Baxter,2-Jul",,Baxter,,2-Jul,73,17,256,84,250,9,82,13,248,258,70
-"Baxter,2-Jun",,Baxter,,2-Jun,68,17,327,85,317,10,83,13,316,336,59
-"Baxter,2-Mar",,Baxter,,2-Mar,41,12,168,44,170,6,45,10,165,173,35
-"Baxter,2-May",,Baxter,,2-May,107,16,229,111,227,12,113,17,220,234,92
-"Baxter,2-Nov",,Baxter,,2-Nov,102,25,325,106,325,24,107,23,325,345,94
-"Baxter,2-Oct",,Baxter,,2-Oct,100,27,326,100,326,27,105,26,321,347,92
-"Baxter,2-Sep",,Baxter,,2-Sep,136,21,442,151,433,15,146,14,439,462,115
-"Baxter,3-Aug",,Baxter,,3-Aug,27,9,80,24,87,5,26,8,81,85,22
-"Baxter,3-Feb",,Baxter,,3-Feb,68,16,241,72,243,11,72,12,241,253,60
-"Baxter,3-Jan",,Baxter,,3-Jan,81,15,273,91,267,10,96,14,257,286,69
-"Baxter,3-Jul",,Baxter,,3-Jul,55,9,142,56,147,7,63,7,138,151,44
-"Baxter,3-Jun",,Baxter,,3-Jun,40,13,151,41,150,12,41,13,149,152,38
+"Baxter,2-Jan",,Baxter,,1-Feb,97,19,439,113,428,15,116,14,426,443,95
+"Baxter,2-Jul",,Baxter,,7-Feb,73,17,256,84,250,9,82,13,248,258,70
+"Baxter,2-Jun",,Baxter,,6-Feb,68,17,327,85,317,10,83,13,316,336,59
+"Baxter,2-Mar",,Baxter,,3-Feb,41,12,168,44,170,6,45,10,165,173,35
+"Baxter,2-May",,Baxter,,5-Feb,107,16,229,111,227,12,113,17,220,234,92
+"Baxter,2-Nov",,Baxter,,11-Feb,102,25,325,106,325,24,107,23,325,345,94
+"Baxter,2-Oct",,Baxter,,10-Feb,100,27,326,100,326,27,105,26,321,347,92
+"Baxter,2-Sep",,Baxter,,9-Feb,136,21,442,151,433,15,146,14,439,462,115
+"Baxter,3-Aug",,Baxter,,8-Mar,27,9,80,24,87,5,26,8,81,85,22
+"Baxter,3-Feb",,Baxter,,2-Mar,68,16,241,72,243,11,72,12,241,253,60
+"Baxter,3-Jan",,Baxter,,1-Mar,81,15,273,91,267,10,96,14,257,286,69
+"Baxter,3-Jul",,Baxter,,7-Mar,55,9,142,56,147,7,63,7,138,151,44
+"Baxter,3-Jun",,Baxter,,6-Mar,40,13,151,41,150,12,41,13,149,152,38
 "Baxter,3-Mar",,Baxter,,3-Mar,147,27,495,152,486,29,165,24,479,512,133
-"Baxter,3-May",,Baxter,,3-May,12,8,21,10,25,5,13,6,22,21,11
-"Baxter,3-Nov",,Baxter,,3-Nov,62,12,221,66,217,11,69,10,212,231,49
-"Baxter,3-Oct",,Baxter,,3-Oct,40,8,189,47,177,9,54,10,169,185,38
-"Baxter,3-Sep",,Baxter,,3-Sep,13,11,61,16,62,7,15,9,61,63,15
-"Baxter,4-Aug",,Baxter,,4-Aug,55,11,164,53,154,11,55,11,149,162,45
-"Baxter,4-Mar",,Baxter,,4-Mar,31,9,132,34,130,8,40,9,123,132,34
-"Baxter,4-May",,Baxter,,4-May,51,9,126,55,119,9,62,8,114,127,43
-"Baxter,4-Nov",,Baxter,,4-Nov,21,8,53,24,53,5,28,7,47,54,20
-"Baxter,4-Sep",,Baxter,,4-Sep,33,12,125,34,126,10,41,10,119,133,29
-"Baxter,5-Aug",,Baxter,,5-Aug,20,7,33,21,34,4,24,6,29,34,19
-"Baxter,5-Nov",,Baxter,,5-Nov,7,7,5,5,11,4,7,6,7,8,5
-"Baxter,6-Nov",,Baxter,,6-Nov,7,6,19,7,21,4,8,7,17,17,9
-"Baxter,7-Nov",,Baxter,,7-Nov,6,6,35,6,36,4,6,7,32,33,6
-"Baxter,8-Nov",,Baxter,,8-Nov,10,6,39,11,39,5,14,8,32,37,12
-"Baxter,9-Nov",,Baxter,,9-Nov,45,9,150,44,152,8,48,8,148,156,33
+"Baxter,3-May",,Baxter,,5-Mar,12,8,21,10,25,5,13,6,22,21,11
+"Baxter,3-Nov",,Baxter,,11-Mar,62,12,221,66,217,11,69,10,212,231,49
+"Baxter,3-Oct",,Baxter,,10-Mar,40,8,189,47,177,9,54,10,169,185,38
+"Baxter,3-Sep",,Baxter,,9-Mar,13,11,61,16,62,7,15,9,61,63,15
+"Baxter,4-Aug",,Baxter,,8-Apr,55,11,164,53,154,11,55,11,149,162,45
+"Baxter,4-Mar",,Baxter,,3-Apr,31,9,132,34,130,8,40,9,123,132,34
+"Baxter,4-May",,Baxter,,5-Apr,51,9,126,55,119,9,62,8,114,127,43
+"Baxter,4-Nov",,Baxter,,11-Apr,21,8,53,24,53,5,28,7,47,54,20
+"Baxter,4-Sep",,Baxter,,9-Apr,33,12,125,34,126,10,41,10,119,133,29
+"Baxter,5-Aug",,Baxter,,8-May,20,7,33,21,34,4,24,6,29,34,19
+"Baxter,5-Nov",,Baxter,,11-May,7,7,5,5,11,4,7,6,7,8,5
+"Baxter,6-Nov",,Baxter,,11-Jun,7,6,19,7,21,4,8,7,17,17,9
+"Baxter,7-Nov",,Baxter,,11-Jul,6,6,35,6,36,4,6,7,32,33,6
+"Baxter,8-Nov",,Baxter,,11-Aug,10,6,39,11,39,5,14,8,32,37,12
+"Baxter,9-Nov",,Baxter,,11-Sep,45,9,150,44,152,8,48,8,148,156,33
 "Benton,Precinct 1",,Benton,,Precinct 1,122,33,807,137,786,38,153,30,773,809,138
 "Benton,Precinct 10",,Benton,,Precinct 10,112,12,447,119,439,8,132,11,430,463,101
 "Benton,Precinct 100",,Benton,,Precinct 100,184,21,373,195,357,26,197,22,355,410,158
@@ -367,7 +367,7 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Cleburne,SUGAR LOAF-032",,Cleburne,,SUGAR LOAF,42,11,221,48,217,10,49,6,221,227,45
 "Cleburne,VALLEY-033",,Cleburne,,VALLEY,32,2,163,36,160,1,39,0,159,169,25
 "Cleburne,WEST PETER CREEK-024",,Cleburne,,WEST PETER CREEK,71,11,361,83,355,6,80,7,356,383,57
-"Cleburne,WILBURN-034",,Cleburne,,WILBURN-034,19,6,76,27,69,4,29,6,66,73,25
+"Cleburne,WILBURN-034",,Cleburne,,WILBURN,19,6,76,27,69,4,29,6,66,73,25
 "Cleveland,Bowman",,Cleveland,,Bowman,52,2,73,48,75,4,54,2,71,81,44
 "Cleveland,Harper",,Cleveland,,Harper,25,3,115,26,112,5,28,4,111,123,21
 "Cleveland,Hudgin",,Cleveland,,Hudgin,13,1,79,15,75,4,16,2,76,85,9
@@ -1656,11 +1656,13 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ouachita,CAMDEN WARD 17",,Ouachita,,CAMDEN WARD 17,5,2,32,6,31,2,6,5,156,165,52
 "Ouachita,CAMDEN WARD 17A",,Ouachita,,CAMDEN WARD 17A,57,11,159,66,155,7,67,0,47,49,16
 "Ouachita,CAMDEN WARD 17B",,Ouachita,,CAMDEN WARD 17B,18,0,48,21,45,0,19,2,27,30,24
-"Ouachita,Carroll",,Ouachita,,Carroll,22,2,53,28,48,2,28,2,93,112,53
+"Ouachita,Carroll",,Ouachita,,Carroll,22,2,31,28,26,2,27,1,40,51,46
+"Ouachita,Carroll",,Ouachita,,Circle C,0,0,22,0,22,0,1,1,53,61,7
 "Ouachita,Chidester",,Ouachita,,Chidester,53,2,49,62,41,2,65,0,21,22,0
 "Ouachita,Cleveland Township",,Ouachita,,Cleveland Township,13,0,55,14,54,0,13,3,103,119,66
 "Ouachita,East Camden",,Ouachita,,East Camden,78,2,109,79,108,2,82,1,110,113,31
-"Ouachita,Ecore Fabre",,Ouachita,,Ecore Fabre,78,4,219,90,209,2,93,3,137,167,68
+"Ouachita,Ecore Fabre",,Ouachita,,Ecore Fabre,31,1,116,39,108,1,36,1,94,116,31
+"Ouachita,Ecore Fabre",,Ouachita,,Ecore Fabre Maul,47,3,103,51,101,1,57,2,43,51,37
 "Ouachita,Freeo",,Ouachita,,Freeo,47,0,47,46,47,1,47,2,48,50,21
 "Ouachita,Jefferson",,Ouachita,,Jefferson,19,3,51,21,49,3,23,6,295,318,64
 "Ouachita,Lafayette A",,Ouachita,,Lafayette A,75,9,302,84,296,6,84,2,247,273,64
@@ -1670,13 +1672,15 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ouachita,Marion",,Ouachita,,Marion,84,3,177,92,168,3,91,0,96,112,38
 "Ouachita,Red Hill",,Ouachita,,Red Hill,44,2,109,52,102,2,59,1,11,12,4
 "Ouachita,River",,Ouachita,,River,5,0,11,5,11,0,4,1,48,56,37
-"Ouachita,Smackover Ward 1",,Ouachita,,Smackover Ward 1,44,1,53,51,49,0,49,1,26,39,55
+"Ouachita,Smackover Ward 1",,Ouachita,,Smackover Ward 1,44,1,53,51,49,0,49,0,0,0,0
+"Ouachita,Smackover Ward 1",,Ouachita,,Smackover Ward 2,0,0,0,0,0,0,0,1,26,39,55
 "Ouachita,Stephens Ward 1",,Ouachita,,Stephens Ward 1,64,1,31,68,29,1,74,0,39,44,37
 "Ouachita,Stephens Ward 2",,Ouachita,,Stephens Ward 2,45,0,40,49,40,0,50,0,13,18,19
 "Ouachita,Stephens Ward 3",,Ouachita,,Stephens Ward 3,20,0,17,22,15,0,24,0,21,21,6
 "Ouachita,Stephens Ward 4",,Ouachita,,Stephens Ward 4,6,0,21,6,20,1,6,0,35,38,32
 "Ouachita,Union",,Ouachita,,Union,41,2,38,45,36,0,47,5,240,256,102
-"Ouachita, Valley",,Ouachita,,Valley,138,11,272,144,267,6,150,6,127,131,47
+"Ouachita, Valley",,Ouachita,,Valley 1,115,6,250,120,245,3,126,4,21,21,24
+"Ouachita, Valley",,Ouachita,,Valley 2,23,5,22,24,22,3,24,2,106,110,23
 "Ouachita,Washington Ward 1",,Ouachita,,Washington Ward 1,21,2,111,24,110,0,25,4,89,97,20
 "Perry,1-Aplin",,Perry,,1-Aplin,21,3,94,19,98,2,25,25,234,261,79
 "Perry,10-Perry",,Perry,,10-Perry,73,11,259,86,237,20,84,7,96,105,27
@@ -2232,21 +2236,21 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Sharp,Upper North",,Sharp,,Upper North,19,3,63,23,60,3,23,2,49,55,6
 "Sharp,Washington",,Sharp,,Washington,6,4,51,8,52,1,9,6,113,118,32
 "Sharp,West Sullivan",,Sharp,,West Sullivan,28,7,116,31,117,3,33,4,211,230,52
-"St Francis,Bonair",,St Francis,,Bonair,66,8,214,72,211,6,77,2,153,156,42
-"St Francis,Caldwell",,St Francis,,Caldwell,46,5,151,48,154,1,49,2,232,263,109
-"St Francis,Colt",,St Francis,,Colt,145,8,242,158,238,2,160,17,42,115,358
-"St Francis,FC Ward 1",,St Francis,,FC Ward 1,487,12,62,504,43,13,504,25,61,176,442
-"St Francis,FC Ward 2",,St Francis,,FC Ward 2,565,17,98,594,71,18,598,20,298,405,300
-"St Francis,FC Ward 3",,St Francis,,FC Ward 3,402,15,334,406,326,15,426,11,253,332,264
-"St Francis,FC Ward 4",,St Francis,,FC Ward 4,329,12,291,347,269,11,367,0,57,61,43
-"St Francis,Forrest City Country West",,St Francis,,Forrest City Country West,61,1,54,57,56,0,58,1,74,86,31
-"St Francis,Heth/Blackfish",,St Francis,,Heth/Blackfish,42,2,78,50,71,2,48,20,143,189,280
-"St Francis,Hughes",,St Francis,,Hughes,335,18,145,352,140,9,337,6,23,68,131
-"St Francis,Madison",,St Francis,,Madison,190,6,37,198,26,5,200,6,551,579,86
-"St Francis,Newcastle/Parrott",,St Francis,,Newcastle/Parrott,112,16,548,123,547,12,125,4,261,276,97
-"St Francis,Palestine",,St Francis,,Palestine,133,7,260,139,260,3,137,5,80,95,22
-"St Francis,Wheatley",,St Francis,,Wheatley,38,3,84,40,80,5,40,5,57,67,48
-"St Francis,Widener",,St Francis,,Widener,68,2,62,69,58,3,68,2,23,29,11
+"St Francis,Bonair",,St. Francis,,Bonair,66,8,214,72,211,6,77,2,153,156,42
+"St Francis,Caldwell",,St. Francis,,Caldwell,46,5,151,48,154,1,49,2,232,263,109
+"St Francis,Colt",,St. Francis,,Colt,145,8,242,158,238,2,160,17,42,115,358
+"St Francis,FC Ward 1",,St. Francis,,FC Ward 1,487,12,62,504,43,13,504,25,61,176,442
+"St Francis,FC Ward 2",,St. Francis,,FC Ward 2,565,17,98,594,71,18,598,20,298,405,300
+"St Francis,FC Ward 3",,St. Francis,,FC Ward 3,402,15,334,406,326,15,426,11,253,332,264
+"St Francis,FC Ward 4",,St. Francis,,FC Ward 4,329,12,291,347,269,11,367,0,57,61,43
+"St Francis,Forrest City Country West",,St. Francis,,Forrest City Country West,61,1,54,57,56,0,58,1,74,86,31
+"St Francis,Heth/Blackfish",,St. Francis,,Heth/Blackfish,42,2,78,50,71,2,48,20,143,189,280
+"St Francis,Hughes",,St. Francis,,Hughes,335,18,145,352,140,9,337,6,23,68,131
+"St Francis,Madison",,St. Francis,,Madison,190,6,37,198,26,5,200,6,551,579,86
+"St Francis,Newcastle/Parrott",,St. Francis,,Newcastle/Parrott,112,16,548,123,547,12,125,4,261,276,97
+"St Francis,Palestine",,St. Francis,,Palestine,133,7,260,139,260,3,137,5,80,95,22
+"St Francis,Wheatley",,St. Francis,,Wheatley,38,3,84,40,80,5,40,5,57,67,48
+"St Francis,Widener",,St. Francis,,Widener,68,2,62,69,58,3,68,2,23,29,11
 "Stone,Angora Mountain",,Stone,,Angora Mountain,15,4,23,15,22,4,16,8,154,167,49
 "Stone,Arbanna",,Stone,,Arbanna,64,5,151,58,157,7,58,0,72,76,4
 "Stone, Ben",,Stone,,Ben,7,2,84,4,88,1,8,5,160,180,29
@@ -2315,88 +2319,88 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Van Buren,24 South Griggs",,Van Buren,,24 South Griggs,112,19,417,150,376,19,166,5,209,222,52
 "Van Buren,25 Indian Hills",,Van Buren,,25 Indian Hills,40,6,228,58,210,5,60,7,153,172,59
 "Van Buren,26 Lakewood",,Van Buren,,26 Lakewood,69,3,170,72,160,9,80,1,94,96,30
-"Washington,020 Boston",,Washington,,Boston  ,30,2,96,34,92,2,32,33,566,624,212
-"Washington,040 Brush Creek",,Washington,,Brush Creek ,230,29,602,245,578,35,258,18,326,358,107
-"Washington,060 Cane Hill",,Washington,,Cane Hill ,111,13,352,121,338,15,124,7,307,346,106
-"Washington,080 Center",,Washington,,Center  ,114,13,327,138,308,11,141,1,36,35,26
-"Washington,082 Center-2",,Washington,,Center-2  ,28,1,35,28,35,2,28,4,25,31,20
-"Washington,085 Center House",,Washington,,Center House ,18,3,31,21,26,4,23,9,168,183,82
-"Washington,100 Cove Creek",,Washington,,Cove Creek ,76,6,188,90,171,7,92,1,14,14,5
-"Washington,110 Cove Creek-S",,Washington,,Cove Creek-S ,5,1,14,5,14,1,5,11,220,242,95
-"Washington,120 Crawford",,Washington,,Crawford  ,96,11,237,117,219,9,111,9,180,194,73
-"Washington,140 Durham",,Washington,,Durham  ,73,9,189,87,180,6,83,0,78,81,13
-"Washington,160 Dutch Mills",,Washington,,Dutch Mills ,18,1,79,20,77,1,20,33,495,558,237
-"Washington,180 Elkins",,Washington,,Elkins  ,255,31,524,283,496,33,285,1,71,83,39
-"Washington,181 Elkins-H",,Washington,,Elkins-H  ,43,5,77,50,72,3,53,0,137,141,16
-"Washington,200 Elm Springs Twp",,Washington,,Elm Springs ,19,3,136,22,136,0,21,18,541,579,139
-"Washington,210 Elm Springs City",,Washington,,Elm Springs ,147,18,564,161,545,20,162,25,382,440,243
-"Washington,220 Farmington-1",,Washington,,Farmington-1  ,248,21,421,285,385,21,282,4,61,69,23
-"Washington,221 Farmington-S",,Washington,,Farmington-S  ,32,5,60,29,62,6,32,48,940,1061,366
-"Washington,222 Farmington-2",,Washington,,Farmington-2  ,430,47,985,461,955,43,473,4,77,113,180
-"Washington,240 Fay 01",,Washington,,Fay 1 ,211,15,84,218,84,8,228,15,103,177,216
-"Washington,250 Fay 02",,Washington,,Fay 2 ,282,14,125,296,114,9,300,36,225,336,503
-"Washington,260 Fay 03",,Washington,,Fay 3 ,630,23,248,639,230,28,634,18,84,144,278
-"Washington,270 Fay 04",,Washington,,Fay 4 ,346,16,104,350,92,20,360,36,218,379,689
-"Washington,280 Fay 05",,Washington,,Fay 5 ,916,38,253,934,224,36,934,31,465,652,573
-"Washington,290 Fay 06",,Washington,,Fay 6 ,736,26,553,802,476,26,803,14,170,286,358
-"Washington,300 Fay 07",,Washington,,Fay 7 ,488,11,211,522,171,13,517,22,200,303,525
-"Washington,310 Fay 08",,Washington,,Fay 8 ,662,21,220,677,203,22,678,24,186,282,553
-"Washington,320 Fay 09",,Washington,,Fay 9 ,642,31,224,674,191,29,687,15,138,194,189
-"Washington,330 Fay 10",,Washington,,Fay 10 ,248,10,157,268,135,10,255,27,456,579,386
-"Washington,331 Fay 11",,Washington,,Fay 11 ,466,23,513,528,441,27,506,31,617,791,512
-"Washington,332 Fay 12",,Washington,,Fay 12 ,672,19,687,728,626,18,720,25,107,176,327
-"Washington,333 Fay 13",,Washington,,Fay 13 ,389,20,123,391,110,30,397,8,42,69,129
-"Washington,334 Fay 14",,Washington,,Fay 14 ,161,3,55,164,49,8,164,8,61,110,157
-"Washington,335 Fay 15",,Washington,,Fay 15 ,196,12,70,198,69,9,205,1,26,33,19
-"Washington,336 Fay 16",,Washington,,Fay 16 ,22,8,27,26,30,1,30,24,341,464,422
-"Washington,337 Fay 17",,Washington,,Fay 17 ,549,17,389,595,335,22,584,19,197,282,364
-"Washington,338 Fay 18",,Washington,,Fay 18 ,472,14,226,495,197,18,491,30,395,553,520
-"Washington,339 Fay 19",,Washington,,Fay 19 ,686,23,441,718,394,39,721,27,348,474,448
-"Washington,340 Fay 20",,Washington,,Fay 20 ,549,36,387,586,349,34,584,13,251,312,216
-"Washington,341 Fay 21",,Washington,,Fay 21 ,266,11,279,298,242,13,289,43,300,412,503
-"Washington,342 Fay 22",,Washington,,Fay 22 ,587,45,337,628,302,41,626,28,189,283,381
-"Washington,343 Fay 23",,Washington,,Fay 23 ,453,21,220,459,192,34,468,13,34,81,174
-"Washington,344 Fay 24",,Washington,,Fay 24 ,221,12,43,230,35,12,229,12,87,167,385
-"Washington,345 Fay 25",,Washington,,Fay 25 ,524,12,105,547,80,12,538,20,188,257,245
-"Washington,346 Fay 26",,Washington,,Fay 26 ,298,22,211,329,180,20,321,31,372,502,412
-"Washington,347 Fay 27",,Washington,,Fay 27 ,494,24,431,532,383,31,540,17,473,591,258
-"Washington,348 Fay 28",,Washington,,Fay 28 ,360,11,514,406,462,14,393,12,269,349,198
-"Washington,349 Fay 29",,Washington,,Fay 29 ,279,7,307,321,265,7,306,23,405,485,336
-"Washington,350 Fay 30",,Washington,,Fay 30 ,418,25,432,446,397,29,444,42,559,719,457
-"Washington,351 Fay 31",,Washington,,Fay 31 ,596,33,623,650,558,36,632,24,320,364,214
-"Washington,352 Fay 32",,Washington,,Fay 32 ,229,21,351,258,327,16,252,2,23,25,15
-"Washington,353 Fay 33",,Washington,,Fay 33 ,21,0,24,20,23,1,19,1,1,11,39
-"Washington,354 Fay 34",,Washington,,Fay 34 ,57,0,1,56,2,0,56,8,228,284,161
-"Washington,355 Fay 35",,Washington,,Fay 35 ,241,7,249,251,236,8,255,15,51,95,202
-"Washington,356 Fay 36",,Washington,,Fay 36 ,250,14,60,256,48,17,256,0,14,19,50
-"Washington,357 Fay 37",,Washington,,Fay 37 ,62,1,13,60,12,3,61,6,80,112,83
-"Washington,358 Fay 38",,Washington,,Fay 38 ,110,9,87,118,79,7,119,1,96,124,57
-"Washington,359 Fay 39",,Washington,,Fay 39 ,69,0,122,92,96,2,91,38,435,584,426
-"Washington,360 Fay 40",,Washington,,Fay 40 ,554,35,467,577,436,41,575,6,67,83,27
-"Washington,361 Fay 41",,Washington,,Fay 41 ,39,5,70,46,62,6,40,9,80,114,176
-"Washington,362 Fay 42",,Washington,,Fay 42 ,214,11,89,224,80,10,224,7,39,44,21
-"Washington,363 Fay 43",,Washington,,Fay 43 ,24,4,39,26,37,4,21,11,66,100,111
-"Washington,364 Fay 44",,Washington,,Fay 44 ,138,6,82,149,68,8,149,1,25,28,12
-"Washington,365 Fay 45",,Washington,,Fay 45 ,10,1,30,17,21,1,14,5,225,244,61
-"Washington,366 Fay 46",,Washington,,Fay 46 ,74,4,232,73,233,5,79,0,0,0,0
-"Washington,367 Fay 47",,Washington,,Fay 47 ,0,0,0,0,0,0,0,0,2,2,0
-"Washington,368 Fay 48",,Washington,,Fay 48 ,0,0,2,0,2,0,0,14,193,229,162
-"Washington,369 Greenland City",,Washington,,Greenland City ,184,14,217,199,204,10,203,17,287,318,162
-"Washington,370 Greenland Twp",,Washington,,Greenland Twp ,180,22,289,178,294,16,185,28,564,625,195
-"Washington,373 Goshen City",,Washington,,Goshen City ,217,23,605,255,564,24,244,26,230,261,117
-"Washington,375 Goshen Twp",,Washington,,Goshen Twp ,124,22,240,135,236,16,129,9,387,404,99
-"Washington,380 Harmon",,Washington,,Harmon  ,107,8,399,110,386,14,111,0,13,15,11
-"Washington,381 Harmon-S",,Washington,,Harmon-S  ,12,0,15,15,11,1,14,8,215,219,28
-"Washington,400 Illinois",,Washington,,Illinois  ,26,9,218,33,215,5,26,0,2,2,0
-"Washington,419 Johnson Twp-H",,Washington,,Johnson Twp-H ,0,0,2,0,2,0,0,4,60,74,44
-"Washington,420 Johnson Twp",,Washington,,Johnson Twp ,53,4,64,58,56,5,58,26,670,791,372
-"Washington,421 Johnson City",,Washington,,Johnson City ,449,33,712,485,673,31,491,0,4,4,2
-"Washington,422 Johnson City-S",,Washington,,Johnson City-S ,2,0,4,2,4,0,2,9,114,128,94
-"Washington,440 Lees Creek",,Washington,,Lees Creek ,93,10,126,101,121,6,105,18,361,395,144
-"Washington,460 Lincoln",,Washington,,Lincoln  ,134,28,386,153,370,20,163,27,394,447,211
-"Washington,480 Litteral",,Washington,,Litteral  ,250,24,410,264,390,31,262,13,289,324,83
-"Washington,500 Marrs Hill",,Washington,,Marrs Hill ,102,12,304,111,301,8,117,0,100,109,14
-"Washington,520 Morrow",,Washington,,Morrow  ,18,4,102,23,98,3,24,28,888,1043,359
+"Washington,020 Boston",,Washington,,Boston,30,2,96,34,92,2,32,33,566,624,212
+"Washington,040 Brush Creek",,Washington,,Brush Creek,230,29,602,245,578,35,258,18,326,358,107
+"Washington,060 Cane Hill",,Washington,,Cane Hill,111,13,352,121,338,15,124,7,307,346,106
+"Washington,080 Center",,Washington,,Center,114,13,327,138,308,11,141,1,36,35,26
+"Washington,082 Center-2",,Washington,,Center-2,28,1,35,28,35,2,28,4,25,31,20
+"Washington,085 Center House",,Washington,,Center House,18,3,31,21,26,4,23,9,168,183,82
+"Washington,100 Cove Creek",,Washington,,Cove Creek,76,6,188,90,171,7,92,1,14,14,5
+"Washington,110 Cove Creek-S",,Washington,,Cove Creek-S,5,1,14,5,14,1,5,11,220,242,95
+"Washington,120 Crawford",,Washington,,Crawford,96,11,237,117,219,9,111,9,180,194,73
+"Washington,140 Durham",,Washington,,Durham,73,9,189,87,180,6,83,0,78,81,13
+"Washington,160 Dutch Mills",,Washington,,Dutch Mills,18,1,79,20,77,1,20,33,495,558,237
+"Washington,180 Elkins",,Washington,,Elkins,255,31,524,283,496,33,285,1,71,83,39
+"Washington,181 Elkins-H",,Washington,,Elkins-H,43,5,77,50,72,3,53,0,137,141,16
+"Washington,200 Elm Springs Twp",,Washington,,Elm Springs Twp,19,3,136,22,136,0,21,18,541,579,139
+"Washington,210 Elm Springs City",,Washington,,Elm Springs City,147,18,564,161,545,20,162,25,382,440,243
+"Washington,220 Farmington-1",,Washington,,Farmington-1,248,21,421,285,385,21,282,4,61,69,23
+"Washington,221 Farmington-S",,Washington,,Farmington-S,32,5,60,29,62,6,32,48,940,1061,366
+"Washington,222 Farmington-2",,Washington,,Farmington-2,430,47,985,461,955,43,473,4,77,113,180
+"Washington,240 Fay 01",,Washington,,Fay 1,211,15,84,218,84,8,228,15,103,177,216
+"Washington,250 Fay 02",,Washington,,Fay 2,282,14,125,296,114,9,300,36,225,336,503
+"Washington,260 Fay 03",,Washington,,Fay 3,630,23,248,639,230,28,634,18,84,144,278
+"Washington,270 Fay 04",,Washington,,Fay 4,346,16,104,350,92,20,360,36,218,379,689
+"Washington,280 Fay 05",,Washington,,Fay 5,916,38,253,934,224,36,934,31,465,652,573
+"Washington,290 Fay 06",,Washington,,Fay 6,736,26,553,802,476,26,803,14,170,286,358
+"Washington,300 Fay 07",,Washington,,Fay 7,488,11,211,522,171,13,517,22,200,303,525
+"Washington,310 Fay 08",,Washington,,Fay 8,662,21,220,677,203,22,678,24,186,282,553
+"Washington,320 Fay 09",,Washington,,Fay 9,642,31,224,674,191,29,687,15,138,194,189
+"Washington,330 Fay 10",,Washington,,Fay 10,248,10,157,268,135,10,255,27,456,579,386
+"Washington,331 Fay 11",,Washington,,Fay 11,466,23,513,528,441,27,506,31,617,791,512
+"Washington,332 Fay 12",,Washington,,Fay 12,672,19,687,728,626,18,720,25,107,176,327
+"Washington,333 Fay 13",,Washington,,Fay 13,389,20,123,391,110,30,397,8,42,69,129
+"Washington,334 Fay 14",,Washington,,Fay 14,161,3,55,164,49,8,164,8,61,110,157
+"Washington,335 Fay 15",,Washington,,Fay 15,196,12,70,198,69,9,205,1,26,33,19
+"Washington,336 Fay 16",,Washington,,Fay 16,22,8,27,26,30,1,30,24,341,464,422
+"Washington,337 Fay 17",,Washington,,Fay 17,549,17,389,595,335,22,584,19,197,282,364
+"Washington,338 Fay 18",,Washington,,Fay 18,472,14,226,495,197,18,491,30,395,553,520
+"Washington,339 Fay 19",,Washington,,Fay 19,686,23,441,718,394,39,721,27,348,474,448
+"Washington,340 Fay 20",,Washington,,Fay 20,549,36,387,586,349,34,584,13,251,312,216
+"Washington,341 Fay 21",,Washington,,Fay 21,266,11,279,298,242,13,289,43,300,412,503
+"Washington,342 Fay 22",,Washington,,Fay 22,587,45,337,628,302,41,626,28,189,283,381
+"Washington,343 Fay 23",,Washington,,Fay 23,453,21,220,459,192,34,468,13,34,81,174
+"Washington,344 Fay 24",,Washington,,Fay 24,221,12,43,230,35,12,229,12,87,167,385
+"Washington,345 Fay 25",,Washington,,Fay 25,524,12,105,547,80,12,538,20,188,257,245
+"Washington,346 Fay 26",,Washington,,Fay 26,298,22,211,329,180,20,321,31,372,502,412
+"Washington,347 Fay 27",,Washington,,Fay 27,494,24,431,532,383,31,540,17,473,591,258
+"Washington,348 Fay 28",,Washington,,Fay 28,360,11,514,406,462,14,393,12,269,349,198
+"Washington,349 Fay 29",,Washington,,Fay 29,279,7,307,321,265,7,306,23,405,485,336
+"Washington,350 Fay 30",,Washington,,Fay 30,418,25,432,446,397,29,444,42,559,719,457
+"Washington,351 Fay 31",,Washington,,Fay 31,596,33,623,650,558,36,632,24,320,364,214
+"Washington,352 Fay 32",,Washington,,Fay 32,229,21,351,258,327,16,252,2,23,25,15
+"Washington,353 Fay 33",,Washington,,Fay 33,21,0,24,20,23,1,19,1,1,11,39
+"Washington,354 Fay 34",,Washington,,Fay 34,57,0,1,56,2,0,56,8,228,284,161
+"Washington,355 Fay 35",,Washington,,Fay 35,241,7,249,251,236,8,255,15,51,95,202
+"Washington,356 Fay 36",,Washington,,Fay 36,250,14,60,256,48,17,256,0,14,19,50
+"Washington,357 Fay 37",,Washington,,Fay 37,62,1,13,60,12,3,61,6,80,112,83
+"Washington,358 Fay 38",,Washington,,Fay 38,110,9,87,118,79,7,119,1,96,124,57
+"Washington,359 Fay 39",,Washington,,Fay 39,69,0,122,92,96,2,91,38,435,584,426
+"Washington,360 Fay 40",,Washington,,Fay 40,554,35,467,577,436,41,575,6,67,83,27
+"Washington,361 Fay 41",,Washington,,Fay 41,39,5,70,46,62,6,40,9,80,114,176
+"Washington,362 Fay 42",,Washington,,Fay 42,214,11,89,224,80,10,224,7,39,44,21
+"Washington,363 Fay 43",,Washington,,Fay 43,24,4,39,26,37,4,21,11,66,100,111
+"Washington,364 Fay 44",,Washington,,Fay 44,138,6,82,149,68,8,149,1,25,28,12
+"Washington,365 Fay 45",,Washington,,Fay 45,10,1,30,17,21,1,14,5,225,244,61
+"Washington,366 Fay 46",,Washington,,Fay 46,74,4,232,73,233,5,79,0,0,0,0
+"Washington,367 Fay 47",,Washington,,Fay 47,0,0,0,0,0,0,0,0,2,2,0
+"Washington,368 Fay 48",,Washington,,Fay 48,0,0,2,0,2,0,0,14,193,229,162
+"Washington,369 Greenland City",,Washington,,Greenland City,184,14,217,199,204,10,203,17,287,318,162
+"Washington,370 Greenland Twp",,Washington,,Greenland Twp,180,22,289,178,294,16,185,28,564,625,195
+"Washington,373 Goshen City",,Washington,,Goshen City,217,23,605,255,564,24,244,26,230,261,117
+"Washington,375 Goshen Twp",,Washington,,Goshen Twp,124,22,240,135,236,16,129,9,387,404,99
+"Washington,380 Harmon",,Washington,,Harmon,107,8,399,110,386,14,111,0,13,15,11
+"Washington,381 Harmon-S",,Washington,,Harmon-S,12,0,15,15,11,1,14,8,215,219,28
+"Washington,400 Illinois",,Washington,,Illinois,26,9,218,33,215,5,26,0,2,2,0
+"Washington,419 Johnson Twp-H",,Washington,,Johnson Twp-H,0,0,2,0,2,0,0,4,60,74,44
+"Washington,420 Johnson Twp",,Washington,,Johnson Twp,53,4,64,58,56,5,58,26,670,791,372
+"Washington,421 Johnson City",,Washington,,Johnson City,449,33,712,485,673,31,491,0,4,4,2
+"Washington,422 Johnson City-S",,Washington,,Johnson City-S,2,0,4,2,4,0,2,9,114,128,94
+"Washington,440 Lees Creek",,Washington,,Lees Creek,93,10,126,101,121,6,105,18,361,395,144
+"Washington,460 Lincoln",,Washington,,Lincoln,134,28,386,153,370,20,163,27,394,447,211
+"Washington,480 Litteral",,Washington,,Litteral,250,24,410,264,390,31,262,13,289,324,83
+"Washington,500 Marrs Hill",,Washington,,Marrs Hill,102,12,304,111,301,8,117,0,100,109,14
+"Washington,520 Morrow",,Washington,,Morrow,18,4,102,23,98,3,24,28,888,1043,359
 "Washington,541 Prairie Twp 1",,Washington,,Prairie Twp 1,458,22,974,533,884,32,528,10,183,197,152
 "Washington,542 Prairie Twp 2",,Washington,,Prairie Twp 2,150,8,200,163,185,8,164,1,6,9,4
 "Washington,543 Prairie Twp 3",,Washington,,Prairie Twp 3,6,0,8,7,7,0,7,1,79,91,34
@@ -2407,65 +2411,65 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Washington,562 Prairie Gr City-House",,Washington,,Prairie Gr City-House,38,7,157,49,145,7,49,9,219,237,76
 "Washington,580 Prairie Gr Twp",,Washington,,Prairie Gr Twp,70,10,240,86,222,9,89,3,103,120,36
 "Washington,581 Prairie Gr Twp-Senate",,Washington,,Prairie Gr Twp-Senate,48,2,111,57,100,3,52,7,68,74,24
-"Washington,620 Reed",,Washington,,Reed  ,25,4,70,26,67,6,25,8,149,158,34
-"Washington,640 Rheas Mill",,Washington,,Rheas Mill ,28,9,155,32,153,6,36,2,28,35,14
-"Washington,660 Richland",,Washington,,Richland  ,16,1,34,16,30,4,19,9,240,260,65
-"Washington,661 Richland-Senate",,Washington,,Richland-Senate  ,64,12,259,83,240,10,80,10,186,210,145
-"Washington,680 Spg 01",,Washington,,Spg 1 ,156,5,207,154,202,10,169,16,172,211,194
-"Washington,690 Spg 02",,Washington,,Spg 2 ,222,14,185,232,174,14,234,21,468,544,383
-"Washington,700 Spg 03",,Washington,,Spg 3 ,393,27,524,438,470,29,448,21,424,482,217
-"Washington,710 Spg 04",,Washington,,Spg 4 ,237,19,461,262,430,18,266,21,497,539,297
-"Washington,720 Spg 05",,Washington,,Spg 5 ,328,22,516,329,516,25,346,13,242,274,210
-"Washington,730 Spg 06",,Washington,,Spg 6 ,229,15,256,235,245,21,242,15,328,353,90
-"Washington,740 Spg 07",,Washington,,Spg 7 ,98,14,339,114,323,12,103,10,257,279,93
-"Washington,741 Spg 08",,Washington,,Spg 8 ,109,8,271,128,253,7,118,10,162,194,177
-"Washington,742 Spg 09",,Washington,,Spg 9 ,186,10,182,195,167,14,204,4,238,266,74
-"Washington,743 Spg 10",,Washington,,Spg 10 ,89,4,262,114,232,8,109,29,684,784,264
-"Washington,744 Spg 11",,Washington,,Spg 11 ,318,26,741,370,679,27,359,25,601,680,226
-"Washington,745 Spg 12",,Washington,,Spg 12 ,260,24,649,289,615,26,298,5,76,94,114
-"Washington,746 Spg 13",,Washington,,Spg 13 ,123,8,80,124,79,8,130,34,538,616,255
-"Washington,747 Spg 14",,Washington,,Spg 14 ,288,24,577,323,536,30,312,20,329,391,273
-"Washington,748 Spg 15",,Washington,,Spg 15 ,300,21,359,322,332,24,331,25,245,299,165
-"Washington,749 Spg 16",,Washington,,Spg 16 ,187,20,268,197,254,23,205,29,657,784,417
-"Washington,752 Spg 17",,Washington,,Spg 17 ,504,21,721,550,659,36,555,17,377,444,190
-"Washington,753 Spg 18",,Washington,,Spg 18 ,220,16,420,262,375,17,256,15,297,329,144
-"Washington,754 Spg 19",,Washington,,Spg 19 ,161,17,308,168,299,17,171,2,20,23,30
-"Washington,755 Spg 20",,Washington,,Spg 20 ,27,2,24,27,23,3,31,6,172,198,58
-"Washington,756 Spg 21",,Washington,,Spg 21 ,64,10,187,79,173,6,80,3,50,59,17
-"Washington,757 Spg 22",,Washington,,Spg 22 ,21,3,52,21,51,4,23,17,187,226,141
-"Washington,758 Spg 23",,Washington,,Spg 23 ,160,16,208,179,186,14,176,4,32,37,60
-"Washington,759 Spg 24",,Washington,,Spg 24 ,65,3,33,65,31,5,65,1,22,25,13
-"Washington,760 Spg 25",,Washington,,Spg 25 ,15,0,23,13,24,1,15,2,188,208,33
-"Washington,761 Spg 26",,Washington,,Spg 26 ,44,3,202,50,191,4,54,8,172,193,49
-"Washington,762 Spg 27",,Washington,,Spg 27 ,51,3,191,60,180,6,64,19,636,685,210
-"Washington,779 Spg Twp",,Washington,,Spg Twp ,224,24,670,249,636,27,258,7,335,348,100
-"Washington,780 Starr Hill",,Washington,,Starr Hill ,92,18,346,104,339,14,112,19,624,684,162
-"Washington,800 Tontitown City-1",,Washington,,Tontitown City-1 ,179,26,660,202,637,23,218,13,320,364,104
-"Washington,801 Tontitown City-2",,Washington,,Tontitown City-2 ,120,12,343,138,323,13,142,1,33,33,8
-"Washington,802 Tontitown City-3",,Washington,,Tontitown City-3 ,5,1,35,6,33,1,7,1,0,0,6
-"Washington,803 Tontitown City-4",,Washington,,Tontitown City-4 ,5,1,0,5,0,1,5,0,0,0,0
-"Washington,804 Tontitown City-5",,Washington,,Tontitown City-5 ,0,0,0,0,0,0,0,1,4,6,2
-"Washington,807 Tontitown Twp",,Washington,,Tontitown Twp ,2,1,5,2,5,1,2,8,198,216,91
-"Washington,810 Valley",,Washington,,Valley  ,87,9,213,97,204,9,104,0,7,7,2
-"Washington,811 Valley-S",,Washington,,Valley-S  ,2,0,7,2,7,0,2,4,103,108,35
-"Washington,812 Valley-H",,Washington,,Valley-H  ,33,3,109,43,98,5,39,2,67,71,14
-"Washington,820 Vineyard",,Washington,,Vineyard  ,16,5,68,18,69,2,20,5,45,47,17
-"Washington,830 War Eagle",,Washington,,War Eagle ,15,2,48,19,45,1,15,2,93,97,22
-"Washington,840 Wedington",,Washington,,Wedington  ,25,2,98,29,95,0,29,16,401,443,213
+"Washington,620 Reed",,Washington,,Reed,25,4,70,26,67,6,25,8,149,158,34
+"Washington,640 Rheas Mill",,Washington,,Rheas Mill,28,9,155,32,153,6,36,2,28,35,14
+"Washington,660 Richland",,Washington,,Richland,16,1,34,16,30,4,19,9,240,260,65
+"Washington,661 Richland-Senate",,Washington,,Richland-Senate,64,12,259,83,240,10,80,10,186,210,145
+"Washington,680 Spg 01",,Washington,,Spg 1,156,5,207,154,202,10,169,16,172,211,194
+"Washington,690 Spg 02",,Washington,,Spg 2,222,14,185,232,174,14,234,21,468,544,383
+"Washington,700 Spg 03",,Washington,,Spg 3,393,27,524,438,470,29,448,21,424,482,217
+"Washington,710 Spg 04",,Washington,,Spg 4,237,19,461,262,430,18,266,21,497,539,297
+"Washington,720 Spg 05",,Washington,,Spg 5,328,22,516,329,516,25,346,13,242,274,210
+"Washington,730 Spg 06",,Washington,,Spg 6,229,15,256,235,245,21,242,15,328,353,90
+"Washington,740 Spg 07",,Washington,,Spg 7,98,14,339,114,323,12,103,10,257,279,93
+"Washington,741 Spg 08",,Washington,,Spg 8,109,8,271,128,253,7,118,10,162,194,177
+"Washington,742 Spg 09",,Washington,,Spg 9,186,10,182,195,167,14,204,4,238,266,74
+"Washington,743 Spg 10",,Washington,,Spg 10,89,4,262,114,232,8,109,29,684,784,264
+"Washington,744 Spg 11",,Washington,,Spg 11,318,26,741,370,679,27,359,25,601,680,226
+"Washington,745 Spg 12",,Washington,,Spg 12,260,24,649,289,615,26,298,5,76,94,114
+"Washington,746 Spg 13",,Washington,,Spg 13,123,8,80,124,79,8,130,34,538,616,255
+"Washington,747 Spg 14",,Washington,,Spg 14,288,24,577,323,536,30,312,20,329,391,273
+"Washington,748 Spg 15",,Washington,,Spg 15,300,21,359,322,332,24,331,25,245,299,165
+"Washington,749 Spg 16",,Washington,,Spg 16,187,20,268,197,254,23,205,29,657,784,417
+"Washington,752 Spg 17",,Washington,,Spg 17,504,21,721,550,659,36,555,17,377,444,190
+"Washington,753 Spg 18",,Washington,,Spg 18,220,16,420,262,375,17,256,15,297,329,144
+"Washington,754 Spg 19",,Washington,,Spg 19,161,17,308,168,299,17,171,2,20,23,30
+"Washington,755 Spg 20",,Washington,,Spg 20,27,2,24,27,23,3,31,6,172,198,58
+"Washington,756 Spg 21",,Washington,,Spg 21,64,10,187,79,173,6,80,3,50,59,17
+"Washington,757 Spg 22",,Washington,,Spg 22,21,3,52,21,51,4,23,17,187,226,141
+"Washington,758 Spg 23",,Washington,,Spg 23,160,16,208,179,186,14,176,4,32,37,60
+"Washington,759 Spg 24",,Washington,,Spg 24,65,3,33,65,31,5,65,1,22,25,13
+"Washington,760 Spg 25",,Washington,,Spg 25,15,0,23,13,24,1,15,2,188,208,33
+"Washington,761 Spg 26",,Washington,,Spg 26,44,3,202,50,191,4,54,8,172,193,49
+"Washington,762 Spg 27",,Washington,,Spg 27,51,3,191,60,180,6,64,19,636,685,210
+"Washington,779 Spg Twp",,Washington,,Spg Twp,224,24,670,249,636,27,258,7,335,348,100
+"Washington,780 Starr Hill",,Washington,,Starr Hill,92,18,346,104,339,14,112,19,624,684,162
+"Washington,800 Tontitown City-1",,Washington,,Tontitown City-1,179,26,660,202,637,23,218,13,320,364,104
+"Washington,801 Tontitown City-2",,Washington,,Tontitown City-2,120,12,343,138,323,13,142,1,33,33,8
+"Washington,802 Tontitown City-3",,Washington,,Tontitown City-3,5,1,35,6,33,1,7,1,0,0,6
+"Washington,803 Tontitown City-4",,Washington,,Tontitown City-4,5,1,0,5,0,1,5,0,0,0,0
+"Washington,804 Tontitown City-5",,Washington,,Tontitown City-5,0,0,0,0,0,0,0,1,4,6,2
+"Washington,807 Tontitown Twp",,Washington,,Tontitown Twp,2,1,5,2,5,1,2,8,198,216,91
+"Washington,810 Valley",,Washington,,Valley,87,9,213,97,204,9,104,0,7,7,2
+"Washington,811 Valley-S",,Washington,,Valley-S,2,0,7,2,7,0,2,4,103,108,35
+"Washington,812 Valley-H",,Washington,,Valley-H,33,3,109,43,98,5,39,2,67,71,14
+"Washington,820 Vineyard",,Washington,,Vineyard,16,5,68,18,69,2,20,5,45,47,17
+"Washington,830 War Eagle",,Washington,,War Eagle,15,2,48,19,45,1,15,2,93,97,22
+"Washington,840 Wedington",,Washington,,Wedington,25,2,98,29,95,0,29,16,401,443,213
 "Washington,860 West Fork City-1",,Washington,,West Fork City-1,240,21,419,254,405,20,257,4,88,89,29
 "Washington,861 West Fork City-2",,Washington,,West Fork City-2,26,3,92,31,82,8,28,0,3,4,3
 "Washington,862 West Fork City-3",,Washington,,West Fork City-3,4,0,3,5,2,0,4,7,179,205,98
 "Washington,880 West Fork Twp",,Washington,,West Fork Twp,103,8,200,108,194,7,120,2,105,116,63
 "Washington,881 West Fork Twp-H",,Washington,,West Fork Twp-H,65,4,112,70,108,3,72,11,267,309,104
-"Washington,900 Wheeler",,Washington,,Wheeler  ,132,12,289,146,275,11,151,0,1,1,0
-"Washington,901 Wheeler-S",,Washington,,Wheeler-S  ,0,0,1,0,1,0,0,3,115,148,60
-"Washington,902 Wheeler-H",,Washington,,Wheeler-H  ,90,2,129,100,117,3,100,8,124,133,59
-"Washington,920 White River",,Washington,,White River ,55,8,136,68,122,6,66,0,38,41,12
-"Washington,930 White River-H",,Washington,,White River-H ,16,0,39,19,37,0,18,2,46,47,19
-"Washington,931 White River-S",,Washington,,White River-S ,20,2,47,23,46,1,22,7,197,207,87
-"Washington,940 Winslow Twp",,Washington,,Winslow Twp ,91,9,204,102,197,5,100,9,74,85,55
-"Washington,950 Winslow City",,Washington,,Winslow City ,52,6,88,59,81,7,62,7,157,178,85
-"Washington,960 Wyman",,Washington,,Wyman  ,98,8,164,107,156,7,107,0,75,80,11
+"Washington,900 Wheeler",,Washington,,Wheeler,132,12,289,146,275,11,151,0,1,1,0
+"Washington,901 Wheeler-S",,Washington,,Wheeler-S,0,0,1,0,1,0,0,3,115,148,60
+"Washington,902 Wheeler-H",,Washington,,Wheeler-H,90,2,129,100,117,3,100,8,124,133,59
+"Washington,920 White River",,Washington,,White River,55,8,136,68,122,6,66,0,38,41,12
+"Washington,930 White River-H",,Washington,,White River-H,16,0,39,19,37,0,18,2,46,47,19
+"Washington,931 White River-S",,Washington,,White River-S,20,2,47,23,46,1,22,7,197,207,87
+"Washington,940 Winslow Twp",,Washington,,Winslow Twp,91,9,204,102,197,5,100,9,74,85,55
+"Washington,950 Winslow City",,Washington,,Winslow City,52,6,88,59,81,7,62,7,157,178,85
+"Washington,960 Wyman",,Washington,,Wyman,98,8,164,107,156,7,107,0,75,80,11
 "White,Albion",,White,,Albion,14,1,77,17,72,3,17,6,228,238,42
 "White,Antioch",,White,,Antioch,40,7,234,43,231,6,50,5,116,126,24
 "White,Bald Knob North",,White,,Bald Knob North,20,1,130,25,127,1,32,8,110,121,40
