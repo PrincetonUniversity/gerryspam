@@ -38,9 +38,10 @@ def arkansas(dat):
 def ashley(dat):
     dat["prec"] = dat["prec"].str.slice(start=5)
     dat["prec"] = dat["prec"].replace({
-        "Crossett Ward 1": "CW 1",
-        "Crossett Ward 2": "CW 2",
-        "Crossett Ward 3": "CW 3",
+        "Crossett Ward 1": "CW1",
+        "Crossett Ward 2": "CW2",
+        "Crossett Ward 3": "CW3",
+        "Crossroads": "Cross roads",
         "Fountain Hill City": "FH CITY",
         "Fountain Hill Rural": "FH RURAL",
         "Hamburg Ward 1": "HW1",
@@ -69,6 +70,11 @@ def benton(dat):
             "Precinct 09": "Precinct 9",
         })
 
+def boone(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+            "Diamond City (12)": "District 12",
+        })
 
 def bradley(dat):
     dat["prec"] = dat["prec"].str.slice(start=5)
@@ -91,14 +97,16 @@ def carroll(dat):
             "North East Hickory": "NE Hickory",
             "Northwest Hickory": "NW Hickory",
             "Long Creek": "Lng Crk",
-            "SW & SE HICKORY": "SW/SE HICKORY",
+            "SW & SE Hickory": "SW/SE HICKORY",
         })
 
 
 def chicot(dat):
     dat["prec"] = dat["prec"].str.slice(start=5)
     dat["prec"] = dat["prec"].replace(
-        {"Carlton": "Carlton 1"})
+        {"Carlton": "Carlton 1 & 2",
+         "Carlton 2": "Carlton 1 & 2",
+         })
 
 
 def clark(dat):
@@ -110,6 +118,7 @@ def clark(dat):
             "Gum Springs Outside 1": "Gum Springs Outside",
             "Gum Springs 1": "Gum Springs Inside",
             "Gurdon Gen 1": "Gurdon General",
+            "Hollywood 1": "Hollywood",
             "North East County": "Northeast County",
             "Okolona City 1": "Okolona City",
             "South County 1": "South County",
@@ -130,6 +139,13 @@ def clay(dat):
             "Gleghorn & S Kilgore": "S Kilgore & Gleghorn",
             "South St Francis": "South St. Francis",
         })
+    
+def cleveland(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].replace(
+        {"Kingsland Out": "Kingsland outside", })
+
+
 
 
 def columbia(dat):
@@ -138,8 +154,10 @@ def columbia(dat):
 
 
 def conway(dat):
+    dat["prec"] = dat["prec"].str.slice(start=6)
     dat["prec"] = dat["prec"].replace(
-        {"St Vincent": "St. Vincent", "Lick Mountain": "Lick Mtn."})
+        {"St Vincent": "St. Vincent", 
+         "Lick Mountain": "Lick Mtn."})
 
 
 def crawford(dat):
@@ -168,6 +186,11 @@ def cross(dat):
             "Wynne Ward 4": "WYNNE WARD 4",
             "Wynne Ward 5": "WYNNE WARD 5"})
 
+def dallas(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].replace(
+        {"district 5 -": "district 5", 
+    })
 
 def desha(dat):
     chop_five(dat)
@@ -304,6 +327,9 @@ def fulton(dat):
          })
     dat["prec"] = dat["prec"].str.replace(" - ", "/")
 
+def garland(dat): 
+    dat["prec"] = dat["prec"].str.lstrip("0")
+
 
 def greene(dat):
     chop_five(dat)
@@ -317,13 +343,27 @@ def greene(dat):
 
 def hempstead(dat):
     dat["prec"] = dat["prec"].str.slice(start=3)
-
+    dat["prec"] = dat["prec"].replace(
+        {"Cross Roads": "Crossroads",
+         })
 
 def hotspring(dat):
     dat["prec"] = dat["prec"].replace(
-        {"Friendship City": "Friendship"}
+        {"Friendship City": "Friendship",
+        "malvern w-1": "ward 1",
+        "malvern w-2": "ward 2",
+        "malvern w-3": "ward 3",
+        "malvern w-4": "ward 4",
+         }
     )
 
+def howard(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].replace(
+        {
+        "Ineral spring 3": "Mineral spring 3",
+         }
+    )
 
 def independence(dat):
     dat["prec"] = dat["prec"].replace(
@@ -373,6 +413,7 @@ def jackson(dat):
             "Newport Ward 2-B": "Newport W 2-B",
             "Newport Ward 3-C": "Newport W 3-C",
             "Newport Ward 3-B": "Newport W 3-B",
+            "Penninghton Balch": "PENNINGTON BALCH",
         })
 
 
@@ -382,6 +423,8 @@ def jefferson(dat):
     dat["prec"] = dat["prec"].replace(
         {
             "610-1": "610",
+            "620-1": "620",
+            "711-1": "711",
             "712-1": "712",
             "713-1": "713",
             "714-1": "714",
@@ -447,6 +490,8 @@ def lincoln(dat):
     dat["prec"] = dat["prec"].str.slice(start=6)
     dat["prec"] = dat["prec"].replace(
         {
+            "E Lincoln Co FD": "SE Lincoln Co FD",
+            "ells Bayou": "Wells Bayou",
             "Tarry": "Bar/Tarry",
             "Yorktown": "Bar/Yorktown",
             "Lone Pine / Garnett": "Lone Pine/Garnett",
@@ -454,6 +499,8 @@ def lincoln(dat):
             "Owen / Glendale": "Owen/Glendale",
             "Owen / Palmyra": "Owen/Palmyra",
             "Wells Bayou": "Wells Bayou/FS",
+            "Grady City W1 & W2": "Grady City W1& W2s",
+            "ould City W1": "Gould City W1",
         })
 
 
@@ -517,6 +564,10 @@ def lonoke(dat):
             "54 - Lonoke City Ward 6": "54 - Lonoke City W/6",
             "55 - Lonoke City Ward 7": "55 - Lonoke City W/7",
             "55 - Lonoke City Ward 8": "55 - Lonoke City W/8",
+            "01 - Allport City": "01- Allport City",
+            "11 - Carlisle City Ward 2": "11 -Carlisle City Ward 2",
+            "19 - England City Ward 3": "19- England City Ward 3",
+            "56 - Lonoke City Ward 8": "56 - Lonoke City W/8",
         })
 
 
@@ -549,8 +600,7 @@ def newton(dat):
 
 
 def perry(dat):
-    dat["prec"] = dat["prec"].str.slice(
-        start=1, stop=2) + "-" + dat["prec"].str.slice(start=5)
+    dat["prec"] = dat["prec"].str.lstrip("0")
 
 
 def phillips(dat):
@@ -638,6 +688,7 @@ def randolph(dat):
     chop_five(dat)
     dat["prec"] = dat["prec"].replace(
         {
+            "Elevenpoint": "Eleven point",
             "Okean": "O'kean",
             "Ward One": "Ward 1",
             "Ward Two": "Ward 2",
@@ -649,19 +700,26 @@ def saline(dat):
     dat["prec"] = "Precinct " + dat["prec"]
 
 
+
 def scott(dat):
     chop_five(dat)
     dat["prec"] = dat["prec"].replace(
         {
             "Lewis 1": "Lewis Ward 1",
             "Lewis 2": "Lewis Ward 2",
-            "Lewis 3": "Lewis Ward 3"
+            "Lewis 3": "Lewis Ward 3",
+            "Mt. Pleasant": "Mount Pleasant",
         })
 
 
 def sebastian(dat):
     dat["prec"] = dat["prec"].str.slice(start=9)
 
+def sevier(dat):
+    dat["prec"] = dat["prec"].replace(
+        {
+            "De Queen Northwest": "DQ northwest",
+        })
 
 def stone(dat):
     dat["prec"] = dat["prec"].replace(
@@ -686,6 +744,7 @@ def union(dat):
             "Ward 2": "ward #2",
             "Ward 3": "ward #3",
             "Ward 4": "ward #4",
+            "Woolleys Store": "WOOLEYS STORE",
         })
 
 
@@ -695,8 +754,31 @@ def washington(dat):
             "Prairie Gr City - House": "Prairie Gr City-House",
             "Prairie Gr City - Senate": "Prairie Gr City-Senate",
             "Richland - Senate": "Richland-Senate",
+            "Fay 01": "Fay 1",
+            "Fay 02": "Fay 2",
+            "Fay 03": "Fay 3",
+            "Fay 04": "Fay 4",
+            "Fay 05": "Fay 5",
+            "Fay 06": "Fay 6",
+            "Fay 07": "Fay 7",
+            "Fay 08": "Fay 8",
+            "Spg 01": "Spg 1",
+            "Spg 02": "Spg 2",
+            "Spg 03": "Spg 3",
+            "Spg 04": "Spg 4",
+            "Spg 05": "Spg 5",
+            "Spg 06": "Spg 6",
+            "Spg 07": "Spg 7",
+            "Spg 08": "Spg 8",
+            "Spg 09": "Spg 9",
         })
 
+def white(dat):
+    chop_five(dat)
+    dat["prec"] = dat["prec"].replace(
+        {
+            "Higginson  Ward 1": "Higginson Ward 1",
+        })
 
 def woodruff(dat):
     dat["prec"] = dat["prec"].replace(
@@ -723,7 +805,6 @@ def woodruff(dat):
             "South Rural Augusta - 05": "Augusta Armory-05",
         })
 
-
 """
 overall call function
 """
@@ -737,22 +818,23 @@ countyToCountyCleaner = {
     "Clark": clark,
     "Clay": clay,
     "Cleburne": chop_five,
-    "Cleveland": chop_five,
+    "Cleveland": cleveland,
     "Columbia": columbia,
     "Conway": conway,
     "Crawford": crawford,
     "Cross": cross,
-    "Dallas": chop_five,
+    "Dallas": dallas,
     "Desha": desha,
     "Drew": drew,
     "Faulkner": faulkner,
     "Franklin": franklin,
     "Fulton": fulton,
+    "Garland": garland,
     "Grant": chop_five,
     "Greene": greene,
     "Hempstead": hempstead,
     "Hot Spring": hotspring,
-    "Howard": chop_five,
+    "Howard": howard,
     "Independence": independence,
     "Izard": izard,
     "Jefferson": jefferson,
@@ -767,6 +849,7 @@ countyToCountyCleaner = {
     "Marion": marion,
     "Miller": miller,
     "Monroe": monroe,
+    "Montgomery": chop_five,
     "Newton": newton,
     "Perry": perry,
     "Phillips": phillips,
@@ -777,11 +860,13 @@ countyToCountyCleaner = {
     "Pulaski": pulaski,
     "Randolph": randolph,
     "Saline": saline,
+    "Sebastian": sebastian,
+    "Sevier": sevier,
     "Scott": scott,
     "Stone": stone,
     "Union": union,
     "Washington": washington,
-    "White": chop_five,
+    "White": white,
     "Woodruff": woodruff,
     "Yell": chop_five,
 }

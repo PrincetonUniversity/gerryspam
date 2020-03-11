@@ -3,7 +3,7 @@ import geopandas as gpd
 
 ms_shp_path = '/Users/hopecj/projects/AR/Shapefiles/mississippi_partnership17/partnership_shapefiles_17v2_05093/PVS_17_v2_vtd_05093.shp'
 ms_shp = gpd.read_file(ms_shp_path)
-ms_shp["county_nam"] = "Missippi"
+ms_shp["county_nam"] = "Mississippi"
 
 ms_shp = ms_shp.rename(columns={"STATEFP": "state_fips", 
                        "COUNTYFP": "county_fip",

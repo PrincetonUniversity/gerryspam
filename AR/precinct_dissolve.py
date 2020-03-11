@@ -7,6 +7,11 @@ import shapely
 shp_path = '/Users/hopecj/projects/AR/Shapefiles/1_edited_precnames/clean.shp'
 shp = gpd.read_file(shp_path)
 
+def benton(dat):
+    dat["PREC"] = dat["PREC"].replace({
+        "precinct 41": "precinct 40",
+    })
+
 def carroll(dat):
     dat["PREC"] = dat["PREC"].replace({
         "bv ward 1": "bv wards 1 and 2",
@@ -23,8 +28,22 @@ def carroll(dat):
         "cabanal": "prairies/cabanal",
         "ne prairie": "prairies/cabanal",
         "nw & sw prairie": "prairies/cabanal",
+        "se prairie": "prairies/cabanal",
     })
 
+def clark(dat):
+    dat["PREC"] = dat["PREC"].replace({
+        "caddo valley ward 1": "caddo valley wards 1-3",
+        "caddo valley ward 2": "caddo valley wards 1-3",
+        "caddo valley ward 3": "caddo valley wards 1-3",
+        "gum springs inside": "gum springs inside/outside",
+        "gum springs outside": "gum springs inside/outside",
+        "guden ward 1": "gurdon wards 1-5",
+        "guden ward 2": "gurdon wards 1-5",
+        "guden ward 3": "gurdon wards 1-5",
+        "guden ward 4": "gurdon wards 1-5",
+        "guden ward 5": "gurdon wards 1-5",
+    })
 
 def crittenden(dat):
     dat["PREC"] = dat["PREC"].replace({
@@ -42,10 +61,12 @@ def crittenden(dat):
         "60 - earle ward 2": "EARLE CITY HALL",
         "61 - earle ward 3": "EARLE CITY HALL",
         "73 - north tyronza": "EARLE CITY HALL",
+        "74 - south tyronza": "EARLE CITY HALL",
+        "71-mississippi country box": "WM HIGH SCHOOL",
         "56 - bob ward 1": "EDMONDSON",
         "57 - north fogleman": "GILMORE",
         "54 - east black oak": "HEAFER",
-        "55 - west black oak": "HEAFER",
+        "55- west black oak": "HEAFER",
         "77- lucas estate (h'shoe lake)": "HORSESHOE FIRE STATION",
         "81 - south tyronza, jeanette": "JENNETTE CITY HALL",
         "82 - wappanocca, clarkdale": "JERICHO CITY HALL",
@@ -77,12 +98,33 @@ def faulkner(dat):
         "2d conway city 40": "07 2a"
     })
 
+def hotspring(dat):
+    dat["PREC"] = dat["PREC"].replace({
+        "midway city": "midway city",
+        "midway city 2": "midway city",
+        "rockport w-1": "rockport",
+        "rockport w-1-4": "rockport",
+        "rockport w-2": "rockport",
+    })
+
+def howard(dat):
+    dat["PREC"] = dat["PREC"].replace({
+        "backland": "blackland",
+        "blackland": "blackland",
+        "nashville twp i": "nashville ward 1",
+    })
+
 
 def independence(dat):
     dat["PREC"] = dat["PREC"].replace({
         "big bottom ward 1": "Big Bottom Wards 1,2,3",
         "big bottom ward 2": "Big Bottom Wards 1,2,3",
         "big bottom ward 3": "Big Bottom Wards 1,2,3",
+    })
+    
+def marion(dat):
+    dat["PREC"] = dat["PREC"].replace({
+        "p0031": "p0030",
     })
 
 
@@ -159,12 +201,15 @@ def poinsett(dat):
         "willis ward 3": "willis",
         "willis ward 4": "willis",
         "willis ward 5": "willis",
+        "willis township": "willis",
     })
 
+Newcastle/Parrott
+newcastle/parrott
 
 def st_francis(dat):
     dat["PREC"] = dat["PREC"].replace({
-        "24 - bonair": "bonair",
+   "24 - bonair": "bonair",
         "16 - tuni": "bonair",
         "17 - bonair": "bonair",
         "26 - bonair": "bonair",
@@ -232,10 +277,13 @@ def washington(dat):
 
 
 countyToDissolve = {
+    "Benton": benton,
     "Carroll": carroll,
+    "Clark": clark,
     "Crittenden": crittenden,
     "Faulkner": faulkner,
     "Independence": independence,
+    "Marion": marion,
     "Monroe": monroe,
     "Nevada": nevada,
     "Poinsett": poinsett,
