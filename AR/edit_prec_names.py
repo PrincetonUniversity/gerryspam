@@ -41,7 +41,7 @@ def ashley(dat):
         "Crossett Ward 1": "CW1",
         "Crossett Ward 2": "CW2",
         "Crossett Ward 3": "CW3",
-        # "Crossroads": "CROSSROADS",
+        "Cross Roads": "CROSSROADS",
         "Fountain Hill City": "FH CITY",
         "Fountain Hill Rural": "FH RURAL",
         "Hamburg Ward 1": "HW1",
@@ -54,6 +54,9 @@ def ashley(dat):
         "VO - Tech": "VOTECH",
         "West Crossett Rural": "WCR",
     })
+
+def baxter(dat):
+    dat["prec"] = dat["prec"] + "b"
 
 
 def benton(dat):
@@ -194,7 +197,7 @@ def cross(dat):
 def dallas(dat):
     chop_five(dat)
     dat["prec"] = dat["prec"].replace(
-        {"district 5 -": "district 5", 
+        {" District 5 -": "district 5", 
     })
 
 def desha(dat):
@@ -366,7 +369,7 @@ def howard(dat):
     chop_five(dat)
     dat["prec"] = dat["prec"].replace(
         {
-        "ineral spring 3": "Mineral spring 3",
+        "ineral Spring 3": "Mineral spring 3",
          }
     )
 
@@ -845,6 +848,7 @@ overall call function
 countyToCountyCleaner = {
     "Arkansas": arkansas,
     "Ashley": ashley,
+    "Baxter": baxter,
     "Benton": benton,
     "Boone": boone,
     "Bradley": bradley,
