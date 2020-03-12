@@ -26,7 +26,7 @@ Changes:
 - Ouachita County: 
     - Removed the leading zero from precincts "Camden Ward 1" through "Camden Ward 9"
     - Combined "Smackover Ward 1" and "Smackover Ward 2" into "Smackover Ward"
-    - Combined "Valley Ward 1" and "Valley Ward 2" into "Valley Ward"
+    - Combined "Valley 1" and "Valley 2" into "Valley"
 - Phillips County: 
     - Removed "PRECINCT 0004" from election results based on exchange with county clerk
     - Combined results fom "PRECINCT 0005" and "PRECINCT 0006" into "PRECINCT 0005/0006"
