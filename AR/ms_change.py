@@ -132,21 +132,23 @@ def ouachita(dat):
         "Carroll Voting District": "Carroll",
         "Freeo Voting District": "Freeo",
         "Union Voting District": "Union",
-        "Cleveland Voting District": "Cleveland",
+        "Cleveland Voting District": "Cleveland Township",
         "Valley Voting District": "Valley",
         "River Voting District": "River",
         "Bragg Voting District": "Bragg",
         "Liberty Voting District": "Liberty",
-        "Ecore Fabre Voting District": "Encore",
+        "Ecore Fabre Voting District": "Ecore Fabre",
         "Bradley Voting District": "Bradley",
         "Lafayette A Voting District": "Lafayette A",
         "Lafayette B Voting District": "Lafayette B",
         "Marion Voting District": "Marion",
-        "Jefferson Rural Voting District": "Jackson",
-        "Smackover Voting District": "Smackover",
+        "Jefferson Rural Voting District": "Jefferson",
+        "Smackover Voting District": "Smackover ward",
         "Bridge Creek Voting District": "Bridge Creek",
-        "Washington Voting District": "Washington",
+        "Washington Voting District": "Washington Ward 1",
         "Camden Ward 13B": "Camden Ward 13",
+        "Camden Ward 7A": "Camden Ward 7",
+        
     })
 
 ouachita_shp["prec_new"] = ouachita_shp["precinct"].copy()
