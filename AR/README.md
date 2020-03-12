@@ -23,7 +23,9 @@ Changes:
 - Cleburne County: Removed last three characters from precinct names
 - Craighead County: Removed the word "precinct" from precinct names
 - Izard County: Added "OXFORD CITY IN BROCKWELL" precinct results to Brockwell precinct. Added "SAGE IN MELBOURNE WARD 4" to Melbourne Ward 4 precinct.
-- Ouachita County: Removed the leading zero from precincts "Camden Ward 1" through "Camden Ward 9"
+- Ouachita County: 
+    - Removed the leading zero from precincts "Camden Ward 1" through "Camden Ward 9"
+    - Combined "Smackover Ward 1" and "Smackover Ward 2" into "Smackover Ward"
 - Phillips County: 
     - Removed "PRECINCT 0004" from election results based on exchange with county clerk
     - Combined results fom "PRECINCT 0005" and "PRECINCT 0006" into "PRECINCT 0005/0006"
