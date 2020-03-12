@@ -326,8 +326,8 @@ dissolved = dissolved[["state_fips", "county_fip", "county_nam", "precinct", "PR
 dissolved.set_index(['county_nam'], inplace=True)
 
 out = dissolved.drop(["Madison"], axis=0)
-out_2 = out.drop(["Mississippi"], axis=0)
-out_3 = out.drop(["Oachita"], axis=0)
+out_2 = out.drop(["Mississippi"], axis=0) 
+out_3 = out_2.drop(["Ouachita"], axis=0)
 
 out_3.reset_index(inplace=True)
 
