@@ -1677,8 +1677,7 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ouachita,Stephens Ward 3",,Ouachita,,Stephens Ward 3,20,0,17,22,15,0,24,0,21,21,6
 "Ouachita,Stephens Ward 4",,Ouachita,,Stephens Ward 4,6,0,21,6,20,1,6,0,35,38,32
 "Ouachita,Union",,Ouachita,,Union,41,2,38,45,36,0,47,5,240,256,102
-"Ouachita, Valley",,Ouachita,,Valley 1,115,6,250,120,245,3,126,4,21,21,24
-"Ouachita, Valley",,Ouachita,,Valley 2,23,5,22,24,22,3,24,2,106,110,23
+"Ouachita, Valley",,Ouachita,,Valley,138,11,272,144,267,6,150,6,127,131,47
 "Ouachita,Washington Ward 1",,Ouachita,,Washington Ward 1,21,2,111,24,110,0,25,4,89,97,20
 "Perry,1-Aplin",,Perry,,1-Aplin,21,3,94,19,98,2,25,25,234,261,79
 "Perry,10-Perry",,Perry,,10-Perry,73,11,259,86,237,20,84,7,96,105,27
