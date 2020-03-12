@@ -23,6 +23,7 @@ Changes:
 - Cleburne County: Removed last three characters from precinct names
 - Craighead County: Removed the word "precinct" from precinct names
 - Izard County: Added "OXFORD CITY IN BROCKWELL" precinct results to Brockwell precinct. Added "SAGE IN MELBOURNE WARD 4" to Melbourne Ward 4 precinct.
+- Ouachita County: Removed the leading zero from precincts "Camden Ward 1" through "Camden Ward 9"
 - Phillips County: 
     - Removed "PRECINCT 0004" from election results based on exchange with county clerk
     - Combined results fom "PRECINCT 0005" and "PRECINCT 0006" into "PRECINCT 0005/0006"
@@ -40,6 +41,9 @@ On March 4th 2020, Madison County downloaded from here: https://www.census.gov/g
 - Used "PVS_18_v2_vtd_05087.shp"
 
 On March 4th 2020, Mississippi County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership17v2/st05_ar.html 
+- Used "PVS_17_v2_vtd_05103.shp" 
+
+On March 11th 2020, Ouachita County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership17v2/st05_ar.html 
 - Used "PVS_17_v2_vtd_05103.shp" 
 
 All changes made to precinct names recorded here: https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/processing_scraps_AR.py
