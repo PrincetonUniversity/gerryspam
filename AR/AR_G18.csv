@@ -77,12 +77,12 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Baxter,2-Jul",,Baxter,,7-2b,73,17,256,84,250,9,82,13,248,258,70
 "Baxter,2-Jun",,Baxter,,6-2b,68,17,327,85,317,10,83,13,316,336,59
 "Baxter,2-Mar",,Baxter,,3-2b,41,12,168,44,170,6,45,10,165,173,35
-"Baxter,2-May",,Baxter,,2-5b,107,16,229,111,227,12,113,17,220,234,92
+"Baxter,2-May",,Baxter,,5-2b,107,16,229,111,227,12,113,17,220,234,92
 "Baxter,2-Nov",,Baxter,,11-2b,102,25,325,106,325,24,107,23,325,345,94
 "Baxter,2-Oct",,Baxter,,10-2b,100,27,326,100,326,27,105,26,321,347,92
 "Baxter,2-Sep",,Baxter,,9-2b,136,21,442,151,433,15,146,14,439,462,115
 "Baxter,3-Aug",,Baxter,,8-3b,27,9,80,24,87,5,26,8,81,85,22
-"Baxter,3-Feb",,Baxter,,3-2b,68,16,241,72,243,11,72,12,241,253,60
+"Baxter,3-Feb",,Baxter,,2-3b,68,16,241,72,243,11,72,12,241,253,60
 "Baxter,3-Jan",,Baxter,,1-3b,81,15,273,91,267,10,96,14,257,286,69
 "Baxter,3-Jul",,Baxter,,7-3b,55,9,142,56,147,7,63,7,138,151,44
 "Baxter,3-Jun",,Baxter,,6-3b,40,13,151,41,150,12,41,13,149,152,38
@@ -96,7 +96,7 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Baxter,4-May",,Baxter,,5-4b,51,9,126,55,119,9,62,8,114,127,43
 "Baxter,4-Nov",,Baxter,,11-4b,21,8,53,24,53,5,28,7,47,54,20
 "Baxter,4-Sep",,Baxter,,9-4b,33,12,125,34,126,10,41,10,119,133,29
-"Baxter,5-Aug",,Baxter,,8-4b,20,7,33,21,34,4,24,6,29,34,19
+"Baxter,5-Aug",,Baxter,,8-5b,20,7,33,21,34,4,24,6,29,34,19
 "Baxter,5-Nov",,Baxter,,11-5b,7,7,5,5,11,4,7,6,7,8,5
 "Baxter,6-Nov",,Baxter,,11-6b,7,6,19,7,21,4,8,7,17,17,9
 "Baxter,7-Nov",,Baxter,,11-7b,6,6,35,6,36,4,6,7,32,33,6
@@ -1661,8 +1661,7 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ouachita,Chidester",,Ouachita,,Chidester,53,2,49,62,41,2,65,0,21,22,0
 "Ouachita,Cleveland Township",,Ouachita,,Cleveland Township,13,0,55,14,54,0,13,3,103,119,66
 "Ouachita,East Camden",,Ouachita,,East Camden,78,2,109,79,108,2,82,1,110,113,31
-"Ouachita,Ecore Fabre",,Ouachita,,Ecore Fabre,31,1,116,39,108,1,36,1,94,116,31
-"Ouachita,Ecore Fabre",,Ouachita,,Ecore Fabre Maul,47,3,103,51,101,1,57,2,43,51,37
+"Ouachita,Ecore Fabre",,Ouachita,,Ecore Fabre,78,4,219,90,209,2,93,3,137,167,68
 "Ouachita,Freeo",,Ouachita,,Freeo,47,0,47,46,47,1,47,2,48,50,21
 "Ouachita,Jefferson",,Ouachita,,Jefferson,19,3,51,21,49,3,23,6,295,318,64
 "Ouachita,Lafayette A",,Ouachita,,Lafayette A,75,9,302,84,296,6,84,2,247,273,64
