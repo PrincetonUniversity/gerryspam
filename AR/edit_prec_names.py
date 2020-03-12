@@ -323,7 +323,7 @@ def franklin(dat):
             "2-B (Oz Rural)": "2-B Ozark Rural",
             "9-B (Charleston Wd 3)": "9-B Charleston Wd. 3",
             "2-E (Oz Wd 3)": "2-E Ozark Wd. 3",
-            "1-C (Oz WD 2)": "1-B Ozark Wd. 3",
+            "1-C (Oz WD 2)": "1-C Ozark Wd.2",
             "8-C (Charleston Rural)": "8-C Charleston Rural",
         })
 
@@ -414,7 +414,7 @@ def jackson(dat):
             "Newport Ward 1-A": "Newport W 1-A",
             "Newport Ward 1-B": "Newport W 1-B",
             "Newport Ward 2-A": "Newport W 2-A",
-            "Newport Ward 3-C": "Newport W 3-C",
+            "Newport Ward 3-C": "Newport W 3-A-C",
             "Newport Ward 4-A": "Newport W 4-A",
             "Newport Ward 4-B": "Newport W 4-B",
             "Newport Ward 2-C": "Newport W 2-C",
