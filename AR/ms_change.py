@@ -1,4 +1,3 @@
-
 import geopandas as gpd
 
 ms_shp_path = '/Users/hopecj/projects/AR/Shapefiles/mississippi_partnership17/partnership_shapefiles_17v2_05093/PVS_17_v2_vtd_05093.shp'
@@ -114,16 +113,55 @@ dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_ms_clean/ms_clean.shp"
 
 #####
 
-# oachita_shp_path = '/Users/hopecj/projects/AR/Shapefiles/oachita_partnership17/partnership_shapefiles_17v2_05103/PVS_17_v2_vtd_05103.shp'
-# oachita_shp = gpd.read_file(oachita_shp_path)
+ouachita_shp_path = '/Users/hopecj/projects/AR/Shapefiles/oachita_partnership17/partnership_shapefiles_17v2_05103/PVS_17_v2_vtd_05103.shp'
+ouachita_shp = gpd.read_file(ouachita_shp_path)
 
-# oachita_shp["county_nam"] = "Ouachita"
+ouachita_shp["county_nam"] = "Ouachita"
 
-# oachita_shp = oachita_shp.rename(columns={"STATEFP": "state_fips", 
-#                        "COUNTYFP": "county_fip",
-#                        "NAMELSAD": "precinct"})
+ouachita_shp = ouachita_shp.rename(columns={"STATEFP": "state_fips", 
+                       "COUNTYFP": "county_fip",
+                       "NAMELSAD": "precinct"})
 
-# oachita_shp = oachita_shp[["state_fips", "county_fip", "county_nam", "precinct", "geometry"]]
+ouachita_shp = ouachita_shp[["state_fips", "county_fip", "county_nam", "precinct", "geometry"]]
+
+
+def ouachita(dat):
+    dat["prec_new"] = dat["prec_new"].replace({
+        "Red Hill Voting District": "Red Hill",
+        "Behestian Voting District": "Behestian",
+        "Carroll Voting District": "Carroll",
+        "Freeo Voting District": "Freeo",
+        "Union Voting District": "Union",
+        "Cleveland Voting District": "Cleveland",
+        "Valley Voting District": "Valley",
+        "River Voting District": "River",
+        "Bragg Voting District": "Bragg",
+        "Liberty Voting District": "Liberty",
+        "Ecore Fabre Voting District": "Encore",
+        "Bradley Voting District": "Bradley",
+        "Lafayette A Voting District": "Lafayette A",
+        "Lafayette B Voting District": "Lafayette B",
+        "Marion Voting District": "Marion",
+        "Jefferson Rural Voting District": "Jackson",
+        "Smackover Voting District": "Smackover",
+        "Bridge Creek Voting District": "Bridge Creek",
+        "Washington Voting District": "Washington",
+        "Camden Ward 13B": "Camden Ward 13",
+    })
+
+ouachita_shp["prec_new"] = ouachita_shp["precinct"].copy()
+ouachita_shp.set_index(['county_nam', 'precinct'], inplace=True)
+    
+ouachita(ouachita_shp)
+ouachita_shp.reset_index(inplace=True)
+
+dissolved = ouachita_shp.dissolve(by='prec_new', as_index=False)
+dissolved['PREC'] = dissolved['prec_new'].str.lower()
+dissolved = dissolved[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
+print(dissolved)
+
+dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_ouachita_clean/ouachita_clean.shp")
+
 
 # oachita_shp = oachita_shp.rename(columns={"precinct": "PREC"})
 # oachita_shp["precinct"] = ""
