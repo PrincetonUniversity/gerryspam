@@ -59,49 +59,49 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ashley,WCR",,Ashley,,WCR,125,8,279,135,272,2,140,2,270,291,109
 "Ashley,WILMOT CITY",,Ashley,,WILMOT CITY,115,0,38,119,34,2,118,3,32,49,97
 "Ashley,WILMOT RURAL",,Ashley,,WILMOT RURAL,12,1,35,11,36,0,14,0,34,38,10
-"Baxter,1-Apr",,Baxter,,4-Jan,184,39,676,212,648,37,224,35,639,700,171
-"Baxter,1-Aug",,Baxter,,8-Jan,168,29,675,186,668,18,190,19,661,704,135
-"Baxter,1-Feb",,Baxter,,2-Jan,82,27,355,94,345,25,89,19,356,367,82
-"Baxter,1-Jan",,Baxter,,1-Jan,72,25,460,85,455,16,99,11,445,471,70
-"Baxter,1-Jul",,Baxter,,7-Jan,178,27,599,199,586,21,190,21,590,623,140
-"Baxter,1-Jun",,Baxter,,6-Jan,161,26,576,188,538,28,195,29,527,594,131
-"Baxter,1-Mar",,Baxter,,3-Jan,53,16,236,61,234,10,66,14,225,239,48
-"Baxter,1-May",,Baxter,,5-Jan,101,21,281,113,274,14,115,13,273,288,90
-"Baxter,1-Nov",,Baxter,,11-Jan,40,10,113,49,105,9,54,11,99,109,42
-"Baxter,1-Oct",,Baxter,,10-Jan,69,18,228,79,218,16,79,17,215,233,66
-"Baxter,1-Sep",,Baxter,,9-Jan,130,24,476,127,486,15,132,19,477,501,102
-"Baxter,2-Apr",,Baxter,,4-Feb,86,15,282,96,276,11,99,12,271,285,80
-"Baxter,2-Aug",,Baxter,,8-Feb,21,10,86,22,87,9,23,8,86,87,21
-"Baxter,2-Feb",,Baxter,,2-Feb,78,20,384,84,382,18,90,18,373,391,75
-"Baxter,2-Jan",,Baxter,,1-Feb,97,19,439,113,428,15,116,14,426,443,95
-"Baxter,2-Jul",,Baxter,,7-Feb,73,17,256,84,250,9,82,13,248,258,70
-"Baxter,2-Jun",,Baxter,,6-Feb,68,17,327,85,317,10,83,13,316,336,59
-"Baxter,2-Mar",,Baxter,,3-Feb,41,12,168,44,170,6,45,10,165,173,35
-"Baxter,2-May",,Baxter,,5-Feb,107,16,229,111,227,12,113,17,220,234,92
-"Baxter,2-Nov",,Baxter,,11-Feb,102,25,325,106,325,24,107,23,325,345,94
-"Baxter,2-Oct",,Baxter,,10-Feb,100,27,326,100,326,27,105,26,321,347,92
-"Baxter,2-Sep",,Baxter,,9-Feb,136,21,442,151,433,15,146,14,439,462,115
-"Baxter,3-Aug",,Baxter,,8-Mar,27,9,80,24,87,5,26,8,81,85,22
-"Baxter,3-Feb",,Baxter,,2-Mar,68,16,241,72,243,11,72,12,241,253,60
-"Baxter,3-Jan",,Baxter,,1-Mar,81,15,273,91,267,10,96,14,257,286,69
-"Baxter,3-Jul",,Baxter,,7-Mar,55,9,142,56,147,7,63,7,138,151,44
-"Baxter,3-Jun",,Baxter,,6-Mar,40,13,151,41,150,12,41,13,149,152,38
-"Baxter,3-Mar",,Baxter,,3-Mar,147,27,495,152,486,29,165,24,479,512,133
-"Baxter,3-May",,Baxter,,5-Mar,12,8,21,10,25,5,13,6,22,21,11
-"Baxter,3-Nov",,Baxter,,11-Mar,62,12,221,66,217,11,69,10,212,231,49
-"Baxter,3-Oct",,Baxter,,10-Mar,40,8,189,47,177,9,54,10,169,185,38
-"Baxter,3-Sep",,Baxter,,9-Mar,13,11,61,16,62,7,15,9,61,63,15
-"Baxter,4-Aug",,Baxter,,8-Apr,55,11,164,53,154,11,55,11,149,162,45
-"Baxter,4-Mar",,Baxter,,3-Apr,31,9,132,34,130,8,40,9,123,132,34
-"Baxter,4-May",,Baxter,,5-Apr,51,9,126,55,119,9,62,8,114,127,43
-"Baxter,4-Nov",,Baxter,,11-Apr,21,8,53,24,53,5,28,7,47,54,20
-"Baxter,4-Sep",,Baxter,,9-Apr,33,12,125,34,126,10,41,10,119,133,29
-"Baxter,5-Aug",,Baxter,,8-May,20,7,33,21,34,4,24,6,29,34,19
-"Baxter,5-Nov",,Baxter,,11-May,7,7,5,5,11,4,7,6,7,8,5
-"Baxter,6-Nov",,Baxter,,11-Jun,7,6,19,7,21,4,8,7,17,17,9
-"Baxter,7-Nov",,Baxter,,11-Jul,6,6,35,6,36,4,6,7,32,33,6
-"Baxter,8-Nov",,Baxter,,11-Aug,10,6,39,11,39,5,14,8,32,37,12
-"Baxter,9-Nov",,Baxter,,11-Sep,45,9,150,44,152,8,48,8,148,156,33
+"Baxter,1-Apr",,Baxter,,4-1b,184,39,676,212,648,37,224,35,639,700,171
+"Baxter,1-Aug",,Baxter,,8-1b,168,29,675,186,668,18,190,19,661,704,135
+"Baxter,1-Feb",,Baxter,,2-1b,82,27,355,94,345,25,89,19,356,367,82
+"Baxter,1-Jan",,Baxter,,1-1b,72,25,460,85,455,16,99,11,445,471,70
+"Baxter,1-Jul",,Baxter,,7-1b,178,27,599,199,586,21,190,21,590,623,140
+"Baxter,1-Jun",,Baxter,,6-1b,161,26,576,188,538,28,195,29,527,594,131
+"Baxter,1-Mar",,Baxter,,3-1b,53,16,236,61,234,10,66,14,225,239,48
+"Baxter,1-May",,Baxter,,5-1b,101,21,281,113,274,14,115,13,273,288,90
+"Baxter,1-Nov",,Baxter,,11-1b,40,10,113,49,105,9,54,11,99,109,42
+"Baxter,1-Oct",,Baxter,,10-1b,69,18,228,79,218,16,79,17,215,233,66
+"Baxter,1-Sep",,Baxter,,9-1b,130,24,476,127,486,15,132,19,477,501,102
+"Baxter,2-Apr",,Baxter,,4-2b,86,15,282,96,276,11,99,12,271,285,80
+"Baxter,2-Aug",,Baxter,,8-2b,21,10,86,22,87,9,23,8,86,87,21
+"Baxter,2-Feb",,Baxter,,2-2b,78,20,384,84,382,18,90,18,373,391,75
+"Baxter,2-Jan",,Baxter,,1-2b,97,19,439,113,428,15,116,14,426,443,95
+"Baxter,2-Jul",,Baxter,,7-2b,73,17,256,84,250,9,82,13,248,258,70
+"Baxter,2-Jun",,Baxter,,6-2b,68,17,327,85,317,10,83,13,316,336,59
+"Baxter,2-Mar",,Baxter,,3-2b,41,12,168,44,170,6,45,10,165,173,35
+"Baxter,2-May",,Baxter,,2-5b,107,16,229,111,227,12,113,17,220,234,92
+"Baxter,2-Nov",,Baxter,,11-2b,102,25,325,106,325,24,107,23,325,345,94
+"Baxter,2-Oct",,Baxter,,10-2b,100,27,326,100,326,27,105,26,321,347,92
+"Baxter,2-Sep",,Baxter,,9-2b,136,21,442,151,433,15,146,14,439,462,115
+"Baxter,3-Aug",,Baxter,,8-3b,27,9,80,24,87,5,26,8,81,85,22
+"Baxter,3-Feb",,Baxter,,3-2b,68,16,241,72,243,11,72,12,241,253,60
+"Baxter,3-Jan",,Baxter,,1-3b,81,15,273,91,267,10,96,14,257,286,69
+"Baxter,3-Jul",,Baxter,,7-3b,55,9,142,56,147,7,63,7,138,151,44
+"Baxter,3-Jun",,Baxter,,6-3b,40,13,151,41,150,12,41,13,149,152,38
+"Baxter,3-Mar",,Baxter,,3-3b,147,27,495,152,486,29,165,24,479,512,133
+"Baxter,3-May",,Baxter,,5-3b,12,8,21,10,25,5,13,6,22,21,11
+"Baxter,3-Nov",,Baxter,,11-3b,62,12,221,66,217,11,69,10,212,231,49
+"Baxter,3-Oct",,Baxter,,10-3b,40,8,189,47,177,9,54,10,169,185,38
+"Baxter,3-Sep",,Baxter,,9-3b,13,11,61,16,62,7,15,9,61,63,15
+"Baxter,4-Aug",,Baxter,,8-4b,55,11,164,53,154,11,55,11,149,162,45
+"Baxter,4-Mar",,Baxter,,3-4b,31,9,132,34,130,8,40,9,123,132,34
+"Baxter,4-May",,Baxter,,5-4b,51,9,126,55,119,9,62,8,114,127,43
+"Baxter,4-Nov",,Baxter,,11-4b,21,8,53,24,53,5,28,7,47,54,20
+"Baxter,4-Sep",,Baxter,,9-4b,33,12,125,34,126,10,41,10,119,133,29
+"Baxter,5-Aug",,Baxter,,8-4b,20,7,33,21,34,4,24,6,29,34,19
+"Baxter,5-Nov",,Baxter,,11-5b,7,7,5,5,11,4,7,6,7,8,5
+"Baxter,6-Nov",,Baxter,,11-6b,7,6,19,7,21,4,8,7,17,17,9
+"Baxter,7-Nov",,Baxter,,11-7b,6,6,35,6,36,4,6,7,32,33,6
+"Baxter,8-Nov",,Baxter,,11-8b,10,6,39,11,39,5,14,8,32,37,12
+"Baxter,9-Nov",,Baxter,,11-9b,45,9,150,44,152,8,48,8,148,156,33
 "Benton,Precinct 1",,Benton,,Precinct 1,122,33,807,137,786,38,153,30,773,809,138
 "Benton,Precinct 10",,Benton,,Precinct 10,112,12,447,119,439,8,132,11,430,463,101
 "Benton,Precinct 100",,Benton,,Precinct 100,184,21,373,195,357,26,197,22,355,410,158
@@ -1628,19 +1628,19 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ouachita,Bradley",,Ouachita,,Bradley,45,10,293,47,291,10,51,2,80,85,60
 "Ouachita,Bragg",,Ouachita,,Bragg,59,2,88,68,80,1,66,4,124,133,58
 "Ouachita,Bridge Creek",,Ouachita,,Bridge Creek,65,7,122,64,127,5,70,0,9,18,59
-"Ouachita,CAMDEN WARD 01",,Ouachita,,CAMDEN WARD 01,71,0,17,74,13,1,78,1,15,29,51
-"Ouachita,CAMDEN WARD 02",,Ouachita,,CAMDEN WARD 02,68,0,20,68,19,0,71,2,41,62,85
-"Ouachita,CAMDEN WARD 03",,Ouachita,,CAMDEN WARD 03,107,2,46,115,37,2,110,1,33,35,24
-"Ouachita,CAMDEN WARD 04",,Ouachita,,CAMDEN WARD 04,24,3,32,24,34,1,25,2,10,25,63
-"Ouachita,CAMDEN WARD 04A",,Ouachita,,CAMDEN WARD 04A,67,0,20,68,19,2,77,1,10,15,31
-"Ouachita,CAMDEN WARD 04B",,Ouachita,,CAMDEN WARD 04B,32,0,16,35,13,0,37,10,372,433,216
-"Ouachita,CAMDEN WARD 05",,Ouachita,,CAMDEN WARD 05,251,5,412,278,380,11,289,5,44,55,48
-"Ouachita,CAMDEN WARD 06",,Ouachita,,CAMDEN WARD 06,52,2,51,53,50,2,55,5,25,41,75
-"Ouachita,CAMDEN WARD 06A",,Ouachita,,CAMDEN WARD 06A,86,1,31,89,29,1,88,2,28,43,99
-"Ouachita,CAMDEN WARD 07",,Ouachita,,CAMDEN WARD 07,116,1,38,127,27,1,124,1,13,25,31
-"Ouachita,CAMDEN WARD 08",,Ouachita,,CAMDEN WARD 08,37,1,22,44,16,0,45,0,5,8,35
-"Ouachita,CAMDEN WARD 09",,Ouachita,,CAMDEN WARD 09,39,2,4,40,5,0,40,2,3,12,32
-"Ouachita,CAMDEN WARD 09A",,Ouachita,,CAMDEN WARD 09A,44,4,5,43,7,4,48,0,1,11,32
+"Ouachita,CAMDEN WARD 01",,Ouachita,,CAMDEN WARD 1,71,0,17,74,13,1,78,1,15,29,51
+"Ouachita,CAMDEN WARD 02",,Ouachita,,CAMDEN WARD 2,68,0,20,68,19,0,71,2,41,62,85
+"Ouachita,CAMDEN WARD 03",,Ouachita,,CAMDEN WARD 3,107,2,46,115,37,2,110,1,33,35,24
+"Ouachita,CAMDEN WARD 04",,Ouachita,,CAMDEN WARD 4,24,3,32,24,34,1,25,2,10,25,63
+"Ouachita,CAMDEN WARD 04A",,Ouachita,,CAMDEN WARD 4A,67,0,20,68,19,2,77,1,10,15,31
+"Ouachita,CAMDEN WARD 04B",,Ouachita,,CAMDEN WARD 4B,32,0,16,35,13,0,37,10,372,433,216
+"Ouachita,CAMDEN WARD 05",,Ouachita,,CAMDEN WARD 5,251,5,412,278,380,11,289,5,44,55,48
+"Ouachita,CAMDEN WARD 06",,Ouachita,,CAMDEN WARD 6,52,2,51,53,50,2,55,5,25,41,75
+"Ouachita,CAMDEN WARD 06A",,Ouachita,,CAMDEN WARD 6A,86,1,31,89,29,1,88,2,28,43,99
+"Ouachita,CAMDEN WARD 07",,Ouachita,,CAMDEN WARD 7,116,1,38,127,27,1,124,1,13,25,31
+"Ouachita,CAMDEN WARD 08",,Ouachita,,CAMDEN WARD 8,37,1,22,44,16,0,45,0,5,8,35
+"Ouachita,CAMDEN WARD 09",,Ouachita,,CAMDEN WARD 9,39,2,4,40,5,0,40,2,3,12,32
+"Ouachita,CAMDEN WARD 09A",,Ouachita,,CAMDEN WARD 9A,44,4,5,43,7,4,48,0,1,11,32
 "Ouachita,CAMDEN WARD 10",,Ouachita,,CAMDEN WARD 10,40,1,5,45,2,0,47,2,6,23,128
 "Ouachita,CAMDEN WARD 11",,Ouachita,,CAMDEN WARD 11,136,1,18,142,6,4,147,0,5,7,23
 "Ouachita,CAMDEN WARD 12",,Ouachita,,CAMDEN WARD 12,22,0,8,26,3,0,24,0,3,4,26
@@ -1672,8 +1672,7 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ouachita,Marion",,Ouachita,,Marion,84,3,177,92,168,3,91,0,96,112,38
 "Ouachita,Red Hill",,Ouachita,,Red Hill,44,2,109,52,102,2,59,1,11,12,4
 "Ouachita,River",,Ouachita,,River,5,0,11,5,11,0,4,1,48,56,37
-"Ouachita,Smackover Ward 1",,Ouachita,,Smackover Ward 1,44,1,53,51,49,0,49,0,0,0,0
-"Ouachita,Smackover Ward 1",,Ouachita,,Smackover Ward 2,0,0,0,0,0,0,0,1,26,39,55
+"Ouachita,Smackover Ward 1",,Ouachita,,Smackover Ward,44,1,53,51,49,0,49,1,26,39,55
 "Ouachita,Stephens Ward 1",,Ouachita,,Stephens Ward 1,64,1,31,68,29,1,74,0,39,44,37
 "Ouachita,Stephens Ward 2",,Ouachita,,Stephens Ward 2,45,0,40,49,40,0,50,0,13,18,19
 "Ouachita,Stephens Ward 3",,Ouachita,,Stephens Ward 3,20,0,17,22,15,0,24,0,21,21,6
