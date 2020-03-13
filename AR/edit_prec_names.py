@@ -424,29 +424,6 @@ def jackson(dat):
             "Penninghton Balch": "PENNINGTON BALCH",
         })
 
-
-def jefferson(dat):
-    dat["prec"] = dat["prec"].str.lstrip("0")
-    dat["prec"] = dat["prec"].str.rstrip("X")
-    dat["prec"] = dat["prec"].replace(
-        {
-            "610-1": "610",
-            "620-1": "620",
-            "711-1": "711",
-            "712-1": "712",
-            "713-1": "713",
-            "714-1": "714",
-            "721-1": "721",
-            "731-1": "731",
-            "732-1": "732",
-            "733-1": "733",
-            "810-1": "810",
-            "820-1": "820",
-            "830-1": "830",
-            "820-1": "820",
-        })
-
-
 def lafayette(dat):
     dat["prec"] = dat["prec"].str.slice(start=6)
     dat["prec"] = dat["prec"].replace(
@@ -710,9 +687,9 @@ def prairie(dat):
     dat["prec"] = dat["prec"].replace(
         {
             "Belcher / Tyler": "Belcher/Tyler",
-            "White River Ward 1": "Wattensaw City Ward 1",
-            "White River Ward 2": "Wattensaw City Ward 2",
-            "White River Ward 3": "Wattensaw City Ward 3",
+            "White River Ward 1": "White River City Ward 1",
+            "White River Ward 2": "White River City Ward 2",
+            "White River Ward 3": "White River City Ward 3",
         })
 
 
@@ -876,7 +853,6 @@ countyToCountyCleaner = {
     "Howard": howard,
     "Independence": independence,
     "Izard": izard,
-    "Jefferson": jefferson,
     "Jackson": jackson,
     "Lafayette": lafayette,
     "Lawrence": lawrence,

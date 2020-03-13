@@ -1,5 +1,10 @@
 import geopandas as gpd
 
+
+##########################
+# Missississippi County  #
+##########################
+
 ms_shp_path = '/Users/hopecj/projects/AR/Shapefiles/mississippi_partnership17/partnership_shapefiles_17v2_05093/PVS_17_v2_vtd_05093.shp'
 ms_shp = gpd.read_file(ms_shp_path)
 ms_shp["county_nam"] = "Mississippi"
@@ -96,10 +101,12 @@ dissolved['PREC'] = dissolved['prec_new'].str.lower()
 dissolved = dissolved[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
 print(dissolved)
 
-dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_ms_clean/ms_clean.shp")
+dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_spot_clean/ms_clean.shp")
 
 
-#####
+##########################
+#    Madison  County     #
+##########################
 
 # mad_shp_path = '/Users/hopecj/projects/AR/Shapefiles/3_madison_clean/madison_clean.shp'
 # mad_shp = gpd.read_file(mad_shp_path)
@@ -111,9 +118,12 @@ dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_ms_clean/ms_clean.shp"
 
 # mad_shp.to_file('/Users/hopecj/projects/AR/Shapefiles/3_madison_clean/mad_clean.shp')
 
-#####
 
-ouachita_shp_path = '/Users/hopecj/projects/AR/Shapefiles/oachita_partnership17/partnership_shapefiles_17v2_05103/PVS_17_v2_vtd_05103.shp'
+##########################
+#    Ouachita County     #
+##########################
+
+ouachita_shp_path = '/Users/hopecj/projects/AR/Shapefiles/ouachita_partnership18/partnership_shapefiles_17v2_05103/PVS_17_v2_vtd_05103.shp'
 ouachita_shp = gpd.read_file(ouachita_shp_path)
 
 ouachita_shp["county_nam"] = "Ouachita"
@@ -147,8 +157,7 @@ def ouachita(dat):
         "Bridge Creek Voting District": "Bridge Creek",
         "Washington Voting District": "Washington Ward 1",
         "Camden Ward 13B": "Camden Ward 13",
-        "Camden Ward 7A": "Camden Ward 7",
-        
+        "Camden Ward 7A": "Camden Ward 12A",
     })
 
 ouachita_shp["prec_new"] = ouachita_shp["precinct"].copy()
@@ -162,12 +171,58 @@ dissolved['PREC'] = dissolved['prec_new'].str.lower()
 dissolved = dissolved[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
 print(dissolved)
 
-dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_ouachita_clean/ouachita_clean.shp")
+dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_spot_clean/ouachita_clean.shp")
 
+##########################
+#    Jefferson  County     #
+##########################
 
-# oachita_shp = oachita_shp.rename(columns={"precinct": "PREC"})
-# oachita_shp["precinct"] = ""
+jefferson_shp_path = '/Users/hopecj/projects/AR/Shapefiles/jefferson_partnership18/partnership_shapefiles_18v2_05069/PVS_18_v2_vtd_05069.shp'
+jefferson_shp = gpd.read_file(jefferson_shp_path)
 
-# oachita_shp = oachita_shp[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
+jefferson_shp["county_nam"] = "Jefferson"
+jefferson_shp["precinct"] = ""
+jefferson_shp = jefferson_shp.rename(columns={"STATEFP": "state_fips", 
+                       "COUNTYFP": "county_fip",
+                       "NAMELSAD": "PREC"})
 
-# oachita_shp.to_file('/Users/hopecj/projects/AR/Shapefiles/3_oachita_clean/oachita_clean.shp')
+# jefferson_shp = jefferson_shp[["state_fips", "county_fip", "county_nam", "precinct", "geometry"]]
+
+# def jefferson(dat):
+#     dat["prec_new"] = dat["prec_new"].replace({
+#         "Red Hill Voting District": "Red Hill",
+#         "Behestian Voting District": "Behestian",
+#         "Carroll Voting District": "Carroll",
+#         "Freeo Voting District": "Freeo",
+#         "Union Voting District": "Union",
+#         "Cleveland Voting District": "Cleveland Township",
+#         "Valley Voting District": "Valley",
+#         "River Voting District": "River",
+#         "Bragg Voting District": "Bragg",
+#         "Liberty Voting District": "Liberty",
+#         "Ecore Fabre Voting District": "Ecore Fabre",
+#         "Bradley Voting District": "Bradley",
+#         "Lafayette A Voting District": "Lafayette A",
+#         "Lafayette B Voting District": "Lafayette B",
+#         "Marion Voting District": "Marion",
+#         "Jefferson Rural Voting District": "Jefferson",
+#         "Smackover Voting District": "Smackover ward",
+#         "Bridge Creek Voting District": "Bridge Creek",
+#         "Washington Voting District": "Washington Ward 1",
+#         "Camden Ward 13B": "Camden Ward 13",
+#         "Camden Ward 7A": "Camden Ward 7",
+        
+#     })
+
+# jefferson_shp["prec_new"] = jefferson_shp["precinct"].copy()
+# jefferson_shp.set_index(['county_nam', 'precinct'], inplace=True)
+    
+# jefferson(jefferson_shp)
+# jefferson_shp.reset_index(inplace=True)
+
+# dissolved = jefferson_shp.dissolve(by='prec_new', as_index=False)
+# dissolved['PREC'] = dissolved['prec_new'].str.lower()
+# dissolved = dissolved[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
+dissolved = jefferson_shp[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
+
+dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_spot_clean/jefferson_clean.shp")

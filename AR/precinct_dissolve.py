@@ -111,7 +111,7 @@ def howard(dat):
     dat["PREC"] = dat["PREC"].replace({
         "backland": "blackland",
         "blackland": "blackland",
-        "nashville twp i": "nashville ward 1",
+        "nashville twp i": "nashville twp 1",
     })
 
 
