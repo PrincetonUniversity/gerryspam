@@ -328,7 +328,8 @@ dissolved.set_index(['county_nam'], inplace=True)
 out = dissolved.drop(["Madison"], axis=0)
 out_2 = out.drop(["Mississippi"], axis=0) 
 out_3 = out_2.drop(["Ouachita"], axis=0)
+out_4 = out_2.drop(["White"], axis=0)
 
-out_3.reset_index(inplace=True)
+out_4.reset_index(inplace=True)
 
-out_3.to_file("/Users/hopecj/projects/AR/Shapefiles/2_dissolved_removed/dissolved_removed.shp")
+out_4.to_file("/Users/hopecj/projects/AR/Shapefiles/2_dissolved_removed/dissolved_removed.shp")
