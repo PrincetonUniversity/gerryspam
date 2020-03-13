@@ -249,7 +249,7 @@ def white(dat):
         "Bald Ward 3": "Bald Knob Ward 3",
         "Beebe Ward 3C": "Beebe Ward 3 C", 
         "Mt Pisgah Voting District": "Mt. Pisgah",
-        "Crisp": "Chrisp",
+        "Crisp Voting District": "chrisp",
         "Dog Wood Voting District": "Dogwood TWP",
         "Searcy Ward 2A": "Searcy Ward 2D",
     })
