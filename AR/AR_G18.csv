@@ -1653,8 +1653,7 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "Ouachita,CAMDEN WARD 17",,Ouachita,,CAMDEN WARD 17,5,2,32,6,31,2,6,5,156,165,52
 "Ouachita,CAMDEN WARD 17A",,Ouachita,,CAMDEN WARD 17A,57,11,159,66,155,7,67,0,47,49,16
 "Ouachita,CAMDEN WARD 17B",,Ouachita,,CAMDEN WARD 17B,18,0,48,21,45,0,19,2,27,30,24
-"Ouachita,Carroll",,Ouachita,,Carroll,22,2,31,28,26,2,27,1,40,51,46
-"Ouachita,Carroll",,Ouachita,,Circle C,0,0,22,0,22,0,1,1,53,61,7
+,,Ouachita,,Carroll,22,2,53,28,48,2,28,2,93,112,53
 "Ouachita,Chidester",,Ouachita,,Chidester,53,2,49,62,41,2,65,0,21,22,0
 "Ouachita,Cleveland Township",,Ouachita,,Cleveland Township,13,0,55,14,54,0,13,3,103,119,66
 "Ouachita,East Camden",,Ouachita,,East Camden,78,2,109,79,108,2,82,1,110,113,31
