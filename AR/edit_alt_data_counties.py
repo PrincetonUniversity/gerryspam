@@ -226,3 +226,71 @@ jefferson_shp = jefferson_shp.rename(columns={"STATEFP": "state_fips",
 dissolved = jefferson_shp[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
 
 dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_spot_clean/jefferson_clean.shp")
+
+##########################
+#    White County     #
+##########################
+
+white_shp_path = '/Users/hopecj/projects/AR/Shapefiles/whitepartership17/partnership_shapefiles_17v2_05145/PVS_17_v2_vtd_05145.shp'
+white_shp = gpd.read_file(white_shp_path)
+
+white_shp["county_nam"] = "White"
+
+white_shp = white_shp.rename(columns={"STATEFP": "state_fips", 
+                       "COUNTYFP": "county_fip",
+                       "NAMELSAD": "precinct"})
+
+white_shp = white_shp[["state_fips", "county_fip", "county_nam", "precinct", "geometry"]]
+
+
+def white(dat):
+    dat["prec_new"] = dat["prec_new"].replace({
+        "Bald Knob North Voting District": "Bald Knob North",
+        "Bald Ward 3": "Bald Knob Ward 3",
+        "Beebe Ward 3C": "Beebe Ward 3 C", 
+        "Mt Pisgah Voting District": "Mt. Pisgah",
+        "Crisp": "Chrisp",
+        "Dog Wood Voting District": "Dogwood TWP",
+        "Searcy Ward 2A": "Searcy Ward 2D",
+    })
+    dat['prec_new'] = dat['prec_new'].map(lambda x: x.rstrip(' Voting District'))
+    dat["prec_new"] = dat["prec_new"].replace({
+        "Alb": "Albion",
+        "Cad": "Cadron",
+        "Beebe Ward 3C": "Beebe Ward 3 C", 
+        "Mt Pisgah Voting District": "Mt. Pisgah",
+        "Cype": "Cypert",
+        "Des A": "Des Arc",
+        "El Pa": "El Paso",
+        "Gum Sp": "Gum Springs",
+        "Ha": "Harrison",
+        "Harrison Ea": "Harrison East",
+        "Ma": "Marion",
+        "Red Rive": "Red River",
+        "Searcy Ward 1": "Searcy Ward 1D",
+        "Searcy Ward 2": "Searcy Ward 2D",
+        "Searcy Ward 3": "Searcy Ward 3D",
+        "U": "Union",
+        "Walke": "Walker",
+        "Jack": "Jackson",
+        "Jeffe": "Jefferson",
+        "Letonia City": "Letona",
+        "Rose Bud": "Rose Bud City",
+        "West Point City": "West Point",
+        "Searcy Ward 1": "Searcy Ward 1D",
+        "Searcy Ward 3": "Searcy Ward 3D",
+    })
+
+
+white_shp["prec_new"] = white_shp["precinct"].copy()
+white_shp.set_index(['county_nam', 'precinct'], inplace=True)
+    
+white(white_shp)
+white_shp.reset_index(inplace=True)
+
+dissolved = white_shp.dissolve(by='prec_new', as_index=False)
+dissolved['PREC'] = dissolved['prec_new'].str.lower()
+dissolved = dissolved[["county_nam", "state_fips", "county_fip", "precinct", "PREC", "geometry"]]
+print(dissolved)
+
+dissolved.to_file("/Users/hopecj/projects/AR/Shapefiles/3_spot_clean/white_clean.shp")

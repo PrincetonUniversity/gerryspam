@@ -419,7 +419,6 @@ def jackson(dat):
             "Newport Ward 4-B": "Newport W 4-B",
             "Newport Ward 2-C": "Newport W 2-C",
             "Newport Ward 2-B": "Newport W 2-B",
-            "Newport Ward 3-C": "Newport W 3-C",
             "Newport Ward 3-B": "Newport W 3-B",
             "Penninghton Balch": "PENNINGTON BALCH",
         })
@@ -787,13 +786,6 @@ def washington(dat):
             "Spg 09": "Spg 9",
         })
 
-def white(dat):
-    chop_five(dat)
-    dat["prec"] = dat["prec"].replace(
-        {
-            "Higginson  Ward 1": "Higginson Ward 1",
-        })
-
 def woodruff(dat):
     dat["prec"] = dat["prec"].replace(
         {
@@ -881,7 +873,6 @@ countyToCountyCleaner = {
     "Stone": stone,
     "Union": union,
     "Washington": washington,
-    "White": white,
     "Woodruff": woodruff,
     "Yell": chop_five,
 }

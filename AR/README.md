@@ -35,6 +35,12 @@ Changes:
 - Stone County: Combined results from "Ben 1" and "Ben 2" precincts into "Ben" precinct. 
 - Union County: Removed "EARLY VOTING" and "ZZ - PROVISIONAL" rows.
 - Washington County: Removed first four characters from precinct names
+- White County: 
+    - Combined Higginson Wards 1-3 into "Higginson City" precinct. 
+    - Deleted Pangburn Ward 3. 
+    - Deleted Searcy Ward 1D. 
+    - Deleted Searcy Ward 3E. 
+    - Deleted Searcy Ward 4B.
 
 
 __Shapefiles__
