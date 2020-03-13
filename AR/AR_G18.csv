@@ -2500,9 +2500,7 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "White,Harrison East",,White,,Harrison East,33,2,180,40,174,1,39,3,126,137,16
 "White,Hartsell",,White,,Hartsell,22,2,134,22,135,2,27,2,146,152,24
 "White,Higginson TWP",,White,,Higginson TWP,23,7,147,26,146,2,28,1,33,41,11
-"White,Higginson Ward 1",,White,,Higginson Ward 1,14,1,38,15,37,1,18,4,30,32,11
-"White,Higginson Ward 2",,White,,Higginson Ward 2,9,4,27,8,32,2,9,3,40,40,11
-"White,Higginson Ward 3",,White,,Higginson Ward 3,9,4,39,8,39,5,10,2,104,113,10
+"White,Higginson City",,White,,Higginson City,32,9,104,31,108,8,37,9,174,185,32
 "White,Jackson",,White,,Jackson,12,5,105,12,108,3,17,2,138,141,20
 "White,Jefferson",,White,,Jefferson,18,5,139,21,136,6,23,7,127,133,26
 "White,Joy",,White,,Joy,24,5,130,28,128,6,28,4,191,201,38
@@ -2524,7 +2522,6 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "White,Mt. Pisgah",,White,,Mt. Pisgah,8,0,35,11,33,0,9,3,45,52,18
 "White,Pangburn Ward 1",,White,,Pangburn Ward 1,16,2,52,16,51,4,22,5,34,42,10
 "White,Pangburn Ward 2",,White,,Pangburn Ward 2,5,7,40,9,30,11,13,1,53,60,13
-"White,Pangburn Ward 3",,White,,Pangburn Ward 3,12,1,59,18,48,4,19,3,53,65,17
 "White,Red River",,White,,Red River,23,1,58,28,53,1,27,6,156,167,37
 "White,Rose Bud City",,White,,Rose Bud City,35,3,165,38,165,2,42,7,145,154,33
 "White,Royal",,White,,Royal,36,10,143,34,147,8,37,1,34,42,10
@@ -2534,7 +2531,6 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "White,Searcy Ward 1 B",,White,,Searcy Ward 1B,0,0,0,0,0,0,0,14,199,220,53
 "White,Searcy Ward 1 C",,White,,Searcy Ward 1C,48,11,214,57,205,11,59,14,754,825,108
 "White,Searcy Ward 1 D",,White,,Searcy Ward 1D,122,12,803,159,764,14,160,9,184,204,55
-"White,Searcy Ward 1 E",,White,,Searcy Ward 1E,63,6,197,66,188,12,73,5,140,145,36
 "White,Searcy Ward 2 B",,White,,Searcy Ward 2B,29,6,149,31,146,6,38,29,814,875,212
 "White,Searcy Ward 2 C",,White,,Searcy Ward 2C,229,31,842,258,814,30,256,12,377,414,88
 "White,Searcy Ward 2 D",,White,,Searcy Ward 2D,104,12,396,114,386,12,123,15,583,629,114
@@ -2543,9 +2539,7 @@ loc_prec,,county,,precinct,G18DGOV,G18LGOV,G18RGOV,G18DATG,G18RATG,G18LATG,G18DS
 "White,Searcy Ward 3 B",,White,,Searcy Ward 3B,99,18,226,104,223,15,114,15,246,266,52
 "White,Searcy Ward 3 C",,White,,Searcy Ward 3C,62,11,254,69,246,12,68,4,44,52,35
 "White,Searcy Ward 3 D",,White,,Searcy Ward 3D,36,3,49,36,46,6,39,10,338,374,82
-"White,Searcy Ward 3 E",,White,,Searcy Ward 3E,89,5,371,103,347,12,110,11,89,113,32
 "White,Searcy Ward 4 A",,White,,Searcy Ward 4A,43,6,101,47,97,5,47,10,103,123,36
-"White,Searcy Ward 4 B",,White,,Searcy Ward 4B,45,5,118,51,108,8,50,12,266,292,73
 "White,Searcy Ward 4 C",,White,,Searcy Ward 4C,81,9,282,86,275,9,89,12,518,539,74
 "White,Union",,White,,Union,82,12,527,90,525,7,91,6,243,259,31
 "White,Velvet Ridge",,White,,Velvet Ridge,27,11,255,43,244,5,43,1,48,49,4
