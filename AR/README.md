@@ -1,8 +1,43 @@
+# Arkansas 2018 Election Shapefile
+
+This shapefile comes from the Arkansas state government and was matched with 2018 general election results by the Princeton Gerrymandering Project. 
+
+## Metadata
+
+* `county_nam`: County name
+* `state_fips`: State FIPS code
+* `county_fip`: County FIPS code 
+* `precinct`: Precinct name
+* `precinct_old`: Pre-edit, pre-merge precinct name (from shapefile)
+* `G18DGOV`: General 2018 Governor Democratic Party Candidate
+* `G18LGOV`: General 2018 Governor Libertarian Party Candidate
+* `G18RGOV`: General 2018 Governor Republican Party Candidate
+* `G18DATG`: General 2018 Attorney General Democratic Candidate
+* `G18RATG`: General 2018 Attorney General Republican Candidate
+* `G18LATG`: General 2018 Attorney General Libertarian Candidate
+* `G18DSecS`: General 2018 Secretary of State Democratic Candidate
+* `G18LSecS`: General 2018 Secretary of State Libertarian Candidate
+* `G18RSecS`: General 2018 Secretary of State Republican Candidate
+* `G18RTRES`: General 2018 Treasurer Republican Candidate
+* `G18LTRES`: General 2018 Treasurer Libertarian Candidate
+* `geometry`: Geometry
+
+## Processing
+
+All processing scripts are available in [this](https://github.com/PrincetonUniversity/gerryspam/tree/master/AR) public GitHub repository. To re-run the processing scripts, you will need to change the relative paths to all data files.
+
+1. Download the raw shapefile and election results from the sources below.
+2. Clean the raw election results using [this script](https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/elec_candidates_to_elec_prec_AR_G18.py)
+3. Clean shapefiles using [this script](https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/run.sh)
+4. In QGIS, merge together all of the cleaned shapefiles (ar18.shp and one-off counties)
+5. Merge cleaned election results and final shapefile using [this script](https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/final_merge.py)
+
+
+## Sources
+
 __Election results__
 
 On November 7th, downloaded raw data from here: https://github.com/openelections/openelections-data-ar/tree/master/2018
-
-Used the file https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/elec_candidates_to_elec_prec_AR_G18.py to transform the file to AR_G18.csv 
 
 Changes: 
 - Boone County: 
@@ -45,7 +80,11 @@ Changes:
 
 __Shapefiles__
 
-On October 16 2019, downloaded from here: http://gis.arkansas.gov/?product=election-precincts
+On October 16 2019, downloaded state-wide shapefile from here: http://gis.arkansas.gov/?product=election-precincts
+
+All changes made to precinct names recorded in [this script](https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/edit_prec_names.py)
+
+For the counties below, the shapefile precincts did not match with the election precincts. We downloaded the county-specific shapefiles from the Census Partership archive, and cleaned the data using [this script](https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/edit_alt_data_counties.py).
 
 On March 4th 2020, Madison County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership18v2/st05_ar.html
 - Used "PVS_18_v2_vtd_05087.shp"
@@ -59,4 +98,6 @@ On March 11th 2020, Ouachita County downloaded from here: https://www.census.gov
 On March 12th 2020, Jefferson County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership18v2/st05_ar.html
 - Used "PVS_18_v2_vtd_05069.shp"
 
-All changes made to precinct names recorded here: https://github.com/PrincetonUniversity/gerryspam/blob/master/AR/processing_scraps_AR.py
+On March 13th 2020, White County downloaded from here: https://www.census.gov/geo/partnerships/pvs/partnership17v2/st05_ar.html
+- Used "PVS_17_v2_vtd_05145.shp"
+
