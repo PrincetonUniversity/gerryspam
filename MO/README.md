@@ -11,3 +11,5 @@ https://catalog.data.gov/dataset/tiger-line-shapefile-2016-state-missouri-curren
 On March 22nd, downloaded Missouri U.S. congressional district lines from here: 
 https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.2016.html
 
+On March 23rd, downloaded census block-level population from here:
+https://www2.census.gov/geo/tiger/TIGER2010BLKPOPHU/ 
