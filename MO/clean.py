@@ -1,6 +1,7 @@
 import geopandas as gpd
 import pandas as pd
 import maup
+import os
 
 # precinct data 
 prec_path = "/Users/hopecj/projects/gerryspam/MO/dat/mo_2016/mo_2016.shp"
@@ -28,7 +29,7 @@ state.rename(columns={"SLDUST": "id"}, inplace=True)
 state = state[["id", "geometry"]]
 
 # state HOR data? 
-
+# ...none for now
 
 # Assigning precincts to U.S. congressional districts
 assignment = maup.assign(prec, mscong_merging)
@@ -38,8 +39,16 @@ prec.to_file("precincts_testing.shp")
 # Assigning precincts to state senate districts
 assignment = maup.assign(prec, state)
 prec["SLDUST"] = assignment
-prec.to_file("precincts_testing.shp")
 
 # population 
+# aggregating block-level census data to precincts
+block_path = "/Users/hopecj/projects/gerryspam/MO/dat/tabblock2010_29_pophu/tabblock2010_29_pophu.shp"
+block = gpd.read_file(block_path)
+block.rename(columns={"BLOCKID10": "id"}, inplace=True)
+assignment = maup.assign(block, prec)
+variables = ["POP10"]
+prec[variables] = block[variables].groupby(assignment).sum()
 
-
+# write it out to a file
+#os.mkdir("mo_prec_labeled")
+prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled.shp")
