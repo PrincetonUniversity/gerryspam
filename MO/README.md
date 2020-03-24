@@ -13,3 +13,80 @@ https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-
 
 On March 23rd, downloaded census block-level population from here:
 https://www2.census.gov/geo/tiger/TIGER2010BLKPOPHU/ 
+
+__Documentation__
+
+From VEST's documentation for the precinct-level shapefile with election results: 
+
+Missouri
+--------
+Election results from the Secretary of State's office via OpenElections (https://github.com/openelections/openelections-sources-mo/tree/master/2016). Results for Attorney General from Butler County and for Lt. Governor from Linn County were corrected with the Statement of Votes Cast from the respective counties.
+
+Precinct shapefiles primarily from the U.S. Census Bureau's 2020 Redistricting Data Program Phase 2 release, with the following exceptions and alterations.
+
+The following were based on maps received from the county governments: Audrain, Benton, Bollinger, Buchanan, Butler, Caldwell, Callaway, Cape Girardeau, Cedar, Christian, Cooper, Jackson, Jefferson, Johnson, Laclede, Lafayette, Marion, McDonald, Miller, Morgan, Nodaway, Osage, Ray, Texas, Worth, Wright.
+
+Monroe County comes from the 2010 Census VTD release.
+
+Precinct mergers were made in the following counties to match county reporting units: Andrew, Audrain, Barry, Benton, Bollinger, Boone, Camden, Cape Girardeau, Carter, Cass, Christian, Clark, Cole, Cooper, Crawford, Dallas, Dekalb, Douglas, Dunklin, Franklin, Gentry, Greene, Grundy, Howard, Howell, Jackson, Jasper, Jefferson, Linn, Livingston, Marion, Mercer, Mississippi, Moniteau, Morgan, New Madrid, Oregon, Osage, Pemiscot, Pettis, Phelps, Platte, Polk, Putnam, Ralls, Randolph, Ripley, St. Clair, St. Louis, Schuyler, Shannon, Shelby, Stone, Sullivan, Warren, Wayne, Webster, Worth.
+
+Additional modifications to reflect how election results were reported:
+
+Audrain: Added Vandalia City
+Barry: Added Monett City
+Cooper: Merged city/rural Boonville wards
+Dallas: Split Benton Outside City Limits from Benton North
+Dent: Split Boss precinct from R-4 precinct
+Franklin: Dry Branch split between Stanton & St. Clair Out of Town
+Howard: Split Old Franklin & New Franklin
+Jasper: Added Webb City wards from county GIS
+Jefferson: Split Festus 4 precinct into P1 & P2
+Linn: Split N/S Benton & Brookfield 1&2/3&4
+Marion: The 2 polling places that report separately for Fabius Township do not have a defined boundary; voters are given the choice to register for either polling place
+New Madrid: Added New Madrid City wards; Big Prairie 4 precinct
+Pemiscot: Added Caruthersville City wards
+Pike: Calumet GH split between Calumet F/Prairieville I
+Polk: Split Campbell/Jefferson precincts by school district
+Putnam: Split Union Twp into NE/SW precincts
+Ralls: Center/Liberty precinct lines from the 2010 VTDs
+Randolph: Added Moberly City wards; Huntsville City
+Saline: Split Nelson precinct from Hardeman precinct
+St. Louis: Added UNV044 precinct; Revised QUE047 precinct
+Warren: Added Lakeview Estates precinct
+
+Some votes were reported countywide in nearly every county; these were distributed by candidate to precincts based on their share of the precinct-level reported vote.
+
+G16PREDCLI - Hillary Clinton (Democratic Party)
+G16PRERTRU - Donald Trump (Republican Party)
+G16PRELJOH - Gary Johnson (Libertarian Party)
+G16PREGSTE - Jill Stein (Green Party)
+G16PRECCAS - Darrell Castle (Constitution Party)
+
+G16USSDKAN - Jason Kander (Democratic Party)
+G16USSRBLU - Roy Blunt (Republican Party)
+G16USSLDIN - Jonathan Dine (Libertarian Party)
+G16USSGMCF - Johnathan McFarland (Green Party)
+G16USSCRYM - Fred Ryman (Constitution Party)
+
+G16GOVDKOS - Chris Koster (Democratic Party)
+G16GOVRGRE - Eric Greitens (Republican Party)
+G16GOVLSPR - Cisse Spragins (Libertarian Party)
+G16GOVGFIT - Don Fitz (Green Party)
+G16GOVITUR - Lester Turilli Jr. (Independent)
+
+G16LTGDCAR - Russ Carnahan (Democratic Party)
+G16LTGRPAR - Mike Parson (Republican Party)
+G16LTGLHED - Steven Hedrick (Libertarian Party)
+G16LTGGLEA - Jennifer Leach (Green Party)
+
+G16ATGDHEN - Teresa Hensley (Democratic Party)
+G16ATGRHAW - Josh Hawley (Republican Party)
+
+G16TREDBAK - Judy Baker (Democratic Party)
+G16TRERSCH - Eric Schmitt (Republican Party)
+G16TRELOTO - Sean O'Toole (Libertarian Party)
+G16TREGHEX - Carol Hexem (Green Party)
+
+G16SOSDSMI - Robin Smith (Democratic Party)
+G16SOSRASH - Jay Ashcroft (Republican Party)
+G16SOSLMOR - Chris Morrill (Libertarian Party)
