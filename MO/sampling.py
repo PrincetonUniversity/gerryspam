@@ -1,6 +1,10 @@
 import geopandas as gpd
-from gerrychain import Graph, Partition, Election
+import pandas as pd
+from gerrychain import Graph, Partition, Election, MarkovChain
 from gerrychain.updaters import Tally, cut_edges
+from gerrychain.constraints import single_flip_contiguous
+from gerrychain.proposals import propose_random_flip
+from gerrychain.accept import always_accept
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## creating an initial partition
@@ -30,3 +34,18 @@ for district, pop in initial_partition["population"].items():
 ## ## ## ## ## ## ## ## ## ## ## 
 ## running a chain 
 ## ## ## ## ## ## ## ## ## ## ## 
+
+chain = MarkovChain(
+    proposal=propose_random_flip,
+    constraints=[single_flip_contiguous],
+    accept=always_accept,
+    initial_state=initial_partition,
+    total_steps=1000
+)
+
+for partition in chain:
+    print(sorted(partition["SEN16"].percents("Dem")))
+    
+d_percents = [sorted(partition["SEN16"].percents("Dem")) for partition in chain]
+
+ensemble_dat = pd.DataFrame(d_percents)
