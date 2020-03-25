@@ -49,29 +49,23 @@ assignment = maup.assign(prec, state)
 assignment.isna().sum()
 prec["SLDUST"] = assignment
 
-prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
+#prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
 
 # population 
-# aggregating block-level census data to precincts
-# block_path = "/Users/hopecj/projects/gerryspam/MO/dat/tabblock2010_29_pophu/tabblock2010_29_pophu.shp"
-# block = gpd.read_file(block_path)
-# block.rename(columns={"BLOCKID10": "id"}, inplace=True)
-# assignment = maup.assign(block, prec)
-# assignment.isna().sum()
-# assignment[assignment.isna()] # fix the NAs manually
-# assignment[246433] = ""
-# assignment[308849] = ""
-# variables = ["POP10"]
-# prec[variables] = block[variables].groupby(assignment).sum()
 block_path = "/Users/hopecj/projects/gerryspam/MO/dat/blocks with precincts/MOBlocksPrecLabels.shp"
 block = gpd.read_file(block_path)
-block_to_prec = block.dissolve(by='loc_prec', as_index=False)
+agg_prec = block.dissolve(by='loc_prec', aggfunc='sum')
 
-block_to_prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/block_to_prec.shp")
-
-grouped = block.groupby(['loc_prec']).sum()
-grouped.shape
-
+# merge labelled precinct file and prec (from blocks) file
+prec_merging = prec[['loc_prec', 'COUNTYFP', 'NAME', 'CD115FP', 'SLDUST', 'G16PREDCLI', 'G16PRERTRU', 
+                     'G16PRELJOH', 'G16PREGSTE', 'G16PRECCAS', 'G16USSDKAN', 'G16USSRBLU', 'G16USSLDIN', 
+                     'G16USSGMCF', 'G16USSCRYM', 'G16GOVDKOS', 'G16GOVRGRE', 'G16GOVLSPR', 'G16GOVGFIT', 
+                     'G16GOVITUR', 'G16LTGDCAR', 'G16LTGRPAR', 'G16LTGLHED', 'G16LTGGLEA', 'G16ATGDHEN', 
+                     'G16ATGRHAW', 'G16TREDBAK', 'G16TRERSCH', 'G16TRELOTO', 'G16TREGHEX', 'G16SOSDSMI', 
+                     'G16SOSRASH', 'G16SOSLMOR']]
+out_file = agg_prec.merge(prec_merging, on='loc_prec')
 
 # write it out to a file
-#os.mkdir("mo_prec_labeled")
+out_file.to_file("/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp")
+
+
