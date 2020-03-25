@@ -63,7 +63,15 @@ prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_la
 # assignment[308849] = ""
 # variables = ["POP10"]
 # prec[variables] = block[variables].groupby(assignment).sum()
+block_path = "/Users/hopecj/projects/gerryspam/MO/dat/blocks with precincts/MOBlocksPrecLabels.shp"
+block = gpd.read_file(block_path)
+block_to_prec = block.dissolve(by='loc_prec', as_index=False)
+
+block_to_prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/block_to_prec.shp")
+
+grouped = block.groupby(['loc_prec']).sum()
+grouped.shape
+
 
 # write it out to a file
 #os.mkdir("mo_prec_labeled")
-prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled.shp")
