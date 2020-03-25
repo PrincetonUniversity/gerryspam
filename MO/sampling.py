@@ -2,20 +2,31 @@ import geopandas as gpd
 from gerrychain import Graph, Partition, Election
 from gerrychain.updaters import Tally, cut_edges
 
-prec_path = "/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled.shp"
-prec = gpd.read_file(prec_path)
+## ## ## ## ## ## ## ## ## ## ## 
+## creating an initial partition
+## ## ## ## ## ## ## ## ## ## ## 
+dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
+dat = gpd.read_file(dat_path)
+list(dat.columns)
 
-# STOPPED HERE 
-graph = Graph.from_json("./PA_VTDs.json")
+graph = Graph.from_file(dat_path)
 
-election = Election("SEN12", {"Dem": "USS12D", "Rep": "USS12R"})
+election = Election("SEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"})
 
 initial_partition = Partition(
     graph,
-    assignment="CD_2011",
+    assignment="CD115FP",
     updaters={
         "cut_edges": cut_edges,
-        "population": Tally("TOTPOP", alias="population"),
-        "SEN12": election
+        "population": Tally("POP10", alias="population"),
+        "SEN16": election
     }
 )
+
+# total pop in each congressional district:
+for district, pop in initial_partition["population"].items():
+    print("District {}: {}".format(district, pop))
+    
+## ## ## ## ## ## ## ## ## ## ## 
+## running a chain 
+## ## ## ## ## ## ## ## ## ## ## 
