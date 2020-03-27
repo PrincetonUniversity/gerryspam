@@ -84,10 +84,11 @@ chain2 = MarkovChain(
 )
 
 dat2 = make_dat_from_chain(chain2, "pop-constraint") 
+dat2.to_csv("pop-constraint.csv")
 small_dat2 = dat2.sample(1000) # randomly sample 1000 rows
 small_dat2.to_csv("pop-constrained_small.csv")
 
-plt.hist(dat2["eg"], bins=50)
+plt.hist(dat2["eg"], bins=100)
 plt.show()
 
 # add counts
