@@ -2,7 +2,7 @@
 
 __Sources__
 
-On March 19th, downloaded the data from here: 
+On March 19th, downloaded VEST's precinct shapefile with election data matched from here: 
 https://dataverse.harvard.edu/file.xhtml?persistentId=doi:10.7910/DVN/NH5S2I/ZL99CI
 
 On March 22nd, downloaded Missouri state legislative district lines from here: 
@@ -13,6 +13,49 @@ https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-
 
 On March 23rd, downloaded census block-level population from here:
 https://www2.census.gov/geo/tiger/TIGER2010BLKPOPHU/ 
+
+__Metadata__
+
+* `loc_prec`: Unique precinct identifier, "county name,precinct name" 
+* `HOUSING10`: 2010 Census Housing Unit Count
+* `POP10`:  2010 Census Population Count
+* `COUNTYFP`: County Name
+* `NAME`: Precinct Name
+* `CD115FP`: U.S. Congressional District (2016)
+* `SLDUST`: Missouri State Legislative District - Upper Chamber
+* `G16PREDCLI`: General 2016 President Democratic Party Candidate
+* `G16PRERTRU`: General 2016 President Republican Party Candidate
+* `G16PRELJOH`: General 2016 President Libertarian Party Candidate
+* `G16PREGSTE`:  General 2016 President Green Party Candidate`: 
+* `G16PRECCAS`: General 2016 President Constitutional Party Candidate
+* `G16USSDKAN`: General 2016 U.S. Senate Democratic Party Candidate
+* `G16USSRBLU`: General 2016 U.S. Senate Rebublican Party Candidate
+* `G16USSLDIN`: General 2016 U.S. Senate Libertarian Party Candidate
+* `G16USSGMCF`: General 2016 U.S. Senate Green Party Candidate
+* `G16USSCRYM`: General 2016 U.S. Senate Constitution Party Candidate
+* `G16GOVDKOS`: General 2016 Governor Democratic Party Candidate
+* `G16GOVRGRE`: General 2016 Governor Rebublican Party Candidate
+* `G16GOVLSPR`: General 2016 Governor Libertarian Party Candidate
+* `G16GOVGFIT`: General 2016 Governor Green Party Candidate
+* `G16GOVITUR`: General 2016 Governor Independent Party Candidate
+* `G16LTGDCAR`: General 2016 Lt. Governor Democratic Party Candidate
+* `G16LTGRPAR`: General 2016 Lt. Governor Rebublican Party Candidate
+* `G16LTGLHED`: General 2016 Lt. Governor Libertarian Party Candidate
+* `G16LTGGLEA`: General 2016 Lt. Governor Green Party Candidate
+* `G16ATGDHEN`: General 2016 Attorney General Democratic Party Candidate
+* `G16ATGRHAW`: General 2016 Attorney General Rebublican Party Candidate
+* `G16TREDBAK`: General 2016 Treasurer Democratic Party Candidate
+* `G16TRERSCH`: General 2016 Treasurer Rebublican Party Candidate
+* `G16TRELOTO`: General 2016 Treasurer Libertarian Party Candidate
+* `G16TREGHEX`: General 2016 Treasurer Green Party Candidate
+* `G16SOSDSMI`: General 2016 Sect. of State Democratic Party Candidate
+* `G16SOSRASH`: General 2016 Sect. of State Rebublican Party Candidate
+* `G16SOSLMOR`: General 2016 Sect. of State Libertarian Party Candidate
+* `geometry`: 
+
+__Pre-processing__
+
+To avoid topology errors, we used the census block-level file and added precinct labels to every census block. Then, we dissolved census blocks by precinct labels. We joined this file with the precinct votes file from VEST. The `POP10` and `HOUSING10` variables are the result of this census-block aggregation. 
 
 __Documentation__
 
