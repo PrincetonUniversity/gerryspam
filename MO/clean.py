@@ -13,6 +13,7 @@ prec.head()
 # create unique precinct identifier 
 prec["loc_prec"] = prec['COUNTYFP'] + ',' + prec['NAME']
 prec['loc_prec'].nunique()
+prec[prec.duplicated(['loc_prec'])]
 prec.shape
 prec[prec.duplicated(['loc_prec'])]
 prec = prec.dissolve(by='loc_prec', as_index=False) #dissolve precincts with the same name
@@ -68,4 +69,11 @@ out_file = agg_prec.merge(prec_merging, on='loc_prec')
 # write it out to a file
 out_file.to_file("/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp")
 
+file = gpd.read_file("/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp")
 
+################## post sampling !!!!!!!!!!!!!!!!!!!
+dat_chain1 = pd.read_csv("/Users/hopecj/projects/gerryspam/MO/dat/pop-constrained_small.csv")
+dat_chain2 = pd.read_csv("/Users/hopecj/projects/gerryspam/MO/dat/single-flip-contiguous_small.csv")
+
+out = pd.concat([dat_chain1, dat_chain2])
+out.to_csv("/Users/hopecj/projects/gerryspam/MO/dat/sampled-plans.csv")
