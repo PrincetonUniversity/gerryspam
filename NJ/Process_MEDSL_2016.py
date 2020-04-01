@@ -57,15 +57,17 @@ print(columns)
 prec_elec_rn = prec_elec.rename(columns = {
         'votes democratic US House': 'G18DHOR',
         'votes libertarian US House': 'G18LHOR',
-        'votes republican US House': 'G18RHOR',})
+        'votes republican US House': 'G18RHOR'})
     
 
 #get rid of other columns and save
 #this is ready to be matched to precinct names now
 prec_elec_rn = prec_elec_rn.fillna(0)
-prec_elec_keep = [['G18DHOR', ]]
+prec_elec_keep = prec_elec_rn[['G18DHOR', 'G18LHOR', 'G18RHOR']]
+
+# should i add an "other" column? not sure......
 #prec_elec_rn['G18OGOV'] = prec_elec_rn['G18OGOV1'].astype(int) + prec_elec_rn['G18OGOV2'].astype(int)+ prec_elec_rn['G18OGOV3'].astype(int)
 
 #this is ready to be matched to precinct names now
 
-prec_elec_rn.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/OpenPrecincts/States for site/Washington/GA_G18_MIT.csv')
+prec_elec_rn.to_csv('/Users/hopecj/projects/gerryspam/NJ/dat/NJ_G18_MIT.csv')
