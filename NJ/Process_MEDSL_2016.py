@@ -55,19 +55,20 @@ print(columns)
 
 #rename columns
 prec_elec_rn = prec_elec.rename(columns = {
-        'votes democratic US House': 'G18DHOR',
-        'votes libertarian US House': 'G18LHOR',
-        'votes republican US House': 'G18RHOR'})
+        'votes democratic US House': 'G16DHOR',
+        'votes libertarian US House': 'G16LHOR',
+        'votes republican US House': 'G16RHOR'})
     
 
 #get rid of other columns and save
 #this is ready to be matched to precinct names now
 prec_elec_rn = prec_elec_rn.fillna(0)
-prec_elec_keep = prec_elec_rn[['G18DHOR', 'G18LHOR', 'G18RHOR']]
+prec_elec_keep = prec_elec_rn[['G16DHOR', 'G16LHOR', 'G16RHOR']]
 
 # should i add an "other" column? not sure......
-#prec_elec_rn['G18OGOV'] = prec_elec_rn['G18OGOV1'].astype(int) + prec_elec_rn['G18OGOV2'].astype(int)+ prec_elec_rn['G18OGOV3'].astype(int)
+#prec_elec_rn['G16OGOV'] = prec_elec_rn['G16OGOV1'].astype(int) + prec_elec_rn['G16OGOV2'].astype(int)+ prec_elec_rn['G16OGOV3'].astype(int)
+prec_elec_keep["year"] = 2016
 
 #this is ready to be matched to precinct names now
 
-prec_elec_rn.to_csv('/Users/hopecj/projects/gerryspam/NJ/dat/NJ_G18_MIT.csv')
+prec_elec_rn.to_csv('/Users/hopecj/projects/gerryspam/NJ/dat/NJ_G16_MIT.csv')
