@@ -37,7 +37,11 @@ for state in states:
     state_elec = state_df.loc[state_df['office'].isin(state_offices)]
     #statewide_offices.append(state_offices)
 #get table of elections by precinct
-prec_elec = pd.pivot_table(state_elec, index = ['precinct'], columns = ['party','office'], values = ['votes'], aggfunc = np.sum)
+prec_elec = pd.pivot_table(state_elec, 
+                           index = ['county_fips', 'county_name', 'precinct'], 
+                           columns = ['party','office'], 
+                           values = ['votes'], 
+                           aggfunc = np.sum)
 
 prec_elec.columns = prec_elec.columns.to_series().str.join(' ')
 
@@ -71,4 +75,5 @@ prec_elec_keep["year"] = 2016
 
 #this is ready to be matched to precinct names now
 
-prec_elec_rn.to_csv('/Users/hopecj/projects/gerryspam/NJ/dat/NJ_G16_MIT.csv')
+prec_elec_keep.to_csv('/Users/hopecj/projects/gerryspam/NJ/dat/NJ_G16_MIT.csv')
+

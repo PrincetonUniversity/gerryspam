@@ -37,8 +37,11 @@ for state in states:
     state_elec = state_df.loc[state_df['office'].isin(state_offices)]
     #statewide_offices.append(state_offices)
 #get table of elections by precinct
-prec_elec = pd.pivot_table(state_elec, index = ['precinct'], columns = ['party','office'], values = ['votes'], aggfunc = np.sum)
-
+prec_elec = pd.pivot_table(state_elec, 
+                           index = ['precinct'], 
+                           columns = ['party','office'], 
+                           values = ['votes'], 
+                           aggfunc = np.sum)
 prec_elec.columns = prec_elec.columns.to_series().str.join(' ')
 
 columns = prec_elec.columns.values
