@@ -131,4 +131,4 @@ prec_elec_rn = prec_elec_rn[['G18DATG', 'G18DGOV', 'G18DSEN', 'G18DHOR', 'G18DSO
                              'G18OATG','G18OGOV','G18OSEN', 'G18OHOR', 'G18OSOS','G18OBoE', 'G18OStHou',  'G18OStSen']]
 #this is ready to be matched to precinct names now
 
-prec_elec_rn.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/mapping/MI/Election Results/MI_G18_SOS.csv')
+prec_elec_rn.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/OpenPrecincts/States for site/Michigan/Elections/MI_G18_SOS.csv')
