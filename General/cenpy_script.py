@@ -18,8 +18,8 @@ data = pd.DataFrame(columns=['P005001','P005003','P005004','P005010','P011001','
 #             '183','185','187','189','191','193','195','197','199']
 # 
 # =============================================================================
-state = '53'
-counties = ['005', '025', '027', '041', '047', '053', '061', '071', '077']
+state = '36'
+counties = ['059']
 #make census requests and store information in dataframe
 for county in counties:
     print(county)
@@ -33,4 +33,4 @@ data = data.rename(columns = {'P005001':'tot','P005003':'NHwhite','P005004':'NHb
 data['GEOID10'] = data['state']+data['county']+data['tract']+data['block']  
 
 #save file  
-data.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/OpenPrecincts/States for site/Washington/Blocks with Pop/WA_blocks_2010_Dem.csv')
+data.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/States and local partners/New York/Nassau County/demographics/Nassau_2010_pop.csv')
