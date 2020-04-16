@@ -45,23 +45,24 @@ while (start_index < n_counties+1):
 p = Path.home() / "projects" / "gerryspam" / "NJ" / "dat" / "partnership-2016"
 parent = p / 'unzipped' / 'extracted' / 'precincts'
 parent.mkdir(exist_ok=True, parents=True)
-
 up = p / 'unzipped'
+ex = up / 'extracted'
+
 for zip in p.glob('*.zip'):
     unpack_archive(str(zip), extract_dir= up) # first unzip - each zip has two zipped files in it!
 
-ex = up / 'extracted'
 for zip in up.glob('*.zip'):
     unpack_archive(str(zip), extract_dir= ex) # second unzip
 
-fileList = ex.glob("PVS_*vtd_*.shp")
+fileList = ex.glob("PVS_*vtd_*")
 for file in fileList:
     name = file.name
     file.replace(parent / name) # move all VTD files to 'precincts' folder
 
-n_VTD_files = len(list(parent.glob('*'))) - 1
-print("number of VTD files is:", n_VTD_files) 
+n_VTD_files = len(list(parent.glob('*.shp'))) 
+print("number of unique county VTD files is:", n_VTD_files) 
 assert n_counties == n_VTD_files # if error, go back and find missed county download 
 
+# concatenate all the files into one state-wide shapefile 
 
 
