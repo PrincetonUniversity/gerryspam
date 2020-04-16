@@ -8,14 +8,14 @@ We want to be able to use programs with different dependencies without needing a
  
 1) In terminal, navigate to the directory you will be working in.
 2) Ensure you don't have any virtual environments activated
-  1) Use command `deactivate` or `conda deactivate` if you are using a conda environment
+    * Use command `deactivate` or `conda deactivate` if you are using a conda environment
 3) Make a new virtual environment with `python3 -m venv areal_ve`
-  1) Use command `ls` and you should see a directory named `areal_ve`, which is the top level folder for the virtual environment you just created.
+    * Use command `ls` and you should see a directory named `areal_ve`, which is the top level folder for the virtual environment you just created.
 4) Activate the virtual environment you just created with `source areal_ve/bin/activate'`
-  1) Conda users may be used to activating their virtual environment from any directory, but note that you must be in the directory with `areal_ve` for this command to work.
-  2) You can deactivate this virtual environment at any time with `deactivate` (don't deactivate now if you wish to continue following this tutorial)
+    * Conda users may be used to activating their virtual environment from any directory, but note that you must be in the directory with `areal_ve` for this command to work.
+    * You can deactivate this virtual environment at any time with `deactivate` (don't deactivate now if you wish to continue following this tutorial)
 5) Run `pip install -r requirements.txt`
-  1) This installs all the dependencies listed in the `requirements.txt` file, but just inside our virtual environment.
+    * This installs all the dependencies listed in the `requirements.txt` file, but just inside our virtual environment.
 
 
 If step 5 fails, run the following commands and try step 5 again.
