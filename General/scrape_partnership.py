@@ -1,6 +1,8 @@
 from selenium import webdriver
 from shutil import unpack_archive
 from pathlib import Path
+import geopandas as gpd
+import pandas as pd
 
 """
 scrape census partership files for all of the counties in a state, grab the VTDs, and concat them all together
@@ -40,8 +42,9 @@ while (start_index < n_counties+1):
     county_box.click() # de-select it
     start_index += 1
 
-# extract all the zip files 
-# will likely need to the relative path in 'p'
+# move all the downloaded files to 'p'
+# then extract all the zip files 
+# you must to change the relative path in 'p'
 p = Path.home() / "projects" / "gerryspam" / "NJ" / "dat" / "partnership-2016"
 parent = p / 'unzipped' / 'extracted' / 'precincts'
 parent.mkdir(exist_ok=True, parents=True)
@@ -59,10 +62,11 @@ for file in fileList:
     name = file.name
     file.replace(parent / name) # move all VTD files to 'precincts' folder
 
-n_VTD_files = len(list(parent.glob('*.shp'))) 
+shapefiles = parent.glob('*.shp')
+n_VTD_files = len(list(shapefiles)) 
 print("number of unique county VTD files is:", n_VTD_files) 
 assert n_counties == n_VTD_files # if error, go back and find missed county download 
 
 # concatenate all the files into one state-wide shapefile 
-
-
+gdf = pd.concat([ gpd.read_file(shp) for shp in shapefiles ]).pipe(gpd.GeoDataFrame)
+gdf.to_file(parent / 'compiled.shp')
