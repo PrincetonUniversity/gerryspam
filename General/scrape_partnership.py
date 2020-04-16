@@ -41,10 +41,10 @@ while (start_index < n_counties+1):
     start_index += 1
 
 # extract all the zip files 
-# will like need to the relative path in 'p'
+# will likely need to the relative path in 'p'
 p = Path.home() / "projects" / "gerryspam" / "NJ" / "dat" / "partnership-2016"
-all = p / 'unzipped' / 'extracted' / 'precincts'
-all.mkdir(exist_ok=True, parents=True)
+parent = p / 'unzipped' / 'extracted' / 'precincts'
+parent.mkdir(exist_ok=True, parents=True)
 
 up = p / 'unzipped'
 for zip in p.glob('*.zip'):
@@ -53,4 +53,15 @@ for zip in p.glob('*.zip'):
 ex = up / 'extracted'
 for zip in up.glob('*.zip'):
     unpack_archive(str(zip), extract_dir= ex) # second unzip
+
+fileList = ex.glob("PVS_*vtd_*.shp")
+for file in fileList:
+    name = file.name
+    file.replace(parent / name) # move all VTD files to 'precincts' folder
+
+n_VTD_files = len(list(parent.glob('*'))) - 1
+print("number of VTD files is:", n_VTD_files) 
+assert n_counties == n_VTD_files # if error, go back and find missed county download 
+
+
 
