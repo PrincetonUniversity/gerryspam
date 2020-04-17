@@ -36,19 +36,28 @@ list(state.columns) # SLDUST is state senate district
 state.rename(columns={"SLDUST": "id"}, inplace=True)
 state = state[["id", "geometry"]]
 
-# state HOR data? 
-# ...none for now
+# state HOR data 
+st_house_path = "/Users/hopecj/projects/gerryspam/MO/dat/tl_2016_29_sldl/tl_2016_29_sldl.shp"
+st_house = gpd.read_file(st_house_path)
+st_house.crs
+list(st_house.columns) # SLDUST is st_house senate district
+st_house.rename(columns={"SLDLST": "id"}, inplace=True)
+st_house = st_house[["id", "geometry"]]
 
 # Assigning precincts to U.S. congressional districts
 assignment = maup.assign(prec, mscong_merging)
 assignment.isna().sum()
 prec["CD115FP"] = assignment
-# prec.to_file("precincts_testing.shp")
 
 # Assigning precincts to state senate districts
 assignment = maup.assign(prec, state)
 assignment.isna().sum()
 prec["SLDUST"] = assignment
+
+# Assigning precincts to state house districts
+assignment = maup.assign(prec, st_house)
+assignment.isna().sum()
+prec["SLDLST"] = assignment
 
 #prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
 
