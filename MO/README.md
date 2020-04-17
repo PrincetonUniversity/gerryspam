@@ -5,7 +5,7 @@ __Sources__
 On March 19th, downloaded VEST's precinct shapefile with election data matched from here: 
 https://dataverse.harvard.edu/file.xhtml?persistentId=doi:10.7910/DVN/NH5S2I/ZL99CI
 
-On March 22nd, downloaded Missouri state legislative district lines from here: 
+On March 22nd, downloaded Missouri state legislative district lines (upper house) from here: 
 https://catalog.data.gov/dataset/tiger-line-shapefile-2016-state-missouri-current-state-legislative-district-sld-upper-chamber-s
 
 On March 22nd, downloaded Missouri U.S. congressional district lines from here: 
@@ -13,6 +13,9 @@ https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-
 
 On March 23rd, downloaded census block-level population from here:
 https://www2.census.gov/geo/tiger/TIGER2010BLKPOPHU/ 
+
+On April 17th, downloaded Missouri state legislative district lines (lower house) from here:
+https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2016&layergroup=State+Legislative+Districts
 
 __Metadata__
 
