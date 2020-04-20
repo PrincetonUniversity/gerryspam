@@ -14,11 +14,39 @@ import random
 import json
 
 ## ## ## ## ## ## ## ## ## ## ## 
+## argument parser set-up
+## ## ## ## ## ## ## ## ## ## ##
+
+parser = argparse.ArgumentParser(description="MO ensemble", 
+                                 prog="mo_precincts_chain.py")
+parser.add_argument("map", metavar="map", type=str,
+                    choices=["state_house", "state_senate"],
+                    help="the map to redistrict")
+parser.add_argument("n", metavar="iterations", type=int,
+                    help="the number of plans to sample")
+args = parser.parse_args()
+
+num_districts_in_map = {"state_senate" : 34,
+                        "state_house" : 163}
+
+epsilons = {"state_senate_1" : 0.01,
+            "state_senate_3": 0.03,
+            "state_senate_5": 0.05,
+            "state_house_1" : 0.01,
+            "state_house_3": 0.03,
+            "state_house_5": 0.05} 
+
+
+## ## ## ## ## ## ## ## ## ## ## 
 ## creating an initial partition
 ## ## ## ## ## ## ## ## ## ## ## 
 dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
 dat = gpd.read_file(dat_path)
 list(dat.columns)
+dat['SLDUST'].nunique()
+dat['SLDLST'].nunique()
+
+dat.groupby(['SLDUST', 'SLDLST']).agg(['nunique'])
 
 graph = Graph.from_file(dat_path)
 
