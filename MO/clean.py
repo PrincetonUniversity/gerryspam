@@ -61,13 +61,18 @@ prec["SLDLST"] = assignment
 
 #prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
 
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+## once areal_interpolation script is run to give census blocks with precinct labels
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 # population 
-block_path = "/Users/hopecj/projects/gerryspam/MO/dat/blocks with precincts/MOBlocksPrecLabels.shp"
+block_path = "/Users/hopecj/projects/gerryspam/MO/dat/blocks_with_prec/mo_blocks_with_prec.shp"
 block = gpd.read_file(block_path)
 agg_prec = block.dissolve(by='loc_prec', aggfunc='sum')
 
 # merge labelled precinct file and prec (from blocks) file
-prec_merging = prec[['loc_prec', 'COUNTYFP', 'NAME', 'CD115FP', 'SLDUST', 'G16PREDCLI', 'G16PRERTRU', 
+prec = gpd.read_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
+prec_merging = prec[['loc_prec', 'COUNTYFP', 'NAME', 'CD115FP', 'SLDUST', 'SLDLST',
+                    'G16PREDCLI', 'G16PRERTRU', 
                      'G16PRELJOH', 'G16PREGSTE', 'G16PRECCAS', 'G16USSDKAN', 'G16USSRBLU', 'G16USSLDIN', 
                      'G16USSGMCF', 'G16USSCRYM', 'G16GOVDKOS', 'G16GOVRGRE', 'G16GOVLSPR', 'G16GOVGFIT', 
                      'G16GOVITUR', 'G16LTGDCAR', 'G16LTGRPAR', 'G16LTGLHED', 'G16LTGGLEA', 'G16ATGDHEN', 
