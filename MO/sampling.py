@@ -1,11 +1,17 @@
+import argparse
 import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
-from gerrychain import Graph, Partition, Election, MarkovChain
-from gerrychain.updaters import Tally, cut_edges, election, county_splits
+from gerrychain import Graph, Partition, Election, MarkovChain, GeographicPartition, accept, constraints
+from gerrychain.updaters import Tally, cut_edges
 from gerrychain.constraints import single_flip_contiguous, Validator, within_percent_of_ideal_population, refuse_new_splits
-from gerrychain.proposals import propose_random_flip
+from gerrychain.proposals import recom
 from gerrychain.accept import always_accept
+from gerrychain.tree import recursive_tree_part
+import numpy as np 
+from functools import partial
+import random
+import json
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## creating an initial partition
