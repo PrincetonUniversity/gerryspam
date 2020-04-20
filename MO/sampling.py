@@ -18,115 +18,161 @@ import json
 ## ## ## ## ## ## ## ## ## ## ##
 
 parser = argparse.ArgumentParser(description="MO ensemble", 
-                                 prog="mo_precincts_chain.py")
+                                 prog="sampling.py")
 parser.add_argument("map", metavar="map", type=str,
                     choices=["state_house", "state_senate"],
                     help="the map to redistrict")
+parser.add_argument("eps", metavar="epsilon", type=float,
+                    choices=[0.01, 0.03, 0.05],
+                    help="population deviation across districts")
 parser.add_argument("n", metavar="iterations", type=int,
                     help="the number of plans to sample")
-args = parser.parse_args()
+#args = parser.parse_args()
 
 num_districts_in_map = {"state_senate" : 34,
                         "state_house" : 163}
 
-epsilons = {"state_senate_1" : 0.01,
-            "state_senate_3": 0.03,
-            "state_senate_5": 0.05,
-            "state_house_1" : 0.01,
-            "state_house_3": 0.03,
-            "state_house_5": 0.05} 
-
+POP_COL = "POP10"
+NUM_DISTRICTS = num_districts_in_map[args.map]
+ITERS = args.n
+EPS = args.eps
+ELECTS = ["PRES16", "USSEN16"]
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## creating an initial partition
 ## ## ## ## ## ## ## ## ## ## ## 
+print("Reading in Data/Graph")
+
 dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
 dat = gpd.read_file(dat_path)
 list(dat.columns)
 dat['SLDUST'].nunique()
 dat['SLDLST'].nunique()
 
-dat.groupby(['SLDUST', 'SLDLST']).agg(['nunique'])
+elections = [Election("USSEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"}),
+             Election("PRES16", {"Dem": "G16PREDCLI", "Rep": "G16PRERTRU"})]
 
 graph = Graph.from_file(dat_path)
 
-election = Election("SEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"})
+mo_updaters = {"population" : Tally(POP_COL, alias="population"),
+               "cut_edges": cut_edges,
+            #    "VAP": Tally("VAP"),
+            #    "WVAP": Tally("WVAP"),
+            #    "HVAP": Tally("HVAP"),
+            #    "BVAP": Tally("BVAP"),
+            #    "HVAP_perc": lambda p: {k: (v / p["VAP"][k]) for k, v in p["HVAP"].items()},
+            #    "WVAP_perc": lambda p: {k: (v / p["VAP"][k]) for k, v in p["WVAP"].items()},
+            #    "BVAP_perc": lambda p: {k: (v / p["VAP"][k]) for k, v in p["BVAP"].items()},
+            #    "BHVAP_perc": lambda p: {k: ((p["HVAP"][k] + p["BVAP"][k]) / v) for k, v in p["VAP"].items()},
+               }
 
-initial_partition = Partition(
-    graph,
-    assignment="CD115FP",
-    updaters={
-        "cut_edges": cut_edges,
-        "population": Tally("POP10", alias="population"), # class gerrychain.updaters.Tally(fields, alias=None, dtype=<class ’int’>)
-        "SEN16": election,
-        "splits": county_splits("initial", "COUNTYFP"),
-    }
-)
-initial_partition["SEN16"].efficiency_gap()
+election_updaters = {election.name: election for election in elections}
+mo_updaters.update(election_updaters)
 
-# total pop in each congressional district:
-for district, pop in initial_partition["population"].items():
-    print("District {}: {}".format(district, pop))
+## ## ## ## ## ## ## ## ## ## ## 
+## Initial partition
+## ## ## ## ## ## ## ## ## ## ## 
+
+print("Creating seed plan")
+
+total_pop = sum(dat[POP_COL])
+ideal_pop = total_pop / NUM_DISTRICTS
+
+# if args.map != "state_house":
+cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
+                                pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
+## unclear why this is done
+# else:
+#     with open("GA_house_seed_part_0.05.p", "rb") as f:
+#         cddict = pickle.load(f)
+init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
     
 ## ## ## ## ## ## ## ## ## ## ## 
-## running a chain 
+## set up a chain 
 ## ## ## ## ## ## ## ## ## ## ## 
-def make_dat_from_chain(chain, id):
-    d_percents = [partition["SEN16"].percents("Dem") for partition in chain]
-    ensemble_dat = pd.DataFrame(d_percents)
-    ensemble_dat["id"] = id
-    egs = [partition["SEN16"].efficiency_gap() for partition in chain]
-    ensemble_dat["eg"] = egs
-    seats = [partition["SEN16"].seats("Dem") for partition in chain]
-    ensemble_dat["D_seats"] = seats
-    return ensemble_dat
+proposal = partial(recom, pop_col=POP_COL, pop_target=ideal_pop, epsilon=EPS, 
+                   node_repeats=1)
 
-######## chain 1: no constraints
+compactness_bound = constraints.UpperBound(lambda p: len(p["cut_edges"]), 
+                                           2*len(init_partition["cut_edges"]))
+
+## ## ## ## ## ## ## ## ## ## ## 
+## Re-com chain and run it!
 ## ## ## ## ## ## ## ## ## ## ## 
 chain = MarkovChain(
-    proposal=propose_random_flip, 
-    constraints=[single_flip_contiguous],
-    accept=always_accept,
-    initial_state=initial_partition,
-    total_steps=1000000              # try for a million
-)
+        proposal,
+        constraints=[
+            constraints.within_percent_of_ideal_population(init_partition, EPS),
+            compactness_bound],
+        accept=accept.always_accept,
+        initial_state=init_partition,
+        total_steps=ITERS)
 
-dat1 = make_dat_from_chain(chain, "single-flip-contiguous") # took abt 4 hours
-dat1.to_csv("single-flip-contiguous.csv")
-small_dat1 = dat1.sample(1000) # randomly sample 1000 rows
-small_dat1.to_csv("single-flip-contiguous_small.csv")
-# quick histograms
-plt.hist(dat1["eg"], bins=50)
-plt.show()
+print("Starting Markov Chain")
 
-plt.hist(small_dat1["eg"], bins=20)
-plt.show()
+def init_chain_results(elections):
+    data = {"cutedges": np.zeros(ITERS)}
+    parts = {"samples": [], "compact": []}
 
-######## chain 2: constraints
+    for election in elections:
+        name = election.lower()
+        data["seats_{}".format(name)] = np.zeros(ITERS)
+        data["results_{}".format(name)] = np.zeros((ITERS, NUM_DISTRICTS))
+        data["efficiency_gap_{}".format(name)] = np.zeros(ITERS)
+        data["mean_median_{}".format(name)] = np.zeros(ITERS)
+        data["partisan_gini_{}".format(name)] = np.zeros(ITERS)
+    return data, parts
+
+
+def tract_chain_results(data, elections, part, i):
+    data["cutedges"][i] = len(part["cut_edges"])
+
+    for election in elections:
+        name = election.lower()
+        data["results_{}".format(name)][i] = sorted(part[election].percents("Dem"))
+        data["seats_{}".format(name)][i] = part[election].seats("Dem")
+        data["efficiency_gap_{}".format(name)][i] = part[election].efficiency_gap()
+        data["mean_median_{}".format(name)][i] = part[election].mean_median()
+        data["partisan_gini_{}".format(name)][i] = part[election].partisan_gini()
+
+def update_saved_parts(parts, part, elections, i):
+    if i % (ITERS / 10) == 99: parts["samples"].append(part.assignment)
+
+chain_results, parts = init_chain_results(ELECTS)
+
+for i, part in enumerate(chain):
+    chain_results["cutedges"][i] = len(part["cut_edges"])
+    tract_chain_results(chain_results, ELECTS, part, i)
+    update_saved_parts(parts, part, ELECTS, i)
+
+    if i % 1000 == 0:
+        print("*", end="", flush=True)
+print()
+
+## ## ## ## ## ## ## ## ## ## ## 
+## Save it 
 ## ## ## ## ## ## ## ## ## ## ## 
 
-county_constraint = refuse_new_splits(initial_partition["splits"])
-pop_constraint = within_percent_of_ideal_population(initial_partition, 0.02)
+print("Saving results")
 
-chain2 = MarkovChain(
-    proposal=propose_random_flip, 
-    # constraints=[county_constraint, pop_constraint],
-    constraints=[pop_constraint],
-    accept=always_accept, 
-    initial_state=initial_partition,
-    total_steps=1000000              # try for a million
-)
+dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
 
-dat2 = make_dat_from_chain(chain2, "pop-constraint") 
-dat2.to_csv("pop-constraint.csv")
-small_dat2 = dat2.sample(1000) # randomly sample 1000 rows
-small_dat2.to_csv("pop-constrained_small.csv")
 
-plt.hist(dat2["eg"], bins=100)
-plt.show()
+output = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}.p".format(args.map, ITERS, EPS)
+output_parts = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}_parts.p".format(args.map, ITERS, EPS)
 
-# add counts
-# votes = [partition["SEN16"].votes("Dem") for partition in chain]
-# ensemble_dat["D_votes"] = votes
+with open(output, "wb") as f_out:
+    json.dumps(chain_results, f_out)
 
+with open(output_parts, "wb") as f_out:
+    json.dumps(parts, f_out)
+
+
+
+# quick histograms
+# plt.hist(dat1["eg"], bins=50)
+# plt.show()
+
+# plt.hist(small_dat1["eg"], bins=20)
+# plt.show()
 
