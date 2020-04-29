@@ -46,22 +46,31 @@ prec_elec_rn = prec_elec.rename(columns = {
         'votes President Dem': 'G16DPRS2',
         'votes President D': 'G16DPRS3',
         'votes President Democratic': 'G16DPRS4',
-        'votes President R': 'D16RPRS1', 
-        'votes President REP': 'D16RPRS2',
-         'votes President Rep': 'D16RPRS3',
-         'votes President Republican': 'D16RPRS',
-        'votes President and Vice President of the United States REP': 'G16RPRS',
-        'votes U.S. House DEM' : 'G16DHOR',
-        'votes U.S. House IAP' : 'G16IHOR',
-        'votes U.S. House LPN': 'G16LHOR',
-        'votes U.S. House REP' : 'G16RHOR',
-        'votes United States Senator DEM': 'G16DSEN',
-        'votes United States Senator IAP' : 'G16ISEN',
-        'votes United States Senator REP': 'G16RSEN'})
+        'votes President R': 'G16RPRS', 
+        'votes President REP': 'G16RPRS2',
+        'votes President Rep': 'G16RPRS3',
+        'votes President Republican': 'G16RPRS4',
+        'votes U.S. House D': 'G16DHOR',
+        'votes U.S. House Dem': 'G16DHOR2',
+        'votes U.S. House Democratic': 'G16DHOR3',
+        'votes U.S. House DEM' : 'G16DHOR4',
+        'votes U.S. House R': 'G16RHOR', 
+        'votes U.S. House REP': 'G16RHOR2', 
+        'votes U.S. House Rep': 'G16RHOR3', 
+        'votes U.S. House Republican': 'G16RHOR4'})
 
-#prec_elec_rn['G16OGOV'] = prec_elec_rn['G16OGOV1'].astype(int) + prec_elec_rn['G16OGOV2'].astype(int)+ prec_elec_rn['G16OGOV3'].astype(int)
+prec_elec_rn.isnull().values.any()
+prec_elec_rn = prec_elec_rn.fillna(0)
 
+prec_elec_rn['G16DPRS'] = prec_elec_rn['G16DPRS'].astype(int) + prec_elec_rn['G16DPRS2'].astype(int)+ prec_elec_rn['G16DPRS3'].astype(int) + prec_elec_rn['G16DPRS4'].astype(int)
+prec_elec_rn['G16RPRS'] = prec_elec_rn['G16RPRS'].astype(int) + prec_elec_rn['G16RPRS2'].astype(int)+ prec_elec_rn['G16RPRS3'].astype(int) + prec_elec_rn['G16RPRS4'].astype(int)
+prec_elec_rn['G16DHOR'] = prec_elec_rn['G16DHOR'].astype(int) + prec_elec_rn['G16DHOR2'].astype(int)+ prec_elec_rn['G16DHOR3'].astype(int) + prec_elec_rn['G16DHOR4'].astype(int)
+prec_elec_rn['G16RHOR'] = prec_elec_rn['G16RHOR'].astype(int) + prec_elec_rn['G16RHOR2'].astype(int)+ prec_elec_rn['G16RHOR3'].astype(int) + prec_elec_rn['G16RHOR4'].astype(int)
+
+prec_elec_keep = prec_elec_rn[['G16DPRS', 'G16RPRS', 'G16DHOR', 'G16RHOR']]
+prec_elec_keep["year"] = 2016
+prec_elec_keep.head()
 
 #get rid of other columns and save
 #this is ready to be matched to precinct names now
-prec_elec_rn.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/OpenPrecincts/States for site/Nevada/Election Data/Cleaned Election Data/NVG16.csv')
+prec_elec_keep.to_csv('/Users/hopecj/projects/gerryspam/NJ/dat/NJ_G16_OpenElex.csv')
