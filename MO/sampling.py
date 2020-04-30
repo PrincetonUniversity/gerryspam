@@ -167,8 +167,6 @@ with open(output, "w") as f_out:
 with open(output_parts, "w") as f_out:
     json.dump(parts, f_out)
 
-
-
 # quick histograms
 # plt.hist(dat1["eg"], bins=50)
 # plt.show()
