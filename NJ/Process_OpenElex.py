@@ -73,4 +73,4 @@ prec_elec_keep.head()
 
 #get rid of other columns and save
 #this is ready to be matched to precinct names now
-prec_elec_keep.to_csv('/Users/hopecj/projects/gerryspam/NJ/dat/NJ_G16_OpenElex.csv')
+prec_elec_keep.to_csv('1')
