@@ -2,6 +2,7 @@ import geopandas as gpd
 import pandas as pd
 import maup
 import os
+from rich import print
 
 # precinct data 
 prec_path = "/Users/hopecj/projects/gerryspam/MO/dat/mo_2016/mo_2016.shp"
@@ -59,15 +60,30 @@ assignment = maup.assign(prec, st_house)
 assignment.isna().sum()
 prec["SLDLST"] = assignment
 
+# census block-group shapefile
+block_group = gpd.read_file("/Users/hopecj/projects/gerryspam/MO/dat/tl_2013_29_bg/tl_2013_29_bg.shp")
+
+# CVAP (block-group level)
+# seems like this file is corrupted or something, shoot
+cvap = pd.read_csv("/Users/hopecj/projects/gerryspam/MO/dat/CVAP_2013-2017_ACS_csv_files/BlockGr.csv", encoding='utf-8')
+cvap['GEOID'] = cvap["geoid"].str.slice(start=7)
+print(cvap['GEOID'].head)
+
+blockgr = block_group.merge(cvap, )
+
 #prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 ## once areal_interpolation script is run to give census blocks with precinct labels
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+
+
 # population 
 block_path = "/Users/hopecj/projects/gerryspam/MO/dat/blocks_with_prec/mo_blocks_with_prec.shp"
 block = gpd.read_file(block_path)
 agg_prec = block.dissolve(by='loc_prec', aggfunc='sum')
+
+
 
 # merge labelled precinct file and prec (from blocks) file
 prec = gpd.read_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
