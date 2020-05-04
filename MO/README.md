@@ -17,6 +17,9 @@ https://www2.census.gov/geo/tiger/TIGER2010BLKPOPHU/
 On April 17th, downloaded Missouri state legislative district lines (lower house) from here:
 https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2016&layergroup=State+Legislative+Districts
 
+On April 30th, downloaded Missouri census block-groups from here: 
+https://catalog.data.gov/dataset/tiger-line-shapefile-2013-state-missouri-current-block-group-state-based 
+
 __Metadata__
 
 * `loc_prec`: Unique precinct identifier, "county name,precinct name" 
