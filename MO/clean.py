@@ -64,12 +64,16 @@ prec["SLDLST"] = assignment
 block_group = gpd.read_file("/Users/hopecj/projects/gerryspam/MO/dat/tl_2013_29_bg/tl_2013_29_bg.shp")
 
 # CVAP (block-group level)
-# seems like this file is corrupted or something, shoot
-cvap = pd.read_csv("/Users/hopecj/projects/gerryspam/MO/dat/CVAP_2013-2017_ACS_csv_files/BlockGr.csv", encoding='utf-8')
+# converted original file to utf-8 using
+# iconv -c -f ascii -t utf-8 BlockGr.csv > BlockGr_8.csv
+cvap = pd.read_csv("/Users/hopecj/projects/gerryspam/MO/dat/CVAP_2013-2017_ACS_csv_files/BlockGr_8.csv", encoding='utf-8')
 cvap['GEOID'] = cvap["geoid"].str.slice(start=7)
-print(cvap['GEOID'].head)
+cvap.set_index(['lntitle'], inplace=True) # only keep "total" CVAP, not ones broken down by race
+cvap_small = cvap.loc['Total']
 
-blockgr = block_group.merge(cvap, )
+blockgr = block_group.merge(cvap_small, on="GEOID")
+blockgr.to_file("/Users/hopecj/projects/gerryspam/MO/dat/blockgr_cvap/blockgr_cvap.shp")
+
 
 #prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
 
