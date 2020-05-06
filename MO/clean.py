@@ -60,6 +60,8 @@ assignment = maup.assign(prec, st_house)
 assignment.isna().sum()
 prec["SLDLST"] = assignment
 
+#prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
+
 # census block-group shapefile
 block_group = gpd.read_file("/Users/hopecj/projects/gerryspam/MO/dat/tl_2013_29_bg/tl_2013_29_bg.shp")
 
@@ -74,20 +76,14 @@ cvap_small = cvap.loc['Total']
 blockgr = block_group.merge(cvap_small, on="GEOID")
 blockgr.to_file("/Users/hopecj/projects/gerryspam/MO/dat/blockgr_cvap/blockgr_cvap.shp")
 
-
-#prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
-
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 ## once areal_interpolation script is run to give census blocks with precinct labels
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
-
 
 # population 
 block_path = "/Users/hopecj/projects/gerryspam/MO/dat/blocks_with_prec/mo_blocks_with_prec.shp"
 block = gpd.read_file(block_path)
 agg_prec = block.dissolve(by='loc_prec', aggfunc='sum')
-
-
 
 # merge labelled precinct file and prec (from blocks) file
 prec = gpd.read_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
