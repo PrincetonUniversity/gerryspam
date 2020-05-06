@@ -1,4 +1,4 @@
-import areal_interpolation as ai
+import areal_interpolation as ai  
 import geopandas as gpd
 import maup
 import matplotlib
