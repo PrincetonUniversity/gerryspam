@@ -20,6 +20,9 @@ https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2016&layergroup=Sta
 On April 30th, downloaded Missouri census block-groups from here: 
 https://catalog.data.gov/dataset/tiger-line-shapefile-2013-state-missouri-current-block-group-state-based 
 
+On May 4th, downloaded 2013-2017 ACS 5-year estimates of CVAP from here: 
+https://www.census.gov/programs-surveys/decennial-census/about/voting-rights/cvap.2017.html
+
 __Metadata__
 
 * `loc_prec`: Unique precinct identifier, "county name,precinct name" 
