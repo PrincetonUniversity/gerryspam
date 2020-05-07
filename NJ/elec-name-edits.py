@@ -18,11 +18,16 @@ def ignore_special(df):
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
+"""
+county-specific edit functions
+"""
 # concat precinct words for sneaky precincts
 # (e.g.: "salem north", "salem east" within the same county)
 def edit_033(row):
     regex = re.compile('salem ')
     return [regex.sub('salem', value) for value in row]
+
+
 
 """
 direct data cleaning
@@ -44,16 +49,29 @@ print(elec_16.shape)
 elec_16 = ignore_special(elec_16)
 print(elec_16.shape) # got rid of 1238 rows
 
-# concat precinct words for sneaky precincts
-# (e.g.: "salem north", "salem east" within the same county)
+# edit precincts with matching issues
+countyToCountyCleaner = {
+    "033": edit_033,
+}
 
+clean_elec = elec_16.sort_values(by=['county_fips'])
 
+counties = pd.Series(clean_elec['county_fips']).unique()
+clean_elec["prec_matching"] = clean_elec["precinct"].copy()
+clean_elec.set_index(['county_fips', 'precinct'], inplace=True)
+print("duplicated indices", clean_elec[clean_elec.index.duplicated()])
 
+for county in counties:
+    county_dat = clean_elec.loc[county]
+    changed = countyToCountyCleaner.get(county, lambda x: x)(county_dat)
+    clean_elec.update(county_dat)
 
-elec_16['elec_loc_prec'] = elec_16['county_fips'].astype(str) + "," + elec_16['precinct'].astype(str)
-prec_split = elec_16['precinct'].str.split(expand=True)
+# continue with the general clean 
+elec_16['elec_loc_prec'] = elec_16['county_fips'].astype(str) + "," + elec_16['prec_matching'].astype(str)
+prec_split = elec_16['prec_matching'].str.split(expand=True)
 elec_16['prec_word1'] = prec_split[0]
 elec_16 = elec_16.drop([2, 3, 'Unnamed: 6'], axis=1)
+
 # make column of first word from precinct name and numbers 
 elec_nums = ignore_alpha(elec_16['elec_loc_prec'])
 elec_16["elec_loc_prec_nums"] = elec_nums
