@@ -18,6 +18,20 @@ def ignore_special(df):
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
+# concat first two words for sneaky precincts
+# (e.g.: "salem north", "salem east" within the same county)
+def rm_space(row, prec):
+    with_space = prec + ' '
+    regex = re.compile(with_space)
+    return [regex.sub(prec, value) for value in row]
+
+# same as the above but deals with multiple precincts within one county
+def rm_space_multiples(row, mult_precincts):
+    to_replace = {(prec + ' '):prec for prec in mult_precincts}
+    out = row.replace(to_replace, regex=True)
+    out_list = out.tolist()
+    return out_list
+
 """
 county-specific edit functions
 """
@@ -26,23 +40,12 @@ countyToCountyCleaner = {
     "033": edit_033,
 }
 
-# concat precinct words for sneaky precincts
-# (e.g.: "salem north", "salem east" within the same county)
-def rm_space(row, prec):
-    with_space = prec + ' '
-    regex = re.compile(with_space)
-    return [regex.sub(prec, value) for value in row]
-
 def edit_033(row):
     return rm_space(row, 'salem')
 
 def edit_027(row):
     precs = ['salem', 'chester']
-    to_replace = {(prec + ' '):prec for prec in precs}
-    out = row.replace(to_replace, regex=True)
-    out_list = out.tolist()
-    print(type(out_list))
-    return out_list
+    return rm_space_multiples(row, precs)
 
 
 d = {'prec': ["chester east thing", "p", "salem west"], 'col2': ["dog", 4, "cat"]}
@@ -50,7 +53,7 @@ df = pd.DataFrame(data=d)
 
 m_out = edit_033(df['prec'])
 
-x_out = edit_027(df['prec'])
+u_out = edit_027(df['prec'])
 
         
 
