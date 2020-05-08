@@ -37,37 +37,32 @@ def rm_space_multiples(row, *mult_precincts):
     out_list = out.tolist()
     return out_list
 
-
-# salem city east --> salemeast 
-# (salem city) --> salem
-# salem east --> salemeast
-# (salem) --> salem
-
 """
 county-specific edit functions
 """
 # edit precincts with matching issues
 countyToCountyCleaner = {
     "033": edit_033,
+    "027": edit_027,
+    "019": edit_019,
 }
 
 def edit_033(row):
     return rm_space(row, 'salem')
 
 def edit_027(row):
-    precs = ['salem', 'chester']
+    precs = ['salem', 'chester', 'mendham', 'morris']
+    return rm_space_multiples(row, precs)
+
+def edit_019(row):
+    precs = ['clinton', 'lebanon']
     return rm_space_multiples(row, precs)
 
 
-d = {'prec': ["chester east thing", "p", "salem west", 'salem city east'], 'col2': ["dog", 4, "cat", "rabbit"]}
+d = {'prec': ["clinton hill", "p", "lebanon borough west", 'lebanon boro south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 df = pd.DataFrame(data=d)
 
-m_out = edit_033(df['prec'])
-
-u_out = edit_027(df['prec'])
-
-        
-
+m_out = edit_027(df['prec'])
 
 
 """
