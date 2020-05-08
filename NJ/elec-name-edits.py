@@ -3,6 +3,7 @@ import fuzzy_pandas as fpd
 import geopandas as gpd 
 import re
 from rich import print
+import helper_functions
 
 """
 helper functions
@@ -20,17 +21,27 @@ def ignore_special(df):
 
 # concat first two words for sneaky precincts
 # (e.g.: "salem north", "salem east" within the same county)
-def rm_space(row, prec):
-    with_space = prec + ' '
-    regex = re.compile(with_space)
-    return [regex.sub(prec, value) for value in row]
+def rm_space(row, prec_in, prec_out=None):
+    with_space_in = prec_in + ' '
+    regex = re.compile(with_space_in)
+    if prec_out is None:
+        replace = prec_in 
+    else:
+        replace = prec_out
+    return [regex.sub(replace, value) for value in row]
 
 # same as the above but deals with multiple precincts within one county
-def rm_space_multiples(row, mult_precincts):
+def rm_space_multiples(row, *mult_precincts):
     to_replace = {(prec + ' '):prec for prec in mult_precincts}
     out = row.replace(to_replace, regex=True)
     out_list = out.tolist()
     return out_list
+
+
+# salem city east --> salemeast 
+# (salem city) --> salem
+# salem east --> salemeast
+# (salem) --> salem
 
 """
 county-specific edit functions
@@ -48,7 +59,7 @@ def edit_027(row):
     return rm_space_multiples(row, precs)
 
 
-d = {'prec': ["chester east thing", "p", "salem west"], 'col2': ["dog", 4, "cat"]}
+d = {'prec': ["chester east thing", "p", "salem west", 'salem city east'], 'col2': ["dog", 4, "cat", "rabbit"]}
 df = pd.DataFrame(data=d)
 
 m_out = edit_033(df['prec'])

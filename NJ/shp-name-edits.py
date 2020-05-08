@@ -12,20 +12,40 @@ def ignore_alpha(row):
     regex = re.compile('[\D_]+')
     return [regex.sub('', value) for value in row]
 
-# concat precinct words for sneaky precincts
+# ignore special election rows (mail-in, provisional, emergency, and overseas)
+def ignore_special(df):
+    patternDel = "mai|provision|emergency|overseas"
+    filter = df[~df["precinct"].str.contains(patternDel, na=False)]
+    return filter
+
+# concat first two words for sneaky precincts
 # (e.g.: "salem north", "salem east" within the same county)
-def edit_033(row):
-    regex = re.compile('salem ')
-    return [regex.sub('salem', value) for value in row]
+def rm_space(row, prec_in, prec_out=None):
+    with_space_in = prec_in + ' '
+    regex = re.compile(with_space_in)
+    if prec_out is None:
+        replace = prec_in 
+    else:
+        replace = prec_out
+    return [regex.sub(replace, value) for value in row]
+
+# same as the above but deals with multiple precincts within one county
+def rm_space_multiples(row, mult_precincts):
+    to_replace = {(prec + ' '):prec for prec in mult_precincts}
+    out = row.replace(to_replace, regex=True)
+    out_list = out.tolist()
+    return out_list
 
 """
 county-specific edit functions
 """
-# concat precinct words for sneaky precincts
-# (e.g.: "salem north", "salem east" within the same county)
+# edit precincts with matching issues
+countyToCountyCleaner = {
+    "033": edit_033,
+}
+
 def edit_033(row):
-    regex = re.compile('salem ')
-    return [regex.sub('salem', value) for value in row]
+    return rm_space(row, 'salem city', 'salem')
 
 
 """
