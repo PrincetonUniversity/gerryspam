@@ -44,21 +44,6 @@ def rm_space_multiples(row, prec_to_replace, replace_with=None):
 county-specific edit functions
 """
 # edit precincts with matching issues
-countyToCountyCleaner = {
-    "033": edit_033,
-    "027": edit_027,
-    "019": edit_019,
-    "025": edit_025,
-    "009": edit_009,
-    "021": edit_021,
-    "037": edit_037,
-    "041": edit_041,
-    "007": edit_007,
-    "013": edit_013,
-    "039": edit_039,
-    "001": edit_001,
-}
-
 def edit_033(row):
     return rm_space(row, 'salem')
 
@@ -108,14 +93,33 @@ def edit_001(row):
     replace_with = ['buena', 'eggharbor', 'west']
     return rm_space_multiples(row, precs, replace_with)
 
+def edit_003(row):
+    precs = ['ridgefield park ', 'river vale', 'river edge', 'saddle brook', 'saddle river']
+    replace_with = ['ridgefieldpark', 'rivervale', 'riveredge', 'saddlebrook', 'saddleriver']
+    return rm_space_multiples(row, precs, replace_with)
 
+# test function
+# d = {'prec': ["freehold borough", "freehold township", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
+# df = pd.DataFrame(data=d)
 
-d = {'prec': ["freehold borough", "freehold township", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
-df = pd.DataFrame(data=d)
+# m_out = edit_025(df['prec'])
 
-m_out = edit_025(df['prec'])
-
-
+countyToCountyCleaner = {
+    "033": edit_033,
+    "027": edit_027,
+    "019": edit_019,
+    "025": edit_025,
+    "009": edit_009,
+    "021": edit_021,
+    "037": edit_037,
+    "041": edit_041,
+    "007": edit_007,
+    "013": edit_013,
+    "039": edit_039,
+    "001": edit_001,
+    "003": edit_003
+}
+    
 """
 direct data cleaning
 """
