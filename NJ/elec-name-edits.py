@@ -3,7 +3,7 @@ import fuzzy_pandas as fpd
 import geopandas as gpd 
 import re
 from rich import print
-import helper_functions
+# import helper_functions
 
 """
 helper functions
@@ -31,9 +31,12 @@ def rm_space(row, prec_in, prec_out=None):
     return [regex.sub(replace, value) for value in row]
 
 # same as the above but deals with multiple precincts within one county
-def rm_space_multiples(row, *mult_precincts):
-    to_replace = {(prec + ' '):prec for prec in mult_precincts}
-    out = row.replace(to_replace, regex=True)
+def rm_space_multiples(row, prec_to_replace, replace_with=None):
+    if replace_with is None:
+        to_replace = {(prec + ' '):prec for prec in prec_to_replace}
+        out = row.replace(to_replace, regex=True)
+    else:
+        out = row.replace(prec_to_replace, replace_with, regex=True)
     out_list = out.tolist()
     return out_list
 
@@ -58,11 +61,10 @@ def edit_019(row):
     precs = ['clinton', 'lebanon']
     return rm_space_multiples(row, precs)
 
-
 d = {'prec': ["clinton hill", "p", "lebanon borough west", 'lebanon boro south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 df = pd.DataFrame(data=d)
 
-m_out = edit_027(df['prec'])
+m_out = edit_019(df['prec'])
 
 
 """
