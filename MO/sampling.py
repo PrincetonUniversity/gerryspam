@@ -13,6 +13,8 @@ from gerrychain.tree import recursive_tree_part
 import numpy as np 
 from functools import partial
 import json
+import csv
+import pickle
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## set-up argparse!
@@ -158,14 +160,14 @@ print("Saving results")
 
 dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
 
-output = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}.json".format(args.map, ITERS, EPS)
-output_parts = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}_parts.json".format(args.map, ITERS, EPS)
+output = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}.p".format(args.map, ITERS, EPS)
+output_parts = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}_parts.p".format(args.map, ITERS, EPS)
 
-with open(output, "w") as f_out:
-    json.dump(chain_results, f_out)
+with open(output, "wb") as f_out:
+    pickle.dump(chain_results, f_out)
 
-with open(output_parts, "w") as f_out:
-    json.dump(parts, f_out)
+with open(output_parts, "wb") as f_out:
+    pickle.dump(parts, f_out)
 
 # quick histograms
 # plt.hist(dat1["eg"], bins=50)
