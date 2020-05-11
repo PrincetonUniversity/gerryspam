@@ -13,9 +13,9 @@ def ignore_alpha(row):
     regex = re.compile('[\D_]+')
     return [regex.sub('', value) for value in row]
 
-# ignore special election rows (mail-in, provisional, emergency, and overseas)
+# ignore special election rows (mail-in, provisional, emergency, hand(?), overseas)
 def ignore_special(df):
-    patternDel = "mail|provision|emergency|overseas"
+    patternDel = "mail|vbm|prov|emergency|overseas|hand"
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
@@ -55,6 +55,8 @@ countyToCountyCleaner = {
     "041": edit_041,
     "007": edit_007,
     "013": edit_013,
+    "039": edit_039,
+    "001": edit_001,
 }
 
 def edit_033(row):
@@ -97,6 +99,16 @@ def edit_013(row):
     replace_with = ['irvingtonnorth ', 'irvingtoneast ', 'irvingtonsouth ', 'irvingtonwest ',
                     'newarknorth ', 'newarkeast ', 'newarksouth ', 'newarkwest ', 'newarkcentral ']
     return rm_space_multiples(row, precs, replace_with)
+
+def edit_039(row):
+    return rm_space(row, 'washington')
+
+def edit_001(row):
+    precs = ['buena ', 'egg harbor ', 'west ']
+    replace_with = ['buena', 'eggharbor', 'west']
+    return rm_space_multiples(row, precs, replace_with)
+
+
 
 d = {'prec': ["freehold borough", "freehold township", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 df = pd.DataFrame(data=d)

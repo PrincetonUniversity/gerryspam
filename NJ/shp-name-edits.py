@@ -54,6 +54,8 @@ countyToCountyCleaner = {
     "041": edit_041,
     "007": edit_007,
     "013": edit_013,
+    "039": edit_039,
+    "001": edit_001,
 }
 
 def edit_033(row):
@@ -110,6 +112,18 @@ def edit_013(row):
              'newark city ward south', 'newark city ward west', 'newark city ward central']
     replace_with = ['irvingtonnorth ', 'irvingtoneast ', 'irvingtonsouth ', 'irvingtonwest ',
                     'newarknorth ', 'newarkeast ', 'newarksouth ', 'newarkwest ', 'newarkcentral ']
+    return rm_space_multiples(row, precs, replace_with)
+
+def edit_039(row):
+    precs = ['roselle borough ward', 'roselle park']
+    replace_with=['roselleward', 'rosellepark']
+    return rm_space_multiples(row, precs, replace_with)
+
+def edit_001(row):
+    precs = ['buena borough', 'buena visa',
+             'egg harbor township', 'egg harbor city']
+    replace_with = ['buenaboro', 'buenavista'
+                    'eggharbortwp', 'eggharborcity']
     return rm_space_multiples(row, precs, replace_with)
 
 d = {'prec': ["pine valley", "pine hill", "audubon borough west", 'haddon township south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
