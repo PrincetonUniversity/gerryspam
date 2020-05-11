@@ -47,6 +47,7 @@ countyToCountyCleaner = {
     "033": edit_033,
     "027": edit_027,
     "019": edit_019,
+    "025": edit_025,
 }
 
 def edit_033(row):
@@ -56,10 +57,14 @@ def edit_027(row):
     precs = ['salem', 'chester', 'mendham', 'morris']
     return rm_space_multiples(row, precs)
 
-
 def edit_019(row):
     precs = ['clinton ', 'lebanon borough']
     replace_with=['clinton', 'lebanonboro']
+    return rm_space_multiples(row, precs, replace_with)
+
+def edit_025(row):
+    precs = ['freehold ', 'neptune ', 'sea ', 'spring lake ', 'cape may city', 'cape may point']
+    replace_with = ['freehold', 'neptune', 'sea', 'springlake', 'capemay', 'capemaypoint']
     return rm_space_multiples(row, precs, replace_with)
 
 d = {'prec': ["clinton hill", "p", "lebanon borough west", 'lebanon boro south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
