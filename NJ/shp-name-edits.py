@@ -52,6 +52,8 @@ countyToCountyCleaner = {
     "021": edit_021,
     "037": edit_037,
     "041": edit_041,
+    "007": edit_007,
+    "013": edit_013,
 }
 
 def edit_033(row):
@@ -88,11 +90,33 @@ def edit_037(row):
 def edit_041(row):
     return rm_space(row, 'washington')
 
-d = {'prec': ["clinton hill", "p", "lebanon borough west", 'lebanon boro south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
+def edit_007(row):
+    precs = ['audubon park', 'audubon borough', 
+             'berlin borough', 'berlin township', 
+             'gloucester township', 'gloucester city',
+             'haddon heights', 'haddon township', 
+             'pine ']
+    replace_with = ['audubonpark', 'audubonboro', 
+                    'berlinboro', 'berlintwp', 
+                    'gloucestertwp', 'gloucestercity', 
+                    'haddonheights', 'haddontwp',
+                    'pine']
+    return rm_space_multiples(row, precs, replace_with)
+
+def edit_013(row):
+    precs = ['irvington township ward north', 'irvington township ward east', 
+             'irvington township ward south', 'irvington township ward west',
+             'newark city ward north', 'newark city ward east', 
+             'newark city ward south', 'newark city ward west', 'newark city ward central']
+    replace_with = ['irvingtonnorth ', 'irvingtoneast ', 'irvingtonsouth ', 'irvingtonwest ',
+                    'newarknorth ', 'newarkeast ', 'newarksouth ', 'newarkwest ', 'newarkcentral ']
+    return rm_space_multiples(row, precs, replace_with)
+
+d = {'prec': ["pine valley", "pine hill", "audubon borough west", 'haddon township south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 df = pd.DataFrame(data=d)
 
 print(df['prec'])
-u_out = edit_019(df['prec'])
+u_out = edit_007(df['prec'])
 
 """
 direct data cleaning
