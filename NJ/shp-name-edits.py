@@ -56,17 +56,22 @@ def edit_019(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_025(row):
-    precs = ['freehold ', 'neptune ', 'sea ', 'spring lake ', 'cape may city', 'cape may point']
-    replace_with = ['freehold', 'neptune', 'sea', 'springlake', 'capemay', 'capemaypoint']
+    precs = ['freehold ', 'neptune ', 'sea ', 'spring lake ']
+    replace_with = ['freehold', 'neptune', 'sea', 'springlake']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_009(row):
-    precs = ['wildwood', 'west']
+    precs = ['wildwood ', 'west ', 'cape may city', 'cape may point']
+    replace_with = ['wildwood', 'west', 'capemay', 'capemaypoint']
+    return rm_space_multiples(row, precs, replace_with)
+    precs = ['wildwood', 'west',]
     return rm_space_multiples(row, precs)
 
 def edit_021(row):
-    precs = ['trenton city ward n', 'trenton city ward e', 'trenton city ward s', 'trenton city ward w']
-    replace_with = ['trentonnorth', 'trentoneast', 'trentonsouth', 'trentonwest']
+    precs = ['trenton city ward n', 'trenton city ward e', 'trenton city ward s', 'trenton city ward w',
+             'hopewell borough', 'hopewell township']
+    replace_with = ['trentonnorth', 'trentoneast', 'trentonsouth', 'trentonwest',
+                    'hopewelltwp', 'hopewellboro']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_037(row):
@@ -107,7 +112,7 @@ def edit_039(row):
 def edit_001(row):
     precs = ['buena borough', 'buena visa',
              'egg harbor township', 'egg harbor city']
-    replace_with = ['buenaboro', 'buenavista'
+    replace_with = ['buenaboro', 'buenavista',
                     'eggharbortwp', 'eggharborcity']
     return rm_space_multiples(row, precs, replace_with)
 
@@ -117,6 +122,9 @@ def edit_003(row):
     replace_with = ['ridgefieldpark', 'ridgefield', 
                     'rivervale', 'riveredge', 'saddlebrook', 'saddleriver']
     return rm_space_multiples(row, precs, replace_with)
+
+def edit_023(row):
+    return rm_space(row, 'south')
 
 # # test function
 # d = {'prec': ["pine valley", "pine hill", "audubon borough west", 'haddon township south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
@@ -138,7 +146,8 @@ countyToCountyCleaner = {
     "013": edit_013,
     "039": edit_039,
     "001": edit_001,
-    "003": edit_003
+    "003": edit_003,
+    "023": edit_023,
 }
 
 """
@@ -147,14 +156,11 @@ direct data cleaning
 partnership = gpd.read_file('/Users/hopecj/projects/gerryspam/NJ/dat/partnership-2016/unzipped/extracted/precincts/compiled.shp')
 
 # clean up shapefile precinct column
-list(partnership.columns)
 partnership['precinct'] = partnership.NAMELSAD.str.lower()
 partnership['shp_loc_prec'] = partnership['COUNTYFP'].astype(str) + "," + partnership['precinct']
 
-# edit precincts with matching issues
-countyToCountyCleaner = {
-    "033": edit_033,
-}
+# dissolve precincts with the same precinct name (3)
+partnership = partnership.dissolve(by='shp_loc_prec', as_index=False)
 
 clean_shp = partnership.sort_values(by=['COUNTYFP'])
 
@@ -163,16 +169,24 @@ clean_shp["prec_matching"] = clean_shp["precinct"].copy()
 clean_shp.set_index(['COUNTYFP', 'precinct'], inplace=True)
 print("duplicated indices", clean_shp[clean_shp.index.duplicated()])
 
+#drop geometry for this step -- can merge geometry back in later
+clean_shp = pd.DataFrame(clean_shp.drop(columns='geometry'))
+
 for county in counties:
+    print(county)
     county_dat = clean_shp.loc[county]
-    changed = countyToCountyCleaner.get(county, lambda x: x)(county_dat)
+    changed = countyToCountyCleaner.get(county, lambda x: x)(county_dat['prec_matching'])
+    county_dat['prec_matching'] = changed
     clean_shp.update(county_dat)
 
 # continue with the general clean 
+clean_shp.reset_index(inplace=True)
 partnership_prec_split = clean_shp['prec_matching'].str.split(expand=True)
-clean_shp['prec_word1'] = clean_shp_prec_split[0]
+clean_shp['prec_word1'] = partnership_prec_split[0]
 
 # make column of first word from precinct name and numbers 
 shp_nums = ignore_alpha(clean_shp['shp_loc_prec'])
 clean_shp["shp_loc_prec_nums"] = shp_nums
 clean_shp["shp_loc_prec_code"] = clean_shp['shp_loc_prec_nums'].astype(str) + '_' + clean_shp['prec_word1']
+
+clean_shp.to_csv("/Users/hopecj/projects/gerryspam/NJ/dat/cleanprec_shp.csv")

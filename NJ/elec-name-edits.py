@@ -15,7 +15,7 @@ def ignore_alpha(row):
 
 # ignore special election rows (mail-in, provisional, emergency, hand(?), overseas)
 def ignore_special(df):
-    patternDel = "mail|vbm|prov|emergency|overseas|hand"
+    patternDel = "mail|vbm|prov|emergency|overseas|hand|total"
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
@@ -56,17 +56,18 @@ def edit_019(row):
     return rm_space_multiples(row, precs)
 
 def edit_025(row):
-    precs = ['freehold ', 'neptune ', 'sea ', 'spring lake ', 'cape may point', 'cape may']
-    replace_with = ['freehold', 'neptune', 'sea', 'springlake', 'capemaypoint',  'capemay']
+    precs = ['freehold ', 'neptune ', 'sea ', 'spring lake ']
+    replace_with = ['freehold', 'neptune', 'sea', 'springlake']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_009(row):
-    precs = ['wildwood crest', 'wildwood', 'west ']
-    replace_with = ['wildwoodcrest', 'wildwoodcity', 'west']
+    precs = ['wildwood crest', 'wildwood', 'west ', 'cape may point', 'cape may']
+    replace_with = ['wildwoodcrest', 'wildwoodcity', 'west', 'capemaypoint', 'capemay']
     return rm_space_multiples(row, precs, replace_with)
     
 def edit_021(row):
-    return rm_space(row, 'trenton')
+    precs = ['trenton', 'hopewell']
+    return rm_space_multiples(row, precs)
 
 def edit_037(row):
     return rm_space(row, 'andover')
@@ -98,6 +99,9 @@ def edit_003(row):
     replace_with = ['ridgefieldpark', 'rivervale', 'riveredge', 'saddlebrook', 'saddleriver']
     return rm_space_multiples(row, precs, replace_with)
 
+def edit_023(row):
+    return rm_space(row, 'south')
+
 # test function
 # d = {'prec': ["freehold borough", "freehold township", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 # df = pd.DataFrame(data=d)
@@ -117,7 +121,8 @@ countyToCountyCleaner = {
     "013": edit_013,
     "039": edit_039,
     "001": edit_001,
-    "003": edit_003
+    "003": edit_003,
+    "023": edit_023,
 }
     
 """
@@ -139,7 +144,7 @@ elec_16['county_fips'] = elec_16['county_fips_st'].str.slice(start=2)
 # remove special election precinct rows 
 print(elec_16.shape)
 elec_16 = ignore_special(elec_16)
-print(elec_16.shape) # got rid of 1238 rows
+print(elec_16.shape) # got rid of 1363 rows
 
 clean_elec = elec_16.sort_values(by=['county_fips'])
 counties = pd.Series(clean_elec['county_fips']).unique()
@@ -160,13 +165,16 @@ for county in counties:
     county_dat['prec_matching'] = changed
     clean_elec.update(county_dat)
 
-# continue with the general clean 
+# continue with the general clean
+clean_elec.reset_index(inplace=True)
 clean_elec['elec_loc_prec'] = clean_elec['county_fips'].astype(str) + "," + clean_elec['prec_matching'].astype(str)
 prec_split = clean_elec['prec_matching'].str.split(expand=True)
 clean_elec['prec_word1'] = prec_split[0]
-clean_elec = clean_elec.drop([2, 3, 'Unnamed: 6'], axis=1)
+# clean_elec = clean_elec.drop([2, 3, 'Unnamed: 6'], axis=1)
 
 # make column of first word from precinct name and numbers 
 elec_nums = ignore_alpha(clean_elec['elec_loc_prec'])
 clean_elec["elec_loc_prec_nums"] = elec_nums
 clean_elec["elec_loc_prec_code"] = clean_elec['elec_loc_prec_nums'].astype(str) + '_' + clean_elec['prec_word1']
+
+clean_elec.to_csv("/Users/hopecj/projects/gerryspam/NJ/dat/cleanprec_elec.csv")
