@@ -51,6 +51,7 @@ countyToCountyCleaner = {
     "009": edit_009,
     "021": edit_021,
     "037": edit_037,
+    "041": edit_041,
 }
 
 def edit_033(row):
@@ -83,6 +84,9 @@ def edit_037(row):
     precs = ['andover township', 'andover borough']
     replace_with = ['andovertwp', 'andoverboro']
     return rm_space_multiples(row, precs, replace_with)
+
+def edit_041(row):
+    return rm_space(row, 'washington')
 
 d = {'prec': ["clinton hill", "p", "lebanon borough west", 'lebanon boro south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 df = pd.DataFrame(data=d)

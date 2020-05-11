@@ -52,7 +52,7 @@ countyToCountyCleaner = {
     "009": edit_009,
     "021": edit_021,
     "037": edit_037,
-    
+    "041": edit_041,
 }
 
 def edit_033(row):
@@ -82,6 +82,11 @@ def edit_021(row):
 def edit_037(row):
     return rm_space(row, 'andover')
 
+def edit_041(row):
+    return rm_space(row, 'washington')
+
+def edit_007(row):
+    
 
 d = {'prec': ["freehold borough", "freehold township", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 df = pd.DataFrame(data=d)
