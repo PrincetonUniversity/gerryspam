@@ -2,6 +2,8 @@ import argparse
 import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
+from gerrychain.random import random
+random.seed(12345678)
 from gerrychain import Graph, Partition, Election, MarkovChain, GeographicPartition, accept, constraints
 from gerrychain.updaters import Tally, cut_edges
 from gerrychain.constraints import single_flip_contiguous, Validator, within_percent_of_ideal_population, refuse_new_splits
@@ -10,7 +12,6 @@ from gerrychain.accept import always_accept
 from gerrychain.tree import recursive_tree_part
 import numpy as np 
 from functools import partial
-import random
 import json
 
 ## ## ## ## ## ## ## ## ## ## ## 
@@ -64,7 +65,7 @@ mo_updaters = {"population" : Tally(POP_COL, alias="population"),
             #    "WVAP_perc": lambda p: {k: (v / p["VAP"][k]) for k, v in p["WVAP"].items()},
             #    "BVAP_perc": lambda p: {k: (v / p["VAP"][k]) for k, v in p["BVAP"].items()},
             #    "BHVAP_perc": lambda p: {k: ((p["HVAP"][k] + p["BVAP"][k]) / v) for k, v in p["VAP"].items()},
-               }
+            }
 
 election_updaters = {election.name: election for election in elections}
 mo_updaters.update(election_updaters)
