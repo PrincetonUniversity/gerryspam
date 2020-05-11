@@ -3,7 +3,7 @@ import geopandas as gpd
 import pandas as pd
 import matplotlib.pyplot as plt
 from gerrychain.random import random
-random.seed(12345678)
+random.seed(20210511)
 from gerrychain import Graph, Partition, Election, MarkovChain, GeographicPartition, accept, constraints
 from gerrychain.updaters import Tally, cut_edges
 from gerrychain.constraints import single_flip_contiguous, Validator, within_percent_of_ideal_population, refuse_new_splits
@@ -15,7 +15,7 @@ from functools import partial
 import json
 
 ## ## ## ## ## ## ## ## ## ## ## 
-## argument parser set-up
+## set-up argparse!
 ## ## ## ## ## ## ## ## ## ## ##
 
 parser = argparse.ArgumentParser(description="MO ensemble", 
@@ -24,7 +24,7 @@ parser.add_argument("map", metavar="map", type=str,
                     choices=["state_house", "state_senate"],
                     help="the map to redistrict")
 parser.add_argument("eps", metavar="epsilon", type=float,
-                    choices=[0.01, 0.03, 0.05],
+                    choices=[0.01, 0.03, 0.05, .08],
                     help="population deviation across districts")
 parser.add_argument("n", metavar="iterations", type=int,
                     help="the number of plans to sample")
@@ -157,7 +157,6 @@ print()
 print("Saving results")
 
 dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
-
 
 output = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}.json".format(args.map, ITERS, EPS)
 output_parts = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}_parts.json".format(args.map, ITERS, EPS)
