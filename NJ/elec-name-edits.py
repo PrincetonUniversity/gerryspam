@@ -50,6 +50,9 @@ countyToCountyCleaner = {
     "019": edit_019,
     "025": edit_025,
     "009": edit_009,
+    "021": edit_021,
+    "037": edit_037,
+    
 }
 
 def edit_033(row):
@@ -73,6 +76,12 @@ def edit_009(row):
     replace_with = ['wildwoodcrest', 'wildwoodcity', 'west']
     return rm_space_multiples(row, precs, replace_with)
     
+def edit_021(row):
+    return rm_space(row, 'trenton')
+
+def edit_037(row):
+    return rm_space(row, 'andover')
+
 
 d = {'prec': ["freehold borough", "freehold township", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 df = pd.DataFrame(data=d)
