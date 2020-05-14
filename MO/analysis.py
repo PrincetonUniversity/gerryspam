@@ -152,3 +152,47 @@ for i in [-1,1]:
 
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_MM.png", bbox_inches="tight", dpi=200)
 plt.show()
+
+
+
+
+# create a data frame with columns for vote by district, eg, and D-seats
+def extend_data_frame(df, data, key_prefix_metric, key_prefix_res, key_prefix_seats,
+                      col, districts, epsilon, 
+                      elections=["PRES16", "SEN16"], iters=100000):
+    df_res = pd.DataFrame([])
+    df_seats = pd.DataFrame([])
+    for elect in elections:
+        # eg DF
+        key_metric = key_prefix_metric.format(elect.lower())
+        df = pd.concat([df, pd.DataFrame(np.array([data[key_metric], [elect]*iters, [districts]*iters, [epsilon]*iters]).T,
+                                         columns=["eg", "election", "total_districts", "epsilon"])], ignore_index=True)
+        # results DF
+        key_res = key_prefix_res.format(elect.lower())
+        res_intermediate = pd.DataFrame(data[key_res])
+        df_res = df_res.append(res_intermediate, ignore_index=True)
+        # seats DF
+        key_seats = key_prefix_seats.format(elect.lower())
+        seats_intermediate = pd.DataFrame(data[key_seats])
+        df_seats = df_seats.append(seats_intermediate, ignore_index=True)
+    df_res.rename(columns=lambda x: x+1, inplace=True) 
+    df_seats = df_seats.rename(columns={0:'D_seats'})
+    return df, df_res, df_seats
+elections = ["PRES16", "USSEN16"]
+
+eg = pd.DataFrame()
+eg_05 = extend_data_frame(eg, sen_05, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.05, elections=elections)
+eg_03 = extend_data_frame(eg, sen_03, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.03, elections=elections)
+eg_01 = extend_data_frame(eg, sen_01, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.01, elections=elections)
+
+out = eg_05[0].join(eg_05[1])
+out = out.join(eg_05[2])
+
+
+eg_05["eg"] = eg_05["eg"].apply(float)
+eg_05["Districts"] = eg_05["Districts"].apply(int)
+eg_05["Epsilon"] = eg_05["Epsilon"].apply(float)
+# check that we got the right number of rows
+eg.groupby(['Election', 'Epsilon'])['EG'].count()
+
+test = pd.DataFrame(sen_05["results_pres16"])
