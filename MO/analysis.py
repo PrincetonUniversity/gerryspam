@@ -95,6 +95,7 @@ def extend_data_frame(df, data, key_prefix, col, districts, epsilon,
     return df
 elections = ["PRES16", "USSEN16"]
 
+# efficiency gap
 eg = pd.DataFrame()
 eg = extend_data_frame(eg, sen_05, "efficiency_gap_{}", "EG", 34, 0.05, elections=elections)
 eg = extend_data_frame(eg, sen_03, "efficiency_gap_{}", "EG", 34, 0.03, elections=elections)
@@ -106,3 +107,48 @@ eg["Epsilon"] = eg["Epsilon"].apply(float)
 # check that we got the right number of rows
 eg.groupby(['Election', 'Epsilon'])['EG'].count()
 
+# make a plot
+sns.set(style="whitegrid", palette="Set3")
+es = ["PRES16", "USSEN16"]
+plt.figure(figsize=(12,6))
+plt.title("Efficiency Gap Scores")
+sns.violinplot(x="Epsilon", y="EG", hue="Election", hue_order=es, 
+               data=eg, inner="quartile")
+plt.axhspan(-0.08, 0.08, color="limegreen", alpha=0.15, zorder=0)
+
+for i in [-1,1]:
+    plt.plot([0 + i*0.2],sen_part[es[int(i == 1)]].efficiency_gap(), marker="o", color="red")
+    plt.plot([1 + i*0.2],sen_part[es[int(i == 1)]].efficiency_gap(), marker="o", color="red")
+#     plt.plot([3 + i*0.270],house[es[i+1]].efficiency_gap(), marker="o", color="red")
+plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_EG.png", bbox_inches="tight", dpi=200)
+plt.show()
+
+#mean-median difference
+mm = pd.DataFrame()
+mm = extend_data_frame(mm, sen_05, "mean_median_{}", "MM", 34, 0.05, elections=elections)
+mm = extend_data_frame(mm, sen_03, "mean_median_{}", "MM", 34, 0.03, elections=elections)
+mm = extend_data_frame(mm, sen_01, "mean_median_{}", "MM", 34, 0.01, elections=elections)
+
+mm["MM"] = mm["MM"].apply(float)
+mm["Districts"] = mm["Districts"].apply(int)
+
+mm["MM"] = mm["MM"].apply(float)
+mm["Districts"] = mm["Districts"].apply(int)
+mm["Epsilon"] = mm["Epsilon"].apply(float)
+# check that we got the right number of rows
+mm.groupby(['Election', 'Epsilon'])["MM"].count()
+
+# make a plot
+sns.set(style="whitegrid", palette="Set3")
+es = ["PRES16", "USSEN16"]
+plt.figure(figsize=(12,6))
+plt.title("Mean Median Scores")
+sns.violinplot(x="Epsilon", y="MM", hue="Election", hue_order=es, 
+               data=mm, inner="quartile")
+
+for i in [-1,1]:
+    plt.plot([0 + i*0.2],sen_part[es[int(i == 1)]].mean_median(), marker="o", color="red")
+    plt.plot([1 + i*0.2],sen_part[es[int(i == 1)]].mean_median(), marker="o", color="red")
+
+plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_MM.png", bbox_inches="tight", dpi=200)
+plt.show()
