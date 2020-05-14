@@ -153,9 +153,6 @@ for i in [-1,1]:
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_MM.png", bbox_inches="tight", dpi=200)
 plt.show()
 
-
-
-
 # create a data frame with columns for vote by district, eg, and D-seats
 def extend_data_frame(df, data, key_prefix_metric, key_prefix_res, key_prefix_seats,
                       col, districts, epsilon, 
@@ -185,14 +182,13 @@ eg_05 = extend_data_frame(eg, sen_05, "efficiency_gap_{}", "results_{}", "seats_
 eg_03 = extend_data_frame(eg, sen_03, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.03, elections=elections)
 eg_01 = extend_data_frame(eg, sen_01, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.01, elections=elections)
 
+# merge together the tuple returned from the function
+# nb: this is all 5% population deviation!
 out = eg_05[0].join(eg_05[1])
 out = out.join(eg_05[2])
 
+# sample rows for viz
+out_sample = out.sample(n=8000, replace=False, random_state=1)
+out_sample['hash'] = out_sample.index
 
-eg_05["eg"] = eg_05["eg"].apply(float)
-eg_05["Districts"] = eg_05["Districts"].apply(int)
-eg_05["Epsilon"] = eg_05["Epsilon"].apply(float)
-# check that we got the right number of rows
-eg.groupby(['Election', 'Epsilon'])['EG'].count()
-
-test = pd.DataFrame(sen_05["results_pres16"])
+out_sample.to_csv("/Users/hopecj/projects/gerryspam/MO/res/stsen_05_data_sampled.csv")
