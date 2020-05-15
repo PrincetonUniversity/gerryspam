@@ -1,0 +1,90 @@
+---
+title: "Competitiveness Analysis"
+output:
+  html_document:
+    df_print: paged
+---
+The broad goal is to measure if the introduction of an independent redistricting commission in California had an impact on competitiveness of the races. 
+
+#Get data
+
+This is an [State Leglislative electoral data](https://github.com/PrincetonUniversity/historic_state_legislative_election_results/tree/2bf28f2ac1a74636b09dfb700eef08a4324d2650) gathered by Will Adler. When you execute code within the notebook, the results appear beneath the code. 
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(magrittr)
+# state legislative 
+data = read_csv("https://raw.githubusercontent.com/PrincetonUniversity/historic_state_legislative_election_results/2bf28f2ac1a74636b09dfb700eef08a4324d2650/state_legislative_election_results_post1971.csv")
+# filter to ca post-2000
+stateleg = data %>%
+  filter(State == "CA", Year > 1999)
+
+stateleg %<>% mutate(pre_2011 = ifelse(Year < 2012, "Pre-2011", "Post-2011"),
+                     R_voteshare = 1 - `D Voteshare`,
+                     win_margin = ifelse(R_voteshare > 0.5, R_voteshare - 0.5, `D Voteshare` - 0.5))
+head(stateleg)
+# state senate - return to do this
+```
+
+#Pool Data
+ 
+We pool together 10 years of data in order to calculate the standard deviation of the voteshare: pre-2011 and post-2011. We do this in order to investigate the variability of the voteshare over time. We also check the average win margin and standard deviation of the win margins broken down by decade and party. 
+
+```{r}
+table(stateleg$pre_2011)
+stateleg %>% 
+  group_by(pre_2011) %>%
+  summarise(n_obs = n(), 
+            mean_vs = mean(`D Voteshare`), 
+            sd_vs = sd(`D Voteshare`))
+sd_pre = stateleg %>% filter(pre_2011 == "Pre-2011") %>% summarise(sd(`D Voteshare`))
+sd_post = stateleg %>% filter(pre_2011 == "Post-2011") %>% summarise(sd(`D Voteshare`))
+
+stateleg %>% 
+  group_by(pre_2011, Party) %>%
+  summarise(mean_winmargin = mean(win_margin),
+            sd_winmargin = sd(win_margin))
+```
+
+Interesting! In both decades the average win margin was larger for Democrats than Republicans, and the marginal increase was about equal for both from pre-2011 to post-2011 (3.6 increase for R, 4.2% increase for D). This suggests that competitiveness decreased for both from pre-2011 to post-2011, and got marginally worse for Democrats. However, the variability increased for both parties from pre-2011 to post. 
+
+```{r}
+# don't think this actually tells us too much because the districts are different across decades
+small_multiples = ggplot(data=stateleg, aes(x=Year, y =`D Voteshare`, colour = pre_2011, group = pre_2011)) + 
+    geom_rect(aes(xmin = -Inf, 
+                  xmax = Inf, 
+                  ymin = 0.45, 
+                  ymax = 0.55), 
+            alpha = 0.5,fill = "grey", colour="white") + 
+      geom_line() +
+  facet_wrap(~District)
+small_multiples
+ggsave('small_multiples.pdf', small_multiples, width=8, height=8)
+
+```
+
+Next, want to calcualte the win margin in a given year. We do this for both by party and irregardless of party.
+
+```{r}
+stateleg %<>% mutate(comp_noparty_)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
