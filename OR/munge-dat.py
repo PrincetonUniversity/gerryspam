@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from rich import print
 
-dat = pd.read_csv('/Users/hopecj/projects/gerryspam/OR/dat/Oregon Data - State House.csv',
+dat = pd.read_csv('/Users/hopecj/projects/gerryspam/OR/dat/OR data/Oregon Data - State House.csv',
                   header=1)
 dat["id"] = dat.index
 dat
