@@ -19,11 +19,38 @@ data = read_csv("https://raw.githubusercontent.com/PrincetonUniversity/historic_
 stateleg = data %>%
   filter(State == "CA", Year > 1999)
 
+# use this to turn on/off imputation
+# can also try filtering out uncontested races
+impute = TRUE
+
+stateleg %<>% mutate(`D Voteshare` = ifelse(`D Voteshare` == 1, 0.75, `D Voteshare`),
+                     `D Voteshare` = ifelse(`D Voteshare` == 0, 0.25, `D Voteshare`))
+
 stateleg %<>% mutate(pre_2011 = ifelse(Year < 2012, "Pre-2011", "Post-2011"),
                      R_voteshare = 1 - `D Voteshare`,
                      win_margin = ifelse(R_voteshare > 0.5, R_voteshare - 0.5, `D Voteshare` - 0.5))
 head(stateleg)
+
+
 # state senate - return to do this
+
+# state/decade specific data
+D_pre2011 = stateleg %>%
+  filter(Party == "D") %>%
+  filter(pre_2011 == "Pre-2011")
+
+D_post2011 = stateleg %>%
+  filter(Party == "D") %>%
+  filter(pre_2011 == "Post-2011")
+
+R_pre2011 = stateleg %>%
+  filter(Party == "R") %>%
+  filter(pre_2011 == "Pre-2011")
+
+R_post2011 = stateleg %>%
+  filter(Party == "R") %>%
+  filter(pre_2011 == "Post-2011")
+
 ```
 
 #Pool Data
@@ -36,19 +63,43 @@ stateleg %>%
   group_by(pre_2011) %>%
   summarise(n_obs = n(), 
             mean_vs = mean(`D Voteshare`), 
-            sd_vs = sd(`D Voteshare`))
-sd_pre = stateleg %>% filter(pre_2011 == "Pre-2011") %>% summarise(sd(`D Voteshare`))
-sd_post = stateleg %>% filter(pre_2011 == "Post-2011") %>% summarise(sd(`D Voteshare`))
+            sd_vs = sd(`D Voteshare`),
+            mean_win_margin = mean(win_margin),
+            sd_win_margin = sd(win_margin))
 
 stateleg %>% 
   group_by(pre_2011, Party) %>%
   summarise(mean_winmargin = mean(win_margin),
             sd_winmargin = sd(win_margin))
-```
 
+hist(stateleg$win_margin)
+# D wins win margin
+# pre-2011
+hist(D_pre2011$win_margin)
+
+# post-2011
+# way more uncontested races for D's post-2011
+hist(D_post2011$win_margin)
+
+# R wins win margin 
+# pre-2011
+hist(R_pre2011$win_margin)
+
+# post-2011
+hist(R_post2011$win_margin)
+
+```
+**(Without imputing uncontested races)**
 Interesting! In both decades the average win margin was larger for Democrats than Republicans, and the marginal increase was about equal for both from pre-2011 to post-2011 (3.6 increase for R, 4.2% increase for D). This suggests that competitiveness decreased for both from pre-2011 to post-2011, and got marginally worse for Democrats. However, the variability increased for both parties from pre-2011 to post. 
 
-```{r}
+So without looking much further, it seems like post-2011 things got more competitive for Republicans and less competitive for Democrats. :0
+
+**(With imputing uncontested races)**
+Things look different when we impute unconsted races (100%/0%) to (75%/25%).The average win margins don't change much within party across the time period. For Republicans, the win margin is consistent at ~13% and for Democrats, the win margin is consistent at ~19-20%. 
+
+The results are more variable for Democrats than Republicans in both periods. This suggests that the redistricting didn't make a huge difference in competitiveness for either party. 
+
+```{r include=FALSE}
 # don't think this actually tells us too much because the districts are different across decades
 small_multiples = ggplot(data=stateleg, aes(x=Year, y =`D Voteshare`, colour = pre_2011, group = pre_2011)) + 
     geom_rect(aes(xmin = -Inf, 
@@ -59,20 +110,49 @@ small_multiples = ggplot(data=stateleg, aes(x=Year, y =`D Voteshare`, colour = p
       geom_line() +
   facet_wrap(~District)
 small_multiples
-ggsave('small_multiples.pdf', small_multiples, width=8, height=8)
-
+#ggsave('small_multiples.pdf', small_multiples, width=8, height=8)
 ```
 
 Next, want to calcualte the win margin in a given year. We do this for both by party and irregardless of party.
 
 ```{r}
-stateleg %<>% mutate(comp_noparty_)
+stateleg$winning_vs = ifelse(stateleg$`D Voteshare` > 0.5, stateleg$`D Voteshare`, stateleg$R_voteshare)
+
+stats_out <- stateleg %>%
+  group_by(pre_2011) %>%
+  summarise(mean_wins = mean(winning_vs),
+            sd_wins = sd(winning_vs)) %>%
+  mutate(wins_1sigma = mean_wins + sd_wins,
+         wins_2sigma = mean_wins + 2*sd_wins)
+stats_pre = stats_out %>%
+  filter(pre_2011 == "Pre-2011")
+stats_post = stats_out %>%
+  filter(pre_2011 == "Post-2011")
+
+stateleg %<>% mutate(competitive_1sigma = ifelse(ifelse(pre_2011 == "Pre-2011", 
+                                                        (winning_vs > stats_pre$wins_1sigma), 
+                                                        (winning_vs > stats_post$wins_1sigma)), 
+                                                 "No", "Yes"),
+                     competitive_2sigma = ifelse(ifelse(pre_2011 == "Pre-2011", 
+                                                        (winning_vs > stats_pre$wins_2sigma), 
+                                                        (winning_vs > stats_post$wins_2sigma)), 
+                                                 "No", "Yes"))
+
+table(stateleg$competitive_1sigma)
+table(stateleg$competitive_2sigma)
+
+comp_2sigma = stateleg %>% filter(competitive_2sigma == "Yes")
+nocomp_2sigma = stateleg %>% filter(competitive_2sigma == "No")
+
+hist(comp_2sigma$win_margin)
+hist(nocomp_2sigma$win_margin)
+
 ```
 
+Try it with imputing uncontested races to 75%/25%!
 
 
-
-
+Aggregate population totals from districts - opportunity to elect (not district-specific, but on aggregate)
 
 
 
