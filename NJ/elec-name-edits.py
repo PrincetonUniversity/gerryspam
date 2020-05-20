@@ -172,9 +172,18 @@ prec_split = clean_elec['prec_matching'].str.split(expand=True)
 clean_elec['prec_word1'] = prec_split[0]
 # clean_elec = clean_elec.drop([2, 3, 'Unnamed: 6'], axis=1)
 
-# make column of first word from precinct name and numbers 
+# clean_elec.to_csv("/Users/hopecj/projects/gerryspam/NJ/dat/cleanprec_elec_intermediate.csv")
+# clean_elec = pd.read_csv("/Users/hopecj/projects/gerryspam/NJ/dat/cleanprec_elec_intermediate.csv")
+
+# # make column of first word from precinct name and numbers 
+# # strip the leading zero off the precinct number, if there is one
 elec_nums = ignore_alpha(clean_elec['elec_loc_prec'])
-clean_elec["elec_loc_prec_nums"] = elec_nums
+fips_nums = [number[:3] for number in elec_nums]
+prec_nums = [number[3:] for number in elec_nums] 
+prec_nums_noleadingzero = [number.lstrip('0') for number in prec_nums] 
+clean_elec['clean_fips'] = fips_nums
+clean_elec['clean_prec_code'] = prec_nums_noleadingzero
+clean_elec["elec_loc_prec_nums"] = clean_elec['clean_fips'].astype(str) + clean_elec['clean_prec_code'].astype(str)
 clean_elec["elec_loc_prec_code"] = clean_elec['elec_loc_prec_nums'].astype(str) + '_' + clean_elec['prec_word1']
 
 clean_elec.to_csv("/Users/hopecj/projects/gerryspam/NJ/dat/cleanprec_elec.csv")
