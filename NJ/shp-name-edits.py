@@ -110,10 +110,16 @@ def edit_039(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_001(row):
-    precs = ['buena borough', 'buena visa',
-             'egg harbor township', 'egg harbor city']
+    precs = ['buena borough', 'buena vista',
+             'egg harbor township', 'egg harbor city',
+             'mullica township ward 1 voting district 1',
+             'mullica township ward 2 voting district 1',
+             'mullica township ward 3 voting district 1']
     replace_with = ['buenaboro', 'buenavista',
-                    'eggharbortwp', 'eggharborcity']
+                    'eggharbortwp', 'eggharborcity',
+                    'mullica township ward 1',
+                    'mullica township ward 2',
+                    'mullica township ward 3']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_003(row):
