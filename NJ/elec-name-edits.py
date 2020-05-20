@@ -103,10 +103,19 @@ def edit_023(row):
     return rm_space(row, 'south')
 
 # test function
-# d = {'prec': ["freehold borough", "freehold township", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
-# df = pd.DataFrame(data=d)
+d = {'prec': ["mullica township ward 1 voting district 1", "mullica township ward 2 voting district 1", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
+df = pd.DataFrame(data=d)
 
-# m_out = edit_025(df['prec'])
+def edit_001(row):
+    precs = ['buena borough', 'buena vista',
+             'egg harbor township', 'egg harbor city',
+             'mullica township ward . voting district 1']
+    replace_with = ['buenaboro', 'buenavista',
+                    'eggharbortwp', 'eggharborcity',
+                    'mullica township ward .']
+    return rm_space_multiples(row, precs, replace_with)
+
+m_out = edit_001(df['prec'])
 
 countyToCountyCleaner = {
     "033": edit_033,
