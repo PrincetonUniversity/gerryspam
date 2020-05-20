@@ -2,7 +2,7 @@
 __Shapefiles__
 
 ## Sources
-Census Partership files were downloaded by Hannah on February 25th, 2020
+Our shapefile was sourced from the Census Bureau's Partnership Files (https://www.census.gov/geo/partnerships/pvs/partnership16v1/st34_nj.html). We used [this script](https://github.com/PrincetonUniversity/gerryspam/blob/master/General/scrape_partnership.py) to scrape each county-specific shapefile and build a state-wide shapefile. 
 
 Election results for 2016 were downloaded from MEDSL by way of the Harvard Dataverse [(link)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/PSKDUJ) on April 1st, 2020.
 
