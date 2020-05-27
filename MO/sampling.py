@@ -59,14 +59,6 @@ graph = Graph.from_file(dat_path)
 
 mo_updaters = {"population" : Tally(POP_COL, alias="population"),
                "cut_edges": cut_edges,
-            #    "VAP": Tally("VAP"),
-            #    "WVAP": Tally("WVAP"),
-            #    "HVAP": Tally("HVAP"),
-            #    "BVAP": Tally("BVAP"),
-            #    "HVAP_perc": lambda p: {k: (v / p["VAP"][k]) for k, v in p["HVAP"].items()},
-            #    "WVAP_perc": lambda p: {k: (v / p["VAP"][k]) for k, v in p["WVAP"].items()},
-            #    "BVAP_perc": lambda p: {k: (v / p["VAP"][k]) for k, v in p["BVAP"].items()},
-            #    "BHVAP_perc": lambda p: {k: ((p["HVAP"][k] + p["BVAP"][k]) / v) for k, v in p["VAP"].items()},
             }
 
 election_updaters = {election.name: election for election in elections}
@@ -81,23 +73,69 @@ print("Creating seed plan")
 total_pop = sum(dat[POP_COL])
 ideal_pop = total_pop / NUM_DISTRICTS
 
-# if args.map != "state_house":
-cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
-                                pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
-## unclear why this is done
-# else:
-#     with open("GA_house_seed_part_0.05.p", "rb") as f:
-#         cddict = pickle.load(f)
-init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
-    
+# assignment of the nodes of the graph into parts of the partition
+# this is where we need to tell the Partiion to assign nodes by their 
+# "SLDUST" or "SLDLST" attribute in the shapefile
+
+# !!! NB - don't see where the assignment is getting linked the the state house districts
+NUM_DISTRICTS=34
+POP_COL="POP10"
+EPS=0.05
+
+# ! using a "neutral" map as the initial partition
+# cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
+#                                 pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
+
+# init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
+# init_partition.plot(cmap="tab20")
+# plt.show()
+
+# ! using the actual state senate map as the starting point
+init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
+ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
+
 ## ## ## ## ## ## ## ## ## ## ## 
 ## set up a chain 
 ## ## ## ## ## ## ## ## ## ## ## 
 proposal = partial(recom, pop_col=POP_COL, pop_target=ideal_pop, epsilon=EPS, 
                    node_repeats=1)
 
+# to do: update compactness bound here
+# current one = bounding the number of cut edges at 2 times the number of cut edges in the initial plan.
 compactness_bound = constraints.UpperBound(lambda p: len(p["cut_edges"]), 
                                            2*len(init_partition["cut_edges"]))
+
+chain = MarkovChain(
+    proposal=proposal,
+    constraints=[
+            constraints.within_percent_of_ideal_population(init_partition, 0.055),
+        compactness_bound
+    ],
+    accept=accept.always_accept,
+    initial_state=init_partition,
+    total_steps=100000
+)
+
+def make_dat_from_chain(chain, id):
+    d_percents = [partition["PRES16"].percents("Dem") for partition in chain]
+    ensemble_dat = pd.DataFrame(d_percents)
+    ensemble_dat["id"] = id
+    egs = [partition["PRES16"].efficiency_gap() for partition in chain]
+    ensemble_dat["eg"] = egs
+    mm = [partition["PRES16"].mean_median() for partition in chain]
+    ensemble_dat["mm"] = mm
+    seats = [partition["PRES16"].seats("Dem") for partition in chain]
+    ensemble_dat["D_seats"] = seats
+    return ensemble_dat
+
+# start 12:38 - took ~6 hours
+dat1 = make_dat_from_chain(chain, "st_sen_5.5eps_enactedinit") # took abt 4 hours
+dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit.csv")
+small_dat1 = dat1.sample(1000) # randomly sample 1000 rows
+small_dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit_sampled.csv")
+plthist(dat1["eg"], bins=50)
+plt.show()
+
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## Re-com chain and run it!
@@ -125,7 +163,6 @@ def init_chain_results(elections):
         data["mean_median_{}".format(name)] = np.zeros(ITERS)
         data["partisan_gini_{}".format(name)] = np.zeros(ITERS)
     return data, parts
-
 
 def tract_chain_results(data, elections, part, i):
     data["cutedges"][i] = len(part["cut_edges"])

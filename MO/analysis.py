@@ -33,7 +33,19 @@ election_updaters = {election.name: election for election in elections}
 mo_updaters.update(election_updaters)
 
 sen_part = Partition(graph, assignment="SLDUST", updaters=mo_updaters)
+sen_part["PRES16"].efficiency_gap() 
+sen_part.plot(cmap="tab20")
+plt.show() # show the state senate map
 cong_part = Partition(graph, assignment="SLDLST", updaters=mo_updaters)
+
+# load parts (aka district maps) from gerrychain
+# "assignment" = mapping of node IDs to district IDs
+sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res/MO_state_senate_100000_0.05_parts.p")
+chain_assignment = sen_parts["samples"][0] # just show the first one, change index for a different part
+res_one = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
+res_one["PRES16"].efficiency_gap() # 7 is most promising so far - -0.03
+res_one.plot(cmap="tab20")
+plt.show() # show the state senate map
 
 # D voteshare - ensemble vs enacted
 #PRES16
@@ -188,7 +200,8 @@ out = eg_05[0].join(eg_05[1])
 out = out.join(eg_05[2])
 
 # sample rows for viz
-out_sample = out.sample(n=8000, replace=False, random_state=1)
+out_sample = out.sample(n=2000, replace=False, random_state=1)
 out_sample['hash'] = out_sample.index
 
 out_sample.to_csv("/Users/hopecj/projects/gerryspam/MO/res/stsen_05_data_sampled.csv")
+out_sample.to_csv("/Users/hopecj/personal/portion-viz/data/stsen_05_data_sampled_small.csv")
