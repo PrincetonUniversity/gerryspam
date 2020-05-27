@@ -7,6 +7,7 @@ import seaborn as sns
 from gerrychain import Graph, Partition, Election
 from gerrychain.updaters import Tally, cut_edges
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # save np.load
 np_load_old = np.load
@@ -41,9 +42,27 @@ cong_part = Partition(graph, assignment="SLDLST", updaters=mo_updaters)
 # load parts (aka district maps) from gerrychain
 # "assignment" = mapping of node IDs to district IDs
 sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res/MO_state_senate_100000_0.05_parts.p")
-chain_assignment = sen_parts["samples"][0] # just show the first one, change index for a different part
+
+# saved neutral versus big plans 
+sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0527/MO_state_senate_1000_0.05_parts.p")
+sen_parts.keys()
+
+plt.hist(sen_parts["eg"], bins=50)
+plt.show()
+
+# df = pd.DataFrame()
+# df['hash'] = sen_parts['hash']
+# df['eg'] = sen_parts['eg']
+# df['election'] = sen_parts['election']
+# df.groupby('election').max()[['eg']]
+# df.to_csv("outfile.csv")
+
+chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
+# quick histograms
+
 res_one = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
-res_one["PRES16"].efficiency_gap() # 7 is most promising so far - -0.03
+res_one["PRES16"].efficiency_gap() 
+# 7 is most promising so far, "USPRES16" EG = -0.03. but strange result, "USSEN16" EG = -0.1775
 res_one.plot(cmap="tab20")
 plt.show() # show the state senate map
 

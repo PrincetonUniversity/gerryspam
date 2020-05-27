@@ -16,6 +16,12 @@ import json
 import csv
 import pickle
 
+# save np.load
+np_load_old = np.load
+
+# modify the default parameters of np.load
+np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
+
 ## ## ## ## ## ## ## ## ## ## ## 
 ## set-up argparse!
 ## ## ## ## ## ## ## ## ## ## ##
@@ -75,17 +81,28 @@ print("Creating seed plan")
 # "SLDUST" or "SLDLST" attribute in the shapefile
 
 ##################################################################
-######## ! if using a "neutral" map as the initial partition
+######## ! if using a random map as the initial partition
 ##################################################################
+
 # total_pop = sum(dat[POP_COL])
 # ideal_pop = total_pop / NUM_DISTRICTS
-# NUM_DISTRICTS=34
-# POP_COL="POP10"
-# EPS=0.05
 # cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
 #                                 pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
 
 # init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
+
+
+##################################################################
+######## ! if using the ~0 EG map as the initial partition
+##################################################################
+# init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
+# # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
+sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0527/MO_state_senate_1000_0.05_parts.p")
+chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
+init_partition = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
+total_pop = sum(dat[POP_COL])
+ideal_pop = total_pop / NUM_DISTRICTS
+
 # init_partition.plot(cmap="tab20")
 # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.14
 # plt.show()
@@ -93,9 +110,9 @@ print("Creating seed plan")
 ##################################################################
 ######## ! if using the actual state senate map as the initial partition
 ##################################################################
-init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
-# init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
-ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
+# init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
+# # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
+# ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## set up a chain 
@@ -157,7 +174,7 @@ print("Starting Markov Chain")
 
 def init_chain_results(elections):
     data = {"cutedges": np.zeros(ITERS)}
-    parts = {"samples": [], "compact": []}
+    parts = {"hash": [], "samples": [], "eg": [], "election": []}
 
     for election in elections:
         name = election.lower()
@@ -180,12 +197,24 @@ def tract_chain_results(data, elections, part, i):
         data["partisan_gini_{}".format(name)][i] = part[election].partisan_gini()
 
 def update_saved_parts(parts, part, elections, i):
-    if i % (ITERS / 10) == 99: parts["samples"].append(part.assignment)
-    # for election in elections: 
-    # # save any plan with netural or outlier EG 
-    #     if (part[election].efficiency_gap() < -.15): parts["samples"].append(part.assignment)
-    #     if (part[election].efficiency_gap() > .15): parts["samples"].append(part.assignment)
-    #     if (part[election].efficiency_gap() > -.03) and (part[election].efficiency_gap() < .03): parts["samples"].append(part.assignment)
+    # if i % (ITERS / 10) == 99: parts["samples"].append(part.assignment)
+    for election in elections: 
+        # save any plan with netural or outlier EG 
+        if (part[election].efficiency_gap() < -.15): parts["samples"].append(part.assignment)
+        if (part[election].efficiency_gap() > .15): parts["samples"].append(part.assignment)
+        if (part[election].efficiency_gap() > -.03) and (part[election].efficiency_gap() < .03): parts["samples"].append(part.assignment)
+        if (part[election].efficiency_gap() < -.15): 
+            parts["eg"].append(part[election].efficiency_gap())
+            parts["election"].append(election)
+            parts["hash"].append(i)
+        if (part[election].efficiency_gap() > .15): 
+            parts["eg"].append(part[election].efficiency_gap())
+            parts["election"].append(election)
+            parts["hash"].append(i)
+        if (part[election].efficiency_gap() > -.03) and (part[election].efficiency_gap() < .03): 
+            parts["eg"].append(part[election].efficiency_gap())
+            parts["election"].append(election)
+            parts["hash"].append(i)
 
 chain_results, parts = init_chain_results(ELECTS)
 
@@ -206,8 +235,8 @@ print("Saving results")
 
 dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
 
-output = "/Users/hopecj/projects/gerryspam/MO/res_0527/MO_{}_{}_{}.p".format(args.map, ITERS, EPS)
-output_parts = "/Users/hopecj/projects/gerryspam/MO/res_0527/MO_{}_{}_{}_parts.p".format(args.map, ITERS, EPS)
+output = "/Users/hopecj/projects/gerryspam/MO/res_0528/MO_{}_{}_{}.p".format(args.map, ITERS, EPS)
+output_parts = "/Users/hopecj/projects/gerryspam/MO/res_0528/MO_{}_{}_{}_parts.p".format(args.map, ITERS, EPS)
 
 with open(output, "wb") as f_out:
     pickle.dump(chain_results, f_out)
