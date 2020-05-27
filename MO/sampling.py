@@ -26,7 +26,7 @@ parser.add_argument("map", metavar="map", type=str,
                     choices=["state_house", "state_senate"],
                     help="the map to redistrict")
 parser.add_argument("eps", metavar="epsilon", type=float,
-                    choices=[0.01, 0.03, 0.05, .08],
+                    # choices=[0.01, 0.03, 0.05, .08],
                     help="population deviation across districts")
 parser.add_argument("n", metavar="iterations", type=int,
                     help="the number of plans to sample")
@@ -70,28 +70,31 @@ mo_updaters.update(election_updaters)
 
 print("Creating seed plan")
 
-total_pop = sum(dat[POP_COL])
-ideal_pop = total_pop / NUM_DISTRICTS
-
 # assignment of the nodes of the graph into parts of the partition
 # this is where we need to tell the Partiion to assign nodes by their 
 # "SLDUST" or "SLDLST" attribute in the shapefile
 
-# !!! NB - don't see where the assignment is getting linked the the state house districts
-NUM_DISTRICTS=34
-POP_COL="POP10"
-EPS=0.05
-
-# ! using a "neutral" map as the initial partition
+##################################################################
+######## ! if using a "neutral" map as the initial partition
+##################################################################
+# total_pop = sum(dat[POP_COL])
+# ideal_pop = total_pop / NUM_DISTRICTS
+# NUM_DISTRICTS=34
+# POP_COL="POP10"
+# EPS=0.05
 # cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
 #                                 pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
 
 # init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
 # init_partition.plot(cmap="tab20")
+# init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.14
 # plt.show()
 
-# ! using the actual state senate map as the starting point
+##################################################################
+######## ! if using the actual state senate map as the initial partition
+##################################################################
 init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
+# init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
 ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
 
 ## ## ## ## ## ## ## ## ## ## ## 
@@ -101,40 +104,41 @@ proposal = partial(recom, pop_col=POP_COL, pop_target=ideal_pop, epsilon=EPS,
                    node_repeats=1)
 
 # to do: update compactness bound here
-# current one = bounding the number of cut edges at 2 times the number of cut edges in the initial plan.
+# current one = bounding the number of cut edges at 2 times the number of cut edges from the initial plan.
 compactness_bound = constraints.UpperBound(lambda p: len(p["cut_edges"]), 
                                            2*len(init_partition["cut_edges"]))
 
-chain = MarkovChain(
-    proposal=proposal,
-    constraints=[
-            constraints.within_percent_of_ideal_population(init_partition, 0.055),
-        compactness_bound
-    ],
-    accept=accept.always_accept,
-    initial_state=init_partition,
-    total_steps=100000
-)
+### if doing a one-off chain 
+# chain = MarkovChain(
+#     proposal=proposal,
+#     constraints=[
+#             constraints.within_percent_of_ideal_population(init_partition, 0.055),
+#         compactness_bound
+#     ],
+#     accept=accept.always_accept,
+#     initial_state=init_partition,
+#     total_steps=100000
+# )
 
-def make_dat_from_chain(chain, id):
-    d_percents = [partition["PRES16"].percents("Dem") for partition in chain]
-    ensemble_dat = pd.DataFrame(d_percents)
-    ensemble_dat["id"] = id
-    egs = [partition["PRES16"].efficiency_gap() for partition in chain]
-    ensemble_dat["eg"] = egs
-    mm = [partition["PRES16"].mean_median() for partition in chain]
-    ensemble_dat["mm"] = mm
-    seats = [partition["PRES16"].seats("Dem") for partition in chain]
-    ensemble_dat["D_seats"] = seats
-    return ensemble_dat
+# def make_dat_from_chain(chain, id):
+#     d_percents = [partition["PRES16"].percents("Dem") for partition in chain]
+#     ensemble_dat = pd.DataFrame(d_percents)
+#     ensemble_dat["id"] = id
+#     egs = [partition["PRES16"].efficiency_gap() for partition in chain]
+#     ensemble_dat["eg"] = egs
+#     mm = [partition["PRES16"].mean_median() for partition in chain]
+#     ensemble_dat["mm"] = mm
+#     seats = [partition["PRES16"].seats("Dem") for partition in chain]
+#     ensemble_dat["D_seats"] = seats
+#     return ensemble_dat
 
-# start 12:38 - took ~6 hours
-dat1 = make_dat_from_chain(chain, "st_sen_5.5eps_enactedinit") # took abt 4 hours
-dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit.csv")
-small_dat1 = dat1.sample(1000) # randomly sample 1000 rows
-small_dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit_sampled.csv")
-plthist(dat1["eg"], bins=50)
-plt.show()
+# # start 12:38 - took ~6 hours
+# dat1 = make_dat_from_chain(chain, "st_sen_5.5eps_enactedinit") # took abt 4 hours
+# dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit.csv")
+# small_dat1 = dat1.sample(1000) # randomly sample 1000 rows
+# small_dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit_sampled.csv")
+# plt.hist(dat1["eg"], bins=50)
+# plt.show()
 
 
 ## ## ## ## ## ## ## ## ## ## ## 
@@ -177,6 +181,11 @@ def tract_chain_results(data, elections, part, i):
 
 def update_saved_parts(parts, part, elections, i):
     if i % (ITERS / 10) == 99: parts["samples"].append(part.assignment)
+    # for election in elections: 
+    # # save any plan with netural or outlier EG 
+    #     if (part[election].efficiency_gap() < -.15): parts["samples"].append(part.assignment)
+    #     if (part[election].efficiency_gap() > .15): parts["samples"].append(part.assignment)
+    #     if (part[election].efficiency_gap() > -.03) and (part[election].efficiency_gap() < .03): parts["samples"].append(part.assignment)
 
 chain_results, parts = init_chain_results(ELECTS)
 
@@ -197,19 +206,11 @@ print("Saving results")
 
 dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
 
-output = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}.p".format(args.map, ITERS, EPS)
-output_parts = "/Users/hopecj/projects/gerryspam/MO/res/MO_{}_{}_{}_parts.p".format(args.map, ITERS, EPS)
+output = "/Users/hopecj/projects/gerryspam/MO/res_0527/MO_{}_{}_{}.p".format(args.map, ITERS, EPS)
+output_parts = "/Users/hopecj/projects/gerryspam/MO/res_0527/MO_{}_{}_{}_parts.p".format(args.map, ITERS, EPS)
 
 with open(output, "wb") as f_out:
     pickle.dump(chain_results, f_out)
 
 with open(output_parts, "wb") as f_out:
     pickle.dump(parts, f_out)
-
-# quick histograms
-# plt.hist(dat1["eg"], bins=50)
-# plt.show()
-
-# plt.hist(small_dat1["eg"], bins=20)
-# plt.show()
-
