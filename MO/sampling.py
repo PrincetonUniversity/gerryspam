@@ -83,13 +83,15 @@ print("Creating seed plan")
 ##################################################################
 ######## ! if using a random map as the initial partition
 ##################################################################
-
+# NUM_DISTRICTS=34
+# EPS=0.05
 # total_pop = sum(dat[POP_COL])
 # ideal_pop = total_pop / NUM_DISTRICTS
 # cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
 #                                 pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
 
 # init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
+# init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.08, USSEN EG = -0.18
 
 
 ##################################################################
@@ -111,7 +113,7 @@ ideal_pop = total_pop / NUM_DISTRICTS
 ######## ! if using the actual state senate map as the initial partition
 ##################################################################
 # init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
-# # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
+# init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
 # ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
 
 ## ## ## ## ## ## ## ## ## ## ## 

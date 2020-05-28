@@ -43,28 +43,40 @@ cong_part = Partition(graph, assignment="SLDLST", updaters=mo_updaters)
 # "assignment" = mapping of node IDs to district IDs
 sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res/MO_state_senate_100000_0.05_parts.p")
 
-# saved neutral versus big plans 
+
+# load up saved parts to find smallest EG from saved maps
 sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0527/MO_state_senate_1000_0.05_parts.p")
+chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
+res_one = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
+res_one["PRES16"].efficiency_gap() 
+res_one.plot(cmap="tab20")
+plt.show() # show the state senate map
+
+# saved parts + samples: neutral and extreme EG plans 
+sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0528/MO_state_senate_100000_0.05_parts.p")
+sen = np.load("/Users/hopecj/projects/gerryspam/MO/res_0528/MO_state_senate_100000_0.05.p")
 sen_parts.keys()
 
 plt.hist(sen_parts["eg"], bins=50)
 plt.show()
 
-# df = pd.DataFrame()
-# df['hash'] = sen_parts['hash']
-# df['eg'] = sen_parts['eg']
-# df['election'] = sen_parts['election']
-# df.groupby('election').max()[['eg']]
-# df.to_csv("outfile.csv")
+df = pd.DataFrame()
+df['hash'] = sen_parts['hash']
+df['eg'] = sen_parts['eg']
+df['election'] = sen_parts['election']
+df.groupby('election').mean()[['eg']]
+pres = df['election']=='PRES16'
+pres_df = df[pres]
+sen_df = df[~pres]
+pres_eg = pres_df["eg"].to_numpy()
+sen_eg = sen_df["eg"].to_numpy()
+# show EG calculated with pres race
+plt.hist(pres_eg, bins=50)
+plt.show()
+# show EG calculated with US Senate race
+plt.hist(sen_eg, bins=50)
+plt.show()
 
-chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
-# quick histograms
-
-res_one = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
-res_one["PRES16"].efficiency_gap() 
-# 7 is most promising so far, "USPRES16" EG = -0.03. but strange result, "USSEN16" EG = -0.1775
-res_one.plot(cmap="tab20")
-plt.show() # show the state senate map
 
 # D voteshare - ensemble vs enacted
 #PRES16
