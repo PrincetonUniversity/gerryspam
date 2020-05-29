@@ -95,8 +95,10 @@ def edit_001(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_003(row):
-    precs = ['ridgefield park ', 'river vale', 'river edge', 'saddle brook', 'saddle river']
-    replace_with = ['ridgefieldpark', 'rivervale', 'riveredge', 'saddlebrook', 'saddleriver']
+    precs = ['ridgefield park ', 'river vale', 'river edge', 'saddle brook', 'saddle river',
+             'wood ridge']
+    replace_with = ['ridgefieldpark ', 'rivervale', 'riveredge', 'saddlebrook', 'saddleriver',
+                    'wood-ridge']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_023(row):
