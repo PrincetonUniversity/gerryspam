@@ -14,7 +14,7 @@ def ignore_alpha(row):
 
 # ignore special election rows (mail-in, provisional, emergency, and overseas)
 def ignore_special(df):
-    patternDel = "mai|provision|emergency|overseas|not defined"
+    patternDel = "mail|vbm|prov|emergency|overseas|hand|total|not defined"
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
@@ -114,12 +114,25 @@ def edit_001(row):
              'egg harbor township', 'egg harbor city',
              'mullica township ward 1 voting district 1',
              'mullica township ward 2 voting district 1',
-             'mullica township ward 3 voting district 1']
+             'mullica township ward 3 voting district 1',
+             'port republic city ward 2 voting district 1',
+             'port republic city ward 1 voting district 1',
+             'brigantine city ward 1 voting district 1',
+             'brigantine city ward 2 voting district 1',
+             'brigantine city ward 3 voting district 1',
+             'brigantine city ward 4 voting district 1',
+             ]
     replace_with = ['buenaboro', 'buenavista',
                     'eggharbortwp', 'eggharborcity',
                     'mullica township ward 1',
                     'mullica township ward 2',
-                    'mullica township ward 3']
+                    'mullica township ward 3',
+                    'port republic city ward 2',
+                    'port republic city ward 1',
+                     'brigantine city ward 1',
+                     'brigantine city ward 2',
+                     'brigantine city ward 3',
+                     'brigantine city ward 4']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_003(row):
