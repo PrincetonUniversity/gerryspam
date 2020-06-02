@@ -45,6 +45,7 @@ sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res/MO_state_senate_100
 
 
 # load up saved parts to find smallest EG from saved maps
+# starting seed for "small EG" plans
 sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0527/MO_state_senate_1000_0.05_parts.p")
 chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
 res_one = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
@@ -127,6 +128,30 @@ plt.axvline(x=sen_part["USSEN16"].seats("Dem"), label="Enacted Plan", c="k")
 plt.legend()
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_seats_sen16_01.png", bbox_inches="tight", dpi=200)
 plt.show()
+
+# from neutral EG plan
+# D seats - ensemble vs enacted
+# PRES16
+plt.title("Seat Share - Enacted versus Ensemble (PRES16)")
+plt.xlabel("Democratic Seats in State Senate")
+plt.hist(sen["seats_pres16"], histtype="stepfilled", bins=np.arange(0,17)-0.5, alpha=0.5)
+plt.axvline(x=np.mean(sen["seats_pres16"]), label="Ensemble Mean")
+plt.axvline(x=res_one["PRES16"].seats("Dem"), label="Enacted Plan", c="k")
+plt.legend()
+plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_seats_smallseed_pres16.png", bbox_inches="tight", dpi=200)
+plt.show()
+
+# from neutral EG plan
+# USSEN16
+plt.title("Seat Share - Enacted versus Ensemble (USSEN16)")
+plt.xlabel("Democratic Seats in State Senate")
+plt.hist(sen["seats_ussen16"], histtype="stepfilled", bins=np.arange(0,17)-0.5, alpha=0.5)
+plt.axvline(x=np.mean(sen["seats_ussen16"]), label="Ensemble Mean")
+plt.axvline(x=res_one["USSEN16"].seats("Dem"), label="Enacted Plan", c="k")
+plt.legend()
+plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_seats_smallseed_sen16.png", bbox_inches="tight", dpi=200)
+plt.show()
+
 
 # Partisanship
 def extend_data_frame(df, data, key_prefix, col, districts, epsilon, 
