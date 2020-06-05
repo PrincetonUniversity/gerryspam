@@ -16,7 +16,7 @@ import json
 import csv
 import pickle
 
-# save np.load
+# save np.load 
 np_load_old = np.load
 
 # modify the default parameters of np.load
@@ -122,10 +122,9 @@ ideal_pop = total_pop / NUM_DISTRICTS
 proposal = partial(recom, pop_col=POP_COL, pop_target=ideal_pop, epsilon=EPS, 
                    node_repeats=1)
 
-# to do: update compactness bound here
-# current one = bounding the number of cut edges at 2 times the number of cut edges from the initial plan.
+# to do: update compactness bound here to be no more than current plan
 compactness_bound = constraints.UpperBound(lambda p: len(p["cut_edges"]), 
-                                           2*len(init_partition["cut_edges"]))
+                                           len(init_partition["cut_edges"]))
 
 ### if doing a one-off chain 
 # chain = MarkovChain(
