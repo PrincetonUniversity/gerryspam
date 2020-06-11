@@ -90,4 +90,4 @@ prec_elec_rn = prec_elec_rn.fillna(0)
 
 #this is ready to be matched to precinct names now
 
-prec_elec_rn.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/OpenPrecincts/States for site/Washington/GA_G18_MIT.csv')
+prec_elec_rn.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/OpenPrecincts/States for site/Georgia/GA_G18_MIT.csv')
