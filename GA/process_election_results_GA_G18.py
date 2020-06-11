@@ -1,98 +1,93 @@
-import pandas as pd
 import geopandas as gpd
+import pandas as pd
 import numpy as np
 
-'''
-This takes in raw elections in the form OpenElections publishes in
-it looks for statewide offices and filters out local ones
-Results in dataframe organized by precinct rather than vote total
-'''
+#list states you need data for
+states = ['Georgia']
 
-#paste path to raw election results which have candidates as rows
-raw_elec = '/Users/hwheelen/Documents/GitHub/OpenElections/openelections-data-nv/2016/20161108__nv__general__precinct.csv'
+#filepath to MEDSEL country wide 2018 precinct level returns
+elec_fp = '/Users/hwheelen/Documents/GitHub/MEDSL/2018-elections-official/precinct_2018.csv'
+#load into dataframe
+elec_df = pd.read_csv(elec_fp, encoding = "ISO-8859-1")
 
-elec_df = pd.read_csv(raw_elec)
-elec_df['loc_prec']=elec_df['Jurisdiction'].map(str) + ',' + elec_df['Precinct']
-#elec_df['prec_name'] = 'Prec ' + elec_df['PrecinctNumber'].map(str) + ',' + 'Ward ' + elec_df['WardNumber']
-
-#make list of office titles
-offices_tot = elec_df['Contest'].unique()
-counties_tot = elec_df['Jurisdiction'].unique()
-state_offices = []
-counties_office = {}
-#loop through offices and find statewide ones
-for office in offices_tot:
-    counties  = []
-    counties.append(elec_df.loc[elec_df['Contest'] == office, 'Jurisdiction'])
-    #list of counties that had an election for that office
-    counties_office[office] = counties
-    c = counties_office[office][0].values
-    D = {I: True for I in c}
-    count = D.keys()
-    if len(count) ==  len(counties_tot):
-        state_offices.append(office)
-state_elec = elec_df.loc[elec_df['Contest'].isin(state_offices)]
-
+#states = elec_df.state.unique()
+statewide_offices = []
+parties = elec_df.party.unique()
+#get state-level dataset
+for state in states:
+    state_df = elec_df.loc[elec_df.state == state]
+    state_df.precinct = state_df.county.map(str) + ',' + state_df.precinct.map(str)
+    #make list of office titles
+    offices_tot = state_df['office'].unique()
+    counties_tot = state_df['county'].unique()
+    state_offices = []
+    counties_office = {}
+    #loop through offices and find statewide ones
+    for office in offices_tot:
+        counties  = []
+        counties.append(state_df.loc[state_df['office'] == office, 'county'])
+        #list of counties that had an election for that office
+        counties_office[office] = counties
+        c = counties_office[office][0].values
+        D = {I: True for I in c}
+        count = D.keys()
+        if len(count) ==  len(counties_tot):
+            state_offices.append(office)
+    state_offices = ['Governor','Lieutenant Governor','Secretary Of State','Attorney General',
+                     'Commissioner Of Agriculture','Commissioner Of Insurance','State School Superintendent',
+                     'Commissioner Of Labor','Public Service Commission','State Senate']
+    state_elec = state_df.loc[state_df['office'].isin(state_offices)]
+    #statewide_offices.append(state_offices)
 #get table of elections by precinct
-prec_elec = pd.pivot_table(state_elec, index = ['loc_prec'], columns = ['Contest','Selection'], values = ['Votes'], aggfunc = np.sum)
+prec_elec = pd.pivot_table(state_elec, index = ['precinct'], columns = ['party','office'], values = ['votes'], aggfunc = np.sum)
 
 prec_elec.columns = prec_elec.columns.to_series().str.join(' ')
 
-
 columns = prec_elec.columns.values
-
-#print columns and assign each one a 10 character name for the shapefile
 print(columns)
 
-#make dic for column name replacement using the columns printed in module above
-#columns can only have 10 character names
+# =============================================================================
+# def rename_vote_cols(columns):
+#     ''' function to take long name after processing election data and put into 
+#     10 char. string'''
+#     for vote_col in columns:
+#         rn_col = vote_col.replace('votes ','')
+# 
+# =============================================================================
+
+#rename columns
 prec_elec_rn = prec_elec.rename(columns = {
-        'Votes Attorney General DUNCAN, WES': 'G18RATG',
-        'Votes Attorney General FORD, AARON': 'G18DATG',
-        'Votes Attorney General Hansen, Joel F.': 'G18OATG',
-        'Votes Attorney General None Of These Candidates': 'G18NAATG',
-        'Votes Governor BEST, RUSSELL': 'G18OGOV1' ,
-        'Votes Governor BUNDY, RYAN': 'G18OGOV2',
-        'Votes Governor LAXALT, ADAM PAUL': 'G18RGOV', 
-        'Votes Governor LORD, JARED': 'G18OGOV3',
-        'Votes Governor None Of These Candidates': 'G18NAGOV', 
-        'Votes Governor SISOLAK, STEVE': 'G18DGOV',
-        'Votes Lieutenant Governor HANSEN, JANINE': 'G18OLtGOV1',
-        'Votes Lieutenant Governor MARSHALL, KATE': 'G18DLtGOV',
-        'Votes Lieutenant Governor None Of These Candidates': 'G18NALtGOV',
-        'Votes Lieutenant Governor ROBERSON, MICHAEL':'G18RLtGOV',
-        'Votes Lieutenant Governor UEHLING, ED': 'G18OLtGOV2',
-        'Votes Secretary Of State ARAUJO, NELSON': 'G18RSST',
-        'Votes Secretary Of State Cegavske, Barbara K.': 'G18DSST',
-        'Votes Secretary Of State None Of These Candidates': 'G18NASST',
-        'Votes State Controller BYRNE, CATHERINE': 'G18DStCon',
-        'Votes State Controller Knecht, Ron': 'G18RStCon',
-        'Votes State Controller None Of These Candidates': 'G18NAStCon',
-        'Votes State Treasurer BEERS, BOB' : 'G18RStTRE',
-        'Votes State Treasurer CONINE, ZACH': 'G18DStTRE',
-        'Votes State Treasurer HOGE, BILL': 'G18OStTRE',
-        'Votes State Treasurer None Of These Candidates': 'G18NAStTRE',
-        'Votes United States Senator BAKARI, KAMAU A.': 'G18OSEN1',
-        'Votes United States Senator HAGAN, TIM': 'G18OSEN2',
-        'Votes United States Senator Heller, Dean': 'G18RSEN',
-        'Votes United States Senator MICHAELS, BARRY': 'G18OSEN3',
-        'Votes United States Senator None Of These Candidates': 'G18NASEN',
-        'Votes United States Senator ROSEN, JACKY': 'G18DSEN'})
+        'votes democratic Attorney General': 'G18DATG',
+        'votes democratic Commissioner Of Agriculture': 'G18DCmAg',
+        'votes democratic Commissioner Of Insurance': 'G18DCmIns',
+        'votes democratic Commissioner Of Labor' : 'G18DCmLab',
+        'votes democratic Governor': 'G18DGOV',
+        'votes democratic Lieutenant Governor': 'G18DLTG',
+        'votes democratic Public Service Commission': 'G18DPbSrv',
+        'votes democratic Secretary Of State': 'G18DSOS',
+        'votes democratic State School Superintendent': 'G18DSchSpr',
+        'votes democratic State Senate': 'G18DStSen',
+        'votes libertarian Commissioner Of Insurance': 'G18LCmIns',
+        'votes libertarian Governor': 'G18LGOV',
+        'votes libertarian Public Service Commission': 'G18LPbSrv',
+        'votes libertarian Secretary Of State': 'G18LSOS',
+        'votes republican Attorney General': 'G18RATG',
+        'votes republican Commissioner Of Agriculture': 'G18RCmAg',
+        'votes republican Commissioner Of Insurance': 'G18RCmIns',
+        'votes republican Commissioner Of Labor' : 'G18RCmLab',
+        'votes republican Governor': 'G18RGOV',
+        'votes republican Lieutenant Governor': 'G18RLTG',
+        'votes republican Public Service Commission' : 'G18RPbSrv',
+        'votes republican Secretary Of State': 'G18RSOS',
+        'votes republican State School Superintendent': 'G18RSchSpr',
+        'votes republican State Senate': 'G18RStSen'})
+    
 
 #get rid of other columns and save
 #this is ready to be matched to precinct names now
-prec_elec_rn = prec_elec_rn[['G18RATG', 'G18DATG', 'G18OATG', 'G18NAATG', 'G18OGOV1', 'G18OGOV2','G18RGOV', 'G18OGOV3', 'G18NAGOV',
-                             'G18DGOV', 'G18OLtGOV1', 'G18DLtGOV','G18NALtGOV', 'G18RLtGOV', 'G18OLtGOV2', 'G18RSST', 'G18DSST',
-                             'G18NASST', 'G18DStCon', 'G18RStCon', 'G18NAStCon','G18RStTRE', 'G18DStTRE', 'G18OStTRE', 'G18NAStTRE', 
-                             'G18OSEN1','G18OSEN2', 'G18RSEN', 'G18OSEN3', 'G18NASEN', 'G18DSEN']]
 prec_elec_rn = prec_elec_rn.fillna(0)
-prec_elec_rn['G18OGOV'] = prec_elec_rn['G18OGOV1'].astype(int) + prec_elec_rn['G18OGOV2'].astype(int)+ prec_elec_rn['G18OGOV3'].astype(int)
-prec_elec_rn['G18OLtGOV'] = prec_elec_rn['G18OLtGOV1'].astype(int) + prec_elec_rn['G18OLtGOV1'].astype(int)
-prec_elec_rn['G18OSEN'] = prec_elec_rn['G18OSEN1'].astype(int) + prec_elec_rn['G18OSEN2'].astype(int)+ prec_elec_rn['G18OSEN3'].astype(int)
+#prec_elec_rn['G18OGOV'] = prec_elec_rn['G18OGOV1'].astype(int) + prec_elec_rn['G18OGOV2'].astype(int)+ prec_elec_rn['G18OGOV3'].astype(int)
 
-prec_elec_rn = prec_elec_rn[['G18RATG', 'G18DATG', 'G18OATG', 'G18NAATG','G18RGOV', 'G18NAGOV', 'G18DGOV', 'G18OGOV', 'G18DLtGOV','G18NALtGOV', 
-                             'G18RLtGOV','G18OLtGOV','G18RSST', 'G18DSST','G18NASST', 'G18DStCon', 'G18RStCon', 'G18NAStCon', 'G18RStTRE',
-                             'G18DStTRE', 'G18OStTRE', 'G18NAStTRE','G18RSEN','G18NASEN', 'G18DSEN','G18OSEN']]
+#this is ready to be matched to precinct names now
 
-
-prec_elec_rn.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/OpenPrecincts/States for site/Nevada/Election Data/Cleaned Election Data/NVG18.csv')
+prec_elec_rn.to_csv('/Volumes/GoogleDrive/Shared drives/princeton_gerrymandering_project/OpenPrecincts/States for site/Georgia/GA_G18_MIT.csv')
