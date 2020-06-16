@@ -17,4 +17,10 @@ vr = gpd.read_file('/Users/hopecj/projects/gerryspam/NJ/dat/Geocoded VR/NJ_Civis
 # give voter roll precinct labels 
 vr.crs
 partnership.crs
-#partnership.to_crs(vr.crs, inplace=True)
+partnership.crs = "epsg:2260"
+partnership.to_crs(vr.crs, inplace=True)
+
+# assign voter roll to precincts
+assignment = maup.assign(vr, partnership)
+assignment.isna().sum()
+vr["prec_2019"] = assignment
