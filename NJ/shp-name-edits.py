@@ -138,7 +138,7 @@ def edit_001(row):
 def edit_003(row):
     precs = ['ridgefield park ', 'ridgefield borough', 
              'river vale', 'river edge', 'saddle brook', 'saddle river']
-    replace_with = ['ridgefieldpark', 'ridgefield', 
+    replace_with = ['ridgefieldpark ', 'ridgefield', 
                     'rivervale', 'riveredge', 'saddlebrook', 'saddleriver']
     return rm_space_multiples(row, precs, replace_with)
 
