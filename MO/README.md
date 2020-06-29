@@ -23,6 +23,9 @@ https://catalog.data.gov/dataset/tiger-line-shapefile-2013-state-missouri-curren
 On May 4th, downloaded 2013-2017 ACS 5-year estimates of CVAP from here: 
 https://www.census.gov/programs-surveys/decennial-census/about/voting-rights/cvap.2017.html
 
+On June 29th, downloaded 2010 race tables from the Census website, here: 
+https://data.census.gov/cedsci/table?g=0400000US29.100000&y=2010&tid=DECENNIALPL2010.P3&d=DEC%20Redistricting%20Data%20%28PL%2094-171%29&vintage=2010&t=Race%20and%20Ethnicity&hidePreview=false&layer=VT_2010_100_00_PY_D1&cid=P001001
+
 __Metadata__
 
 * `loc_prec`: Unique precinct identifier, "county name,precinct name" 
