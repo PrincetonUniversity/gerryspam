@@ -1,29 +1,30 @@
 '''
-Expected input: Shapefile of Missouri census blocks with total population in each block
+Expected input: Shapefile of Missouri census blocks with total population in each block, CSV of Missouri census blocks with population by race
 Expected output: Shapefile of Missouri census blocks with black population in each
 '''
 
-from census_area import Census
-import secrets
+import pandas as pd
+import geopandas as gpd
 
-# API_KEY = 
-
-c = Census(API_KEY)
-
+# read in shapefile of Missouri census blocks with total population in each block
 infile = '/Users/hopecj/projects/gerryspam/MO/dat/tabblock2010_29_pophu/tabblock2010_29_pophu.shp'
 block_shape = gpd.read_file(infile)
-features = []
 
-# Variables here
-# https://api.census.gov/data/2010/dec/sf1/variables.html 
-black_pop = c.sf1.geo_block(('NAME', 'P003003'), block_shape['geometry'], 2010)
+# read in CSV of Missouri census blocks with population by race
+infile_two = '/Users/hopecj/projects/gerryspam/MO/dat/DECENNIALPL2010.P3_2020-06-29T123442/DECENNIALPL2010.P3_data_with_overlays_2020-06-29T123319.csv'
+race_pop = pd.read_csv(infile_two, header=1)
+race_pop['BLOCKID10'] = race_pop['id'].str[9:]
+race_pop = race_pop[['BLOCKID10', 'Total', 'Total!!Population of one race',
+       'Total!!Population of one race!!White alone',
+       'Total!!Population of one race!!Black or African American alone']]
+race_pop.rename(columns={'Total': "total", 
+                       'Total!!Population of one race': "total_pop_1_race",
+                       'Total!!Population of one race!!White alone': "total_pop_white", 
+                       'Total!!Population of one race!!Black or African American alone': "total_pop_black"},
+                inplace=True)
 
-# for block_data in black_pop:
-#      block_geojson['properties'].update(block_data)
-#      features.append(block)
-
-my_shape_with_new_data_geojson = {'type': "FeatureCollection", 'features': features}
-print(my_shape_with_new_data_geojson)
-
-# https://github.com/datamade/chicago-community-area-ward-demographics/blob/master/scripts/calculate_demographics.py
-# example for how to use it
+# merge the files
+outfile = block_shape.merge(race_pop, on='BLOCKID10')
+ # add stuff here to compare differences between pop in both data sts
+ # add percentage here
+ 
