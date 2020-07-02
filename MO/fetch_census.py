@@ -20,11 +20,17 @@ race_pop = race_pop[['BLOCKID10', 'Total', 'Total!!Population of one race',
 race_pop.rename(columns={'Total': "total", 
                        'Total!!Population of one race': "total_pop_1_race",
                        'Total!!Population of one race!!White alone': "total_pop_white", 
-                       'Total!!Population of one race!!Black or African American alone': "total_pop_black"},
+                       'Total!!Population of one race!!Black or African American alone': "black_pop"},
                 inplace=True)
 
 # merge the files
 outfile = block_shape.merge(race_pop, on='BLOCKID10')
- # add stuff here to compare differences between pop in both data sts
- # add percentage here
- 
+
+# add stuff here to compare differences between pop in both data sts
+# add percentage here
+outfile['diff'] = outfile['POP10'] - outfile['total']
+outfile['diff'].describe()
+
+# add variables to save for outfile
+outfile = outfile[['STATEFP10', 'COUNTYFP10', 'TRACTCE10', 'BLOCKCE', 'BLOCKID10', 'POP10',  'total', 'black_pop', 'geometry']]
+outfile.to_file('/Users/hopecj/projects/gerryspam/MO/dat/blocks_with_racepop/blocks_with_racepop.shp')

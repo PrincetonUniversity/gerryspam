@@ -60,7 +60,7 @@ assignment = maup.assign(prec, st_house)
 assignment.isna().sum()
 prec["SLDLST"] = assignment
 
-#prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
+prec.to_file("/Users/hopecj/projects/gerryspam/MO/dat/mo_prec_labeled/mo_prec_labeled_nopop.shp")
 
 # census block-group shapefile
 block_group = gpd.read_file("/Users/hopecj/projects/gerryspam/MO/dat/tl_2013_29_bg/tl_2013_29_bg.shp")
