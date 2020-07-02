@@ -9,12 +9,7 @@ python3 clean.py # prepare precinct-level data, create 'mo_prec_labeled_nopop.sh
 source areal_ve/bin/activate
 python3 label_blocks_with_prec.py
 
-
-
-
-
-
-
+python3 clean.py # merge census blocks and precincts (line 84 to the end)
 
 #################################
 #            SAMPLING           #

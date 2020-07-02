@@ -81,7 +81,7 @@ blockgr.to_file("/Users/hopecj/projects/gerryspam/MO/dat/blockgr_cvap/blockgr_cv
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 
 # population 
-block_path = "/Users/hopecj/projects/gerryspam/MO/dat/blocks_with_prec/mo_blocks_with_prec.shp"
+block_path = "/Users/hopecj/projects/gerryspam/MO/dat/blocks_with_prec/blocks_with_prec.shp"
 block = gpd.read_file(block_path)
 agg_prec = block.dissolve(by='loc_prec', aggfunc='sum')
 
