@@ -16,6 +16,10 @@ import json
 import csv
 import pickle
 
+## TO ADD:
+# - add VRA constraint: x number of districts w/ Black proportion as high as enacted
+# - county splits no worse than enacted 
+
 # save np.load 
 np_load_old = np.load
 
@@ -41,7 +45,8 @@ args = parser.parse_args()
 num_districts_in_map = {"state_senate" : 34,
                         "state_house" : 163}
 
-POP_COL = "POP10"
+DATE = "0706" 
+POP_COL = "total"
 NUM_DISTRICTS = num_districts_in_map[args.map]
 ITERS = args.n
 EPS = args.eps
@@ -112,9 +117,9 @@ ideal_pop = total_pop / NUM_DISTRICTS
 ##################################################################
 ######## ! if using the actual state senate map as the initial partition
 ##################################################################
-# init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
-# init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
-# ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
+init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
+init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
+ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## set up a chain 
@@ -122,7 +127,7 @@ ideal_pop = total_pop / NUM_DISTRICTS
 proposal = partial(recom, pop_col=POP_COL, pop_target=ideal_pop, epsilon=EPS, 
                    node_repeats=1)
 
-# to do: update compactness bound here to be no more than current plan
+# compactness constraint: no higher than than current plan
 compactness_bound = constraints.UpperBound(lambda p: len(p["cut_edges"]), 
                                            len(init_partition["cut_edges"]))
 
@@ -234,10 +239,8 @@ print()
 
 print("Saving results")
 
-dat_path = "/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp"
-
-output = "/Users/hopecj/projects/gerryspam/MO/res_0528/MO_{}_{}_{}.p".format(args.map, ITERS, EPS)
-output_parts = "/Users/hopecj/projects/gerryspam/MO/res_0528/MO_{}_{}_{}_parts.p".format(args.map, ITERS, EPS)
+output = "/Users/hopecj/projects/gerryspam/MO/res_{}/MO_{}_{}_{}.p".format(DATE, args.map, ITERS, EPS)
+output_parts = "/Users/hopecj/projects/gerryspam/MO/res_{}/MO_{}_{}_{}_parts.p".format(DATE, args.map, ITERS, EPS)
 
 with open(output, "wb") as f_out:
     pickle.dump(chain_results, f_out)
