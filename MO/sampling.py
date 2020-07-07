@@ -17,7 +17,7 @@ import csv
 import pickle
 
 ## TO ADD:
-# - add VRA constraint: x number of districts w/ Black proportion as high as enacted
+# - VRA constraint
 
 np_load_old = np.load
 np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
@@ -75,7 +75,6 @@ mo_updaters.update(election_updaters)
 ## ## ## ## ## ## ## ## ## ## ## 
 ## Initial partition
 ## ## ## ## ## ## ## ## ## ## ## 
-
 print("Creating seed plan")
 
 ##################################################################
@@ -96,23 +95,34 @@ print("Creating seed plan")
 ######## ! if using the ~0 EG map as the initial partition
 ##################################################################
 # init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
-# # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
-sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0527/MO_state_senate_1000_0.05_parts.p")
-chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
-init_partition = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
-total_pop = sum(dat[POP_COL])
-ideal_pop = total_pop / NUM_DISTRICTS
+# # init_partition["USSEN16"].efficiency_gap() 
+# sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0527/MO_state_senate_1000_0.05_parts.p")
+# chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
+# init_partition = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
+# total_pop = sum(dat[POP_COL])
+# ideal_pop = total_pop / NUM_DISTRICTS
 
 # init_partition.plot(cmap="tab20")
 # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.14
 # plt.show()
 
 ##################################################################
-######## ! if using the actual state senate map as the initial partition
+######## ! if using the enacted state senate map as the initial partition
 ##################################################################
 init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
-init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.15
+init_partition["USSEN16"].efficiency_gap() 
 ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
+
+init_partition.graph.nodes[0] 
+init_partition['population']
+init_partition['county_splits']
+
+init_partition.plot(cmap="tab20")
+plt.show()
+
+for part in init_partition.parts:
+    number_of_nodes = len(init_partition.parts[part])
+    print(f"Partition {part} has {number_of_nodes} nodes")
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## set up a chain 
@@ -168,7 +178,6 @@ def tract_chain_results(data, elections, part, i):
         data["partisan_gini_{}".format(name)][i] = part[election].partisan_gini()
 
 def update_saved_parts(parts, part, elections, i):
-    # if i % (ITERS / 10) == 99: parts["samples"].append(part.assignment)
     for election in elections: 
         # save any plan with netural or outlier EG 
         if (part[election].efficiency_gap() < -.15): parts["samples"].append(part.assignment)
