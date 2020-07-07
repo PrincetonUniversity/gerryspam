@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from gerrychain.random import random
 random.seed(20210511)
 from gerrychain import Graph, Partition, Election, MarkovChain, GeographicPartition, accept, constraints
-from gerrychain.updaters import Tally, cut_edges
+from gerrychain.updaters import Tally, cut_edges, county_splits
 from gerrychain.constraints import single_flip_contiguous, Validator, within_percent_of_ideal_population, refuse_new_splits
 from gerrychain.proposals import recom
 from gerrychain.accept import always_accept
@@ -18,12 +18,8 @@ import pickle
 
 ## TO ADD:
 # - add VRA constraint: x number of districts w/ Black proportion as high as enacted
-# - county splits no worse than enacted 
 
-# save np.load 
 np_load_old = np.load
-
-# modify the default parameters of np.load
 np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
 
 ## ## ## ## ## ## ## ## ## ## ## 
@@ -45,7 +41,7 @@ args = parser.parse_args()
 num_districts_in_map = {"state_senate" : 34,
                         "state_house" : 163}
 
-DATE = "0706" 
+DATE = "0707" 
 POP_COL = "total"
 NUM_DISTRICTS = num_districts_in_map[args.map]
 ITERS = args.n
@@ -63,16 +59,17 @@ list(dat.columns)
 dat['SLDUST'].nunique()
 dat['SLDLST'].nunique()
 
-elections = [Election("USSEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"}),
-             Election("PRES16", {"Dem": "G16PREDCLI", "Rep": "G16PRERTRU"})]
-
 graph = Graph.from_file(dat_path)
 
 mo_updaters = {"population" : Tally(POP_COL, alias="population"),
                "cut_edges": cut_edges,
+               "county_splits": county_splits("county_splits", "COUNTYFP")
             }
 
+elections = [Election("USSEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"}),
+             Election("PRES16", {"Dem": "G16PREDCLI", "Rep": "G16PRERTRU"})]
 election_updaters = {election.name: election for election in elections}
+
 mo_updaters.update(election_updaters)
 
 ## ## ## ## ## ## ## ## ## ## ## 
@@ -80,10 +77,6 @@ mo_updaters.update(election_updaters)
 ## ## ## ## ## ## ## ## ## ## ## 
 
 print("Creating seed plan")
-
-# assignment of the nodes of the graph into parts of the partition
-# this is where we need to tell the Partiion to assign nodes by their 
-# "SLDUST" or "SLDLST" attribute in the shapefile
 
 ##################################################################
 ######## ! if using a random map as the initial partition
@@ -127,42 +120,13 @@ ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
 proposal = partial(recom, pop_col=POP_COL, pop_target=ideal_pop, epsilon=EPS, 
                    node_repeats=1)
 
-# compactness constraint: no higher than than current plan
+# compactness constraint: no higher than than initial partition
 compactness_bound = constraints.UpperBound(lambda p: len(p["cut_edges"]), 
                                            len(init_partition["cut_edges"]))
 
-### if doing a one-off chain 
-# chain = MarkovChain(
-#     proposal=proposal,
-#     constraints=[
-#             constraints.within_percent_of_ideal_population(init_partition, 0.055),
-#         compactness_bound
-#     ],
-#     accept=accept.always_accept,
-#     initial_state=init_partition,
-#     total_steps=100000
-# )
-
-# def make_dat_from_chain(chain, id):
-#     d_percents = [partition["PRES16"].percents("Dem") for partition in chain]
-#     ensemble_dat = pd.DataFrame(d_percents)
-#     ensemble_dat["id"] = id
-#     egs = [partition["PRES16"].efficiency_gap() for partition in chain]
-#     ensemble_dat["eg"] = egs
-#     mm = [partition["PRES16"].mean_median() for partition in chain]
-#     ensemble_dat["mm"] = mm
-#     seats = [partition["PRES16"].seats("Dem") for partition in chain]
-#     ensemble_dat["D_seats"] = seats
-#     return ensemble_dat
-
-# # start 12:38 - took ~6 hours
-# dat1 = make_dat_from_chain(chain, "st_sen_5.5eps_enactedinit") # took abt 4 hours
-# dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit.csv")
-# small_dat1 = dat1.sample(1000) # randomly sample 1000 rows
-# small_dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit_sampled.csv")
-# plt.hist(dat1["eg"], bins=50)
-# plt.show()
-
+# county splits: no higher than initial partition 
+county_splits_bound = compactness_bound = constraints.UpperBound(lambda p: len(p["county_splits"]), 
+                                           len(init_partition["county_splits"]))
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## Re-com chain and run it!
@@ -171,7 +135,8 @@ chain = MarkovChain(
         proposal,
         constraints=[
             constraints.within_percent_of_ideal_population(init_partition, EPS),
-            compactness_bound],
+            compactness_bound,
+            county_splits_bound],
         accept=accept.always_accept,
         initial_state=init_partition,
         total_steps=ITERS)
@@ -247,3 +212,41 @@ with open(output, "wb") as f_out:
 
 with open(output_parts, "wb") as f_out:
     pickle.dump(parts, f_out)
+
+
+
+
+
+## ## ## ## ## ## ## ## ## ## ## 
+## ### if doing a one-off chain 
+## ## ## ## ## ## ## ## ## ## ## 
+# chain = MarkovChain(
+#     proposal=proposal,
+#     constraints=[
+#             constraints.within_percent_of_ideal_population(init_partition, 0.055),
+#         compactness_bound
+#     ],
+#     accept=accept.always_accept,
+#     initial_state=init_partition,
+#     total_steps=100000
+# )
+
+# def make_dat_from_chain(chain, id):
+#     d_percents = [partition["PRES16"].percents("Dem") for partition in chain]
+#     ensemble_dat = pd.DataFrame(d_percents)
+#     ensemble_dat["id"] = id
+#     egs = [partition["PRES16"].efficiency_gap() for partition in chain]
+#     ensemble_dat["eg"] = egs
+#     mm = [partition["PRES16"].mean_median() for partition in chain]
+#     ensemble_dat["mm"] = mm
+#     seats = [partition["PRES16"].seats("Dem") for partition in chain]
+#     ensemble_dat["D_seats"] = seats
+#     return ensemble_dat
+
+# # start 12:38 - took ~6 hours
+# dat1 = make_dat_from_chain(chain, "st_sen_5.5eps_enactedinit") # took abt 4 hours
+# dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit.csv")
+# small_dat1 = dat1.sample(1000) # randomly sample 1000 rows
+# small_dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit_sampled.csv")
+# plt.hist(dat1["eg"], bins=50)
+# plt.show()
