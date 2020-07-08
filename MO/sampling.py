@@ -1,20 +1,20 @@
 import argparse
 import geopandas as gpd
 import pandas as pd
+import numpy as np 
+from functools import partial
+import json
+import csv
+import pickle
 import matplotlib.pyplot as plt
 from gerrychain.random import random
-random.seed(20210511)
 from gerrychain import Graph, Partition, Election, MarkovChain, GeographicPartition, accept, constraints
 from gerrychain.updaters import Tally, cut_edges, county_splits
 from gerrychain.constraints import single_flip_contiguous, Validator, within_percent_of_ideal_population, refuse_new_splits
 from gerrychain.proposals import recom
 from gerrychain.accept import always_accept
 from gerrychain.tree import recursive_tree_part
-import numpy as np 
-from functools import partial
-import json
-import csv
-import pickle
+random.seed(20210511)
 
 ## TO ADD:
 # - VRA constraint
@@ -113,10 +113,18 @@ init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_upd
 init_partition["USSEN16"].efficiency_gap() 
 ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
 
+# show stuff about the initial partition
+init_partition.graph
 init_partition.graph.nodes[0] 
 init_partition['population']
-init_partition['county_splits']
 
+for district, pop in init_partition["population"].items():
+    print("District {}: {}".format(district, pop))
+
+# look into this. confused about "OLD_SPLIT" (e.g. county 183)
+for county, countysplits in init_partition["county_splits"].items():
+    print("County {}: {}".format(county, countysplits))
+    
 init_partition.plot(cmap="tab20")
 plt.show()
 
