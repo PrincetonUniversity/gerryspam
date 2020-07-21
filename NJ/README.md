@@ -8,6 +8,8 @@ Election results for 2016 were downloaded from [OpenElections](https://github.co
 
 Election results for 2016 were downloaded from MEDSL by way of the Harvard Dataverse [(link)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/PSKDUJ) on April 1st, 2020. Only Hudson County election results were used from the MEDSL data.
 
+Note that our matched precincts are missing two counties: Burlington and Gloucester. Precinct-level election results were not available for these counties. 
+
 ## Variables
 
 * `G16DPRS`: `Democratic votes President`
