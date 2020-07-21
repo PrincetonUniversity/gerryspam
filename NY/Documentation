@@ -1,0 +1,6 @@
+Sources:
+	- open election
+
+Notes:
+	- When loading in data put all of the third party governor candidates and the write-ins into a the 	independent column
+	- When loading in data put all of the third party U.S. Senate candidates and the write-ins into a 	the independent column
