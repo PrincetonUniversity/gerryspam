@@ -91,7 +91,7 @@ def edit_039(row):
 
 def edit_001(row):
     precs = ['buena ', 'egg harbor ', 'west ']
-    replace_with = ['buena', 'eggharbor', 'west'],
+    replace_with = ['buena', 'eggharbor', 'west']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_003(row):
