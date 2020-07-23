@@ -49,8 +49,9 @@ def edit_033(row):
     return rm_space(row, 'salem')
 
 def edit_027(row):
-    precs = ['chatham', 'chester', 'mendham', 'morris']
-    return rm_space_multiples(row, precs)
+    precs = ['chatham ', 'chester ', 'mendham ', 'morris ', 'parsippany - troy', 'mt. ']
+    replace_with = ['chatham', 'chester', 'mendham', 'morris', 'parsippany-troy', 'mt.']
+    return rm_space_multiples(row, precs, replace_with)
 
 def edit_019(row):
     precs = ['clinton', 'lebanon']
@@ -105,7 +106,9 @@ def edit_003(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_023(row):
-    return rm_space(row, 'south')
+    precs = [',', 'south ']
+    replace_with = ['', 'south']
+    return rm_space_multiples(row, precs, replace_with)
 
 def edit_035(row):
     precs = ['peapack-gladstone', 'greenbrook']

@@ -47,8 +47,9 @@ def edit_033(row):
     return rm_space(row, 'salem city', 'salem')
 
 def edit_027(row):
-    precs = ['salem', 'chester', 'mendham', 'morris']
-    return rm_space_multiples(row, precs)
+    precs = ['salem ', 'chester ', 'mendham ', 'morris ', 'mount ', 'chatham ']
+    replace_with = ['salem', 'chester', 'mendham', 'morris', 'mt.', 'chatham']
+    return rm_space_multiples(row, precs, replace_with)
 
 def edit_019(row):
     precs = ['clinton ', 'lebanon borough']
@@ -56,16 +57,15 @@ def edit_019(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_025(row):
-    precs = ['freehold ', 'neptune ', 'sea ', 'spring lake ', 'shrewsbury ']
-    replace_with = ['freehold', 'neptune', 'sea', 'springlake', 'shrewsbury']
+    # need to make sure that 'shrewsbury' is working, not sure why it isn't
+    precs = ['freehold ', 'neptune ', 'sea ', 'spring lake ', 'shrewsbury ', 'avon-by-the-sea']
+    replace_with = ['freehold', 'neptune', 'sea', 'springlake', 'shrewsbury', 'avon']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_009(row):
     precs = ['wildwood ', 'west ', 'cape may city', 'cape may point']
     replace_with = ['wildwood', 'west', 'capemay', 'capemaypoint']
     return rm_space_multiples(row, precs, replace_with)
-    precs = ['wildwood', 'west',]
-    return rm_space_multiples(row, precs)
 
 def edit_021(row):
     precs = ['trenton city ward n', 'trenton city ward e', 'trenton city ward s', 'trenton city ward w',
