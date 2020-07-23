@@ -112,6 +112,8 @@ def standardize(word):
     print(word)
     return word
 
+
+# combine the columns with same candidate names using the standardize function
 count = 0;
 while (count < len(prec_elec.columns)):
     name = prec_elec.columns[count]
