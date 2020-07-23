@@ -13,9 +13,10 @@ def ignore_alpha(row):
     regex = re.compile('[\D_]+')
     return [regex.sub('', value) for value in row]
 
-# ignore special election rows (mail-in, provisional, emergency, hand(?), overseas)
+# ignore special election rows 
+# mail-in, provisional, emergency, hand(?), overseas, removed resident, congressional district tallies
 def ignore_special(df):
-    patternDel = "mail|vbm|prov|emergency|overseas|hand|total|not defined"
+    patternDel = "mail|vbm|prov|emergency|overseas|hand|total|not defined|removed|congressional"
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
@@ -87,7 +88,9 @@ def edit_013(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_039(row):
-    return rm_space(row, 'washington')
+    precs = ['roselle park', 'roselle ward', ]
+    replace_with=['rosellepark', 'roselleward',]
+    return rm_space_multiples(row, precs, replace_with)
 
 def edit_001(row):
     precs = ['buena ', 'egg harbor ', 'west ']
@@ -103,6 +106,11 @@ def edit_003(row):
 
 def edit_023(row):
     return rm_space(row, 'south')
+
+def edit_035(row):
+    precs = ['peapack-gladstone']
+    replace_with=['peapack and gladstone']
+    return rm_space_multiples(row, precs, replace_with)
 
 # test function
 d = {'prec': ["mullica township ward 1 voting district 1", "mullica township ward 2 voting district 1", "cape may 3", 'sea bright', 'spring lake borough', 'spring lake heights', 'cape may point 1'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
@@ -132,6 +140,7 @@ countyToCountyCleaner = {
     "001": edit_001,
     "003": edit_003,
     "023": edit_023,
+    "035": edit_035
 }
     
 """
@@ -160,6 +169,11 @@ counties = pd.Series(clean_elec['county_fips']).unique()
 clean_elec["prec_matching"] = clean_elec["precinct"].copy()
 clean_elec.set_index(['county_fips', 'precinct'], inplace=True)
 # print("duplicated indices", clean_elec[clean_elec.index.duplicated()])
+
+# CHECK: are all of the counties in election results?
+print(counties)
+print("# counties in elections:", len(counties))
+print("# counties in NJ:", len(crosswalk.statefips_countyfips.unique()))
 
 # # FOR TESTING
 # county_dat = clean_elec.loc['033']
