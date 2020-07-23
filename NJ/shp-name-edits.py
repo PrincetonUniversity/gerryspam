@@ -71,7 +71,7 @@ def edit_021(row):
     precs = ['trenton city ward n', 'trenton city ward e', 'trenton city ward s', 'trenton city ward w',
              'hopewell borough', 'hopewell township']
     replace_with = ['trentonnorth', 'trentoneast', 'trentonsouth', 'trentonwest',
-                    'hopewelltwp', 'hopewellboro']
+                    'hopewellboro', 'hopewelltwp']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_037(row):
