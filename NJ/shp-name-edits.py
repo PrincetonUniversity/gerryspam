@@ -145,6 +145,11 @@ def edit_003(row):
 def edit_023(row):
     return rm_space(row, 'south')
 
+def edit_029(row):
+    precs = ['ocean gate', 'ocean township']
+    replace_with=['oceangate', 'oceantwp']
+    return rm_space_multiples(row, precs, replace_with)
+
 # # test function
 # d = {'prec': ["pine valley", "pine hill", "audubon borough west", 'haddon township south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 # df = pd.DataFrame(data=d)
@@ -167,6 +172,7 @@ countyToCountyCleaner = {
     "001": edit_001,
     "003": edit_003,
     "023": edit_023,
+    "029": edit_029
 }
 
 """
