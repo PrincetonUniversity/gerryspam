@@ -16,7 +16,7 @@ def ignore_alpha(row):
 # ignore special election rows 
 # mail-in, provisional, emergency, hand(?), overseas, removed resident, congressional district tallies
 def ignore_special(df):
-    patternDel = "mail|vbm|prov|emergency|oversea|hand|total|not defined|removed|congressional"
+    patternDel = "mail|vbm|prov|emergency|oversea|hand|total|not defined|removed|congressional|th cong|unassigned"
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
