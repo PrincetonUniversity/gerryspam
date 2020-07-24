@@ -54,8 +54,9 @@ def edit_027(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_019(row):
-    precs = ['clinton', 'lebanon']
-    return rm_space_multiples(row, precs)
+    precs = ['clinton ', 'lebanon', 'town of clinton']
+    replace_with = ['clinton', 'lebanon', 'clintontown', ]
+    return rm_space_multiples(row, precs, replace_with)
 
 def edit_025(row):
     precs = ['freehold ', 'neptune ', 'sea ', 'spring lake ', 'shrewsbury ']
