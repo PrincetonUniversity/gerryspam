@@ -99,9 +99,13 @@ def edit_013(row):
     precs = ['irvington township ward north', 'irvington township ward east', 
              'irvington township ward south', 'irvington township ward west',
              'newark city ward north', 'newark city ward east', 
-             'newark city ward south', 'newark city ward west', 'newark city ward central']
+             'newark city ward south', 'newark city ward west', 'newark city ward central',
+             'city of orange township ward north', 'city of orange township ward east',
+             'city of orange township ward south', 'city of orange township ward west']
     replace_with = ['irvingtonnorth ', 'irvingtoneast ', 'irvingtonsouth ', 'irvingtonwest ',
-                    'newarknorth ', 'newarkeast ', 'newarksouth ', 'newarkwest ', 'newarkcentral ']
+                    'newarknorth ', 'newarkeast ', 'newarksouth ', 'newarkwest ', 'newarkcentral ',
+                    'orangenorth', 'orangeeast', 'orangesouth', 'orangewest']
+
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_039(row):

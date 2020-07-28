@@ -84,9 +84,11 @@ def edit_007(row):
     
 def edit_013(row):
     precs = ['irvington n-', 'irvington e-', 'irvington s-', 'irvington w-',
-             'newark n-', 'newark e-', 'newark s-', 'newark w-', 'newark c-']
+             'newark n-', 'newark e-', 'newark s-', 'newark w-', 'newark c-',
+             'orange n-', 'orange e-', 'orange s-', 'orange w-']
     replace_with = ['irvingtonnorth ', 'irvingtoneast ', 'irvingtonsouth ', 'irvingtonwest ',
-                    'newarknorth ', 'newarkeast ', 'newarksouth ', 'newarkwest ', 'newarkcentral ']
+                    'newarknorth ', 'newarkeast ', 'newarksouth ', 'newarkwest ', 'newarkcentral ',
+                    'orangenorth ', 'orangeeast ', 'orangesouth ', 'orangewest ']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_039(row):
