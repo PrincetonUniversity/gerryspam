@@ -131,6 +131,7 @@ def standardize(word):
     
     return word
 
+## this loop is supposed to rename the election names and combine on candidate names
 count = 0;
 length = len(prec_elec.columns)
 while (count < length):
@@ -141,6 +142,7 @@ while (count < length):
     print(prec_elec.columns[count])
     count = count +1
     
+    ## this loop is supposed to find duplicates and merge them together
     for name in prec_elec.columns:
         if new_name == name:
             prec_elec["New"] = prec_elec[new_name] + prec_elec[name]
@@ -156,7 +158,7 @@ print(prec_elec.columns.values)
 
 
 
-
+## need to finish off these renamings when the standardizing works
 
 prec_elec_rn = prec_elec.rename(columns = {
     'votes Comptroller Cruger E Gallaudet': 'NYG18LCOM1',
