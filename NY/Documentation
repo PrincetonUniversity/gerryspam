@@ -4,3 +4,31 @@ Sources:
 Notes:
 	- When loading in data put all of the third party governor candidates and the write-ins into a the 	independent column
 	- When loading in data put all of the third party U.S. Senate candidates and the write-ins into a 	the independent column
+	
+	Once loaded:
+	- delete these rows because they are totals:
+		- "Cortland, CORTLAND CO NY" and "Cortland, CORTLAND CO NY"
+		- "Erie,City of Buffalo Total"
+		- "Kings,KINGS COUNTY NY"
+		- "Saratoga,Total"
+		
+	- Counties with duplicates and half votes in one duplicate half in others
+		- Kings
+		- Lewis
+		- Putnam
+		- Richmond
+		
+	- Counties with incomplete votes:
+		- Allegany
+		- Columbia
+		- Onondanga
+		- Orange
+		- Orleans
+		- Oswego
+		- Queens
+		- Rockland
+		- Saratoga
+		- Schuyler
+		- Suffolk
+		- Ulster
+		- Warren
