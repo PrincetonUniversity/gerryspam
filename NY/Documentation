@@ -18,11 +18,12 @@ Notes:
 		- Putnam
 		- Richmond
 		
-	- Counties with incomplete votes:
-		- Allegany
-		- Columbia
-		- Onondanga
-		- Orange
+	- Counties with incomplete votes: (open elections is fixing these issues so might be updated)
+		- Allegany (found data in open elections specific county file)
+		- Bronx (found data in open elections specific county file)
+		- Columbia (found data on board of elections website, hand copied and paste across, remember to count absentee ballots)
+		- Onondanga 
+		- Orange (found data on board of elections website, hand copied and paste across)(not finished, green party Comp)
 		- Orleans
 		- Oswego
 		- Queens
