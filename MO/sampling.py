@@ -41,12 +41,36 @@ args = parser.parse_args()
 num_districts_in_map = {"state_senate" : 34,
                         "state_house" : 163}
 
-DATE = "0707" 
+DATE = "0807" 
 POP_COL = "total"
+VRA_POP_COL = 'black_pop'
 NUM_DISTRICTS = num_districts_in_map[args.map]
 ITERS = args.n
 EPS = args.eps
 ELECTS = ["PRES16", "USSEN16"]
+
+## ## ## ## ## ## ## ## ## ## ## 
+## Define VRA district counter 
+## ## ## ## ## ## ## ## ## ## ##
+def num_vra_districts(partition, pop_col=POP_COL, vra_pop_col=VRA_POP_COL, vra_relative_threshold=0.37):
+    # we'll count districts that satisfy the VRA threshold.
+    total = 0
+
+    # For each district,...
+    for district in partition.parts:
+        nodes = partition.parts[district]
+
+        # compute total population...
+        pop = sum(partition.graph.nodes[n][pop_col] for n in nodes)
+
+        # and VRA-relevant population...
+        vra_pop = sum(partition.graph.nodes[n][vra_pop_col] for n in nodes)
+
+        # to see if their ratio is greater than the threshold.
+        if vra_pop / pop > vra_relative_threshold:
+            total += 1
+
+    return total
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## creating an initial partition
@@ -63,7 +87,8 @@ graph = Graph.from_file(dat_path)
 
 mo_updaters = {"population" : Tally(POP_COL, alias="population"),
                "cut_edges": cut_edges,
-               "county_splits": county_splits("county_splits", "COUNTYFP")
+               "county_splits": county_splits("county_splits", "COUNTYFP"),
+               "num_vra_districts": num_vra_districts
             }
 
 elections = [Election("USSEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"}),
@@ -82,12 +107,12 @@ print("Creating seed plan")
 ##################################################################
 # NUM_DISTRICTS=34
 # EPS=0.05
-# total_pop = sum(dat[POP_COL])
-# ideal_pop = total_pop / NUM_DISTRICTS
-# cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
-#                                 pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
+total_pop = sum(dat[POP_COL])
+ideal_pop = total_pop / NUM_DISTRICTS
+cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
+                                pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
 
-# init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
+init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
 # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.08, USSEN EG = -0.18
 
 
@@ -109,28 +134,28 @@ print("Creating seed plan")
 ##################################################################
 ######## ! if using the enacted state senate map as the initial partition
 ##################################################################
-init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
-init_partition["USSEN16"].efficiency_gap() 
-ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
+# init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
+# init_partition["USSEN16"].efficiency_gap() 
+# ideal_pop = sum(init_partition['population'].values()) / len(init_partition)
 
-# show stuff about the initial partition
-init_partition.graph
-init_partition.graph.nodes[0] 
-init_partition['population']
+# # show stuff about the initial partition
+# init_partition.graph
+# init_partition.graph.nodes[0] 
+# init_partition['population']
 
-for district, pop in init_partition["population"].items():
-    print("District {}: {}".format(district, pop))
+# for district, pop in init_partition["population"].items():
+#     print("District {}: {}".format(district, pop))
 
-# look into this. confused about "OLD_SPLIT" (e.g. county 183)
-for county, countysplits in init_partition["county_splits"].items():
-    print("County {}: {}".format(county, countysplits))
+# # look into this. confused about "OLD_SPLIT" (e.g. county 183)
+# for county, countysplits in init_partition["county_splits"].items():
+#     print("County {}: {}".format(county, countysplits))
     
-init_partition.plot(cmap="tab20")
-plt.show()
+# init_partition.plot(cmap="tab20")
+# plt.show()
 
-for part in init_partition.parts:
-    number_of_nodes = len(init_partition.parts[part])
-    print(f"Partition {part} has {number_of_nodes} nodes")
+# for part in init_partition.parts:
+#     number_of_nodes = len(init_partition.parts[part])
+#     print(f"Partition {part} has {number_of_nodes} nodes")
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## set up a chain 
@@ -162,13 +187,14 @@ chain = MarkovChain(
 print("Starting Markov Chain")
 
 def init_chain_results(elections):
-    data = {"cutedges": np.zeros(ITERS)}
+    data = {"cutedges": np.zeros(ITERS), "num_vra_districts": np.zeros(ITERS)}
     parts = {"hash": [], "samples": [], "eg": [], "election": []}
 
     for election in elections:
         name = election.lower()
         data["seats_{}".format(name)] = np.zeros(ITERS)
         data["results_{}".format(name)] = np.zeros((ITERS, NUM_DISTRICTS))
+        data["num_vra_districts_{}".format(name)] = np.zeros(ITERS)
         data["efficiency_gap_{}".format(name)] = np.zeros(ITERS)
         data["mean_median_{}".format(name)] = np.zeros(ITERS)
         data["partisan_gini_{}".format(name)] = np.zeros(ITERS)
@@ -176,6 +202,7 @@ def init_chain_results(elections):
 
 def tract_chain_results(data, elections, part, i):
     data["cutedges"][i] = len(part["cut_edges"])
+    data["n_vra_dist"][i] = len(part["num_vra_districts"])
 
     for election in elections:
         name = election.lower()
@@ -208,6 +235,7 @@ chain_results, parts = init_chain_results(ELECTS)
 
 for i, part in enumerate(chain):
     chain_results["cutedges"][i] = len(part["cut_edges"])
+    chain_results["n_vra_dist"][i] = len(part["num_vra_districts"])
     tract_chain_results(chain_results, ELECTS, part, i)
     update_saved_parts(parts, part, ELECTS, i)
 
@@ -229,9 +257,6 @@ with open(output, "wb") as f_out:
 
 with open(output_parts, "wb") as f_out:
     pickle.dump(parts, f_out)
-
-
-
 
 
 ## ## ## ## ## ## ## ## ## ## ## 
