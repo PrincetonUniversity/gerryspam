@@ -14,7 +14,7 @@ from gerrychain.constraints import single_flip_contiguous, Validator, within_per
 from gerrychain.proposals import recom
 from gerrychain.accept import always_accept
 from gerrychain.tree import recursive_tree_part
-random.seed(20210511)
+random.seed(20210807)
 
 ## TO ADD:
 # - VRA constraint
