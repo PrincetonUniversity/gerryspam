@@ -52,6 +52,9 @@ ELECTS = ["PRES16", "USSEN16"]
 ## ## ## ## ## ## ## ## ## ## ## 
 ## Define VRA district counter 
 ## ## ## ## ## ## ## ## ## ## ##
+
+# NB: need to change type from "int" to probably float because of issue with len()
+
 def num_vra_districts(partition, pop_col=POP_COL, vra_pop_col=VRA_POP_COL, vra_relative_threshold=0.37):
     # we'll count districts that satisfy the VRA threshold.
     total = 0
