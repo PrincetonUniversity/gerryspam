@@ -52,9 +52,6 @@ ELECTS = ["PRES16", "USSEN16"]
 ## ## ## ## ## ## ## ## ## ## ## 
 ## Define VRA district counter 
 ## ## ## ## ## ## ## ## ## ## ##
-
-# NB: need to change type from "int" to probably float because of issue with len()
-
 def num_vra_districts(partition, pop_col=POP_COL, vra_pop_col=VRA_POP_COL, vra_relative_threshold=0.37):
     # we'll count districts that satisfy the VRA threshold.
     total = 0
@@ -205,7 +202,7 @@ def init_chain_results(elections):
 
 def tract_chain_results(data, elections, part, i):
     data["cutedges"][i] = len(part["cut_edges"])
-    data["n_vra_dist"][i] = len(part["num_vra_districts"])
+    data["n_vra_dist"][i] = part["num_vra_districts"]
 
     for election in elections:
         name = election.lower()
@@ -238,7 +235,7 @@ chain_results, parts = init_chain_results(ELECTS)
 
 for i, part in enumerate(chain):
     chain_results["cutedges"][i] = len(part["cut_edges"])
-    chain_results["n_vra_dist"][i] = len(part["num_vra_districts"])
+    chain_results["n_vra_dist"][i] = part["num_vra_districts"]
     tract_chain_results(chain_results, ELECTS, part, i)
     update_saved_parts(parts, part, ELECTS, i)
 
