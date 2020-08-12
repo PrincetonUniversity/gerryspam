@@ -39,7 +39,7 @@ driver = webdriver.Chrome('/Users/laeocrnkovic-rubsamen/Downloads/chromedriver')
 
 # open browser window
 # replace this with the url of the year/state you want to download 
-partnership_url = 'https://www.census.gov/geo/partnerships/pvs/partnership16v1/st36_ny.html'
+partnership_url = 'https://www.census.gov/geo/partnerships/pvs/partnership17v2/st36_ny.html'
 driver.get(partnership_url)
 
 
@@ -47,7 +47,7 @@ driver.get(partnership_url)
 
 
 county_tags = driver.find_elements_by_tag_name('td')
-n_counties = len(county_tags)
+n_counties = len(county_tags) - 1
 print("number of counties total is:", n_counties)
 
 # need to add some type of wait here
@@ -64,7 +64,7 @@ while (start_index < n_counties+1):
 # move all the downloaded files to 'p'
 # then extract all the zip files 
 # you must to change the relative path in 'p'
-p = Path.home() / "Users" / "laeocrnkovic-rubsamen" / "Desktop"/ "NY" / "SHPfiles" 
+p = Path.home() / "projects" / "gerryspam" / "NY" / "dat" / "partnership-2018"
 parent = p / 'unzipped' / 'extracted' / 'precincts'
 parent.mkdir(exist_ok=True, parents=True)
 up = p / 'unzipped'
