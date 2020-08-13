@@ -87,12 +87,12 @@ def edit_007(row):
              'berlin borough', 'berlin township', 
              'gloucester township', 'gloucester city',
              'haddon heights', 'haddon township', 
-             'pine ']
+             'pine ', 'mount ephraim']
     replace_with = ['audubonpark', 'audubonboro', 
                     'berlinboro', 'berlintwp', 
                     'gloucestertwp', 'gloucestercity', 
                     'haddonheights', 'haddontwp',
-                    'pine']
+                    'pine', 'mt.ephraim']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_013(row):

@@ -16,7 +16,7 @@ def ignore_alpha(row):
 # ignore special election rows 
 # mail-in, provisional, emergency, hand(?), overseas, removed resident, congressional district tallies
 def ignore_special(df):
-    patternDel = "mail|vbm|prov|emergency|oversea|hand|total|not defined|removed|congressional|th cong|unassigned"
+    patternDel = "mail|vbm|prov|emergency|oversea|hand|total|not defined|removed|remove|congressional|th cong|unassigned|contest|rejected"
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
@@ -79,7 +79,7 @@ def edit_041(row):
     return rm_space(row, 'washington')
 
 def edit_007(row):
-    precs = ['audubon', 'berlin', 'gloucester', 'haddon', 'pine']
+    precs = ['audubon', 'berlin', 'gloucester', 'haddon', 'pine', 'mt.']
     return rm_space_multiples(row, precs)
     
 def edit_013(row):
