@@ -153,13 +153,18 @@ def edit_023(row):
     return rm_space(row, 'south')
 
 def edit_029(row):
-    precs = ['ocean gate', 'ocean township']
-    replace_with=['oceangate', 'oceantwp']
+    precs = ['ocean gate', 'ocean township', 'point pleasant beach', 'point pleasant', 'seaside ', 'barnegat light']
+    replace_with=['oceangate', 'oceantwp', 'pointpleasantbeach', 'pointpleasant', 'seaside', 'barnegatlight']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_017(row):
     precs = ['guttenberg', 'east newark', 'jersey city w']
     replace_with=['guttenberg ward 1', 'east newark ward 1', 'jerseycity-']
+    return rm_space_multiples(row, precs, replace_with)
+
+def edit_005(row):
+    precs = ['mount ', 'medford ', 'pemberton ', 'burlington ']
+    replace_with=['mount', 'medford', 'pemberton', 'burlington']
     return rm_space_multiples(row, precs, replace_with)
 
 # # test function
@@ -185,7 +190,8 @@ countyToCountyCleaner = {
     "003": edit_003,
     "023": edit_023,
     "029": edit_029,
-    "017": edit_017
+    "017": edit_017,
+    "005": edit_005
 }
 
 """

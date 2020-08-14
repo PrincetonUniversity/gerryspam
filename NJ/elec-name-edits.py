@@ -15,7 +15,9 @@ def ignore_alpha(row):
 # ignore special election rows 
 # mail-in, provisional, emergency, hand(?), overseas, removed resident, congressional district tallies
 def ignore_special(df):
-    patternDel = "mail|vbm|prov|emergency|oversea|hand|total|not defined|removed|remove|congressional|th cong|unassigned|contest|rejected"
+    patternDel = """mail|vbm|prov|emergency|oversea|hand|total|
+                not defined|removed|remove|congressional|th cong|
+                unassigned|contest|rejected|presidential"""
     filter = df[~df["precinct"].str.contains(patternDel, na=False)]
     return filter
 
@@ -75,7 +77,8 @@ def edit_037(row):
     return rm_space(row, 'andover')
 
 def edit_041(row):
-    return rm_space(row, 'washington')
+    precs = ['washington', 'wash']
+    return rm_space_multiples(row, precs)
 
 def edit_007(row):
     precs = ['audubon', 'berlin', 'gloucester', 'haddon', 'pine', 'mt.']
@@ -118,14 +121,16 @@ def edit_035(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_029(row):
-    precs = ['ocean gate', 'ocean district']
-    replace_with=['oceangate', 'oceantwp']
+    precs = ['ocean gate', 'ocean district', 'point pleasant beach', 'point pleasant', 'seaside ', 'barnegat light']
+    replace_with=['oceangate', 'oceantwp', 'pointpleasantbeach', 'pointpleasant', 'seaside', 'barnegatlight']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_017(row):
     precs = ['jersey city city ward ']
     replace_with = ['jerseycity-']
     return rm_space_multiples(row, precs, replace_with)
+
+
 
 countyToCountyCleaner = {
     "033": edit_033,
