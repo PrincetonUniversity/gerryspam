@@ -125,6 +125,7 @@ def edit_001(row):
              'brigantine city ward 2 voting district 1',
              'brigantine city ward 3 voting district 1',
              'brigantine city ward 4 voting district 1',
+             'estell manor city voting district 1'
              ]
     replace_with = ['buenaboro', 'buenavista',
                     'eggharbortwp', 'eggharborcity',
@@ -136,13 +137,15 @@ def edit_001(row):
                      'brigantine city ward 1',
                      'brigantine city ward 2',
                      'brigantine city ward 3',
-                     'brigantine city ward 4']
+                     'brigantine city ward 4',
+                     'estell manor estl'
+                     ]
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_003(row):
-    precs = ['ridgefield park ', 'ridgefield borough', 
+    precs = ['ridgefield park',  
              'river vale', 'river edge', 'saddle brook', 'saddle river']
-    replace_with = ['ridgefieldpark ', 'ridgefield', 
+    replace_with = ['ridgefieldpark', 
                     'rivervale', 'riveredge', 'saddlebrook', 'saddleriver']
     return rm_space_multiples(row, precs, replace_with)
 
@@ -182,7 +185,7 @@ countyToCountyCleaner = {
     "003": edit_003,
     "023": edit_023,
     "029": edit_029,
-    "017", edit_017
+    "017": edit_017
 }
 
 """
@@ -223,5 +226,8 @@ clean_shp['prec_word1'] = partnership_prec_split[0]
 shp_nums = ignore_alpha(clean_shp['shp_loc_prec'])
 clean_shp["shp_loc_prec_nums"] = shp_nums
 clean_shp["shp_loc_prec_code"] = clean_shp['shp_loc_prec_nums'].astype(str) + '_' + clean_shp['prec_word1']
+
+print("# unique precinct codes:", len(clean_shp.shp_loc_prec_code.unique()))
+print("# unique loc_prec:", len(clean_shp.shp_loc_prec.unique()))
 
 clean_shp.to_csv("/Users/hopecj/projects/gerryspam/NJ/dat/cleanprec_shp.csv")

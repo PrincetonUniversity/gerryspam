@@ -208,4 +208,7 @@ clean_elec['clean_prec_code'] = prec_nums_noleadingzero
 clean_elec["elec_loc_prec_nums"] = clean_elec['clean_fips'].astype(str) + clean_elec['clean_prec_code'].astype(str)
 clean_elec["elec_loc_prec_code"] = clean_elec['elec_loc_prec_nums'].astype(str) + '_' + clean_elec['prec_word1']
 
+print("# unique precinct codes:", len(clean_elec.elec_loc_prec_code.unique()))
+print("# unique loc_prec:", len(clean_elec.elec_loc_prec.unique()))
+
 clean_elec.to_csv("/Users/hopecj/projects/gerryspam/NJ/dat/cleanprec_elec.csv")
