@@ -3,7 +3,6 @@ import fuzzy_pandas as fpd
 import geopandas as gpd 
 import re
 from rich import print
-# import helper_functions
 
 """
 helper functions
@@ -123,6 +122,11 @@ def edit_029(row):
     replace_with=['oceangate', 'oceantwp']
     return rm_space_multiples(row, precs, replace_with)
 
+def edit_017(row):
+    precs = ['jersey city city ward ']
+    replace_with = ['jerseycity-']
+    return rm_space_multiples(row, precs, replace_with)
+
 countyToCountyCleaner = {
     "033": edit_033,
     "027": edit_027,
@@ -139,7 +143,8 @@ countyToCountyCleaner = {
     "003": edit_003,
     "023": edit_023,
     "035": edit_035,
-    "029": edit_029
+    "029": edit_029,
+    "017": edit_017
 }
     
 """

@@ -158,8 +158,8 @@ def edit_029(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_017(row):
-    precs = ['guttenberg', 'east newark']
-    replace_with=['guttenberg ward 1', 'east newark ward 1']
+    precs = ['guttenberg', 'east newark', 'jersey city w']
+    replace_with=['guttenberg ward 1', 'east newark ward 1', 'jerseycity-']
     return rm_space_multiples(row, precs, replace_with)
 
 # # test function
