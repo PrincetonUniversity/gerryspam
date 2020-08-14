@@ -33,9 +33,9 @@ def rm_space(row, prec_in, prec_out=None):
 def rm_space_multiples(row, prec_to_replace, replace_with=None):
     if replace_with is None:
         to_replace = {(prec + ' '):prec for prec in prec_to_replace}
+        out = row.replace(to_replace, regex=True)
     else:
-        to_replace = replace_with
-    out = row.replace(to_replace, regex=True)
+        out = row.replace(prec_to_replace, replace_with, regex=True)
     out_list = out.tolist()
     return out_list
 
@@ -163,11 +163,11 @@ def edit_017(row):
     return rm_space_multiples(row, precs, replace_with)
 
 # # test function
-# d = {'prec': ["pine valley", "pine hill", "audubon borough west", 'haddon township south', 'salem hill east', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
+# d = {'prec': ["mount ephraim borough voting district 4", "mount ephraim borough voting district 3", "mount ephraim borough voting district 2", 'haddon township south', 'berlin borough', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 # df = pd.DataFrame(data=d)
-
 # print(df['prec'])
 # u_out = edit_007(df['prec'])
+# print(u_out)
 
 countyToCountyCleaner = {
     "033": edit_033,
