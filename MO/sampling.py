@@ -168,8 +168,8 @@ county_splits_bound = compactness_bound = constraints.UpperBound(lambda p: len(p
                                            len(init_partition["county_splits"]))
 
 # vra constraint: no lower than initial partition 
-vra_bound = compactness_bound = constraints.LowerBound(lambda p: len(p["num_vra_districts"]), 
-                                           len(init_partition["num_vra_districts"]))
+vra_bound = compactness_bound = constraints.LowerBound(lambda p: p["num_vra_districts"], 
+                                           init_partition["num_vra_districts"])
 
 ## ## ## ## ## ## ## ## ## ## ## 
 ## Re-com chain and run it!
