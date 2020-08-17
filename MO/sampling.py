@@ -16,9 +16,6 @@ from gerrychain.accept import always_accept
 from gerrychain.tree import recursive_tree_part
 random.seed(20210807)
 
-## TO ADD:
-# - VRA constraint
-
 np_load_old = np.load
 np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
 
@@ -41,7 +38,7 @@ args = parser.parse_args()
 num_districts_in_map = {"state_senate" : 34,
                         "state_house" : 163}
 
-DATE = "0807" 
+DATE = "0817" 
 POP_COL = "total"
 VRA_POP_COL = 'black_pop'
 NUM_DISTRICTS = num_districts_in_map[args.map]
@@ -88,8 +85,7 @@ graph = Graph.from_file(dat_path)
 mo_updaters = {"population" : Tally(POP_COL, alias="population"),
                "cut_edges": cut_edges,
                "county_splits": county_splits("county_splits", "COUNTYFP"),
-               "num_vra_districts": num_vra_districts
-            }
+               "num_vra_districts": num_vra_districts}
 
 elections = [Election("USSEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"}),
              Election("PRES16", {"Dem": "G16PREDCLI", "Rep": "G16PRERTRU"})]
@@ -171,6 +167,10 @@ compactness_bound = constraints.UpperBound(lambda p: len(p["cut_edges"]),
 county_splits_bound = compactness_bound = constraints.UpperBound(lambda p: len(p["county_splits"]), 
                                            len(init_partition["county_splits"]))
 
+# vra constraint: no lower than initial partition 
+vra_bound = compactness_bound = constraints.LowerBound(lambda p: len(p["num_vra_districts"]), 
+                                           len(init_partition["num_vra_districts"]))
+
 ## ## ## ## ## ## ## ## ## ## ## 
 ## Re-com chain and run it!
 ## ## ## ## ## ## ## ## ## ## ## 
@@ -179,7 +179,8 @@ chain = MarkovChain(
         constraints=[
             constraints.within_percent_of_ideal_population(init_partition, EPS),
             compactness_bound,
-            county_splits_bound],
+            county_splits_bound,
+            vra_bound],
         accept=accept.always_accept,
         initial_state=init_partition,
         total_steps=ITERS)
@@ -187,14 +188,13 @@ chain = MarkovChain(
 print("Starting Markov Chain")
 
 def init_chain_results(elections):
-    data = {"cutedges": np.zeros(ITERS), "num_vra_districts": np.zeros(ITERS)}
+    data = {"cutedges": np.zeros(ITERS)}
     parts = {"hash": [], "samples": [], "eg": [], "election": []}
 
     for election in elections:
         name = election.lower()
         data["seats_{}".format(name)] = np.zeros(ITERS)
         data["results_{}".format(name)] = np.zeros((ITERS, NUM_DISTRICTS))
-        data["num_vra_districts_{}".format(name)] = np.zeros(ITERS)
         data["efficiency_gap_{}".format(name)] = np.zeros(ITERS)
         data["mean_median_{}".format(name)] = np.zeros(ITERS)
         data["partisan_gini_{}".format(name)] = np.zeros(ITERS)
@@ -202,7 +202,6 @@ def init_chain_results(elections):
 
 def tract_chain_results(data, elections, part, i):
     data["cutedges"][i] = len(part["cut_edges"])
-    data["n_vra_dist"][i] = part["num_vra_districts"]
 
     for election in elections:
         name = election.lower()
@@ -235,7 +234,6 @@ chain_results, parts = init_chain_results(ELECTS)
 
 for i, part in enumerate(chain):
     chain_results["cutedges"][i] = len(part["cut_edges"])
-    chain_results["n_vra_dist"][i] = part["num_vra_districts"]
     tract_chain_results(chain_results, ELECTS, part, i)
     update_saved_parts(parts, part, ELECTS, i)
 
