@@ -14,7 +14,7 @@ from gerrychain.constraints import single_flip_contiguous, Validator, within_per
 from gerrychain.proposals import recom
 from gerrychain.accept import always_accept
 from gerrychain.tree import recursive_tree_part
-random.seed(20210807)
+random.seed(20210809)
 
 np_load_old = np.load
 np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
