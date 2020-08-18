@@ -21,13 +21,13 @@ python3 sampling.py "state_house" 0.03 1000
 python3 sampling.py "state_senate" 0.03 1000
 # Amendment 3 actual run 
 python3 sampling.py "state_house" 0.01 100000
-python3 sampling.py "state_house" 0.01 100000
+python3 sampling.py "state_senate" 0.01 100000
 python3 sampling.py "state_house" 0.03 100000
-python3 sampling.py "state_house" 0.03 100000
+python3 sampling.py "state_senate" 0.03 100000
 
 # Baseline test run 
 python3 sampling.py "state_house" 0.05 1000
 python3 sampling.py "state_senate" 0.05 1000
 # Baseline actual run 
-python3 sampling.py "state_house" 0.05 100000
-python3 sampling.py "state_senate" 0.05 100000
+python3 sampling.py "state_house" 0.05 1000000
+python3 sampling.py "state_senate" 0.05 1000000
