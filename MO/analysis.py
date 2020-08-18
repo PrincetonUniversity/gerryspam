@@ -16,9 +16,9 @@ np_load_old = np.load
 np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
 
 # load results from gerrychain 
-sen_05 = np.load("/Users/hopecj/projects/gerryspam/MO/res/MO_state_senate_100000_0.05.p")
-sen_03 = np.load("/Users/hopecj/projects/gerryspam/MO/res/MO_state_senate_100000_0.03.p")
-sen_01 = np.load("/Users/hopecj/projects/gerryspam/MO/res/MO_state_senate_100000_0.01.p")
+sen_05 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_house_100000_0.05.p")
+sen_03 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_house_100000_0.03.p")
+# sen_01 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_senate_100000_0.01.p")
 sen_05.keys() # shows "columns" available
 print(sen_05["mean_median_ussen16"]) # results from chain
 
@@ -152,7 +152,6 @@ plt.legend()
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_seats_smallseed_sen16.png", bbox_inches="tight", dpi=200)
 plt.show()
 
-
 # Partisanship
 def extend_data_frame(df, data, key_prefix, col, districts, epsilon, 
                       elections=["PRES16", "SEN16"], iters=100000):
@@ -165,9 +164,11 @@ elections = ["PRES16", "USSEN16"]
 
 # efficiency gap
 eg = pd.DataFrame()
-eg = extend_data_frame(eg, sen_05, "efficiency_gap_{}", "EG", 34, 0.05, elections=elections)
-eg = extend_data_frame(eg, sen_03, "efficiency_gap_{}", "EG", 34, 0.03, elections=elections)
-eg = extend_data_frame(eg, sen_01, "efficiency_gap_{}", "EG", 34, 0.01, elections=elections)
+eg_05 = extend_data_frame(eg, sen_05, "efficiency_gap_{}", "EG", 34, 0.05, elections=elections)
+eg = pd.DataFrame()
+eg_03 = extend_data_frame(eg, sen_03, "efficiency_gap_{}", "EG", 34, 0.03, elections=elections)
+eg = pd.DataFrame()
+eg_01 = extend_data_frame(eg, sen_01, "efficiency_gap_{}", "EG", 34, 0.01, elections=elections)
 
 eg["EG"] = eg["EG"].apply(float)
 eg["Districts"] = eg["Districts"].apply(int)
@@ -193,9 +194,11 @@ plt.show()
 
 #mean-median difference
 mm = pd.DataFrame()
-mm = extend_data_frame(mm, sen_05, "mean_median_{}", "MM", 34, 0.05, elections=elections)
-mm = extend_data_frame(mm, sen_03, "mean_median_{}", "MM", 34, 0.03, elections=elections)
-mm = extend_data_frame(mm, sen_01, "mean_median_{}", "MM", 34, 0.01, elections=elections)
+mm_05 = extend_data_frame(mm, sen_05, "mean_median_{}", "MM", 34, 0.05, elections=elections)
+mm = pd.DataFrame()
+mm_03 = extend_data_frame(mm, sen_03, "mean_median_{}", "MM", 34, 0.03, elections=elections)
+mm = pd.DataFrame()
+mm_01 = extend_data_frame(mm, sen_01, "mean_median_{}", "MM", 34, 0.01, elections=elections)
 
 mm["MM"] = mm["MM"].apply(float)
 mm["Districts"] = mm["Districts"].apply(int)
@@ -245,19 +248,35 @@ def extend_data_frame(df, data, key_prefix_metric, key_prefix_res, key_prefix_se
     return df, df_res, df_seats
 elections = ["PRES16", "USSEN16"]
 
-eg = pd.DataFrame()
-eg_05 = extend_data_frame(eg, sen_05, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.05, elections=elections)
-eg_03 = extend_data_frame(eg, sen_03, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.03, elections=elections)
-eg_01 = extend_data_frame(eg, sen_01, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.01, elections=elections)
+df = pd.DataFrame()
+df_05 = extend_data_frame(df, sen_05, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.05, elections=elections)
+df_03 = extend_data_frame(df, sen_03, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.03, elections=elections)
+df_01 = extend_data_frame(df, sen_01, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.01, elections=elections)
 
 # merge together the tuple returned from the function
-# nb: this is all 5% population deviation!
-out = eg_05[0].join(eg_05[1])
-out = out.join(eg_05[2])
+out_05 = df_05[0].join(df_05[1])
+out_05 = out_05.join(df_05[2])
+out_05 = out_05.join(mm_05["MM"])
 
-# sample rows for viz
-out_sample = out.sample(n=2000, replace=False, random_state=1)
-out_sample['hash'] = out_sample.index
+# same for 3% population deviation
+out_03 = df_03[0].join(df_03[1])
+out_03 = out_03.join(df_03[2])
+out_03 = out_03.join(mm_03["MM"])
 
-out_sample.to_csv("/Users/hopecj/projects/gerryspam/MO/res/stsen_05_data_sampled.csv")
-out_sample.to_csv("/Users/hopecj/personal/portion-viz/data/stsen_05_data_sampled_small.csv")
+# same for 1% population deviation
+out_01 = df_01[0].join(df_01[1])
+out_01 = out_01.join(df_01[2])
+out_01 = out_01.join(mm_01["MM"])
+
+# # sample rows for viz
+# out_sample = out.sample(n=2000, replace=False, random_state=1)
+# out_sample['hash'] = out_sample.index
+
+# out_sample.to_csv("/Users/hopecj/projects/gerryspam/MO/res/stsen_05_data_sampled.csv")
+# out_sample.to_csv("/Users/hopecj/personal/portion-viz/data/stsen_05_data_sampled_small.csv")
+
+out_05.to_csv("/Users/hopecj/projects/gerryspam/MO/res/sthouse_05_data.csv")
+out_03.to_csv("/Users/hopecj/projects/gerryspam/MO/res/sthouse_03_data.csv")
+out_01.to_csv("/Users/hopecj/projects/gerryspam/MO/res/sthouse_01_data.csv")
+
+
