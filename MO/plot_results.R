@@ -33,6 +33,36 @@ df_03_long <- gather(df_03, "district", "Dem_Voteshare",
 
 df_long <- bind_rows(df_baseline_long, df_03_long)
 
+# look at competitiveness range
+competitiveness_dist <- function(x, probs) {
+  tibble(x = quantile(x, probs), probs = probs)
+}
+
+summarize(Y_village = mean(Y[Z == z]))
+
+
+df_long %>% 
+  group_by(runtype, election) %>%
+  summarize(
+    n_total = n(), 
+    gr_45 = length(Dem_Voteshare[Dem_Voteshare <= .45]),
+    lt_55 = length(Dem_Voteshare[Dem_Voteshare > .55])) %>%
+  ungroup() %>%
+  mutate(total_competitive = gr_45 + lt_55,
+         prop_competitive = total_competitive/n_total)
+  
+  
+  
+  
+  summarise(gr_45 = n(Dem_voteshare > 0.45), n_total = n())
+  #group_by(runtype, election) %>% 
+  summarise_at(vars("Dem_Voteshare"), ~sum((.x > 0.45) | (.x < 0.55)))
+
+
+  summarise(n(Dem_Voteshare > 0.45))
+  summarise(CompetitiveDistricts = n((Dem_Voteshare > 0.45) | (Dem_Voteshare < 0.55)))
+
+
 # create election-specific DFs for plotting
 df_long_PRES <- df_long %>%
   filter(election == "PRES16")
