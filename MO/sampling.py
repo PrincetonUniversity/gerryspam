@@ -193,11 +193,13 @@ def init_chain_results(elections):
 
     for election in elections:
         name = election.lower()
-        data["seats_{}".format(name)] = np.zeros(ITERS)
         data["results_{}".format(name)] = np.zeros((ITERS, NUM_DISTRICTS))
+        data["seats_{}".format(name)] = np.zeros(ITERS)
         data["efficiency_gap_{}".format(name)] = np.zeros(ITERS)
         data["mean_median_{}".format(name)] = np.zeros(ITERS)
-        data["partisan_gini_{}".format(name)] = np.zeros(ITERS)
+        data["partisan_bias_{}".format(name)] = np.zeros(ITERS)
+        data["polsby_popper_{}".format(name)] = np.zeros(ITERS)
+        data["wasted_votes_{}".format(name)] = np.zeros(ITERS)
     return data, parts
 
 def tract_chain_results(data, elections, part, i):
@@ -209,8 +211,10 @@ def tract_chain_results(data, elections, part, i):
         data["seats_{}".format(name)][i] = part[election].seats("Dem")
         data["efficiency_gap_{}".format(name)][i] = part[election].efficiency_gap()
         data["mean_median_{}".format(name)][i] = part[election].mean_median()
-        data["partisan_gini_{}".format(name)][i] = part[election].partisan_gini()
-
+        data["partisan_bias_{}".format(name)][i] = part[election].partisan_bias()
+        data["polsby_popper_{}".format(name)][i] = part[election].partisan_gini()
+        data["wasted_votes_{}".format(name)][i] = part[election].wasted_votes("Dem", "Rep")
+                
 def update_saved_parts(parts, part, elections, i):
     for election in elections: 
         # save any plan with netural or outlier EG 
