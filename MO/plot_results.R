@@ -42,7 +42,7 @@ summarize(Y_village = mean(Y[Z == z]))
 
 
 df_long %>% 
-  group_by(runtype, election) %>%
+  group_by(election, runtype) %>%
   summarize(
     n_total = n(), 
     gr_45 = length(Dem_Voteshare[Dem_Voteshare <= .45]),
