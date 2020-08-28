@@ -15,6 +15,14 @@ np_load_old = np.load
 # modify the default parameters of np.load
 np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
 
+# load test
+test_05 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_senate_1000_0.05.p")
+test_05.keys() # shows "columns" available
+test_05["polsbypopper"]
+
+plt.hist(test_05["eg"], bins=50)
+
+
 # load results from gerrychain 
 sen_05 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_senate_300000_0.05.p")
 sen_01 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_senate_100000_0.01.p")

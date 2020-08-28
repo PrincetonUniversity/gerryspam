@@ -5,15 +5,17 @@ import numpy as np
 from functools import partial
 import json
 import csv
+import math
 import pickle
 import matplotlib.pyplot as plt
 from gerrychain.random import random
 from gerrychain import Graph, Partition, Election, MarkovChain, GeographicPartition, accept, constraints
-from gerrychain.updaters import Tally, cut_edges, county_splits
+from gerrychain.updaters import Tally, cut_edges, county_splits, Tally, boundary_nodes, cut_edges_by_part, exterior_boundaries, interior_boundaries, perimeter
 from gerrychain.constraints import single_flip_contiguous, Validator, within_percent_of_ideal_population, refuse_new_splits
 from gerrychain.proposals import recom
 from gerrychain.accept import always_accept
 from gerrychain.tree import recursive_tree_part
+from gerrychain.metrics.compactness import compute_polsby_popper, polsby_popper
 random.seed(20210809)
 
 np_load_old = np.load
@@ -38,7 +40,7 @@ args = parser.parse_args()
 num_districts_in_map = {"state_senate" : 34,
                         "state_house" : 163}
 
-DATE = "0817" 
+DATE = "0828" 
 POP_COL = "total"
 VRA_POP_COL = 'black_pop'
 NUM_DISTRICTS = num_districts_in_map[args.map]
@@ -85,7 +87,8 @@ graph = Graph.from_file(dat_path)
 mo_updaters = {"population" : Tally(POP_COL, alias="population"),
                "cut_edges": cut_edges,
                "county_splits": county_splits("county_splits", "COUNTYFP"),
-               "num_vra_districts": num_vra_districts}
+               "num_vra_districts": num_vra_districts,
+               "polsby_popper": polsby_popper}
 
 elections = [Election("USSEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"}),
              Election("PRES16", {"Dem": "G16PREDCLI", "Rep": "G16PRERTRU"})]
@@ -108,7 +111,7 @@ ideal_pop = total_pop / NUM_DISTRICTS
 cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS), 
                                 pop_target=ideal_pop, pop_col=POP_COL, epsilon=EPS)
 
-init_partition = Partition(graph, assignment=cddict, updaters=mo_updaters)
+init_partition = GeographicPartition(graph, assignment=cddict, updaters=mo_updaters)
 # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.08, USSEN EG = -0.18
 
 
@@ -189,6 +192,7 @@ print("Starting Markov Chain")
 
 def init_chain_results(elections):
     data = {"cutedges": np.zeros(ITERS)}
+    data["polsbypopper"] = np.zeros((ITERS, NUM_DISTRICTS))
     parts = {"hash": [], "samples": [], "eg": [], "election": []}
 
     for election in elections:
@@ -199,11 +203,11 @@ def init_chain_results(elections):
         data["mean_median_{}".format(name)] = np.zeros(ITERS)
         data["partisan_bias_{}".format(name)] = np.zeros(ITERS)
         # data["wasted_votes_{}".format(name)] = np.zeros(ITERS)
-        data["polsby_popper"] = np.zeros((ITERS, NUM_DISTRICTS))
     return data, parts
 
 def tract_chain_results(data, elections, part, i):
     data["cutedges"][i] = len(part["cut_edges"])
+    data["polsbypopper"][i] = list(part["polsby_popper"].values())
 
     for election in elections:
         name = election.lower()
@@ -213,7 +217,6 @@ def tract_chain_results(data, elections, part, i):
         data["mean_median_{}".format(name)][i] = part[election].mean_median()
         data["partisan_bias_{}".format(name)][i] = part[election].partisan_bias()
         # data["wasted_votes_{}".format(name)][i] = part[election].wasted_votes("Dem", "Rep")
-        data["polsby_popper"][i] = part.polsby_popper()
                 
 def update_saved_parts(parts, part, elections, i):
     for election in elections: 
@@ -238,6 +241,7 @@ chain_results, parts = init_chain_results(ELECTS)
 
 for i, part in enumerate(chain):
     chain_results["cutedges"][i] = len(part["cut_edges"])
+    # chain_results["polsby_popper"][i] = sorted(part["polsby_popper"])
     tract_chain_results(chain_results, ELECTS, part, i)
     update_saved_parts(parts, part, ELECTS, i)
 
