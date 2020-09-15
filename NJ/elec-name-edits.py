@@ -126,11 +126,9 @@ def edit_029(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_017(row):
-    precs = ['jersey city city ward ']
+    precs = ['jersey city w']
     replace_with = ['jerseycity-']
     return rm_space_multiples(row, precs, replace_with)
-
-
 
 countyToCountyCleaner = {
     "033": edit_033,
