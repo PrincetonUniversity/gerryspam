@@ -167,14 +167,17 @@ def edit_005(row):
     replace_with=['mount', 'medford', 'pemberton', 'burlington']
     return rm_space_multiples(row, precs, replace_with)
 
-# # test function
-# d = {'prec': ["mount ephraim borough voting district 4", "mount ephraim borough voting district 3", "mount ephraim borough voting district 2", 'haddon township south', 'berlin borough', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
+# test function
+# d = {'prec': ["mullica township ward 1 voting district 1", "mount ephraim borough voting district 3", "mount ephraim borough voting district 2", 'haddon township south', 'berlin borough', 'chester thing 2', 'chester'], 'col2': ["dog", 4, "cat", "rabbit", 3, 5, 2]}
 # df = pd.DataFrame(data=d)
 # print(df['prec'])
-# u_out = edit_007(df['prec'])
+# u_out = edit_001(df['prec'])
 # print(u_out)
 
 countyToCountyCleaner = {
+    "001": edit_001,
+    "003": edit_003,
+    "005": edit_005,
     "033": edit_033,
     "027": edit_027,
     "019": edit_019,
@@ -186,12 +189,9 @@ countyToCountyCleaner = {
     "007": edit_007,
     "013": edit_013,
     "039": edit_039,
-    "001": edit_001,
-    "003": edit_003,
     "023": edit_023,
     "029": edit_029,
-    "017": edit_017,
-    "005": edit_005
+    "017": edit_017
 }
 
 """
@@ -229,8 +229,7 @@ partnership_prec_split = clean_shp['prec_matching'].str.split(expand=True)
 clean_shp['prec_word1'] = partnership_prec_split[0]
 
 # make column of first word from precinct name and numbers 
-shp_nums = ignore_alpha(clean_shp['shp_loc_prec'])
-clean_shp["shp_loc_prec_nums"] = shp_nums
+clean_shp["shp_loc_prec_nums"] = partnership['COUNTYFP'].astype(str) + ignore_alpha(clean_shp['prec_matching'])
 clean_shp["shp_loc_prec_code"] = clean_shp['shp_loc_prec_nums'].astype(str) + '_' + clean_shp['prec_word1']
 
 print("# unique precinct codes:", len(clean_shp.shp_loc_prec_code.unique()))
