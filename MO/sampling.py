@@ -114,22 +114,6 @@ cddict = recursive_tree_part(graph=graph, parts=range(NUM_DISTRICTS),
 init_partition = GeographicPartition(graph, assignment=cddict, updaters=mo_updaters)
 # init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.08, USSEN EG = -0.18
 
-
-##################################################################
-######## ! if using the ~0 EG map as the initial partition
-##################################################################
-# init_partition = GeographicPartition(graph, assignment="SLDUST", updaters=mo_updaters)
-# # init_partition["USSEN16"].efficiency_gap() 
-# sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0527/MO_state_senate_1000_0.05_parts.p")
-# chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
-# init_partition = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
-# total_pop = sum(dat[POP_COL])
-# ideal_pop = total_pop / NUM_DISTRICTS
-
-# init_partition.plot(cmap="tab20")
-# init_partition["USSEN16"].efficiency_gap() #PRES EG = -0.04, USSEN EG = -0.14
-# plt.show()
-
 ##################################################################
 ######## ! if using the enacted state senate map as the initial partition
 ##################################################################
@@ -263,38 +247,3 @@ with open(output, "wb") as f_out:
 
 with open(output_parts, "wb") as f_out:
     pickle.dump(parts, f_out)
-
-
-## ## ## ## ## ## ## ## ## ## ## 
-## ### if doing a one-off chain 
-## ## ## ## ## ## ## ## ## ## ## 
-# chain = MarkovChain(
-#     proposal=proposal,
-#     constraints=[
-#             constraints.within_percent_of_ideal_population(init_partition, 0.055),
-#         compactness_bound
-#     ],
-#     accept=accept.always_accept,
-#     initial_state=init_partition,
-#     total_steps=100000
-# )
-
-# def make_dat_from_chain(chain, id):
-#     d_percents = [partition["PRES16"].percents("Dem") for partition in chain]
-#     ensemble_dat = pd.DataFrame(d_percents)
-#     ensemble_dat["id"] = id
-#     egs = [partition["PRES16"].efficiency_gap() for partition in chain]
-#     ensemble_dat["eg"] = egs
-#     mm = [partition["PRES16"].mean_median() for partition in chain]
-#     ensemble_dat["mm"] = mm
-#     seats = [partition["PRES16"].seats("Dem") for partition in chain]
-#     ensemble_dat["D_seats"] = seats
-#     return ensemble_dat
-
-# # start 12:38 - took ~6 hours
-# dat1 = make_dat_from_chain(chain, "st_sen_5.5eps_enactedinit") # took abt 4 hours
-# dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit.csv")
-# small_dat1 = dat1.sample(1000) # randomly sample 1000 rows
-# small_dat1.to_csv("/Users/hopecj/projects/gerryspam/MO/res/st_sen_5_5eps_enactedinit_sampled.csv")
-# plt.hist(dat1["eg"], bins=50)
-# plt.show()
