@@ -1,4 +1,3 @@
-# https://github.com/gerrymandr/georgia/blob/master/competitiveness.ipynb
 import numpy as np
 import pickle
 import geopandas as gpd
@@ -15,29 +14,26 @@ np_load_old = np.load
 # modify the default parameters of np.load
 np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
 
-# load test
+# load test ensemble
 test_05 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_senate_1000_0.05.p")
 test_05.keys() # shows "columns" available
 test_05["polsbypopper"]
 
 plt.hist(test_05["eg"], bins=50)
 
-
-# load results from gerrychain 
-sen_05 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0828/MO_state_senate_100000_0.05.p")
-sen_01 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0828/MO_state_senate_300000_0.01.p")
-# sen_01 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_senate_100000_0.01.p")
+# load actual gerrychain results
+sen_05 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_senate_300000_0.05.p")
+sen_01 = np.load("/Users/hopecj/projects/gerryspam/MO/res_0817/MO_state_senate_100000_0.01.p")
 sen_05.keys() # shows "columns" available
 print(sen_05["mean_median_ussen16"]) # results from chain
 
-# get enacted map open
+# open enacted map
 graph = Graph.from_file("/Users/hopecj/projects/gerryspam/MO/dat/final_prec/prec_labeled.shp")
 elections = [Election("USSEN16", {"Dem": "G16USSDKAN", "Rep": "G16USSRBLU"}),
              Election("PRES16", {"Dem": "G16PREDCLI", "Rep": "G16PRERTRU"})]
 
 mo_updaters = {"population" : Tally("POP10", alias="population"),
-               "cut_edges": cut_edges,
-            }
+               "cut_edges": cut_edges}
 election_updaters = {election.name: election for election in elections}
 mo_updaters.update(election_updaters)
 
@@ -54,87 +50,20 @@ sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res/MO_state_senate_100
 # load up saved parts to find smallest EG from saved maps
 # starting seed for "small EG" plans
 sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0527/MO_state_senate_1000_0.05_parts.p")
+sen_parts.keys()
 chain_assignment = sen_parts["samples"][151] # just show the first one, change index for a different part
 res_one = Partition(graph, assignment=chain_assignment, updaters=mo_updaters)
 res_one["PRES16"].efficiency_gap() 
 res_one.plot(cmap="tab20")
 plt.show() # show the state senate map
 
-# saved parts + samples: neutral and extreme EG plans 
-sen_parts = np.load("/Users/hopecj/projects/gerryspam/MO/res_0528/MO_state_senate_100000_0.05_parts.p")
-sen = np.load("/Users/hopecj/projects/gerryspam/MO/res_0528/MO_state_senate_100000_0.05.p")
-sen_parts.keys()
 
-plt.hist(sen_parts["eg"], bins=50)
-plt.show()
-
-df = pd.DataFrame()
-df['hash'] = sen_parts['hash']
-df['eg'] = sen_parts['eg']
-df['election'] = sen_parts['election']
-df.groupby('election').mean()[['eg']]
-pres = df['election']=='PRES16'
-pres_df = df[pres]
-sen_df = df[~pres]
-pres_eg = pres_df["eg"].to_numpy()
-sen_eg = sen_df["eg"].to_numpy()
-# show EG calculated with pres race
-plt.hist(pres_eg, bins=50)
-plt.show()
-# show EG calculated with US Senate race
-plt.hist(sen_eg, bins=50)
-plt.show()
-
+####################################
+######### Plot results  ############
+####################################
 
 # D voteshare - ensemble vs enacted
-#PRES16
-plt.figure(figsize=(12,6))
-plt.title("PRES16 - Amendment 3")
-plt.xlabel("Indexed District")
-plt.ylabel("Democratic vote % (PRES16)")
-plt.boxplot(sen_01["results_pres16"], whis=(1,99), showfliers=False)
-plt.boxplot(sen_05["results_pres16"], whis=(1,99), showfliers=False)
-
-
-# Polsby popper - ensemble vs enacted
-plt.figure(figsize=(12,6))
-plt.title("Polsby popper comparison")
-plt.xlabel("Indexed District")
-plt.ylabel("Polsby popper")
-plt.boxplot(sen_01["polsbypopper"], whis=(1,99), showfliers=True)
-plt.boxplot(sen_05["polsbypopper"], whis=(1,99), showfliers=True)
-plt.legend()
-# plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_voteshare_pres16_amendment3.png", bbox_inches="tight", dpi=200)
-plt.show()
-
-# Put Amendment 3 and Baseline side-by-side
-def set_box_color(bp, color):
-    plt.setp(bp['boxes'], color=color)
-    plt.setp(bp['whiskers'], color=color)
-    plt.setp(bp['caps'], color=color)
-    plt.setp(bp['medians'], color=color)
-    
-plt.figure()
-
-bpl = plt.boxplot(sen_01["results_pres16"], whis=(1,99), showfliers=False)
-bpr = plt.boxplot(sen_05["results_pres16"], whis=(1,99), showfliers=False)
-set_box_color(bpl, '#D7191C') # colors are from http://colorbrewer2.org/
-set_box_color(bpr, '#2C7BB6')
-
-# draw temporary red and blue lines and use them to create a legend
-plt.plot([], c='#D7191C', label='Amendment 3')
-plt.plot([], c='#2C7BB6', label='Baseline')
-plt.legend()
-
-plt.xticks(xrange(0, len(ticks) * 2, 2), ticks)
-plt.xlim(-2, len(ticks)*2)
-plt.ylim(0, 8)
-plt.tight_layout()
-plt.show()
-plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_voteshare_pres16_boxplotCOMPARE.png", bbox_inches="tight", dpi=200)
-
-
-#USSENATE16
+# USSENATE16
 plt.figure(figsize=(12,6))
 plt.title("SEN16 - 5% population deviation")
 plt.xlabel("Indexed District")
@@ -159,7 +88,7 @@ plt.legend()
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_seats_pres16_01.png", bbox_inches="tight", dpi=200)
 plt.show()
 
-
+# D seats - ensemble vs enacted
 # USSEN16
 plt.title("Seat Share - Enacted versus Ensemble (USSEN16 01% pop. deviation)")
 plt.xlabel("Democratic Seats in State Senate")
@@ -170,8 +99,19 @@ plt.legend()
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_seats_sen16_01.png", bbox_inches="tight", dpi=200)
 plt.show()
 
-# from neutral EG plan
+# Compactness - ensemble vs enacted
+plt.figure(figsize=(12,6))
+plt.title("Polsby popper comparison")
+plt.xlabel("Indexed District")
+plt.ylabel("Polsby popper")
+plt.boxplot(sen_01["polsbypopper"], whis=(1,99), showfliers=True)
+plt.boxplot(sen_05["polsbypopper"], whis=(1,99), showfliers=True)
+plt.legend()
+# plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_voteshare_pres16_amendment3.png", bbox_inches="tight", dpi=200)
+plt.show()
+
 # D seats - ensemble vs enacted
+# (using neutral EG plan to test whether starting seed has impact on state of plans explored)
 # PRES16
 plt.title("Seat Share - Enacted versus Ensemble (PRES16)")
 plt.xlabel("Democratic Seats in State Senate")
@@ -182,7 +122,8 @@ plt.legend()
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_seats_smallseed_pres16.png", bbox_inches="tight", dpi=200)
 plt.show()
 
-# from neutral EG plan
+# D seats - ensemble vs enacted
+# (using neutral EG plan to test whether starting seed has impact on state of plans explored)
 # USSEN16
 plt.title("Seat Share - Enacted versus Ensemble (USSEN16)")
 plt.xlabel("Democratic Seats in State Senate")
@@ -193,7 +134,7 @@ plt.legend()
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_dem_seats_smallseed_sen16.png", bbox_inches="tight", dpi=200)
 plt.show()
 
-# Partisanship
+# Re-shape for plotting partisan fairness metric
 def extend_data_frame(df, data, key_prefix, col, districts, epsilon,
                       elections=["PRES16", "SEN16"], iters=100000):
     for elect in elections:
@@ -217,7 +158,7 @@ eg["Epsilon"] = eg["Epsilon"].apply(float)
 # check that we got the right number of rows
 eg.groupby(['Election', 'Epsilon'])['EG'].count()
 
-# make a plot
+# create a plot
 sns.set(style="whitegrid", palette="Set3")
 es = ["PRES16", "USSEN16"]
 plt.figure(figsize=(12,6))
@@ -233,13 +174,13 @@ for i in [-1,1]:
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_EG.png", bbox_inches="tight", dpi=200)
 plt.show()
 
-#mean-median difference
+# mean-median difference
 mm = pd.DataFrame()
-mm_05 = extend_data_frame(mm, sen_05, "mean_median_{}", "MM", 34, 0.05, elections=elections, iters=100000)
+mm_05 = extend_data_frame(mm, sen_05, "mean_median_{}", "MM", 34, 0.05, elections=elections, iters=300000)
 # mm = pd.DataFrame()
 # mm_03 = extend_data_frame(mm, sen_03, "mean_median_{}", "MM", 34, 0.03, elections=elections)
 mm = pd.DataFrame()
-mm_01 = extend_data_frame(mm, sen_01, "mean_median_{}", "MM", 34, 0.01, elections=elections, iters=300000)
+mm_01 = extend_data_frame(mm, sen_01, "mean_median_{}", "MM", 34, 0.01, elections=elections, iters=100000)
 
 mm["MM"] = mm["MM"].apply(float)
 mm["Districts"] = mm["Districts"].apply(int)
@@ -250,7 +191,7 @@ mm["Epsilon"] = mm["Epsilon"].apply(float)
 # check that we got the right number of rows
 mm.groupby(['Election', 'Epsilon'])["MM"].count()
 
-# make a plot
+# create a plot
 sns.set(style="whitegrid", palette="Set3")
 es = ["PRES16", "USSEN16"]
 plt.figure(figsize=(12,6))
@@ -264,6 +205,10 @@ for i in [-1,1]:
 
 plt.savefig("/Users/hopecj/projects/gerryspam/MO/plots/stsen_MM.png", bbox_inches="tight", dpi=200)
 plt.show()
+
+####################################
+######### Re-shape data  ###########
+####################################
 
 # create a data frame with columns for vote by district, eg, and D-seats
 def extend_data_frame(df, data, key_prefix_metric, key_prefix_res, key_prefix_seats,
@@ -290,20 +235,15 @@ def extend_data_frame(df, data, key_prefix_metric, key_prefix_res, key_prefix_se
 elections = ["PRES16", "USSEN16"]
 
 df = pd.DataFrame()
-df_05 = extend_data_frame(df, sen_05, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.05, elections=elections, iters=100000)
-df_03 = extend_data_frame(df, sen_03, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.03, elections=elections)
-df_01 = extend_data_frame(df, sen_01, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.01, elections=elections, iters=300000)
+df_05 = extend_data_frame(df, sen_05, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.05, elections=elections, iters=300000)
+# df_03 = extend_data_frame(df, sen_03, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.03, elections=elections)
+df_01 = extend_data_frame(df, sen_01, "efficiency_gap_{}", "results_{}", "seats_{}", "EG", 34, 0.01, elections=elections, iters=100000)
 
 # merge together the tuple returned from the function
 df_05[1]['voteshare_mean'] = df_05[1].mean(axis=1)
 out_05 = df_05[0].join(df_05[1])
 out_05 = out_05.join(df_05[2])
 out_05 = out_05.join(mm_05["MM"])
-
-# same for 3% population deviation
-out_03 = df_03[0].join(df_03[1])
-out_03 = out_03.join(df_03[2])
-out_03 = out_03.join(mm_03["MM"])
 
 # same for 1% population deviation
 df_01[1]['voteshare_mean'] = df_01[1].mean(axis=1)
@@ -319,14 +259,9 @@ out_01 = out_01.join(mm_01["MM"])
 # out_sample.to_csv("/Users/hopecj/personal/portion-viz/data/stsen_05_data_sampled_small.csv")
 
 # out_05.to_csv("/Users/hopecj/projects/gerryspam/MO/res/sthouse_05_data.csv")
-# out_03.to_csv("/Users/hopecj/projects/gerryspam/MO/res/sthouse_03_data.csv")
 # out_01.to_csv("/Users/hopecj/projects/gerryspam/MO/res/sthouse_01_data.csv")
 
-# out_05.to_csv("/Users/hopecj/projects/gerryspam/MO/res/stsenate_05_data.csv")
-# out_01.to_csv("/Users/hopecj/projects/gerryspam/MO/res/stsenate_01_data.csv")
-
-out_05.to_csv("/Users/hopecj/projects/gerryspam/MO/res_0828/stsenate_05_data.csv")
-out_01.to_csv("/Users/hopecj/projects/gerryspam/MO/res_0828/stsenate_01_data.csv")
-
+out_05.to_csv("/Users/hopecj/projects/gerryspam/MO/res/stsenate_05_data.csv")
+out_01.to_csv("/Users/hopecj/projects/gerryspam/MO/res/stsenate_01_data.csv")
 
 
