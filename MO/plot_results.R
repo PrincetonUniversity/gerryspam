@@ -23,6 +23,8 @@ df_baseline <- raw_baseline %>%
          seat_share = D_seats/34)
 
 df_03 <- raw_03 %>%
+  filter(eg < 0.15) %>%
+  filter(eg > -0.15) %>%
   mutate(runtype = "Amendment 3",
          seat_share = D_seats/34)
 
@@ -37,6 +39,7 @@ df_03_long <- gather(df_03, "district", "Dem_Voteshare",
 df_long <- bind_rows(df_baseline_long, df_03_long)
 
 df_short <- bind_rows(df_03, df_baseline)
+df_short %>% group_by(election, runtype) %>% skim()
 
 # look at competitiveness range
 competitiveness_dist <- function(x, probs) {
@@ -92,7 +95,6 @@ density_SEN <- ggplot(df_long_SEN, aes(x=Dem_Voteshare, y=..scaled.., color=runt
 density_SEN
 ggsave(file.path(plot_path, "voteshare_dens_sen.png"), density_SEN, width=10)
 
-
 ### 
 # Plot 2: Side-by-side bar chart of seat share
 ###
@@ -113,8 +115,6 @@ seats_density_PRES <- ggplot(df_long_PRES, aes(x=D_seats, color=runtype)) +
 seats_density_PRES 
 ggsave(file.path(plot_path, "meanmedian_dens_pres.png"), MM_density_PRES, width=8)
 
-
-
 ### 
 # Plot 3: Mean-median score
 ###
@@ -129,7 +129,6 @@ MM_density_SEN <- ggplot(df_long_SEN, aes(x=MM, color=runtype)) +
   geom_density()
 MM_density_SEN
 ggsave(file.path(plot_path, "meanmedian_dens_sen.png"), MM_density_SEN, width=8)
-
 
 ### 
 # Plot 4: Seats/votes curve with line of best fit
@@ -172,6 +171,11 @@ ggplot(df_short_PRES, aes(x = voteshare_mean, y = seat_share)) +
        subtitle = "Based on 2016 Presidential election results")
 ggsave(file.path(plot_path, "votes-seats_pres.png"), width=15, height=10)
 
+# by district - only senate
+ggplot(df_long_SEN, aes(x = Dem_Voteshare, y = seat_share)) + 
+  geom_jitter() +
+  geom_smooth(method = lm) + 
+  facet_grid(vars(runtype), vars(district), scales = "free")
 
 ### 
 # LM: Seats/votes curve 
@@ -183,4 +187,3 @@ summary(model)
 
 amendment_3_slope <- -5.23373
 baseline_slope <- -5.23373 + -2.38977 + 5.04077
-
