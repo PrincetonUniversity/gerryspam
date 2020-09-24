@@ -55,7 +55,7 @@ def edit_027(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_019(row):
-    precs = ['clinton ', 'lebanon', 'town of clinton']
+    precs = ['clinton ', 'lebanon ', 'town of clinton']
     replace_with = ['clinton', 'lebanon', 'clintontown', ]
     return rm_space_multiples(row, precs, replace_with)
 
@@ -99,8 +99,8 @@ def edit_039(row):
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_001(row):
-    precs = ['buena ', 'egg harbor ', 'west ']
-    replace_with = ['buena', 'eggharbor', 'west']
+    precs = ['buena ', 'egg harbor ', 'west ', 'estell manor estl']
+    replace_with = ['buena', 'eggharbor', 'west', 'estellmanorestl']
     return rm_space_multiples(row, precs, replace_with)
 
 def edit_003(row):
