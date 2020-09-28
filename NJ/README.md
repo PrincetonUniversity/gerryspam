@@ -1,4 +1,23 @@
+# New Jersey 2016 Election Shapefile 
+
+This shapefile comes from the Census Partnership file program and was matched with 2016 general election results by the Princeton Gerrymandering Project. 
+
+## Metadata
+
+* `county_nam`: County name
+* `STATEFP`: State FIPS code
+* `COUNTYFP`: County FIPS code 
+* `countynam`: County name
+* `precinct`: Precinct name
+* `G16DPRS`: Democratic votes President
+* `G16RPRS`: Republican votes President
+* `G16DHOR`: Democratic votes US House
+* `G16RHOR`: Republican votes US House
+* `geometry`: Geometry
+
 ## Processing
+
+All processing scripts are available in [this](https://github.com/PrincetonUniversity/gerryspam/tree/master/NJ) public GitHub repository. To re-run the processing scripts, you will need to change the relative paths to all data files.
 
 The following processing scripts were used to match a precinct-level shapefile of New Jersey with precinct-level election results from the 2016 election:
 1. Transform raw election results: https://github.com/PrincetonUniversity/gerryspam/blob/master/NJ/Process_OpenElex.py 
@@ -16,9 +35,3 @@ Election results for 2016 were downloaded from MEDSL by way of the Harvard Datav
 
 Note that our matched precincts are missing two counties: Burlington and Gloucester. Precinct-level election results were not available for these counties. 
 
-## Variables
-
-* `G16DPRS`: `Democratic votes President`
-* `G16DPRS`: `Republican votes President`
-* `G16DHOR`: `Democratic votes US House`
-* `G16RHOR`: `Republican votes US House`
