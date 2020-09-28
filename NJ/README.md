@@ -1,6 +1,6 @@
 # New Jersey 2016 Election Shapefile 
 
-This shapefile comes from the Census Partnership file program and was matched with 2016 general election results by the Princeton Gerrymandering Project. 
+This shapefile comes from the Census Partnership file program and was matched to 2016 general election results by the Princeton Gerrymandering Project. 
 
 ## Metadata
 
