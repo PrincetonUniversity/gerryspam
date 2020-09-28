@@ -138,7 +138,7 @@ def edit_001(row):
                      'brigantine city ward 2',
                      'brigantine city ward 3',
                      'brigantine city ward 4',
-                     'estell manor estl'
+                     'estellmanorestl'
                      ]
     return rm_space_multiples(row, precs, replace_with)
 
@@ -232,6 +232,7 @@ clean_shp['prec_word1'] = partnership_prec_split[0]
 clean_shp["shp_loc_prec_nums"] = partnership['COUNTYFP'].astype(str) + ignore_alpha(clean_shp['prec_matching'])
 clean_shp["shp_loc_prec_code"] = clean_shp['shp_loc_prec_nums'].astype(str) + '_' + clean_shp['prec_word1']
 
+# these should be the same
 print("# unique precinct codes:", len(clean_shp.shp_loc_prec_code.unique()))
 print("# unique loc_prec:", len(clean_shp.shp_loc_prec.unique()))
 
