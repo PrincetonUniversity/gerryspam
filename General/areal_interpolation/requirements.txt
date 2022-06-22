@@ -9,7 +9,7 @@ kiwisolver==1.2.0
 matplotlib==3.2.1
 maup==0.7
 munch==2.5.0
-numpy==1.18.2
+numpy==1.22.0
 pandas==1.0.3
 pyparsing==2.4.7
 pyproj==2.6.0
